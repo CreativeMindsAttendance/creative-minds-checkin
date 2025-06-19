@@ -83,3 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
     detectLocation(name);
   };
 });
+
+const modeToggle = document.getElementById('mode-toggle');
+
+// استرجاع الوضع من localStorage
+if (localStorage.getItem("darkMode") === "true") {
+  document.body.classList.add("dark");
+  modeToggle.classList.add("active");
+}
+
+modeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  modeToggle.classList.toggle("active", isDark);
+  localStorage.setItem("darkMode", isDark);
+});
