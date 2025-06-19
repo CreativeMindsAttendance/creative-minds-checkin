@@ -1,0 +1,11 @@
+{
+  "title": "Check-in Form",
+  "placeholder": "Enter your full name",
+  "submit": "Submit Attendance",
+  "success": "✅ Your attendance has been recorded successfully",
+  "already": "You've already checked in today as {name}",
+  "outOfRange": "❌ You are outside the institute range. You must be within the area to register attendance.",
+  "required": "Please enter your name first",
+  "geoError": "Could not access your location. Please allow location access.",
+  "loading": "⏳ Verifying your location..."
+}
