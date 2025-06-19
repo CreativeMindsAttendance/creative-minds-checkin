@@ -1,9 +1,14 @@
-let lang = 'ar';
+let lang = localStorage.getItem("lang") || 'ar';
 let translations = {};
 let submittedToday = false;
 let storedName = '';
 const allowedDistance = 0.2; // بالكيلومتر
 
+// إحداثيات المعهد
+const DEST_LAT = 16.889264;
+const DEST_LON = 42.548691;
+
+// تحميل اللغة حسب الملف
 async function loadLang(file) {
   const res = await fetch(file);
   translations = await res.json();
@@ -12,19 +17,23 @@ async function loadLang(file) {
   document.getElementById('title').textContent = translations.title;
   document.getElementById('nameInput').placeholder = translations.placeholder;
   document.getElementById('submitBtn').textContent = translations.submit;
-  document.getElementById('lang-toggle').textContent = lang.toUpperCase();
+  document.getElementById('lang-toggle-label').textContent = lang === 'ar' ? 'AR' : 'EN';
 }
 
 function switchLang() {
   lang = lang === 'ar' ? 'en' : 'ar';
+  localStorage.setItem("lang", lang);
   loadLang(`lang-${lang}.json`);
 }
 
+// الوضع الليلي
 function toggleDarkMode() {
   const isDark = document.body.classList.toggle('dark');
-  localStorage.setItem('dark', isDark ? '1' : '0');
+  modeToggle.classList.toggle("active", isDark);
+  localStorage.setItem("darkMode", isDark);
 }
 
+// حساب المسافة
 function distance(lat1, lon1, lat2, lon2) {
   const toRad = deg => deg * Math.PI / 180;
   const R = 6371;
@@ -34,30 +43,31 @@ function distance(lat1, lon1, lat2, lon2) {
   return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 }
 
+// عرض الرسائل
 function showMessage(msg, isError = false) {
   const el = document.getElementById('statusMessage');
   el.textContent = msg;
   el.style.color = isError ? 'crimson' : 'green';
 }
 
+// التحقق وتسجيل الحضور
 async function checkIn(name, lat, lon) {
   if (!name) return showMessage(translations.required, true);
   if (submittedToday) return showMessage(translations.already.replace('{name}', storedName), true);
 
-  // استثناء خاص لسليمان
   const override = name.trim() === "سليمان أحمد النجدي";
-
   const dist = distance(lat, lon, DEST_LAT, DEST_LON);
-  if (dist > allowedDistance && !override)
+
+  if (dist > allowedDistance && !override) {
     return showMessage(translations.outOfRange, true);
+  }
 
   submittedToday = true;
   storedName = name.trim();
-
-  // بعد التحقق، عرض رسالة النجاح
   showMessage(translations.success);
 }
 
+// معرفة الموقع
 function detectLocation(name) {
   navigator.geolocation.getCurrentPosition(
     pos => {
@@ -68,33 +78,33 @@ function detectLocation(name) {
   );
 }
 
+// تحميل عند بداية الصفحة
 document.addEventListener('DOMContentLoaded', () => {
   loadLang(`lang-${lang}.json`);
 
-  const savedDark = localStorage.getItem('dark');
-  if (savedDark === '1') document.body.classList.add('dark');
+  const savedDark = localStorage.getItem('darkMode');
+  if (savedDark === 'true') {
+    document.body.classList.add("dark");
+    modeToggle.classList.add("active");
+  }
 
-  document.getElementById('lang-toggle').onclick = switchLang;
-  document.getElementById('mode-toggle').onclick = toggleDarkMode;
-
-  document.getElementById('submitBtn').onclick = () => {
+  document.getElementById('lang-toggle').addEventListener("click", switchLang);
+  document.getElementById('submitBtn').addEventListener("click", () => {
     const name = document.getElementById('nameInput').value.trim();
+
+    if (submittedToday && name !== storedName) {
+      return showMessage(translations.alreadyOther.replace('{name}', storedName), true);
+    }
+
     showMessage(translations.loading);
     detectLocation(name);
-  };
+  });
 });
 
-const modeToggle = document.getElementById('mode-toggle');
-
-// استرجاع الوضع من localStorage
+// تفعيل زر الوضع الليلي مع حفظ
+const modeToggle = document.getElementById("mode-toggle");
 if (localStorage.getItem("darkMode") === "true") {
   document.body.classList.add("dark");
   modeToggle.classList.add("active");
 }
-
-modeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  const isDark = document.body.classList.contains("dark");
-  modeToggle.classList.toggle("active", isDark);
-  localStorage.setItem("darkMode", isDark);
-});
+modeToggle.addEventListener("click", toggleDarkMode);
