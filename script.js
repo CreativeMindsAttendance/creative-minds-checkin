@@ -4,10 +4,6 @@ let translations = {};
 let submittedToday = false;
 let storedName = '';
 
-// إحداثيات المعهد
-const DEST_LAT = 16.889264;
-const DEST_LON = 42.548691;
-
 // تحميل اللغة حسب الملف
 async function loadLang(file) {
   const res = await fetch(file);
