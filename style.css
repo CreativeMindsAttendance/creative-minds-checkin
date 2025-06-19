@@ -144,31 +144,39 @@ footer {
   color: #f2f2f2;
 }
 
+/* زر الوضع الليلي الجديد */
 #mode-toggle {
-  padding: 6px 16px;
+  width: 60px;
+  height: 30px;
   background-color: #e5e5ea;
-  color: #1c1c1e;
   border: none;
-  border-radius: 20px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.dark #lang-toggle, .dark #mode-toggle {
-  background-color: #333;
-  color: #f2f2f2;
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  overflow: hidden;
 }
 
 #mode-toggle::before {
-  content: "☀️";
-  display: inline-block;
-  margin-right: 6px;
-  transition: transform 0.3s ease;
+  content: "🌞";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 2px;
+  left: 2px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: transform 0.4s ease, content 0.4s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .dark #mode-toggle::before {
   content: "🌙";
-  transform: rotate(180deg);
+  transform: translateX(30px);
 }
 
 /* Media Query للجوال */
