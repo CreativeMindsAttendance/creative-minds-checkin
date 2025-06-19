@@ -1,0 +1,86 @@
+:root {
+  --main-bg: #f9f9f9;
+  --main-text: #111;
+  --accent: #007aff;
+  --card-bg: white;
+  --transition: 0.3s ease-in-out;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--main-bg);
+  color: var(--main-text);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 2xl;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  width: 90%;
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+input {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: white;
+  transition: var(--transition);
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.top-controls {
+  position: absolute;
+  top: 10px;
+  display: flex;
+  gap: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+footer {
+  position: absolute;
+  bottom: 15px;
+  font-size: 1.5rem;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+body.dark {
+  --main-bg: #111;
+  --main-text: #fff;
+  --card-bg: #1d1d1d;
+}
