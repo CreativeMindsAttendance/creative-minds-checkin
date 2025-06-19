@@ -3,7 +3,6 @@ let lang = localStorage.getItem("lang") || 'ar';
 let translations = {};
 let submittedToday = false;
 let storedName = '';
-const allowedDistance = 0.2; // بالكيلومتر
 
 // إحداثيات المعهد
 const DEST_LAT = 16.889264;
