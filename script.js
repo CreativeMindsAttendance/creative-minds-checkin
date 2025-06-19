@@ -20,16 +20,10 @@ async function loadLang(file) {
   document.getElementById('lang-toggle-label').textContent = lang === 'ar' ? 'AR' : 'EN';
 }
 
-function switchLang() {
-  lang = lang === 'ar' ? 'en' : 'ar';
-  localStorage.setItem("lang", lang);
-  loadLang(`lang-${lang}.json`);
-}
-
 // الوضع الليلي
 function toggleDarkMode() {
   const isDark = document.body.classList.toggle('dark');
-  modeToggle.classList.toggle("active", isDark);
+  document.getElementById("mode-toggle").classList.toggle("active", isDark);
   localStorage.setItem("darkMode", isDark);
 }
 
@@ -80,33 +74,41 @@ function detectLocation(name) {
 
 // تحميل عند بداية الصفحة
 document.addEventListener('DOMContentLoaded', () => {
-const langToggle = document.getElementById('lang-toggle');
-let currentLang = localStorage.getItem("lang") || "ar";
+  const langToggle = document.getElementById('lang-toggle');
+  const modeToggle = document.getElementById('mode-toggle');
+  const submitBtn = document.getElementById('submitBtn');
 
-// تفعيل اللغة المحفوظة من قبل
-if (currentLang === "en") {
-  lang = "en";
-  langToggle.classList.add("active");
-}
+  // تفعيل الوضع الليلي من التخزين
+  if (localStorage.getItem("darkMode") === "true") {
+    document.body.classList.add("dark");
+    modeToggle.classList.add("active");
+  }
 
-// تحميل ملف اللغة
-loadLang(`lang-${lang}.json`);
+  // تفعيل اللغة المحفوظة من قبل
+  let currentLang = localStorage.getItem("lang") || "ar";
+  if (currentLang === "en") {
+    lang = "en";
+    langToggle.classList.add("active");
+  }
 
-// عند الضغط على الزر
-langToggle.addEventListener('click', () => {
-  lang = lang === "ar" ? "en" : "ar";
-  localStorage.setItem("lang", lang);
-  langToggle.classList.toggle("active");
+  // تحميل ملف اللغة
   loadLang(`lang-${lang}.json`);
-});
 
+  // تبديل اللغة
+  langToggle.addEventListener('click', () => {
+    lang = lang === "ar" ? "en" : "ar";
+    localStorage.setItem("lang", lang);
+    langToggle.classList.toggle("active");
+    loadLang(`lang-${lang}.json`);
+  });
+
+  // تبديل الوضع الليلي
+  modeToggle.addEventListener("click", toggleDarkMode);
+
+  // زر التسجيل
+  submitBtn.addEventListener("click", () => {
+    const name = document.getElementById('nameInput').value.trim();
+    showMessage(translations.loading);
+    detectLocation(name);
   });
 });
-
-// تفعيل زر الوضع الليلي مع حفظ
-const modeToggle = document.getElementById("mode-toggle");
-if (localStorage.getItem("darkMode") === "true") {
-  document.body.classList.add("dark");
-  modeToggle.classList.add("active");
-}
-modeToggle.addEventListener("click", toggleDarkMode);
