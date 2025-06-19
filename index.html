@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>نموذج التحضير - Creative Minds</title>
+    <title>Creative Minds - نموذج التحضير</title>
     <link rel="stylesheet" href="style.css" />
     <script src="config.js" defer></script>
     <script src="script.js" defer></script>
@@ -11,19 +11,26 @@
   <body>
     <div class="top-controls">
       <button id="lang-toggle">AR</button>
-      <button id="mode-toggle">🌙</button>
+      <div id="mode-toggle" class="toggle-switch"></div>
     </div>
 
     <div class="container">
       <img src="logo.png" class="logo" alt="Creative Minds Logo" />
-      <h1 id="title">نموذج تحضير</h1>
-      <input type="text" id="nameInput" placeholder="اكتب اسمك الثلاثي" />
-      <button id="submitBtn">تسجيل الحضور</button>
+      <h1 id="title">Check-in Form</h1>
+      <input type="text" id="nameInput" placeholder="Enter your full name" />
+      <button id="submitBtn">Submit Attendance</button>
       <p id="statusMessage"></p>
     </div>
 
     <footer>
-      <span>🧠</span><span>📍</span><span>📅</span>
+      <p>
+        <span class="emoji">📍</span>
+        Jazan, Saudi Arabia
+        <span class="emoji">📧</span>
+        example@creativeminds.edu.sa
+        <span class="emoji">🌐</span>
+        www.creativeminds.edu.sa
+      </p>
     </footer>
   </body>
 </html>
