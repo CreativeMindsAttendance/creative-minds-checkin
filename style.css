@@ -144,39 +144,123 @@ footer {
   color: #f2f2f2;
 }
 
-/* زر الوضع الليلي الجديد */
+/* === زر الوضع الليلي الجديد === */
 #mode-toggle {
   width: 60px;
   height: 30px;
-  background-color: #e5e5ea;
   border: none;
   border-radius: 9999px;
   position: relative;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   overflow: hidden;
+  transition: background 0.4s ease-in-out;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* صباح */
 }
 
+.dark #mode-toggle {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* ليل */
+}
+
+/* الدائرة المتحركة */
 #mode-toggle::before {
-  content: "🌞";
+  content: "☀️";
   position: absolute;
-  width: 26px;
-  height: 26px;
   top: 2px;
   left: 2px;
+  width: 26px;
+  height: 26px;
   background-color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  transition: transform 0.4s ease, content 0.4s ease;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease-in-out, background-color 0.4s;
+  z-index: 2;
 }
 
 .dark #mode-toggle::before {
   content: "🌙";
   transform: translateX(30px);
+}
+
+/* تأثير النجوم */
+#mode-toggle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 10px 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 1;
+}
+
+.dark #mode-toggle::after {
+  opacity: 0.3;
+}
+/* === زر الوضع الليلي الجديد === */
+#mode-toggle {
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.4s ease-in-out;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* صباح */
+}
+
+.dark #mode-toggle {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* ليل */
+}
+
+/* الدائرة المتحركة */
+#mode-toggle::before {
+  content: "☀️";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease-in-out, background-color 0.4s;
+  z-index: 2;
+}
+
+.dark #mode-toggle::before {
+  content: "🌙";
+  transform: translateX(30px);
+}
+
+/* تأثير النجوم */
+#mode-toggle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 10px 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 1;
+}
+
+.dark #mode-toggle::after {
+  opacity: 0.3;
 }
 
 /* Media Query للجوال */
