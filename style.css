@@ -269,4 +269,8 @@ footer {
     margin: 60px auto;
     padding: 1.5rem;
   }
+  footer {
+  direction: ltr !important;
+}
+
 }
