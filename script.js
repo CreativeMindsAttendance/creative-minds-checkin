@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // تفعيل الوضع الليلي من التخزين
   if (localStorage.getItem("darkMode") === "true") {
     document.body.classList.add("dark");
-    modeToggle.classList.add("active");
   }
 
   // تفعيل اللغة المحفوظة من قبل
