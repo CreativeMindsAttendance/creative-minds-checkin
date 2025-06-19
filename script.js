@@ -80,24 +80,26 @@ function detectLocation(name) {
 
 // تحميل عند بداية الصفحة
 document.addEventListener('DOMContentLoaded', () => {
+const langToggle = document.getElementById('lang-toggle');
+let currentLang = localStorage.getItem("lang") || "ar";
+
+// تفعيل اللغة المحفوظة من قبل
+if (currentLang === "en") {
+  lang = "en";
+  langToggle.classList.add("active");
+}
+
+// تحميل ملف اللغة
+loadLang(`lang-${lang}.json`);
+
+// عند الضغط على الزر
+langToggle.addEventListener('click', () => {
+  lang = lang === "ar" ? "en" : "ar";
+  localStorage.setItem("lang", lang);
+  langToggle.classList.toggle("active");
   loadLang(`lang-${lang}.json`);
+});
 
-  const savedDark = localStorage.getItem('darkMode');
-  if (savedDark === 'true') {
-    document.body.classList.add("dark");
-    modeToggle.classList.add("active");
-  }
-
-  document.getElementById('lang-toggle').addEventListener("click", switchLang);
-  document.getElementById('submitBtn').addEventListener("click", () => {
-    const name = document.getElementById('nameInput').value.trim();
-
-    if (submittedToday && name !== storedName) {
-      return showMessage(translations.alreadyOther.replace('{name}', storedName), true);
-    }
-
-    showMessage(translations.loading);
-    detectLocation(name);
   });
 });
 
