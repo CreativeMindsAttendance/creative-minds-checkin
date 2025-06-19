@@ -1,3 +1,4 @@
+console.log("Script loaded!");
 let lang = localStorage.getItem("lang") || 'ar';
 let translations = {};
 let submittedToday = false;
