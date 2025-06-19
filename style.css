@@ -97,7 +97,54 @@ footer {
   z-index: 999;
 }
 
-#lang-toggle, #mode-toggle {
+#lang-toggle {
+  width: 60px;
+  height: 30px;
+  background-color: #e5e5ea;
+  border: none;
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#lang-toggle::before {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 2px;
+  left: 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#lang-toggle.active::before {
+  transform: translateX(30px);
+}
+
+#lang-toggle::after {
+  content: attr(data-label); /* هذا يكتب EN أو AR داخل الزر */
+  position: absolute;
+  top: 5px;
+  left: 34px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #333;
+  transition: opacity 0.3s ease;
+}
+
+.dark #lang-toggle {
+  background-color: #333;
+}
+
+.dark #lang-toggle::after {
+  color: #f2f2f2;
+}
+
+#mode-toggle {
   padding: 6px 16px;
   background-color: #e5e5ea;
   color: #1c1c1e;
