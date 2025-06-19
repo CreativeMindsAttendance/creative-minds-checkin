@@ -263,12 +263,14 @@ footer {
   opacity: 0.3;
 }
 
+ footer {
+  direction: ltr !important;
+}
+
 /* Media Query للجوال */
 @media (max-width: 480px) {
   .container {
     margin: 60px auto;
     padding: 1.5rem;
   }
-  footer {
-  direction: ltr !important;
-}
+ 
