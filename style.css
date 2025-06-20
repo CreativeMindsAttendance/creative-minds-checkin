@@ -7,8 +7,6 @@
 @font-face {
   font-family: 'SwinglyLours';
   src: url('fonts/SwinglyLours.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 .center-title {
