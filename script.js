@@ -120,11 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
   loadLang();
 
   langToggle.addEventListener("click", () => {
-  lang = lang === "ar" ? "en" : "ar";
-  localStorage.setItem("lang", lang);
-  langToggle.classList.toggle("ar", lang === "ar");
-  loadLang();
-});
+    lang = lang === "ar" ? "en" : "ar";
+    localStorage.setItem("lang", lang);
+    langToggle.classList.toggle("ar", lang === "ar");
+    loadLang();
+  });
 
   modeToggle.addEventListener("click", toggleDarkMode);
   submitBtn.addEventListener("click", submitAttendance);
