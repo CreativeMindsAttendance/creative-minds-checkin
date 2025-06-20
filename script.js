@@ -1,131 +1,226 @@
-console.log("Script loaded!");
-
-// === المتغيرات ===
-let lang = localStorage.getItem("lang") || "ar";  // تم نقل currentLang هنا
-let submittedToday = false;
-let storedName = "";
-
-// === إعدادات الموقع الجغرافي ===
-const DEST_LAT = 16.889264;
-const DEST_LON = 42.548691;
-const allowedDistance = 0.2;
-const allowedOutsideNames = ["TEST1", "TEST2"];
-
-// === تحميل اللغة ===
-function loadLang() {
-  document.documentElement.lang = lang;
-  document.body.classList.toggle("rtl", lang === "ar");
-  document.body.classList.toggle("ltr", lang === "en");
-
-  const t = translations[lang];
-  document.getElementById("title").textContent = t.title || "Attendance";
-  document.getElementById("nameInput").placeholder = t.placeholder || "Enter your name";
-  document.getElementById("submitBtn").textContent = t.submit || "Submit";
-  document.getElementById("lang-toggle").setAttribute("data-label", lang === "ar" ? "AR" : "EN");
+/* === الأساسيات === */
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center; /* ← يوسّط كل شيء على محور X */
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-// === الوضع الليلي ===
-function toggleDarkMode() {
-  const isDark = document.body.classList.toggle("dark");
-  document.getElementById("mode-toggle").classList.toggle("active", isDark);
-  localStorage.setItem("darkMode", isDark);
+.dark {
+  background-color: #1c1c1e;
+  color: #f2f2f2;
 }
 
-// === المسافة بين نقطتين ===
-function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-  const R = 6371;
-  const dLat = deg2rad(lat2 - lat1);
-  const dLon = deg2rad(lon2 - lon1);
-  const a = Math.sin(dLat / 2) ** 2 +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-            Math.sin(dLon / 2) ** 2;
-  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-function deg2rad(deg) {
-  return deg * (Math.PI / 180);
+.container {
+  max-width: 400px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 2xl;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
 }
 
-// === رسائل المستخدم ===
-function showMessage(msg, isError = false) {
-  const el = document.getElementById("statusMessage");
-  el.innerHTML = msg;
-  el.style.color = isError ? "crimson" : "green";
+.dark .container {
+  background: rgba(28, 28, 30, 0.85);
 }
 
-// === تخزين الحضور في localStorage ===
-function hasCheckedInToday() {
-  const record = localStorage.getItem("attendanceRecord");
-  if (!record) return false;
-  const { name, date } = JSON.parse(record);
-  const today = new Date().toISOString().split("T")[0];
-  return date === today ? name : false;
+.logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 1rem;
 }
 
-function saveAttendance(name) {
-  const today = new Date().toISOString().split("T")[0];
-  localStorage.setItem("attendanceRecord", JSON.stringify({ name, date: today }));
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
 }
 
-// === تسجيل الحضور ===
-async function submitAttendance() {
-  const name = document.getElementById("nameInput").value.trim();
-  const statusMessage = document.getElementById("statusMessage");
-  const t = translations[lang];
+#nameInput {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  outline: none;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+  direction: ltr;
+  text-align: center;
+}
 
-  if (!name) return showMessage(t.required, true);
+input[type="text"]:focus {
+  border-color: #007aff;
+}
 
-  const existingName = hasCheckedInToday();
-if (existingName) {
-  if (name !== existingName) {
-    return showMessage(t.nameMismatch.replace("{name}", existingName), true);
-  } else {
-    return showMessage(t.already.replace("{name}", existingName), true);
+button {
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 9999px;
+  background-color: #007aff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #005ecb;
+  transform: scale(1.05);
+}
+
+#statusMessage {
+  margin-top: 1rem;
+  min-height: 1.5rem;
+  font-weight: 500;
+}
+
+/* === زر اللغة و الوضع الليلي === */
+.top-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* === الفوتر === */
+footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  direction: ltr !important;
+  width: max-content;
+  margin-bottom: 10px;
+}
+
+/* === زر اللغة === */
+#lang-toggle {
+  width: 60px;
+  height: 30px;
+  background-color: #e5e5ea;
+  border: none;
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#lang-toggle::before {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 2px;
+  left: 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#lang-toggle.active::before {
+  transform: translateX(30px);
+}
+
+#lang-toggle::after {
+  content: attr(data-label);
+  position: absolute;
+  top: 5px;
+  left: 34px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #333;
+  transition: opacity 0.3s ease;
+}
+
+.dark #lang-toggle {
+  background-color: #333;
+}
+
+.dark #lang-toggle::after {
+  color: #f2f2f2;
+}
+
+/* === زر الوضع الليلي الجديد === */
+#mode-toggle {
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.4s ease-in-out;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+}
+
+.dark #mode-toggle {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+#mode-toggle::before {
+  content: "☀️";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease-in-out, background-color 0.4s;
+  z-index: 2;
+}
+
+.dark #mode-toggle::before {
+  content: "🌙";
+  transform: translateX(30px);
+}
+
+#mode-toggle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 10px 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 1;
+}
+
+.dark #mode-toggle::after {
+  opacity: 0.3;
+}
+
+/* Media Query للجوال */
+@media (max-width: 480px) {
+  .container {
+    margin: 60px auto;
+    padding: 1.5rem;
   }
 }
-
-  if (allowedOutsideNames.includes(name)) {
-    saveAttendance(name);
-    return showMessage(t.success);
-  }
-
-  showMessage(t.loading);
-
-  if (!navigator.geolocation) return showMessage(t.geoError, true);
-
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      const d = getDistanceFromLatLonInKm(pos.coords.latitude, pos.coords.longitude, DEST_LAT, DEST_LON);
-      if (d <= allowedDistance) {
-        saveAttendance(name);
-        showMessage(t.success);
-      } else {
-        showMessage(t.outOfRange, true);
-      }
-    },
-    () => showMessage(t.geoError, true)
-  );
-}
-
-// === عند تحميل الصفحة ===
-document.addEventListener("DOMContentLoaded", () => {
-  const langToggle = document.getElementById("lang-toggle");
-  const modeToggle = document.getElementById("mode-toggle");
-  const submitBtn = document.getElementById("submitBtn");
-
-  if (localStorage.getItem("darkMode") === "true") {
-    document.body.classList.add("dark");
-  }
-
-  loadLang();
-
-  langToggle.addEventListener("click", () => {
-    lang = lang === "ar" ? "en" : "ar";
-    localStorage.setItem("lang", lang);
-    langToggle.classList.toggle("active");
-    loadLang();
-  });
-
-  modeToggle.addEventListener("click", toggleDarkMode);
-  submitBtn.addEventListener("click", submitAttendance);
-});
