@@ -39,7 +39,7 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
-input[type="text"] {
+#nameInput {
   width: 100%;
   padding: 0.8rem;
   font-size: 1rem;
@@ -48,6 +48,8 @@ input[type="text"] {
   outline: none;
   margin-bottom: 1rem;
   transition: border-color 0.2s;
+  direction: ltr !important;
+  text-align: center !important;
 }
 
 input[type="text"]:focus {
@@ -206,11 +208,6 @@ footer {
 
  footer {
   direction: ltr !important;
-}
-
-#nameInput {
-  direction: ltr !important;
-  text-align: center !important;
 }
 
 /* Media Query للجوال */
