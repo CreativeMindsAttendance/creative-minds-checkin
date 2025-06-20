@@ -1,8 +1,6 @@
 console.log("Script loaded!");
 let lang = localStorage.getItem("lang") || 'ar';
 let translations = {};
-let submittedToday = false;
-let storedName = '';
 
 // تحميل اللغة حسب الملف
 async function loadLang(file) {
@@ -100,14 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // تبديل الوضع الليلي
   modeToggle.addEventListener("click", toggleDarkMode);
-
-  // زر التسجيل
-  submitBtn.addEventListener("click", () => {
-    const name = document.getElementById('nameInput').value.trim();
-    showMessage(translations.loading);
-    detectLocation(name);
-  });
-  
   document.getElementById("submitBtn").addEventListener("click", submitAttendance);
 
 });
