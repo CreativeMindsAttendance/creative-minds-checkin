@@ -78,7 +78,7 @@ async function submitAttendance() {
   const existingName = hasCheckedInToday();
 if (existingName) {
   if (name !== existingName) {
-    return showMessage(`❌ لقد تم تحضيرك سابقًا باسم ${existingName}، لا يمكنك استخدام اسم مختلف.`, true);
+    return showMessage(t.nameMismatch.replace("{name}", existingName), true);
   } else {
     return showMessage(t.already.replace("{name}", existingName), true);
   }
