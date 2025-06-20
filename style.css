@@ -60,7 +60,9 @@ body::before {
   z-index: 2;
 }
 
-.container {
+.form-container {
+  position: relative;
+  top: -40px;
   width: 100%;
   max-width: 400px;
   background: rgba(255, 255, 255, 0.9);
