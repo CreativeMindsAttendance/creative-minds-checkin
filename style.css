@@ -13,19 +13,26 @@
 
 .center-title {
   font-family: 'Swingly', cursive;
-  font-size: 28px;
+  font-size: 30px;
   text-align: center;
   margin-bottom: 10px;
+  line-height: 1.1;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.center-title .line-1 {
+.center-title span {
   display: block;
 }
 
-.center-title .line-2 {
-  display: block;
-  margin-top: -5px; /* تقدر تزود أو تنقص حسب المسافة بين السطرين */
+/* لما الشاشة تكون عريضة (مثل اللابتوب)، نخليهم جنب بعض */
+@media screen and (min-width: 768px) {
+  .center-title {
+    flex-direction: row;
+    gap: 8px; /* مسافة بين الكلمتين */
+  }
 }
 
 body {
