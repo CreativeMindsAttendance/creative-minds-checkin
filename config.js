@@ -9,6 +9,8 @@ const translations = {
     loading: "Checking location...",
     outOfRange: "❌ You must be at the center to check in.",
     geoError: "❌ Could not access location. Please allow GPS access.",
+    nameMismatch: "❌ You have already checked in today as {name}. You cannot use a different name.",
+
   },
   ar: {
     title: "نموذج تسجيل الحضور",
@@ -20,5 +22,6 @@ const translations = {
     loading: "جارٍ التحقق من الموقع...",
     outOfRange: "❌ يجب أن تكون في المركز لتسجيل الحضور.",
     geoError: "❌ لم نتمكن من الوصول لموقعك. يرجى السماح بالوصول إلى الموقع.",
+    nameMismatch: "❌ لقد تم تحضيرك سابقًا باسم {name}، لا يمكنك استخدام اسم مختلف.",
   }
 };
