@@ -39,32 +39,9 @@ function showMessage(msg, isError = false) {
   el.style.color = isError ? 'crimson' : 'green';
 }
 
-// التحقق وتسجيل الحضور
-async function checkIn(name, lat, lon) {
-  if (!name) return showMessage(translations.required, true);
-  if (submittedToday) return showMessage(translations.already.replace('{name}', storedName), true);
-
-  const override = name.trim() === "سليمان أحمد النجدي";
-  const dist = distance(lat, lon, DEST_LAT, DEST_LON);
-
-  if (dist > allowedDistance && !override) {
-    return showMessage(translations.outOfRange, true);
-  }
-
   submittedToday = true;
   storedName = name.trim();
   showMessage(translations.success);
-}
-
-// معرفة الموقع
-function detectLocation(name) {
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      const { latitude, longitude } = pos.coords;
-      checkIn(name, latitude, longitude);
-    },
-    () => showMessage(translations.geoError, true)
-  );
 }
 
 // تحميل عند بداية الصفحة
