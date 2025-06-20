@@ -223,10 +223,12 @@ footer {
   z-index: 1;
 }
 
+/* إذا اللغة AR تكون مفعلة */
 .language-switcher.ar .slider {
   transform: translateX(48px);
 }
 
+/* الوضع الليلي */
 .dark .language-switcher {
   background-color: #333;
 }
