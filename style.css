@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'SwinglyLours';
+  src: url('fonts/SwinglyLours.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: 'Segoe UI', Roboto, sans-serif;
   background-color: #f8f8f8;
