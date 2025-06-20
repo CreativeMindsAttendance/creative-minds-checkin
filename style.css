@@ -200,53 +200,50 @@ footer {
 }
 
 .language-switcher {
-  position: relative;
-  width: 100px;
-  height: 36px;
-  background-color: #e5e5ea;
-  border-radius: 9999px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+  background-color: #2e2e2e;
+  border-radius: 9999px;
+  width: fit-content;
+  height: 36px;
   font-weight: 600;
-  cursor: pointer;
-  overflow: hidden;
+  font-size: 0.9rem;
   user-select: none;
+  overflow: hidden;
 }
 
 .language-switcher .lang-option {
-  flex: 1; /* ← كل خيار يأخذ نصف العرض */
-  text-align: center;
-  z-index: 2;
-  font-size: 0.85rem;
-  line-height: 36px;
   position: relative;
+  padding: 0.5rem 1.2rem;
+  z-index: 2;
+  color: #ddd;
+  cursor: pointer;
+  text-align: center;
 }
 
 .language-switcher .slider {
   position: absolute;
+  height: 28px;
   top: 4px;
   left: 4px;
-  width: calc(50% - 8px); /* ← يغطي نصف الزر بدقة */
-  height: 28px;
-  background-color: #3b82f6;
   border-radius: 9999px;
-  transition: transform 0.3s ease;
+  background-color: #0ea5e9;
   z-index: 1;
+  transition: transform 0.3s ease, width 0.3s ease;
+  width: calc(50% - 8px); /* ← متغيرة حسب المساحة */
 }
 
-/* لو اللغة AR: حرك السلايدر للنصف الثاني */
+/* لما اللغة AR مفعلة */
 .language-switcher.ar .slider {
   transform: translateX(100%);
 }
 
-/* الوضع الليلي */
 .dark .language-switcher {
   background-color: #333;
 }
 
 .dark .language-switcher .lang-option {
-  color: #f4f4f4;
+  color: #fff;
 }
 
 .dark .language-switcher .slider {
