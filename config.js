@@ -1,27 +1,26 @@
 const translations = {
   en: {
-    title: "Check-in Form",
+    title: "Attendance Form",
     placeholder: "Enter your full name",
-    submit: "Submit Attendance",
-    required: "Please enter your name",
-    success: "✅ Attendance recorded successfully",
-    already: "✅ You have already checked in today, {name}.",
-    loading: "Checking location...",
-    outOfRange: "❌ You must be at the center to check in.",
-    geoError: "❌ Could not access location. Please allow GPS access.",
-    nameMismatch: "❌ You have already checked in today as {name}. You cannot use a different name.",
-
+    submit: "Check In",
+    success: "✅ Your attendance has been recorded successfully",
+    already: "⚠️ You have already checked in today as ({name})",
+    nameMismatch: "❌ You have already checked in today as ({name}). You cannot use a different name.",
+    outOfRange: "❌ You are outside the institute range. You must be at the institute to check in.",
+    geoError: "⚠️ Location not detected. Please enable GPS.",
+    required: "⚠️ Please enter your full name",
+    loading: "⏳ Checking your location..."
   },
   ar: {
-    title: "نموذج تسجيل الحضور",
-    placeholder: "أدخل اسمك الكامل",
+    title: "نموذج تحضير",
+    placeholder: "اكتب اسمك الثلاثي",
     submit: "تسجيل الحضور",
-    required: "الرجاء إدخال اسمك الكامل",
     success: "✅ تم تسجيل حضورك بنجاح",
-    already: "⚠️ {name} لقد تم تحضيرك مسبقًا اليوم بإسم",
-    loading: "جارٍ التحقق من الموقع...",
-    outOfRange: "❌ يجب أن تكون في المركز لتسجيل الحضور.",
-    geoError: "❌ لم نتمكن من الوصول لموقعك. يرجى السماح بالوصول إلى الموقع.",
+    already: "⚠️ لقد تم تحضيرك مسبقًا اليوم باسم ({name})",
     nameMismatch: "❌ لقد تم تحضيرك مسبقًا اليوم باسم ({name})، لا يمكنك اختيار اسم مختلف.",
+    outOfRange: "❌ أنت خارج نطاق المعهد، يجب أن تكون في المعهد ليتم تسجيل حضورك",
+    geoError: "⚠️ لم نتمكن من تحديد موقعك، تأكد من تفعيل GPS",
+    required: "⚠️ الرجاء إدخال الاسم الثلاثي",
+    loading: "⏳ جاري التحقق من موقعك..."
   }
 };
