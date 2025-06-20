@@ -11,6 +11,12 @@ body {
   color: #f2f2f2;
 }
 
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   max-width: 400px;
   padding: 2rem;
