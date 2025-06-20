@@ -58,7 +58,7 @@ body::before {
   justify-content: flex-start; /* بدل center */
   width: 100%;
   z-index: 2;
-  padding-top: 40px; /* أو الرقم اللي يناسبك */
+  padding-top: 80px; /* أو الرقم اللي يناسبك */
 }
 
 .container {
