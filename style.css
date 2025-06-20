@@ -2,13 +2,8 @@
 body {
   display: grid;
   place-items: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  background-color: #f9f9f9;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  grid-template-rows: auto 1fr auto; /* هذا يحط الأزرة فوق، المحتوى في النص، والفوتر تحت */
+  height: 100vh;
 }
 
 .dark {
@@ -100,28 +95,22 @@ button:hover {
   font-weight: 500;
 }
 
+/* === زر اللغة و الوضع الليلي === */
+.top-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 footer {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   gap: 10px;
   font-size: 1.3rem;
   direction: ltr !important;
   width: max-content;
-}
-
-/* === زر اللغة و الوضع الليلي === */
-.top-controls {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 999;
+  margin-bottom: 10px;
 }
 
 #lang-toggle {
