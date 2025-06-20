@@ -5,6 +5,23 @@ const DEST_LON = 42.548691;
 // المسافة المسموحة بالكيلومتر
 const allowedDistance = 0.2;
 
+window.addEventListener("DOMContentLoaded", () => {
+  const existingName = hasCheckedInToday();
+  if (existingName) {
+    const statusMessage = document.getElementById("statusMessage");
+    const message = translations[currentLang].already.replace("{name}", existingName);
+    statusMessage.textContent = message;
+
+    // اختياري: عطّل الزر أو خفّيه بعد التسجيل
+    document.getElementById("submitBtn").disabled = true;
+    document.getElementById("submitBtn").style.opacity = 0.5;
+
+    // اختياري: عبِّ الاسم تلقائيًا (ما يقدر يغيره)
+    document.getElementById("nameInput").value = existingName;
+    document.getElementById("nameInput").disabled = true;
+  }
+});
+
 function hasCheckedInToday() {
   const record = localStorage.getItem("attendanceRecord");
   if (!record) return false;
