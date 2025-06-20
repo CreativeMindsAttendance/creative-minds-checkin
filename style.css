@@ -201,14 +201,13 @@ footer {
 
 .language-switcher {
   position: relative;
-  width: 90px;
+  width: 100px;
   height: 36px;
   background-color: #e5e5ea;
   border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0;
   font-weight: 600;
   cursor: pointer;
   overflow: hidden;
@@ -216,7 +215,7 @@ footer {
 }
 
 .language-switcher .lang-option {
-  width: 50%;
+  flex: 1; /* ← كل خيار يأخذ نصف العرض */
   text-align: center;
   z-index: 2;
   font-size: 0.85rem;
@@ -228,20 +227,17 @@ footer {
   position: absolute;
   top: 4px;
   left: 4px;
-  width: 40px;
+  width: calc(50% - 8px); /* ← يغطي نصف الزر بدقة */
   height: 28px;
   background-color: #3b82f6;
   border-radius: 9999px;
   transition: transform 0.3s ease;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* تحريك السلايدر لليمين لما اللغة AR */
+/* لو اللغة AR: حرك السلايدر للنصف الثاني */
 .language-switcher.ar .slider {
-  transform: translateX(44px);
+  transform: translateX(100%);
 }
 
 /* الوضع الليلي */
