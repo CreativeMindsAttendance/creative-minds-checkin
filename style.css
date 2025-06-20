@@ -230,9 +230,9 @@ footer {
 
 /* ========== إعادة ضبط الوضع الليلي ========== */
 #mode-toggle {
-  width: 110px;
+  width: 80px;
   height: 42px;
-  border-radius: 9999px;
+  border-radius: 20px;
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   position: relative;
   cursor: pointer;
@@ -262,7 +262,7 @@ footer {
 
 .dark #mode-toggle::before {
   content: "🌙";
-  transform: translateX(66px);
+  transform: translateX(40px);
 }
 
 
