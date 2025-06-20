@@ -51,12 +51,18 @@ h1 {
   outline: none;
   margin-bottom: 1rem;
   transition: border-color 0.2s;
-  direction: ltr !important;
-  text-align: center !important;
 }
 
 input[type="text"]:focus {
   border-color: #007aff;
+}
+
+#nameInput {
+  direction: ltr !important;
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 button {
