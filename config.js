@@ -5,38 +5,8 @@ const DEST_LON = 42.548691;
 // المسافة المسموحة بالكيلومتر
 const allowedDistance = 0.2;
 
-// الترجمة
-const translations = {
-  en: {
-    required: "Please enter your full name.",
-    success: "Your attendance has been recorded ✅",
-    already: "You have already checked in today as {name}.",
-    location_error: "Location access is required to submit attendance.",
-    too_far: "You are too far from Creative Minds to check in.",
-  },
-  ar: {
-    required: "يرجى إدخال الاسم الثلاثي.",
-    success: "تم تسجيل حضورك بنجاح ✅",
-    already: "تم تسجيل حضورك مسبقًا باسم {name}.",
-    location_error: "مطلوب السماح بالموقع لتسجيل الحضور.",
-    too_far: "أنت بعيد جدًا عن معهد Creative Minds.",
-  },
-};
-
-let currentLang = "en"; // يتم تغييره عند الضغط على زر اللغة
-
-function getDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371; // نصف قطر الأرض بالكيلومتر
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) ** 2;
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-}
+// أسماء مسموح لها بالتسجيل حتى خارج النطاق
+const allowedOutsideNames = ["TEST1", "TEST2"];
 
 function hasCheckedInToday() {
   const record = localStorage.getItem("attendanceRecord");
@@ -68,52 +38,57 @@ async function submitAttendance() {
     return;
   }
 
-  if (!navigator.geolocation) {
-    statusMessage.textContent = translations[currentLang].location_error;
+  // إذا الاسم ضمن المسموح لهم دائمًا، نسجل بدون التحقق الجغرافي
+  if (allowedOutsideNames.includes(name)) {
+    saveAttendance(name);
+    statusMessage.textContent = translations[currentLang].success;
     return;
   }
 
-  statusMessage.textContent = "⏳ Checking location...";
+  // إذا مو من الأسماء الخاصة، نتحقق من الموقع الجغرافي
+  statusMessage.textContent = translations[currentLang].loading;
+
+  if (!navigator.geolocation) {
+    statusMessage.textContent = translations[currentLang].geoError;
+    return;
+  }
 
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      const { latitude, longitude } = position.coords;
-      const distance = getDistance(latitude, longitude, DEST_LAT, DEST_LON);
+      const userLat = position.coords.latitude;
+      const userLon = position.coords.longitude;
 
-      if (distance > allowedDistance) {
-        statusMessage.textContent = translations[currentLang].too_far;
-        return;
+      const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT, DEST_LON);
+
+      if (distance <= allowedDistance) {
+        saveAttendance(name);
+        statusMessage.textContent = translations[currentLang].success;
+      } else {
+        statusMessage.textContent = translations[currentLang].outOfRange;
       }
-
-      saveAttendance(name);
-      statusMessage.textContent = translations[currentLang].success;
-
-      // قفل الاسم والزر بعد التسجيل
-      document.getElementById("submitBtn").disabled = true;
-      document.getElementById("submitBtn").style.opacity = 0.5;
-      document.getElementById("nameInput").value = name;
-      document.getElementById("nameInput").disabled = true;
     },
     () => {
-      statusMessage.textContent = translations[currentLang].location_error;
+      statusMessage.textContent = translations[currentLang].geoError;
     }
   );
 }
 
-// منع التكرار حتى بعد التحديث
-window.addEventListener("DOMContentLoaded", () => {
-  const existingName = hasCheckedInToday();
-  if (existingName) {
-    const statusMessage = document.getElementById("statusMessage");
-    const message = translations[currentLang].already.replace("{name}", existingName);
-    statusMessage.textContent = message;
+// دالة لحساب المسافة بين نقطتين على الأرض
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  const R = 6371; // نصف قطر الأرض بالكيلومتر
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
+  return d;
+}
 
-    document.getElementById("submitBtn").disabled = true;
-    document.getElementById("submitBtn").style.opacity = 0.5;
-
-    document.getElementById("nameInput").value = existingName;
-    document.getElementById("nameInput").disabled = true;
-  }
-
-  document.getElementById("submitBtn").addEventListener("click", submitAttendance);
-});
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
