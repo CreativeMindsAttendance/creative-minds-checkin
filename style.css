@@ -54,11 +54,13 @@ body::before {
 .main-content {
   flex-grow: 1;
   display: flex;
-  align-items: center;
-  justify-content: flex-start; /* بدل center */
+  align-items: flex-start;        /* بدّل من center إلى flex-start */
+  justify-content: center;        /* عشان يظل في المنتصف أفقيًا */
   width: 100%;
   z-index: 2;
-  padding-top: 80px; /* أو الرقم اللي يناسبك */
+  padding-top: 40px;              /* ارفع الكارد شوي */
+  min-height: 100vh;              /* يضمن التوسيط العمودي على كل الأجهزة */
+  box-sizing: border-box;
 }
 
 .container {
