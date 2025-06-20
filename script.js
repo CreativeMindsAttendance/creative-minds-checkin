@@ -1,11 +1,9 @@
 console.log("Script loaded!");
+
 let lang = localStorage.getItem("lang") || 'ar';
 let translations = {};
-let currentLang = lang;
-let submittedToday = false;
-let storedName = '';
 
-// === تحميل اللغة ===
+// تحميل اللغة حسب الملف
 async function loadLang(file) {
   const res = await fetch(file);
   translations = await res.json();
@@ -18,86 +16,88 @@ async function loadLang(file) {
   document.getElementById('lang-toggle').setAttribute('data-label', lang === 'ar' ? 'AR' : 'EN');
 }
 
-// === الوضع الليلي ===
+// الوضع الليلي
 function toggleDarkMode() {
   const isDark = document.body.classList.toggle('dark');
   document.getElementById("mode-toggle").classList.toggle("active", isDark);
   localStorage.setItem("darkMode", isDark);
 }
 
-// === حساب المسافة ===
-function deg2rad(deg) {
-  return deg * (Math.PI / 180);
-}
+// دالة لحساب المسافة بين نقطتين
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
   const dLat = deg2rad(lat2 - lat1);
   const dLon = deg2rad(lon2 - lon1);
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    Math.cos(deg2rad(lat1)) *
+    Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
 
-// === عرض الرسائل ===
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
+
+// عرض الرسائل
 function showMessage(msg, isError = false) {
   const el = document.getElementById('statusMessage');
   el.textContent = msg;
   el.style.color = isError ? 'crimson' : 'green';
 }
 
-// === أسماء مسموح لها خارج النطاق ===
-const allowedOutsideNames = ["TEST1", "TEST2"];
-
-// === الموقع المستهدف ===
+// إعدادات الموقع الجغرافي
 const DEST_LAT = 16.889264;
 const DEST_LON = 42.548691;
 const allowedDistance = 0.2;
+const allowedOutsideNames = ["TEST1", "TEST2"];
 
-// === تحقق من التسجيل المسبق ===
 function hasCheckedInToday() {
   const record = localStorage.getItem("attendanceRecord");
   if (!record) return false;
+
   const { name, date } = JSON.parse(record);
   const today = new Date().toISOString().split("T")[0];
   return date === today ? name : false;
 }
 
-// === حفظ الحضور ===
 function saveAttendance(name) {
   const today = new Date().toISOString().split("T")[0];
   localStorage.setItem("attendanceRecord", JSON.stringify({ name, date: today }));
 }
 
-// === التسجيل النهائي ===
+// التحقق وتسجيل الحضور
 async function submitAttendance() {
   const name = document.getElementById("nameInput").value.trim();
   const statusMessage = document.getElementById("statusMessage");
 
   if (!name) {
-    statusMessage.textContent = translations[currentLang].required;
+    statusMessage.textContent = translations.required;
     return;
   }
 
   const existingName = hasCheckedInToday();
   if (existingName) {
-    const message = translations[currentLang].already.replace("{name}", existingName);
+    const message = translations.already.replace("{name}", existingName);
     statusMessage.textContent = message;
     return;
   }
 
+  // السماح للأسماء الخاصة
   if (allowedOutsideNames.includes(name)) {
     saveAttendance(name);
-    statusMessage.textContent = translations[currentLang].success;
+    statusMessage.textContent = translations.success;
     return;
   }
 
-  statusMessage.textContent = translations[currentLang].loading;
+  // التحقق من الموقع الجغرافي
+  statusMessage.textContent = translations.loading;
 
   if (!navigator.geolocation) {
-    statusMessage.textContent = translations[currentLang].geoError;
+    statusMessage.textContent = translations.geoError;
     return;
   }
 
@@ -105,45 +105,51 @@ async function submitAttendance() {
     (position) => {
       const userLat = position.coords.latitude;
       const userLon = position.coords.longitude;
+
       const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT, DEST_LON);
 
       if (distance <= allowedDistance) {
         saveAttendance(name);
-        statusMessage.textContent = translations[currentLang].success;
+        statusMessage.textContent = translations.success;
       } else {
-        statusMessage.textContent = translations[currentLang].outOfRange;
+        statusMessage.textContent = translations.outOfRange;
       }
     },
     () => {
-      statusMessage.textContent = translations[currentLang].geoError;
+      statusMessage.textContent = translations.geoError;
     }
   );
 }
 
-// === تحميل عند فتح الصفحة ===
+// تحميل عند بداية الصفحة
 document.addEventListener('DOMContentLoaded', () => {
   const langToggle = document.getElementById('lang-toggle');
   const modeToggle = document.getElementById('mode-toggle');
   const submitBtn = document.getElementById('submitBtn');
 
+  // تفعيل الوضع الليلي
   if (localStorage.getItem("darkMode") === "true") {
     document.body.classList.add("dark");
   }
 
+  // تفعيل اللغة
   if (lang === "en") {
     langToggle.classList.add("active");
   }
 
   loadLang(`lang-${lang}.json`);
 
+  // تبديل اللغة
   langToggle.addEventListener('click', () => {
     lang = lang === "ar" ? "en" : "ar";
-    currentLang = lang;
     localStorage.setItem("lang", lang);
     langToggle.classList.toggle("active");
     loadLang(`lang-${lang}.json`);
   });
 
+  // تبديل الوضع الليلي
   modeToggle.addEventListener("click", toggleDarkMode);
+
+  // تفعيل زر الحضور
   submitBtn.addEventListener("click", submitAttendance);
 });
