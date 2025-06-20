@@ -9,7 +9,8 @@ async function loadLang(file) {
   const res = await fetch(file);
   translations = await res.json();
   document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.body.classList.toggle("rtl", lang === 'ar');
+  document.body.classList.toggle("ltr", lang === 'en');
   document.getElementById('title').textContent = translations.title;
   document.getElementById('nameInput').placeholder = translations.placeholder;
   document.getElementById('submitBtn').textContent = translations.submit;
