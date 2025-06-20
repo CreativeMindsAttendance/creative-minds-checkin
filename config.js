@@ -17,4 +17,4 @@ const translations = {
   }
 };
 
-let currentLang = "en"; // أو "ar"
+let currentLang = localStorage.getItem("lang") || "ar";
