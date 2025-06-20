@@ -14,7 +14,6 @@ async function loadLang(file) {
   document.getElementById('title').textContent = translations.title;
   document.getElementById('nameInput').placeholder = translations.placeholder;
   document.getElementById('submitBtn').textContent = translations.submit;
-  document.getElementById("submitBtn").addEventListener("click", submitAttendance);
   document.getElementById('lang-toggle').setAttribute('data-label', lang === 'ar' ? 'AR' : 'EN');
 }
 
@@ -108,6 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
     showMessage(translations.loading);
     detectLocation(name);
   });
+  
+  document.getElementById("submitBtn").addEventListener("click", submitAttendance);
+
 });
 
 // إحداثيات معهد Creative Minds
