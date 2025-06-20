@@ -1,6 +1,6 @@
 console.log("Script loaded!");
 let lang = localStorage.getItem("lang") || 'ar';
-let translations = {};
+let translations = window.translationsData[localStorage.getItem("lang") || "ar"];
 
 // إحداثيات المعهد
 const DEST_LAT = 16.889264;
