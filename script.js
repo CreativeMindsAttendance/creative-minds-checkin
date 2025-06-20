@@ -49,7 +49,7 @@ function deg2rad(deg) {
 // === رسائل المستخدم ===
 function showMessage(msg, isError = false) {
   const el = document.getElementById("statusMessage");
-  el.textContent = msg;
+  el.innerHTML = msg;
   el.style.color = isError ? "crimson" : "green";
 }
 
