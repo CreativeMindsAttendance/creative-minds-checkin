@@ -269,6 +269,11 @@ footer {
   direction: ltr !important;
 }
 
+#nameInput {
+  direction: ltr !important;
+  text-align: center !important;
+}
+
 /* Media Query للجوال */
 @media (max-width: 480px) {
   .container {
