@@ -216,23 +216,28 @@ footer {
 }
 
 .language-switcher .lang-option {
-  width: 40px;
+  width: 44px; /* يطابق عرض السلايدر */
   text-align: center;
   z-index: 2;
   color: #111;
   font-size: 0.9rem;
+  position: relative;
 }
 
 .language-switcher .slider {
   position: absolute;
   top: 4px;
   left: 6px;
-  width: 40px;
+  width: 44px;
   height: 28px;
   background-color: #3b82f6;
   border-radius: 12px;
   transition: transform 0.3s ease;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .language-switcher.ar .slider {
