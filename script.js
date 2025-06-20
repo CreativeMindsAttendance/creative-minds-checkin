@@ -14,6 +14,7 @@ async function loadLang(file) {
   document.getElementById('title').textContent = translations.title;
   document.getElementById('nameInput').placeholder = translations.placeholder;
   document.getElementById('submitBtn').textContent = translations.submit;
+  document.getElementById("submitBtn").addEventListener("click", submitAttendance);
   document.getElementById('lang-toggle').setAttribute('data-label', lang === 'ar' ? 'AR' : 'EN');
 }
 
