@@ -1,57 +1,59 @@
 console.log("Script loaded!");
-let lang = localStorage.getItem("lang") || 'ar';
-let translations = window.translationsData[localStorage.getItem("lang") || "ar"];
 
-// إحداثيات المعهد
+// === المتغيرات ===
+let lang = localStorage.getItem("lang") || "ar";  // تم نقل currentLang هنا
+let submittedToday = false;
+let storedName = "";
+
+// === إعدادات الموقع الجغرافي ===
 const DEST_LAT = 16.889264;
 const DEST_LON = 42.548691;
 const allowedDistance = 0.2;
 const allowedOutsideNames = ["TEST1", "TEST2"];
 
-function loadLang(file) {
-  fetch(file)
-    .then(res => res.json())
-    .then(data => {
-      translations = data;
-      document.documentElement.lang = lang;
-      document.body.classList.toggle("rtl", lang === 'ar');
-      document.body.classList.toggle("ltr", lang === 'en');
-      document.getElementById('title').textContent = translations.title;
-      document.getElementById('nameInput').placeholder = translations.placeholder;
-      document.getElementById('submitBtn').textContent = translations.submit;
-      document.getElementById('lang-toggle').setAttribute('data-label', lang === 'ar' ? 'AR' : 'EN');
-    });
+// === تحميل اللغة ===
+function loadLang() {
+  document.documentElement.lang = lang;
+  document.body.classList.toggle("rtl", lang === "ar");
+  document.body.classList.toggle("ltr", lang === "en");
+
+  const t = translations[lang];
+  document.getElementById("title").textContent = t.title || "Attendance";
+  document.getElementById("nameInput").placeholder = t.placeholder || "Enter your name";
+  document.getElementById("submitBtn").textContent = t.submit || "Submit";
+  document.getElementById("lang-toggle").setAttribute("data-label", lang === "ar" ? "AR" : "EN");
 }
 
+// === الوضع الليلي ===
 function toggleDarkMode() {
   const isDark = document.body.classList.toggle("dark");
-  localStorage.setItem("darkMode", isDark);
   document.getElementById("mode-toggle").classList.toggle("active", isDark);
+  localStorage.setItem("darkMode", isDark);
 }
 
-function showMessage(msg, isError = false) {
-  const el = document.getElementById('statusMessage');
-  el.textContent = msg;
-  el.style.color = isError ? 'crimson' : 'green';
+// === المسافة بين نقطتين ===
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon / 2) ** 2;
+  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 }
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
 
-function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-  const R = 6371;
-  const dLat = deg2rad(lat2 - lat1);
-  const dLon = deg2rad(lon2 - lon1);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) *
-    Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon / 2) *
-    Math.sin(dLon / 2);
-  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+// === رسائل المستخدم ===
+function showMessage(msg, isError = false) {
+  const el = document.getElementById("statusMessage");
+  el.textContent = msg;
+  el.style.color = isError ? "crimson" : "green";
 }
 
+// === تخزين الحضور في localStorage ===
 function hasCheckedInToday() {
   const record = localStorage.getItem("attendanceRecord");
   if (!record) return false;
@@ -65,76 +67,61 @@ function saveAttendance(name) {
   localStorage.setItem("attendanceRecord", JSON.stringify({ name, date: today }));
 }
 
-function submitAttendance() {
+// === تسجيل الحضور ===
+async function submitAttendance() {
   const name = document.getElementById("nameInput").value.trim();
   const statusMessage = document.getElementById("statusMessage");
+  const t = translations[lang];
 
-  if (!name) {
-    showMessage(translations[currentLang].required, true);
-    return;
-  }
+  if (!name) return showMessage(t.required, true);
 
   const existingName = hasCheckedInToday();
   if (existingName) {
-    showMessage(translations[currentLang].already.replace("{name}", existingName), true);
-    return;
+    return showMessage(t.already.replace("{name}", existingName), true);
   }
 
   if (allowedOutsideNames.includes(name)) {
     saveAttendance(name);
-    showMessage(translations[currentLang].success);
-    return;
+    return showMessage(t.success);
   }
 
-  showMessage(translations[currentLang].loading);
+  showMessage(t.loading);
 
-  if (!navigator.geolocation) {
-    showMessage(translations[currentLang].geoError, true);
-    return;
-  }
+  if (!navigator.geolocation) return showMessage(t.geoError, true);
 
   navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const userLat = position.coords.latitude;
-      const userLon = position.coords.longitude;
-
-      const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT, DEST_LON);
-
-      if (distance <= allowedDistance) {
+    (pos) => {
+      const d = getDistanceFromLatLonInKm(pos.coords.latitude, pos.coords.longitude, DEST_LAT, DEST_LON);
+      if (d <= allowedDistance) {
         saveAttendance(name);
-        showMessage(translations[currentLang].success);
+        showMessage(t.success);
       } else {
-        showMessage(translations[currentLang].outOfRange, true);
+        showMessage(t.outOfRange, true);
       }
     },
-    () => {
-      showMessage(translations[currentLang].geoError, true);
-    }
+    () => showMessage(t.geoError, true)
   );
 }
 
+// === عند تحميل الصفحة ===
 document.addEventListener("DOMContentLoaded", () => {
   const langToggle = document.getElementById("lang-toggle");
   const modeToggle = document.getElementById("mode-toggle");
+  const submitBtn = document.getElementById("submitBtn");
 
   if (localStorage.getItem("darkMode") === "true") {
     document.body.classList.add("dark");
-    modeToggle.classList.add("active");
   }
 
-  if (lang === "en") {
-    langToggle.classList.add("active");
-  }
-
-  loadLang(`lang-${lang}.json`);
+  loadLang();
 
   langToggle.addEventListener("click", () => {
     lang = lang === "ar" ? "en" : "ar";
     localStorage.setItem("lang", lang);
     langToggle.classList.toggle("active");
-    loadLang(`lang-${lang}.json`);
+    loadLang();
   });
 
   modeToggle.addEventListener("click", toggleDarkMode);
-  document.getElementById("submitBtn").addEventListener("click", submitAttendance);
+  submitBtn.addEventListener("click", submitAttendance);
 });
