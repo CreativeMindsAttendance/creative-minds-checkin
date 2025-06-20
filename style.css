@@ -240,30 +240,30 @@ footer {
   transform: translateX(50px);
 }
 
-/* زر اللغة في الوضع العادي */
+/* الوضع العادي */
 .language-switcher {
-  background-color: #2c2c2c;
+  background-color: #e5e5e5;
 }
 
 .language-switcher .lang-option {
-  color: #ffffff;
+  color: #000000;
 }
 
 .language-switcher .slider {
-  background-color: #00aaff;
+  background-color: #3b82f6;
 }
 
-/* زر اللغة في الوضع الليلي */
+/* الوضع الليلي */
 .dark .language-switcher {
-  background-color: #e5e5e5; /* خلفية أفتح في الوايت مود */
+  background-color: #2c2c2c;
 }
 
 .dark .language-switcher .lang-option {
-  color: #000000; /* نص داكن */
+  color: #ffffff;
 }
 
 .dark .language-switcher .slider {
-  background-color: #3b82f6; /* لون أزرق أنعم */
+  background-color: #00aaff;
 }
 
 /* تمركز الأزرار أعلى الصفحة */
