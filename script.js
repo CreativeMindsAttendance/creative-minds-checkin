@@ -13,7 +13,7 @@ async function loadLang(file) {
   document.getElementById('title').textContent = translations.title;
   document.getElementById('nameInput').placeholder = translations.placeholder;
   document.getElementById('submitBtn').textContent = translations.submit;
-  document.getElementById('lang-toggle-label').textContent = lang === 'ar' ? 'AR' : 'EN';
+  document.getElementById('lang-toggle').setAttribute('data-label', lang === 'ar' ? 'AR' : 'EN');
 }
 
 // الوضع الليلي
