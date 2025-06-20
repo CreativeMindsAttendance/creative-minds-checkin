@@ -47,7 +47,8 @@ input[type="text"] {
   border-radius: 12px;
   outline: none;
   margin-bottom: 1rem;
-  text-align: center; /* ← هذه الإضافة */
+  text-align: center;
+  direction: ltr; /* ← يثبت المحاذاة مهما تغير اتجاه الصفحة */
   transition: border-color 0.2s;
 }
 
