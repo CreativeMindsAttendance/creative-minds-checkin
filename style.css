@@ -2,19 +2,20 @@
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  justify-items: center; /* ← يوسّط كل شيء على محور X */
+  justify-items: center;
   height: 100vh;
   margin: 0;
   padding: 0;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8f8f8;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow: hidden;
 }
 
 .dark {
-  background-color: #1c1c1e;
-  color: #f2f2f2;
+  background-color: #1a1a1d;
+  color: #f4f4f4;
 }
 
 .main-content {
@@ -22,67 +23,72 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 1rem;
 }
 
 .container {
-  max-width: 400px;
+  max-width: 380px;
+  width: 100%;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 2xl;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(16px);
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 1;
+  transition: all 0.3s ease;
 }
 
 .dark .container {
-  background: rgba(28, 28, 30, 0.85);
+  background: rgba(30, 30, 32, 0.9);
 }
 
 .logo {
-  width: 80px;
+  width: 75px;
   height: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 h1 {
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
 }
 
 #nameInput {
   width: 100%;
-  padding: 0.8rem;
+  padding: 0.9rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
+  border: 1px solid #ddd;
+  border-radius: 14px;
   outline: none;
-  margin-bottom: 1rem;
-  transition: border-color 0.2s;
+  margin-bottom: 1.2rem;
   direction: ltr;
   text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input[type="text"]:focus {
-  border-color: #007aff;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
 }
 
 button {
-  padding: 0.8rem 1.2rem;
+  padding: 0.9rem 1.5rem;
   font-size: 1rem;
   border: none;
   border-radius: 9999px;
-  background-color: #007aff;
+  background-color: #60a5fa;
   color: white;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: background-color 0.25s, transform 0.2s;
 }
 
 button:hover {
-  background-color: #005ecb;
+  background-color: #3b82f6;
   transform: scale(1.05);
 }
 
@@ -95,7 +101,7 @@ button:hover {
 /* === زر اللغة و الوضع الليلي === */
 .top-controls {
   display: flex;
-  gap: 10px;
+  gap: 14px;
   justify-content: center;
   margin-top: 20px;
 }
@@ -104,11 +110,12 @@ button:hover {
 footer {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  font-size: 1.3rem;
+  gap: 12px;
+  font-size: 1.2rem;
   direction: ltr !important;
   width: max-content;
   margin-bottom: 10px;
+  opacity: 0.7;
 }
 
 /* === زر اللغة === */
@@ -140,26 +147,11 @@ footer {
   transform: translateX(30px);
 }
 
-#lang-toggle::after {
-  content: attr(data-label);
-  position: absolute;
-  top: 5px;
-  left: 34px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: #333;
-  transition: opacity 0.3s ease;
-}
-
 .dark #lang-toggle {
-  background-color: #333;
+  background-color: #444;
 }
 
-.dark #lang-toggle::after {
-  color: #f2f2f2;
-}
-
-/* === زر الوضع الليلي الجديد === */
+/* === زر الوضع الليلي === */
 #mode-toggle {
   width: 60px;
   height: 30px;
@@ -199,28 +191,61 @@ footer {
   transform: translateX(30px);
 }
 
-#mode-toggle::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 10px 10px;
+/* === رسائل الحالة === */
+#statusMessage {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: opacity 0.4s ease, transform 0.4s ease;
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-  z-index: 1;
+  transform: translateY(10px);
 }
 
-.dark #mode-toggle::after {
-  opacity: 0.3;
+#statusMessage.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#statusMessage.success {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+#statusMessage.warning {
+  background-color: #fef9c3;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+#statusMessage.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+/* === خلفية ناعمة خفيفة === */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.1), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.08), transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
 }
 
 /* Media Query للجوال */
 @media (max-width: 480px) {
   .container {
-    margin: 60px auto;
     padding: 1.5rem;
+    margin: 60px auto;
   }
 }
