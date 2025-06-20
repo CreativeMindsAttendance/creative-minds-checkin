@@ -1,4 +1,4 @@
-const translations = {
+window translations = {
   en: {
     required: "Please enter your name",
     success: "✅ Attendance recorded successfully",
@@ -17,4 +17,4 @@ const translations = {
   }
 };
 
-let currentLang = localStorage.getItem("lang") || "ar";
+window currentLang = localStorage.getItem("lang") || "ar";
