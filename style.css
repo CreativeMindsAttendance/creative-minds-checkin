@@ -58,7 +58,7 @@ body::before {
   justify-content: center;        /* عشان يظل في المنتصف أفقيًا */
   width: 100%;
   z-index: 2;
-  padding-top: 40px;              /* ارفع الكارد شوي */
+  padding-top: 20px;              /* ارفع الكارد شوي */
   min-height: 100vh;              /* يضمن التوسيط العمودي على كل الأجهزة */
   box-sizing: border-box;
 }
