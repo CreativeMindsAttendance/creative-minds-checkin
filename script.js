@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   langToggle.addEventListener("click", () => {
   lang = lang === "ar" ? "en" : "ar";
   localStorage.setItem("lang", lang);
+  langToggle.classList.toggle("ar", lang === "ar");
   loadLang();
 });
 
