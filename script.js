@@ -76,9 +76,12 @@ async function submitAttendance() {
   if (!name) return showMessage(t.required, true);
 
   const existingName = hasCheckedInToday();
-  if (existingName) {
-    return showMessage(t.already.replace("{name}", existingName), true);
+if (existingName) {
+  if (name !== existingName) {
+    return showMessage(`لقد تم تحضيرك سابقًا باسم ${existingName}، لا يمكنك استخدام اسم مختلف.`, true);
   }
+  return showMessage(t.already.replace("{name}", existingName), true);
+}
 
   if (allowedOutsideNames.includes(name)) {
     saveAttendance(name);
