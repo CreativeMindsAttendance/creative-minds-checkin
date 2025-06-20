@@ -39,11 +39,6 @@ function showMessage(msg, isError = false) {
   el.style.color = isError ? 'crimson' : 'green';
 }
 
-  submittedToday = true;
-  storedName = name.trim();
-  showMessage(translations.success);
-}
-
 // تحميل عند بداية الصفحة
 document.addEventListener('DOMContentLoaded', () => {
   const langToggle = document.getElementById('lang-toggle');
