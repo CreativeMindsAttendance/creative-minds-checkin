@@ -1,4 +1,5 @@
-window translations = {
+// config.js
+const translations = {
   en: {
     required: "Please enter your name",
     success: "✅ Attendance recorded successfully",
@@ -16,5 +17,3 @@ window translations = {
     geoError: "❌ لم نتمكن من الوصول لموقعك. يرجى السماح بالوصول إلى الموقع.",
   }
 };
-
-window currentLang = localStorage.getItem("lang") || "ar";
