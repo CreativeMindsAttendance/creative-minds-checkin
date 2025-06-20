@@ -35,11 +35,20 @@ body::before {
 
 .top-controls {
   position: absolute;
+  width: 100%;
   top: 20px;
-  right: 20px;
+  left: 0;
+  right: 0;
   display: flex;
-  gap: 14px;
+  justify-content: space-between;
+  padding: 0 20px;
   z-index: 10;
+}
+
+.top-left,
+.top-right {
+  display: flex;
+  align-items: center;
 }
 
 .main-content {
@@ -189,16 +198,6 @@ footer {
   transform: translateX(30px);
 }
 
-.top-controls {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 14px;
-  z-index: 10;
-}
-
 /* ========== إعادة ضبط كاملة للغة ========== */
 .language-switcher {
   display: flex;
@@ -263,18 +262,6 @@ footer {
 
 .dark .language-switcher .slider {
   background-color: #0ea5e9;
-}
-
-/* تمركز الأزرار أعلى الصفحة */
-.top-controls {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 14px;
-  z-index: 10;
-  flex-wrap: wrap;
 }
 
 /* ========== إعادة ضبط الوضع الليلي ========== */
