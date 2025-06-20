@@ -3,7 +3,7 @@ console.log("Script loaded!");
 let lang = localStorage.getItem("lang") || 'ar';
 let translations = {};
 
-// تحميل اللغة حسب الملف
+// تحميل اللغة
 async function loadLang(file) {
   const res = await fetch(file);
   translations = await res.json();
@@ -13,7 +13,7 @@ async function loadLang(file) {
   document.getElementById('title').textContent = translations.title;
   document.getElementById('nameInput').placeholder = translations.placeholder;
   document.getElementById('submitBtn').textContent = translations.submit;
-  document.getElementById('lang-toggle').setAttribute('data-label', lang === 'ar' ? 'AR' : 'EN');
+  document.getElementById('lang-toggle-label').textContent = lang === 'ar' ? 'AR' : 'EN';
 }
 
 // الوضع الليلي
@@ -23,33 +23,29 @@ function toggleDarkMode() {
   localStorage.setItem("darkMode", isDark);
 }
 
-// دالة لحساب المسافة بين نقطتين
+// المسافة
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
   const dLat = deg2rad(lat2 - lat1);
   const dLon = deg2rad(lon2 - lon1);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) *
-    Math.cos(deg2rad(lat2)) *
-    Math.sin(dLon / 2) *
-    Math.sin(dLon / 2);
+  const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon / 2) ** 2;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
-
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
 
-// عرض الرسائل
+// عرض الرسالة
 function showMessage(msg, isError = false) {
   const el = document.getElementById('statusMessage');
   el.textContent = msg;
   el.style.color = isError ? 'crimson' : 'green';
 }
 
-// إعدادات الموقع الجغرافي
+// إعدادات الموقع
 const DEST_LAT = 16.889264;
 const DEST_LON = 42.548691;
 const allowedDistance = 0.2;
@@ -69,7 +65,7 @@ function saveAttendance(name) {
   localStorage.setItem("attendanceRecord", JSON.stringify({ name, date: today }));
 }
 
-// التحقق وتسجيل الحضور
+// التحقق والتسجيل
 async function submitAttendance() {
   const name = document.getElementById("nameInput").value.trim();
   const statusMessage = document.getElementById("statusMessage");
@@ -81,19 +77,16 @@ async function submitAttendance() {
 
   const existingName = hasCheckedInToday();
   if (existingName) {
-    const message = translations.already.replace("{name}", existingName);
-    statusMessage.textContent = message;
+    statusMessage.textContent = translations.already.replace("{name}", existingName);
     return;
   }
 
-  // السماح للأسماء الخاصة
   if (allowedOutsideNames.includes(name)) {
     saveAttendance(name);
     statusMessage.textContent = translations.success;
     return;
   }
 
-  // التحقق من الموقع الجغرافي
   statusMessage.textContent = translations.loading;
 
   if (!navigator.geolocation) {
@@ -107,7 +100,6 @@ async function submitAttendance() {
       const userLon = position.coords.longitude;
 
       const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT, DEST_LON);
-
       if (distance <= allowedDistance) {
         saveAttendance(name);
         statusMessage.textContent = translations.success;
@@ -121,7 +113,7 @@ async function submitAttendance() {
   );
 }
 
-// تحميل عند بداية الصفحة
+// عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
   const langToggle = document.getElementById('lang-toggle');
   const modeToggle = document.getElementById('mode-toggle');
@@ -130,14 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // تفعيل الوضع الليلي
   if (localStorage.getItem("darkMode") === "true") {
     document.body.classList.add("dark");
+    document.getElementById("mode-toggle").classList.add("active");
   }
 
   // تفعيل اللغة
-  if (lang === "en") {
-    langToggle.classList.add("active");
-  }
-
   loadLang(`lang-${lang}.json`);
+  if (lang === "en") langToggle.classList.add("active");
 
   // تبديل اللغة
   langToggle.addEventListener('click', () => {
@@ -150,6 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // تبديل الوضع الليلي
   modeToggle.addEventListener("click", toggleDarkMode);
 
-  // تفعيل زر الحضور
+  // زر التسجيل
   submitBtn.addEventListener("click", submitAttendance);
 });
