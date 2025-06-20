@@ -44,6 +44,7 @@ h1 {
 
 #nameInput {
   width: 100%;
+  max-width: 100%;
   padding: 0.8rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -51,18 +52,17 @@ h1 {
   outline: none;
   margin-bottom: 1rem;
   transition: border-color 0.2s;
+  
+  /* أهم شيء لضبط الاتجاه والموقع */
+  direction: ltr !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
 }
 
 input[type="text"]:focus {
   border-color: #007aff;
-}
-
-#nameInput {
-  direction: ltr !important;
-  text-align: center !important;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
 }
 
 button {
