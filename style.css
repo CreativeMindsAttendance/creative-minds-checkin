@@ -240,17 +240,16 @@ footer {
   transform: translateX(50px);
 }
 
-/* الوضع العادي */
 .language-switcher {
-  background-color: #e5e5e5;
+  background-color: #ffffff; /* Light mode background */
 }
 
 .language-switcher .lang-option {
-  color: #000000;
+  color: #000000; /* Light mode text */
 }
 
 .language-switcher .slider {
-  background-color: #3b82f6;
+  background-color: #00aaff; /* Light mode slider */
 }
 
 /* الوضع الليلي */
@@ -263,7 +262,7 @@ footer {
 }
 
 .dark .language-switcher .slider {
-  background-color: #00aaff;
+  background-color: #0ea5e9;
 }
 
 /* تمركز الأزرار أعلى الصفحة */
