@@ -29,7 +29,7 @@
 @media screen and (min-width: 768px) {
   .center-title {
     flex-direction: row;
-    gap: 8px; /* مسافة بين الكلمتين */
+    gap: 4px; /* مسافة بين الكلمتين */
   }
   
   .center-title span {
