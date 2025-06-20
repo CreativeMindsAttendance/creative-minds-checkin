@@ -19,13 +19,24 @@ function saveAttendance(name) {
   localStorage.setItem("attendanceRecord", JSON.stringify({ name, date: today }));
 }
 
-const existingName = hasCheckedInToday();
+async function submitAttendance() {
+  const name = document.getElementById("nameInput").value.trim();
+  const statusMessage = document.getElementById("statusMessage");
 
-if (existingName) {
-  const message = translations[currentLang].already.replace("{name}", existingName);
-  statusMessage.textContent = message;
-  return;
+  if (!name) {
+    statusMessage.textContent = translations[currentLang].required;
+    return;
+  }
+
+  const existingName = hasCheckedInToday();
+
+  if (existingName) {
+    const message = translations[currentLang].already.replace("{name}", existingName);
+    statusMessage.textContent = message;
+    return;
+  }
+
+  // بعد ما نتحقق من الموقع الجغرافي وغيره، وسجّل الحضور فعلاً:
+  saveAttendance(name);
+  statusMessage.textContent = translations[currentLang].success;
 }
-
-// إذا ما تم تحضيره من قبل:
-saveAttendance(name); // نحفظ اسمه في localStorage
