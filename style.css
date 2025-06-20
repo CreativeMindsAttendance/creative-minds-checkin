@@ -12,7 +12,7 @@
 }
 
 .center-title {
-  font-family: 'Swingly', cursive;
+  font-family: 'SwinglyLours', cursive;
   font-size: 30px;
   text-align: center;
   margin-bottom: 10px;
@@ -33,6 +33,11 @@
     flex-direction: row;
     gap: 8px; /* مسافة بين الكلمتين */
   }
+  
+  .center-title span {
+    display: inline;
+  }
+  
 }
 
 body {
