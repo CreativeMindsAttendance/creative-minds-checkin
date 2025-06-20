@@ -199,45 +199,48 @@ footer {
   z-index: 10;
 }
 
-.lang-toggle {
+/* ========== إعادة ضبط كاملة للغة ========== */
+.language-switcher {
   display: flex;
-  position: relative;
-  width: 100px; /* عرض ثابت لتوحيد شكل الخلفية */
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
   height: 36px;
   background-color: #2c2c2c;
   border-radius: 20px;
+  position: relative;
   overflow: hidden;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0;
 }
 
-.lang-toggle .lang-btn {
+.language-switcher .lang-option {
   flex: 1;
   text-align: center;
-  z-index: 2;
   color: white;
   font-weight: bold;
+  font-size: 14px;
+  z-index: 2;
   cursor: pointer;
+  line-height: 36px;
 }
 
-.lang-toggle .slider {
+.language-switcher .slider {
   position: absolute;
   top: 2px;
   bottom: 2px;
   width: 46px;
-  border-radius: 20px;
+  border-radius: 18px;
   background-color: #00aaff;
   transition: transform 0.3s ease;
-  z-index: 1;
   left: 2px;
+  z-index: 1;
 }
 
-/* لما يكون AR مفعلة */
-.lang-toggle.ar .slider {
-  transform: translateX(50px); /* تحركها على النصف الثاني */
+/* تحريك السلايدر للـ AR */
+.language-switcher.ar .slider {
+  transform: translateX(50px);
 }
 
+/* الوضع الليلي */
 .dark .language-switcher {
   background-color: #333;
 }
@@ -250,16 +253,26 @@ footer {
   background-color: #0ea5e9;
 }
 
-/* زر الوضع الليلي */
+/* تمركز الأزرار أعلى الصفحة */
+.top-controls {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 14px;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+/* ========== إعادة ضبط الوضع الليلي ========== */
 #mode-toggle {
   width: 60px;
   height: 30px;
-  border: none;
   border-radius: 9999px;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   position: relative;
   cursor: pointer;
-  overflow: hidden;
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
 }
 
 .dark #mode-toggle {
@@ -281,10 +294,12 @@ footer {
   font-size: 16px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   transition: transform 0.4s ease-in-out;
+  z-index: 2;
 }
 
 .dark #mode-toggle::before {
   content: "🌙";
   transform: translateX(30px);
 }
+
 
