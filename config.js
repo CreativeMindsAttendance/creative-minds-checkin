@@ -1,94 +1,20 @@
-// إحداثيات معهد Creative Minds
-const DEST_LAT = 16.889264;
-const DEST_LON = 42.548691;
-
-// المسافة المسموحة بالكيلومتر
-const allowedDistance = 0.2;
-
-// أسماء مسموح لها بالتسجيل حتى خارج النطاق
-const allowedOutsideNames = ["TEST1", "TEST2"];
-
-function hasCheckedInToday() {
-  const record = localStorage.getItem("attendanceRecord");
-  if (!record) return false;
-
-  const { name, date } = JSON.parse(record);
-  const today = new Date().toISOString().split("T")[0];
-  return date === today ? name : false;
-}
-
-function saveAttendance(name) {
-  const today = new Date().toISOString().split("T")[0];
-  localStorage.setItem("attendanceRecord", JSON.stringify({ name, date: today }));
-}
-
-async function submitAttendance() {
-  const name = document.getElementById("nameInput").value.trim();
-  const statusMessage = document.getElementById("statusMessage");
-
-  if (!name) {
-    statusMessage.textContent = translations[currentLang].required;
-    return;
+const translations = {
+  en: {
+    required: "Please enter your name",
+    success: "✅ Attendance recorded successfully",
+    already: "✅ You have already checked in today, {name}.",
+    loading: "Checking location...",
+    outOfRange: "❌ You must be at the center to check in.",
+    geoError: "❌ Could not access location. Please allow GPS access.",
+  },
+  ar: {
+    required: "الرجاء إدخال اسمك الكامل",
+    success: "✅ تم تسجيل حضورك بنجاح",
+    already: "✅ تم تسجيل حضورك مسبقًا، {name}.",
+    loading: "جارٍ التحقق من الموقع...",
+    outOfRange: "❌ يجب أن تكون في المركز لتسجيل الحضور.",
+    geoError: "❌ لم نتمكن من الوصول لموقعك. يرجى السماح بالوصول إلى الموقع.",
   }
+};
 
-  const existingName = hasCheckedInToday();
-  if (existingName) {
-    const message = translations[currentLang].already.replace("{name}", existingName);
-    statusMessage.textContent = message;
-    return;
-  }
-
-  // إذا الاسم ضمن المسموح لهم دائمًا، نسجل بدون التحقق الجغرافي
-  if (allowedOutsideNames.includes(name)) {
-    saveAttendance(name);
-    statusMessage.textContent = translations[currentLang].success;
-    return;
-  }
-
-  // إذا مو من الأسماء الخاصة، نتحقق من الموقع الجغرافي
-  statusMessage.textContent = translations[currentLang].loading;
-
-  if (!navigator.geolocation) {
-    statusMessage.textContent = translations[currentLang].geoError;
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const userLat = position.coords.latitude;
-      const userLon = position.coords.longitude;
-
-      const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT, DEST_LON);
-
-      if (distance <= allowedDistance) {
-        saveAttendance(name);
-        statusMessage.textContent = translations[currentLang].success;
-      } else {
-        statusMessage.textContent = translations[currentLang].outOfRange;
-      }
-    },
-    () => {
-      statusMessage.textContent = translations[currentLang].geoError;
-    }
-  );
-}
-
-// دالة لحساب المسافة بين نقطتين على الأرض
-function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-  const R = 6371; // نصف قطر الأرض بالكيلومتر
-  const dLat = deg2rad(lat2 - lat1);
-  const dLon = deg2rad(lon2 - lon1);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(deg2rad(lat1)) *
-      Math.cos(deg2rad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const d = R * c;
-  return d;
-}
-
-function deg2rad(deg) {
-  return deg * (Math.PI / 180);
-}
+let currentLang = "en"; // أو "ar"
