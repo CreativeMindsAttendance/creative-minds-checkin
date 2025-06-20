@@ -65,6 +65,16 @@ input[type="text"]:focus {
   border-color: #007aff;
 }
 
+body.rtl input[type="text"] {
+  text-align: center !important;
+  direction: ltr !important;
+}
+
+body.ltr input[type="text"] {
+  text-align: center !important;
+  direction: ltr !important;
+}
+
 button {
   padding: 0.8rem 1.2rem;
   font-size: 1rem;
