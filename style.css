@@ -15,6 +15,10 @@
   src: url('fonts/PhilosopherRegular.ttf') format('truetype');
 }
 
+.philosopher-text {
+  font-family: 'Philosopher', sans-serif;
+}
+
 html, body {
   height: 100%;
 }
