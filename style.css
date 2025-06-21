@@ -16,14 +16,14 @@
   margin-bottom: 10px;
   line-height: 1.1;
   color: white;
-  display: flex;pad
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px; /* على الجوال */
+  gap: 2px; /* المسافة بين الكلمتين على الجوال */
 }
 
 .center-title span {
-  display: block;
+  display: block; /* تبقى فوق بعض على الجوال */
 }
 
 @media screen and (min-width: 768px) {
@@ -33,16 +33,16 @@
   }
 
   .center-title span {
-    display: inline;
+    display: inline; /* تصير جنب بعض على الشاشات الكبيرة */
   }
 
   .main-content {
     padding-top: 70px;
   }
-  
 }
+
 body:not(.dark) .center-title {
-  color: #000000;
+  color: #000000; /* نص العنوان يصير أسود في اللايت مود */
 }
 
 @media screen and (max-width: 767px) {
