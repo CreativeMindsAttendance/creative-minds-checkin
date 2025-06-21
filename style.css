@@ -11,12 +11,12 @@
 }
 
 @font-face {
-  font-title: 'Philosopher';
+  font-family: 'Philosopher';
   src: url('fonts/PhilosopherRegular.ttf') format('truetype');
 }
 
 .philosopher-text {
-  font-title: 'Philosopher', sans-serif;
+  font-family: 'Philosopher', sans-serif;
 }
 
 html, body {
