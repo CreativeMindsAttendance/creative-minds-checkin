@@ -175,6 +175,7 @@ body:not(.dark) .center-title {
   max-width: 120px;
   margin-left: auto;
   margin-right: auto;
+  transform: translateY(5px); /* ← نفس الفكرة: زود أو نقص الرقم */
 }
 
 /* Title inside the form */
