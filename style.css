@@ -135,6 +135,7 @@ body:not(.dark) .center-title {
   box-sizing: border-box;
   padding-top: 20px;
   z-index: 2;
+  transform: translateY(20px); /* ← نفس الفكرة: زود أو نقص الرقم */
 }
 
 @media screen and (max-width: 767px) {
