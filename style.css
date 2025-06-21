@@ -33,14 +33,14 @@ body {
   color: #f4f4f4;
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+body:not(.dark)::before {
   background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.08), transparent 40%),
               radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.06), transparent 40%);
-  z-index: 0;
-  pointer-events: none;
+}
+
+body.dark::before {
+  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 40%),
+              radial-gradient(circle at bottom right, rgba(251, 113, 133, 0.05), transparent 40%);
 }
 /* العنوان */
 .center-title {
