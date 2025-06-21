@@ -51,9 +51,8 @@ body:not(.dark) .center-title {
   }
 
   .container {
-    margin-top: 55px; /* نحرك البوكس نفسه */
+    margin-top: 90px; /* نحرك البوكس نفسه */
   }
-}
 
 body {
   font-family: 'Segoe UI', Roboto, sans-serif;
