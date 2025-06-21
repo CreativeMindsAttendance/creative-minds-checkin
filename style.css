@@ -100,6 +100,11 @@ body:not(.dark) .center-title {
    .container {
     margin-top: 10px;
   }
+  
+  body {
+  transform: scale(1.25);
+  transform-origin: top center;
+}
 
   .philosopher-text {
     font-size: 32px;
