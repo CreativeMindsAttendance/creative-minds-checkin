@@ -165,6 +165,7 @@ body:not(.dark) .center-title {
   gap: 22px;
   position: relative;
   z-index: 2;
+  margin-bottom: 0;
 }
 
 .dark .container {
