@@ -96,7 +96,7 @@ body:not(.dark) .center-title {
   }
   
     .form-title {
-    font-size: 8rem; /* ← أضفت هذا السطر هنا */
+    font-family: 8rem; /* ← أضفت هذا السطر هنا */
   }
   
   .center-title span {
