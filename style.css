@@ -92,6 +92,10 @@ body::before {
               radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.06), transparent 40%);
   z-index: 0;
   pointer-events: none;
+  
+}
+html, body {
+  height: 100%;
 }
 
 .top-controls {
@@ -110,6 +114,7 @@ body::before {
 .top-right {
   display: flex;
   align-items: center;
+}
 
 .main-content {
   flex-grow: 1;
