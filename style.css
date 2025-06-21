@@ -198,6 +198,7 @@ body:not(.dark) .center-title {
   text-align: center;
   direction: ltr;
   background-color: white;
+  transform: translateY(-20px); /* ← نفس الفكرة: زود أو نقص الرقم */
 }
 
 /* Button */
