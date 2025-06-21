@@ -165,6 +165,8 @@ body:not(.dark) .center-title {
   gap: 22px;
   position: relative;
   z-index: 2;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .dark .container {
@@ -218,7 +220,6 @@ button {
   transition: background-color 0.25s, transform 0.2s;
   position: relative;
   z-index: 2;
-  margin-bottom: 1.2rem;
 }
 
 button:hover {
@@ -268,7 +269,6 @@ footer {
   padding: 1rem 0;
   opacity: 0.7;
   z-index: 2;
-  margin-bottom: 0;
 }
 
 .emoji {
