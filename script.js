@@ -22,8 +22,6 @@ function loadLang() {
   document.getElementById("nameInput").placeholder = t.placeholder || "Enter your name";
   document.getElementById("submitBtn").textContent = t.submit || "Submit";
   document.getElementById("lang-toggle").setAttribute("data-label", lang === "ar" ? "AR" : "EN");
-  document.getElementById("submitBtn").addEventListener("click", () => {
-  alert("زر شغال ✅");
 }
 
 // === الوضع الليلي ===
