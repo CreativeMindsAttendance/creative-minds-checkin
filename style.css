@@ -190,11 +190,11 @@ body:not(.dark) .center-title {
 /* Input */
 #nameInput {
   width: 100%;
-  padding: 3rem;
+  padding: 0.9rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 9999px;
-  margin-bottom: 2.7rem;
+  margin-bottom: 1.2rem;
   text-align: center;
   direction: ltr;
   background-color: white;
