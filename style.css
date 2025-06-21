@@ -165,7 +165,6 @@ body:not(.dark) .center-title {
   gap: 22px;
   position: relative;
   z-index: 2;
-  margin-bottom: 0;
 }
 
 .dark .container {
@@ -269,6 +268,7 @@ footer {
   padding: 1rem 0;
   opacity: 0.7;
   z-index: 2;
+  margin-bottom: 0;
 }
 
 .emoji {
