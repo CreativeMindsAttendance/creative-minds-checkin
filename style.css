@@ -110,7 +110,6 @@ body::before {
 .top-right {
   display: flex;
   align-items: center;
-}
 
 .main-content {
   flex-grow: 1;
@@ -219,17 +218,6 @@ button:hover {
   background-color: #fee2e2;
   color: #991b1b;
   border: 1px solid #fecaca;
-}
-
-.main-content {
-  flex-grow: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  z-index: 2;
-  padding-top: 70px;
-  box-sizing: border-box;
 }
 
 footer {
