@@ -99,7 +99,7 @@ body:not(.dark) .center-title {
 
   .philosopher-text {
     font-size: 32px;
-    margin-top: -10px; /* ← تقدر تزود أو تنقص الرقم حسب الارتفاع اللي تبيه */
+    margin-top: -20px; /* ← تقدر تزود أو تنقص الرقم حسب الارتفاع اللي تبيه */
   }
 
   .center-title span {
