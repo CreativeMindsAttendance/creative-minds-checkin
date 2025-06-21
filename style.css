@@ -42,7 +42,6 @@ body::before {
   z-index: 0;
   pointer-events: none;
 }
-
 /* العنوان */
 .center-title {
   font-family: 'SwinglyLours', cursive;
@@ -74,7 +73,6 @@ body:not(.dark) .center-title {
     display: inline;
   }
 }
-
 /* منطقة التحكم بالأزرار */
 .top-controls {
   position: absolute;
@@ -93,7 +91,6 @@ body:not(.dark) .center-title {
   display: flex;
   align-items: center;
 }
-
 /* منطقة المحتوى */
 .main-content {
   flex-grow: 1;
