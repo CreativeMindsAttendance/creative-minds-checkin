@@ -26,6 +26,10 @@
   display: block;
 }
 
+body:not(.dark) .center-title {
+  color: #000000;
+}
+
 @media screen and (min-width: 768px) {
   .center-title {
     flex-direction: row;
