@@ -47,13 +47,12 @@ body:not(.dark) .center-title {
 
 @media screen and (max-width: 767px) {
   .main-content {
-    padding-top: 120px;
+    padding-top: 0px; /* نلغي تأثير الـ padding */
   }
-  
-  .main-content {
-  background-color: rgba(255, 0, 0, 0.05); /* مؤقت للتأكد */
-}
 
+  .container {
+    margin-top: 100px; /* نحرك البوكس نفسه */
+  }
 }
 
 body {
