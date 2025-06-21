@@ -39,6 +39,11 @@
   .main-content {
     padding-top: 70px;
   }
+
+ .logo {
+    width: 160px; /* أو أي حجم يناسبك */
+    margin-bottom: 1.5rem;
+  }
 }
 
 body:not(.dark) .center-title {
