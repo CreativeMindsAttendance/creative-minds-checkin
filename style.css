@@ -168,7 +168,7 @@ body:not(.dark) .center-title {
 }
 
 .logo {
-  width: clamp(60px, 40vw, 100px);
+  width: clamp(80px, 40vw, 120px);
   height: auto;
   margin-bottom: 1.2rem;
   display: block;
@@ -192,7 +192,6 @@ body:not(.dark) .center-title {
 #nameInput {
   width: 100%;
   padding: 0.9rem;
-  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 9999px;
   margin-bottom: 1.2rem;
