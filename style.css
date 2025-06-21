@@ -1,3 +1,4 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,61 +10,9 @@
   src: url('fonts/SwinglyLours.otf') format('opentype');
 }
 
-.center-title {
-  font-family: 'SwinglyLours', cursive;
-  font-size: 30px;
-  text-align: center;
-  margin-bottom: 10px;
-  line-height: 1.1;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px; /* المسافة بين الكلمتين على الجوال */
+html, body {
+  height: 100%;
 }
-
-.center-title span {
-  display: block; /* تبقى فوق بعض على الجوال */
-}
-
-@media screen and (min-width: 768px) {
-  .center-title {
-    flex-direction: row;
-    gap: 8px;
-  }
-
-  .center-title span {
-    display: inline; /* تصير جنب بعض على الشاشات الكبيرة */
-  }
-
-  .main-content {
-    padding-top: 70px;
-  }
-
- .logo {
-    width: 160px; /* أو أي حجم يناسبك */
-    margin-bottom: 1.5rem;
-    max-width: 150px;
-    margin-bottom: 1.5rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-body:not(.dark) .center-title {
-  color: #000000; /* نص العنوان يصير أسود في اللايت مود */
-}
-
-@media screen and (max-width: 767px) {
-  .main-content {
-    padding-top: 0px;
-  }
-
-  .container {
-    margin-top: 30px;
-  }
-} /* ← أضف هذا القوس */
 
 body {
   font-family: 'Segoe UI', Roboto, sans-serif;
@@ -94,10 +43,39 @@ body::before {
   pointer-events: none;
 }
 
-html, body {
-  height: 100%;
+/* العنوان */
+.center-title {
+  font-family: 'SwinglyLours', cursive;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 10px;
+  line-height: 1.1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
+.center-title span {
+  display: block;
+}
+
+body:not(.dark) .center-title {
+  color: #000;
+}
+
+@media screen and (min-width: 768px) {
+  .center-title {
+    flex-direction: row;
+    gap: 8px;
+  }
+  .center-title span {
+    display: inline;
+  }
+}
+
+/* منطقة التحكم بالأزرار */
 .top-controls {
   position: absolute;
   width: 100%;
@@ -116,16 +94,26 @@ html, body {
   align-items: center;
 }
 
+/* منطقة المحتوى */
 .main-content {
   flex-grow: 1;
   display: flex;
-  align-items: flex-start;        /* بدّل من center إلى flex-start */
-  justify-content: center;        /* عشان يظل في المنتصف أفقيًا */
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
   z-index: 2;
-  padding-top: 70px;              /* ارفع الكارد شوي */
-  min-height: 100vh;              /* يضمن التوسيط العمودي على كل الأجهزة */
+  padding-top: 70px;
+  min-height: 100vh;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+  .main-content {
+    padding-top: 0;
+  }
+  .container {
+    margin-top: 30px;
+  }
 }
 
 .container {
@@ -139,7 +127,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem; /* ← أضف هذا لو تبي ترتيب أفضل بين العناصر */
+  gap: 1rem;
 }
 
 .dark .container {
@@ -147,18 +135,20 @@ html, body {
 }
 
 .logo {
-  width: clamp(60px, 20vw, 100px);  /* حجم مرن حسب الشاشة */
+  width: clamp(60px, 20vw, 100px);
   height: auto;
   margin-bottom: 1.2rem;
   display: block;
-  max-width: 120px; /* هذا هو السطر الجديد */
+  max-width: 120px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1#title {
   font-size: clamp(1.2rem, 2vw, 2rem);
   font-weight: 600;
   text-align: center;
-  white-space: nowrap; /* ← يمنع التكسير */
+  white-space: nowrap;
   margin-bottom: 1rem;
 }
 
@@ -167,11 +157,11 @@ h1#title {
   padding: 0.9rem;
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 9999px; /* ← بيضاوي جداً */
+  border-radius: 9999px;
   margin-bottom: 1.2rem;
   text-align: center;
   direction: ltr;
-  background-color: white; /* تأكد أنها تبقى بيضاء */
+  background-color: white;
 }
 
 button {
@@ -238,14 +228,13 @@ footer {
   margin: 0 4px;
 }
 
-/* ========== إعادة ضبط كاملة للغة ========== */
 .language-switcher {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100px;
   height: 42px;
-  background-color: #2c2c2c;
+  background-color: #ffffff;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
@@ -254,7 +243,7 @@ footer {
 .language-switcher .lang-option {
   flex: 1;
   text-align: center;
-  color: white;
+  color: #000000;
   font-weight: bold;
   font-size: 14px;
   z-index: 2;
@@ -274,24 +263,10 @@ footer {
   z-index: 1;
 }
 
-/* تحريك السلايدر للـ AR */
 .language-switcher.ar .slider {
   transform: translateX(50px);
 }
 
-.language-switcher {
-  background-color: #ffffff; /* Light mode background */
-}
-
-.language-switcher .lang-option {
-  color: #000000; /* Light mode text */
-}
-
-.language-switcher .slider {
-  background-color: #00aaff; /* Light mode slider */
-}
-
-/* الوضع الليلي */
 .dark .language-switcher {
   background-color: #2c2c2c;
 }
@@ -304,7 +279,6 @@ footer {
   background-color: #0ea5e9;
 }
 
-/* ========== إعادة ضبط الوضع الليلي ========== */
 #mode-toggle {
   width: 80px;
   height: 42px;
@@ -314,7 +288,7 @@ footer {
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   display: flex;
   align-items: center;
-  padding: 0 4px; /* بدل left/right ثابت */
+  padding: 0 4px;
   box-sizing: border-box;
 }
 
@@ -341,5 +315,5 @@ footer {
 
 .dark #mode-toggle::before {
   content: "🌙";
-  transform: translateX(36px); /* 80px (العرض) - 34px (الدائرة) - 2*padding */
+  transform: translateX(36px);
 }
