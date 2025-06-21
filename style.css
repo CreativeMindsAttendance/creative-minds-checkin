@@ -10,11 +10,6 @@
   src: url('fonts/SwinglyLours.otf') format('opentype');
 }
 
-@font-face {
-  font-family: 'Philosopher';
-  src: url('fonts/PhilosopherRegular.ttf') format('truetype');
-}
-
 html, body {
   height: 100%;
 }
@@ -166,6 +161,11 @@ h1#title {
   text-align: center;
   white-space: nowrap;
   margin-bottom: 1rem;
+}
+
+@font-face {
+  font-family: 'Philosopher';
+  src: url('fonts/PhilosopherRegular.ttf') format('truetype');
 }
 
 .philosopher-text {
