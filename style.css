@@ -135,6 +135,7 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem; /* ← أضف هذا لو تبي ترتيب أفضل بين العناصر */
 }
 
 .dark .container {
