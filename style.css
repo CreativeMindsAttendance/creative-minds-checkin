@@ -19,24 +19,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2px; /* المسافة بين الكلمتين على الجوال */
 }
 
 .center-title span {
-  display: block;
+  display: inline; /* بدل block */
 }
 
 /* لما الشاشة تكون عريضة (مثل اللابتوب)، نخليهم جنب بعض */
 @media screen and (min-width: 768px) {
   .center-title {
     flex-direction: row;
-    gap: 4px; /* مسافة بين الكلمتين */
+    gap: 8px;
   }
+}
   
   .center-title span {
     display: inline;
   }
-  
-}
 
 body {
   font-family: 'Segoe UI', Roboto, sans-serif;
@@ -305,5 +305,9 @@ footer {
   transform: translateX(36px); /* 80px (العرض) - 34px (الدائرة) - 2*padding */
 }
 
-
+@media screen and (max-width: 767px) {
+  .main-content {
+    padding-top: 30px;
+  }
+}
 
