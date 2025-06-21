@@ -148,7 +148,7 @@ body:not(.dark) .center-title {
 }
 
 .container {
-  width: 60%;
+  width: 100%;
   max-width: 400px;
   background: rgba(255, 255, 255, 0.9);
   padding: 4rem;
