@@ -10,6 +10,11 @@
   src: url('fonts/SwinglyLours.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'Philosopher';
+  src: url('fonts/PhilosopherRegular.ttf') format('truetype');
+}
+
 html, body {
   height: 100%;
 }
@@ -32,7 +37,8 @@ body {
   background-color: #1a1a1d;
   color: #f4f4f4;
 }
-/* الوضع الفاتح فقط */
+
+/* Light mode background */
 body:not(.dark)::before {
   content: "";
   position: absolute;
@@ -44,7 +50,7 @@ body:not(.dark)::before {
   pointer-events: none;
 }
 
-/* الوضع الليلي فقط */
+/* Dark mode background */
 .dark::before {
   content: "";
   position: absolute;
@@ -55,7 +61,8 @@ body:not(.dark)::before {
   z-index: 0;
   pointer-events: none;
 }
-/* العنوان */
+
+/* Title */
 .center-title {
   font-family: 'SwinglyLours', cursive;
   font-size: 30px;
@@ -81,13 +88,13 @@ body:not(.dark) .center-title {
   .center-title {
     flex-direction: row;
     gap: 8px;
-    font-size: 42px; /* ← كبرنا الخط بس في البي سي */
+    font-size: 42px;
   }
   .center-title span {
     display: inline;
   }
 }
-/* منطقة التحكم بالأزرار */
+
 .top-controls {
   position: absolute;
   width: 100%;
@@ -105,17 +112,17 @@ body:not(.dark) .center-title {
   display: flex;
   align-items: center;
 }
-/* منطقة المحتوى */
+
 .main-content {
   flex-grow: 1;
   display: flex;
-  align-items: center;            /* ← بدّلنا من flex-start إلى center */
+  align-items: center;
   justify-content: center;
   width: 100%;
   z-index: 2;
-  min-height: calc(100vh - 100px); /* ← نقصنا شوي عشان ما يضغط الفوتر */
+  min-height: calc(100vh - 100px);
   box-sizing: border-box;
-  padding-top: 20px;              /* ← أقل padding فقط للراحة */
+  padding-top: 20px;
 }
 
 @media screen and (max-width: 767px) {
@@ -155,24 +162,17 @@ body:not(.dark) .center-title {
   margin-right: auto;
 }
 
-h1#title {
-  font-size: clamp(1.2rem, 2vw, 2rem);
+/* NEW TITLE STYLE */
+.form-title {
+  font-family: 'Philosopher', sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.8rem);
   font-weight: 600;
   text-align: center;
-  white-space: nowrap;
   margin-bottom: 1rem;
+  color: inherit;
 }
 
-@font-face {
-  font-family: 'Philosopher';
-  src: url('fonts/PhilosopherRegular.ttf') format('truetype');
-}
-
-.philosopher-text {
-  font-family: 'Philosopher', sans-serif;
-  font-size: 2.5rem;
-}
-
+/* Name input */
 #nameInput {
   width: 100%;
   padding: 0.9rem;
@@ -248,7 +248,7 @@ footer {
 .emoji {
   margin: 0 4px;
 }
-
+/* Language switcher & mode toggle styles remain unchanged */
 .language-switcher {
   display: flex;
   align-items: center;
