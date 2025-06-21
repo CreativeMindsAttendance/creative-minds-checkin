@@ -103,7 +103,6 @@ body:not(.dark) .center-title {
   
   body {
   transform: scale(1.25);
-  transform-origin: top center;
 }
 
   .philosopher-text {
