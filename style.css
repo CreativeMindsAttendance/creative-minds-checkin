@@ -81,6 +81,7 @@ body:not(.dark) .center-title {
   .center-title {
     flex-direction: row;
     gap: 8px;
+    font-size: 42px; /* ← كبرنا الخط بس في البي سي */
   }
   .center-title span {
     display: inline;
