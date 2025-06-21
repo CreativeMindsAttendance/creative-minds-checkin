@@ -97,7 +97,6 @@ body:not(.dark) .center-title {
   
   .philosopher-text {
     font-size: 36px; /* ← أضفت هذا السطر هنا */
-    font-bold: true;
   }
   
   .center-title span {
