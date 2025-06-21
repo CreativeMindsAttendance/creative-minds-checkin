@@ -309,5 +309,8 @@ footer {
   .main-content {
     padding-top: 30px;
   }
-}
 
+  .center-title {
+    gap: 2px;
+  }
+}
