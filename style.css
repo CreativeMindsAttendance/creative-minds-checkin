@@ -99,7 +99,7 @@ body:not(.dark) .center-title {
 
   .philosopher-text {
     font-size: 32px;
-    padding: 40px;
+    padding: -20px;
   }
 
   .center-title span {
