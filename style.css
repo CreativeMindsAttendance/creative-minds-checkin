@@ -137,9 +137,10 @@ body::before {
   display: block;
 }
 
-h1 {
-  font-size: 1.5rem;
+h1#title {
+  font-size: clamp(1.2rem, 2vw, 2rem);
   font-weight: 600;
+  text-align: center;
 }
 
 #nameInput {
