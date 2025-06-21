@@ -131,8 +131,8 @@ body::before {
 }
 
 .logo {
-  width: 80px;       /* حجم مناسب */
-  height: auto;      /* يحافظ على الأبعاد */
+  width: clamp(60px, 20vw, 100px);  /* حجم مرن حسب الشاشة */
+  height: auto;
   margin-bottom: 1.2rem;
   display: block;
 }
