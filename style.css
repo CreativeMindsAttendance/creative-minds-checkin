@@ -51,7 +51,7 @@ body:not(.dark) .center-title {
   }
 
   .container {
-    margin-top: 80px; /* نحرك البوكس نفسه */
+    margin-top: 30px; /* نحرك البوكس نفسه */
   }
 
 body {
