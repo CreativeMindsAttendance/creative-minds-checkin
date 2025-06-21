@@ -57,12 +57,13 @@ body:not(.dark) .center-title {
 
 @media screen and (max-width: 767px) {
   .main-content {
-    padding-top: 0px; /* نلغي تأثير الـ padding */
+    padding-top: 0px;
   }
 
   .container {
-    margin-top: 30px; /* نحرك البوكس نفسه */
+    margin-top: 30px;
   }
+} /* ← أضف هذا القوس */
 
 body {
   font-family: 'Segoe UI', Roboto, sans-serif;
