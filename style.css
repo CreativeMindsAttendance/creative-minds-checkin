@@ -204,6 +204,8 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.25s, transform 0.2s;
+  z-index: 99;
+  position: relative;
 }
 
 button:hover {
