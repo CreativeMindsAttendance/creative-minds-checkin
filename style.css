@@ -368,3 +368,22 @@ footer {
   content: "🌙";
   transform: translateX(36px);
 }
+
+/* تصميم */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+button {
+  animation: pulse 2s infinite;
+}
+
+input:focus {
+  box-shadow: 0 0 10px rgba(100, 150, 255, 0.6);
+}
+
