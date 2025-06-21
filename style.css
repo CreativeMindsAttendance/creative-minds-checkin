@@ -43,6 +43,11 @@
  .logo {
     width: 160px; /* أو أي حجم يناسبك */
     margin-bottom: 1.5rem;
+    max-width: 150px;
+    margin-bottom: 1.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
