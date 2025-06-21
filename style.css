@@ -97,6 +97,10 @@ body:not(.dark) .center-title {
     font-size: 42px;
   }
 
+   .container {
+    margin-top: 10px;
+  }
+
   .philosopher-text {
     font-size: 32px;
     transform: translateY(-10px); /* ← نفس الفكرة: زود أو نقص الرقم */
