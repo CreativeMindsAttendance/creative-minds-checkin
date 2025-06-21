@@ -130,7 +130,7 @@ body:not(.dark) .center-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 150%;
   min-height: calc(100vh - 100px);
   box-sizing: border-box;
   padding-top: 20px;
