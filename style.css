@@ -32,8 +32,20 @@ body {
   background-color: #1a1a1d;
   color: #f4f4f4;
 }
+/* الوضع الفاتح فقط */
+body:not(.dark)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.15), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.1), transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+}
 
-body::before {
+/* الوضع الليلي فقط */
+.dark::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -42,20 +54,6 @@ body::before {
     radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.15), transparent 40%);
   z-index: 0;
   pointer-events: none;
-}
-
-/* الوضع الفاتح فقط */
-body:not(.dark)::before {
-  background:
-    radial-gradient(circle at top right, rgba(96, 165, 250, 0.15), transparent 40%),
-    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.1), transparent 40%);
-}
-
-/* الوضع الليلي فقط */
-.dark::before {
-  background:
-    radial-gradient(circle at top right, rgba(96, 165, 250, 0.2), transparent 40%),
-    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.15), transparent 40%);
 }
 /* العنوان */
 .center-title {
