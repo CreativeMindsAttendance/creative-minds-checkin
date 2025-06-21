@@ -100,10 +100,6 @@ body:not(.dark) .center-title {
    .container {
     margin-top: 10px;
   }
-  
-  body {
-  transform: scale(1.25);
-}
 
   .philosopher-text {
     font-size: 32px;
@@ -372,3 +368,17 @@ footer {
   content: "🌙";
   transform: translateX(36px);
 }
+
+@media screen and (min-width: 1024px) {
+  body {
+    transform: scale(1.25);
+    transform-origin: top center;
+    height: 80vh; /* يمنع ظهور Scroll غير مرغوب */
+    overflow-x: hidden;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+}
+
