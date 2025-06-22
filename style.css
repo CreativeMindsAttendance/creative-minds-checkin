@@ -51,16 +51,17 @@ body:not(.dark)::before,
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at top right, rgba(96, 165, 250, 0.15), transparent 40%),
-    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.1), transparent 40%);
+    radial-gradient(circle at 20% 20%, rgba(255, 203, 112, 0.3), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(144, 202, 249, 0.25), transparent 50%),
+    linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .dark::before {
   background:
-    radial-gradient(circle at top right, rgba(96, 165, 250, 0.2), transparent 40%),
-    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.15), transparent 40%);
+    radial-gradient(circle at 30% 30%, rgba(255, 112, 203, 0.1), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(112, 203, 255, 0.1), transparent 50%),
+    linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
 }
-
 /* العنوان */
 .center-title {
   font-family: 'SwinglyLours', cursive;
@@ -144,8 +145,6 @@ body:not(.dark) .center-title {
   max-width: 400px;       /* ← بدل 400px أو 480px */
   padding: 2rem 3rem;
   border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,11 +152,17 @@ body:not(.dark) .center-title {
   position: relative;
   z-index: 2;
   margin: 3rem 0;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.85), rgba(240, 240, 255, 0.75));
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 body.dark .container {
-  background: rgba(28, 28, 30, 0.92);
+  background: linear-gradient(to bottom right, rgba(32, 32, 35, 0.95), rgba(24, 24, 28, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 
 @media screen and (max-width: 767px) {
   .container {
@@ -204,13 +209,14 @@ body.dark .container {
   width: 100%;
   padding: 0.9rem;
   font-size: 1.3rem;
-  border: 1px solid #ccc;
   border-radius: 9999px;
   margin-bottom: 1.2rem;
   text-align: center;
   direction: ltr;
-  background-color: white;
   transform: translateY(5px);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(200, 200, 255, 0.4);
 }
 
 #nameInput:focus {
@@ -219,7 +225,6 @@ body.dark .container {
 
 /* الزر */
 button {
-  background-color: #3b82f6 !important;
   color: white !important;
   opacity: 1 !important;
   z-index: 9999 !important;
@@ -233,6 +238,8 @@ button {
   transition: background-color 0.25s ease;
   pointer-events: auto;
   animation: pulse 2s infinite ease-in-out;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
 }
 
 button:hover {
