@@ -160,7 +160,11 @@ body.dark .container {
     font-family: 'SwinglyLours', cursive;
     margin: 120px auto 10px;
  }
-}
+  
+  .main-content {
+    padding-top: 120px;
+  }
+} 
 
 /* الشعار */
 .logo {
