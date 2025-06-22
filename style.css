@@ -91,6 +91,13 @@ body:not(.dark) .center-title {
     gap: 8px;
     font-size: 42px;
   }
+  
+  .top-left,
+  .top-right {
+    display: flex;
+    align-items: center;
+    transform: scale(1.3);
+  }
 
   .container {
   transform: scale(1.15);
@@ -118,7 +125,6 @@ body:not(.dark) .center-title {
 .top-right {
   display: flex;
   align-items: center;
-  transform: scale(1.3);
 }
 
 /* المحتوى */
