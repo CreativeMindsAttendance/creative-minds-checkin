@@ -227,16 +227,16 @@ button {
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.25s, transform 0.2s;
+  transition: background-color 0.25s ease;
   position: relative;
   z-index: 3;
   pointer-events: auto;
+  animation: pulse 2s infinite ease-in-out;
 }
 
-/* هذا هو الكود الصحيح */
-button.pulse:hover {
-  transform: scale(1.05); /* الآن بيشتغل فقط مع الهوفر وما يعطل الأنميشن */
+button:hover {
   background-color: #2563eb;
+  filter: brightness(1.1);
 }
 
 /* الرسائل */
@@ -397,8 +397,12 @@ footer {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 .pulse {
