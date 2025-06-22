@@ -1,11 +1,10 @@
-/* ========== Reset ========== */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ========== Fonts ========== */
 @font-face {
   font-family: 'SwinglyLours';
   src: url('fonts/SwinglyLours.otf') format('opentype');
@@ -16,11 +15,6 @@
   src: url('fonts/PhilosopherRegular.ttf') format('truetype');
 }
 
-.philosopher-text {
-  font-family: 'Philosopher', sans-serif;
-}
-
-/* ========== General ========== */
 html, body {
   height: 100%;
 }
@@ -39,12 +33,12 @@ body {
   overflow-x: hidden;
 }
 
-/* ========== Dark Mode ========== */
-.dark {
+body.dark {
   background-color: #1a1a1d;
   color: #f4f4f4;
 }
 
+/* خلفية مشرقة */
 body:not(.dark)::before,
 .dark::before {
   content: "";
@@ -52,9 +46,6 @@ body:not(.dark)::before,
   inset: 0;
   z-index: 0;
   pointer-events: none;
-}
-
-body:not(.dark)::before {
   background:
     radial-gradient(circle at top right, rgba(96, 165, 250, 0.15), transparent 40%),
     radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.1), transparent 40%);
@@ -66,30 +57,29 @@ body:not(.dark)::before {
     radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.15), transparent 40%);
 }
 
-/* ========== Title ========== */
+/* العنوان */
 .center-title {
   font-family: 'SwinglyLours', cursive;
   font-size: 30px;
   text-align: center;
-  width: 100%;
-  justify-content: center;
-  margin-bottom: 10px;
   line-height: 1.1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* حل تمركز العنوان */
   gap: 2px;
-  position: relative;
+  color: #000;
   z-index: 2;
+  position: relative;
+  width: 100%;
+}
+
+body.dark .center-title {
   color: white;
 }
 
 .center-title span {
   display: block;
-}
-
-body:not(.dark) .center-title {
-  color: #000;
 }
 
 @media screen and (min-width: 768px) {
@@ -102,19 +92,9 @@ body:not(.dark) .center-title {
   .center-title span {
     display: inline;
   }
-
-  .philosopher-text {
-    font-size: 32px;
-    transform: translateY(-10px);
-  }
-
-  .container {
-    margin-top: 10px;
-    gap: 1.2rem; /* للجوال */
-  }
 }
 
-/* ========== Top Controls ========== */
+/* عناصر أعلى الصفحة */
 .top-controls {
   position: absolute;
   width: 100%;
@@ -133,7 +113,7 @@ body:not(.dark) .center-title {
   align-items: center;
 }
 
-/* ========== Main Layout ========== */
+/* المحتوى */
 .main-content {
   flex-grow: 1;
   display: flex;
@@ -146,17 +126,6 @@ body:not(.dark) .center-title {
   z-index: 2;
 }
 
-@media screen and (max-width: 767px) {
-  .main-content {
-    padding-top: 20px;
-  }
-
-  .container {
-    margin-top: 30px;
-  }
-}
-
-/* ========== Container ========== */
 .container {
   width: 100%;
   max-width: 400px;
@@ -168,18 +137,24 @@ body:not(.dark) .center-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.5rem; /* ← زودت المسافة */
   position: relative;
-  z-index: 1.5;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  z-index: 2;
+  margin: 2rem 0;
 }
 
-.dark .container {
+body.dark .container {
   background: rgba(28, 28, 30, 0.92);
 }
 
-/* ========== Logo ========== */
+@media screen and (max-width: 767px) {
+  .container {
+    margin-top: 30px;
+    gap: 1.2rem; /* ← للجوال */
+  }
+}
+
+/* الشعار */
 .logo {
   width: clamp(80px, 40vw, 120px);
   height: auto;
@@ -191,7 +166,7 @@ body:not(.dark) .center-title {
   transform: translateY(5px);
 }
 
-/* ========== Form Title ========== */
+/* عنوان داخل النموذج */
 .form-title {
   font-family: 'Philosopher', sans-serif;
   font-size: 1.8rem;
@@ -201,7 +176,7 @@ body:not(.dark) .center-title {
   color: inherit;
 }
 
-/* ========== Input ========== */
+/* الحقل */
 #nameInput {
   width: 100%;
   padding: 0.9rem;
@@ -215,11 +190,11 @@ body:not(.dark) .center-title {
   transform: translateY(5px);
 }
 
-input:focus {
+#nameInput:focus {
   box-shadow: 0 0 10px rgba(100, 150, 255, 0.6);
 }
 
-/* ========== Button ========== */
+/* الزر */
 button {
   padding: 0.9rem 1.5rem;
   font-size: 1rem;
@@ -231,9 +206,9 @@ button {
   cursor: pointer;
   transition: background-color 0.25s, transform 0.2s;
   position: relative;
-  z-index: 3;
+  z-index: 3; /* ← لضمان أنه فوق كل شيء */
   animation: pulse 2s infinite;
-  pointer-events: auto;
+  pointer-events: auto; /* ← للتأكد أن الزر يشتغل */
 }
 
 button:hover {
@@ -241,7 +216,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* ========== Status Message ========== */
+/* الرسائل */
 #statusMessage {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
@@ -276,7 +251,7 @@ button:hover {
   border: 1px solid #fecaca;
 }
 
-/* ========== Footer ========== */
+/* الفوتر */
 footer {
   margin-top: auto;
   font-size: 1rem;
@@ -290,7 +265,7 @@ footer {
   margin: 0 4px;
 }
 
-/* ========== Language Switcher ========== */
+/* اللغة */
 .language-switcher {
   display: flex;
   align-items: center;
@@ -343,7 +318,7 @@ footer {
   background-color: #0ea5e9;
 }
 
-/* ========== Mode Toggle ========== */
+/* زر الوضع الليلي */
 #mode-toggle {
   width: 80px;
   height: 42px;
@@ -384,7 +359,7 @@ footer {
   transform: translateX(36px);
 }
 
-/* ========== Animations ========== */
+/* أنميشن */
 .fade-in {
   opacity: 0;
   transform: translateY(10px);
