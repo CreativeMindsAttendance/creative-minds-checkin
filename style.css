@@ -162,7 +162,7 @@ body:not(.dark) .center-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 22px;
   position: relative;
   z-index: 2;
   margin-top: 2rem;
