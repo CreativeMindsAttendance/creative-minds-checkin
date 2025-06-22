@@ -108,6 +108,7 @@ body:not(.dark) .center-title {
 
   .container {
     margin-top: 10px;
+    gap: 1.2rem; /* للجوال */
   }
 }
 
@@ -165,7 +166,7 @@ body:not(.dark) .center-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 1.5rem;
   position: relative;
   z-index: 2;
   margin-top: 2rem;
