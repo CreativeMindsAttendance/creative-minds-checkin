@@ -222,10 +222,11 @@ button {
   cursor: pointer;
   transition: background-color 0.25s, transform 0.2s;
   position: relative;
-  z-index: 3; /* ← لضمان أنه فوق كل شيء */
-  pointer-events: auto; /* ← للتأكد أن الزر يشتغل */
+  z-index: 3;
+  pointer-events: auto;
 }
 
+/* هذا هو الكود الصحيح */
 .pulse {
   animation: pulse 2s infinite;
 }
