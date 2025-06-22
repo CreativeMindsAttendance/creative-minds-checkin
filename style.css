@@ -229,7 +229,7 @@ button {
   cursor: pointer;
   transition: background-color 0.25s ease;
   position: relative;
-  z-index: 3;
+  z-index: 999;
   pointer-events: auto;
   animation: pulse 2s infinite ease-in-out;
 }
