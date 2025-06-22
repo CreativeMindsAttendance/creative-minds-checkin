@@ -160,7 +160,7 @@ body.dark .container {
 
 @media screen and (max-width: 767px) {
   .container {
-    margin-top: 100px;
+    margin-top: -50px;
     width: 95%;
     max-width: 95%;
     gap: 1.0rem; /* ← للجوال */
