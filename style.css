@@ -1,10 +1,11 @@
-/* Reset */
+/* ========== Reset ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ========== Fonts ========== */
 @font-face {
   font-family: 'SwinglyLours';
   src: url('fonts/SwinglyLours.otf') format('opentype');
@@ -19,6 +20,7 @@
   font-family: 'Philosopher', sans-serif;
 }
 
+/* ========== General ========== */
 html, body {
   height: 100%;
 }
@@ -37,49 +39,47 @@ body {
   overflow-x: hidden;
 }
 
+/* ========== Dark Mode ========== */
 .dark {
   background-color: #1a1a1d;
   color: #f4f4f4;
 }
 
-/* Light mode background */
-body:not(.dark)::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at top right, rgba(96, 165, 250, 0.15), transparent 40%),
-    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.1), transparent 40%);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Dark mode background */
+body:not(.dark)::before,
 .dark::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at top right, rgba(96, 165, 250, 0.2), transparent 40%),
-    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.15), transparent 40%);
   z-index: 0;
   pointer-events: none;
 }
 
-/* Title */
+body:not(.dark)::before {
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.15), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.1), transparent 40%);
+}
+
+.dark::before {
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.2), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.15), transparent 40%);
+}
+
+/* ========== Title ========== */
 .center-title {
   font-family: 'SwinglyLours', cursive;
   font-size: 30px;
   text-align: center;
   margin-bottom: 10px;
   line-height: 1.1;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  z-index: 2;
   position: relative;
+  z-index: 2;
+  color: white;
 }
 
 .center-title span {
@@ -97,20 +97,21 @@ body:not(.dark) .center-title {
     font-size: 42px;
   }
 
-   .container {
-    margin-top: 10px;
+  .center-title span {
+    display: inline;
   }
 
   .philosopher-text {
     font-size: 32px;
-    transform: translateY(-10px); /* ← نفس الفكرة: زود أو نقص الرقم */
+    transform: translateY(-10px);
   }
 
-  .center-title span {
-    display: inline;
+  .container {
+    margin-top: 10px;
   }
 }
 
+/* ========== Top Controls ========== */
 .top-controls {
   position: absolute;
   width: 100%;
@@ -129,6 +130,7 @@ body:not(.dark) .center-title {
   align-items: center;
 }
 
+/* ========== Main Layout ========== */
 .main-content {
   flex-grow: 1;
   display: flex;
@@ -151,6 +153,7 @@ body:not(.dark) .center-title {
   }
 }
 
+/* ========== Container ========== */
 .container {
   width: 100%;
   max-width: 400px;
@@ -173,6 +176,7 @@ body:not(.dark) .center-title {
   background: rgba(28, 28, 30, 0.92);
 }
 
+/* ========== Logo ========== */
 .logo {
   width: clamp(80px, 40vw, 120px);
   height: auto;
@@ -181,10 +185,10 @@ body:not(.dark) .center-title {
   max-width: 120px;
   margin-left: auto;
   margin-right: auto;
-  transform: translateY(5px); /* ← نفس الفكرة: زود أو نقص الرقم */
+  transform: translateY(5px);
 }
 
-/* Title inside the form */
+/* ========== Form Title ========== */
 .form-title {
   font-family: 'Philosopher', sans-serif;
   font-size: 1.8rem;
@@ -194,21 +198,25 @@ body:not(.dark) .center-title {
   color: inherit;
 }
 
-/* Input */
+/* ========== Input ========== */
 #nameInput {
   width: 100%;
   padding: 0.9rem;
+  font-size: 1.3rem;
   border: 1px solid #ccc;
   border-radius: 9999px;
   margin-bottom: 1.2rem;
   text-align: center;
   direction: ltr;
   background-color: white;
-  transform: translateY(5px); /* ← نفس الفكرة: زود أو نقص الرقم */
-  font-size: 1.3rem;
+  transform: translateY(5px);
 }
 
-/* Button */
+input:focus {
+  box-shadow: 0 0 10px rgba(100, 150, 255, 0.6);
+}
+
+/* ========== Button ========== */
 button {
   padding: 0.9rem 1.5rem;
   font-size: 1rem;
@@ -221,6 +229,7 @@ button {
   transition: background-color 0.25s, transform 0.2s;
   position: relative;
   z-index: 2;
+  animation: pulse 2s infinite;
 }
 
 button:hover {
@@ -228,7 +237,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Status Message */
+/* ========== Status Message ========== */
 #statusMessage {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
@@ -263,6 +272,7 @@ button:hover {
   border: 1px solid #fecaca;
 }
 
+/* ========== Footer ========== */
 footer {
   margin-top: auto;
   font-size: 1rem;
@@ -276,7 +286,7 @@ footer {
   margin: 0 4px;
 }
 
-/* Language Switcher */
+/* ========== Language Switcher ========== */
 .language-switcher {
   display: flex;
   align-items: center;
@@ -329,7 +339,7 @@ footer {
   background-color: #0ea5e9;
 }
 
-/* Dark Mode Toggle */
+/* ========== Mode Toggle ========== */
 #mode-toggle {
   width: 80px;
   height: 42px;
@@ -370,7 +380,7 @@ footer {
   transform: translateX(36px);
 }
 
-/* تصميم */
+/* ========== Animations ========== */
 .fade-in {
   opacity: 0;
   transform: translateY(10px);
@@ -388,11 +398,3 @@ footer {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
-button {
-  animation: pulse 2s infinite;
-}
-
-input:focus {
-  box-shadow: 0 0 10px rgba(100, 150, 255, 0.6);
-}
-
