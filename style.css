@@ -71,6 +71,8 @@ body:not(.dark)::before {
   font-family: 'SwinglyLours', cursive;
   font-size: 30px;
   text-align: center;
+  width: 100%;
+  justify-content: center;
   margin-bottom: 10px;
   line-height: 1.1;
   display: flex;
