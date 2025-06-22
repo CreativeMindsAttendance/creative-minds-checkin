@@ -234,11 +234,8 @@ button {
 }
 
 /* هذا هو الكود الصحيح */
-.pulse {
-  animation: pulse 2.5s ease-in-out infinite;
-}
 
-button:hover {
+button.pulse:hover {
   background-color: #2563eb;
   transform: scale(1.05);
 }
@@ -403,4 +400,8 @@ footer {
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
+}
+
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
 }
