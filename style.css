@@ -1,8 +1,18 @@
+/* Base Colors */
+:root {
+  --main-bg: #D3DEDC;
+  --accent1: #92A9BD;
+  --accent2: #7C99AC;
+  --soft-pink: #FFEFEF;
+  --text-color: #1f1f1f;
+}
+
 /* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 @font-face {
@@ -25,16 +35,25 @@ html, body {
 
 body {
   font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: #f8f8f8;
   color: #222;
-  min-height: 100vh;
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 1rem;
   position: relative;
   overflow-x: hidden;
+  background-color: var(--main-bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-pattern {
+  background: radial-gradient(circle at top left, var(--soft-pink), transparent 60%),
+              radial-gradient(circle at bottom right, var(--accent1), transparent 70%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
 }
 
 body.dark {
@@ -135,19 +154,20 @@ body:not(.dark) .center-title {
 }
 
 .container {
-  width: 100%;             /* ← يكون مرن بناءً على حجم الشاشة */
+  width: 90%;             /* ← يكون مرن بناءً على حجم الشاشة */
   max-width: 400px;       /* ← بدل 400px أو 480px */
-  padding: 2rem 3rem;
-  border-radius: 24px;
+  padding: 3rem 2rem;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 0.8rem;
   position: relative;
   z-index: 2;
   margin: 3rem 0;
-  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.85), rgba(240, 240, 255, 0.75));
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
+  background-color: var(--accent2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
@@ -179,9 +199,9 @@ body.dark .container {
 /* الشعار */
 .logo {
   max-width: 120px;
-  width: 100%;
+  width: 90%;
   height: auto;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -194,23 +214,24 @@ body.dark .container {
   font-size: 1.8rem;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 1rem;
-  color: inherit;
+  margin-bottom: 1.5rem;
+  color: white;
 }
 
 /* الحقل */
 #nameInput {
   width: 100%;
-  padding: 0.9rem;
-  font-size: 1.3rem;
-  border-radius: 9999px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border-radius: 12px;
   margin-bottom: 1.2rem;
   text-align: center;
   direction: ltr;
   transform: translateY(5px);
-  background: rgba(255, 255, 255, 255);
+  background-color: var(--soft-pink);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(200, 200, 255, 0.4);
+  border: none;
+  color: var(--text-color);
 }
 
 #nameInput:focus {
@@ -223,21 +244,21 @@ button {
   opacity: 1 !important;
   z-index: 9999 !important;
   position: relative !important;
-  padding: 0.9rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   font-size: 1rem;
   border: none;
-  border-radius: 9999px;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  transition: all 0.3s ease;
   pointer-events: auto;
   animation: pulse 2s infinite ease-in-out;
-  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  background-color: var(--accent1);
   box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
 }
 
 button:hover {
-  background-color: #2563eb;
+  background-color: var(--accent2);
   filter: brightness(1.1);
 }
 
