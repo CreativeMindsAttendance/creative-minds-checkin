@@ -112,6 +112,7 @@ body:not(.dark) .center-title {
   justify-content: space-between;
   padding: 0 20px;
   z-index: 3;
+  transform: scale(1.3);
 }
 
 .top-left,
@@ -297,7 +298,6 @@ footer {
   position: relative;
   overflow: hidden;
   z-index: 2;
-  transform: scale(1.3);
 }
 
 .language-switcher .lang-option {
