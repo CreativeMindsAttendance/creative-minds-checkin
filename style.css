@@ -134,7 +134,7 @@ body:not(.dark) .center-title {
 
 
 .container {
-  width: 100%;
+  width: 160%;
   max-width: 600px;
   background: rgba(255, 255, 255, 0.9);
   padding: 2rem;
@@ -144,7 +144,7 @@ body:not(.dark) .center-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem; /* ← زودت المسافة */
+  gap: 1.2rem; /* ← زودت المسافة */
   position: relative;
   z-index: 2;
   margin: 2rem 0;
