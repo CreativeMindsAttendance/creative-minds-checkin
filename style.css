@@ -120,14 +120,14 @@ body:not(.dark) .center-title {
 .main-content {
   flex-grow: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* ← بدل center */
   justify-content: center;
-  width: 100%;
+  padding-top: 80px; /* ← يرفع البوكس */
   min-height: calc(100vh - 100px);
   box-sizing: border-box;
-  padding-top: 20px;
   z-index: 2;
 }
+
 
 .container {
   width: 100%;
