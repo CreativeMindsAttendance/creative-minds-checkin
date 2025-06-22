@@ -320,6 +320,7 @@ footer {
 
 .language-switcher.ar .slider {
   transform: translateX(50px);
+  transform: scale(1.3);
 }
 
 .dark .language-switcher {
