@@ -233,7 +233,7 @@ button {
   position: relative;
   z-index: 3;
   animation: pulse 2s infinite;
-   pointer-events: auto;
+  pointer-events: auto;
 }
 
 button:hover {
