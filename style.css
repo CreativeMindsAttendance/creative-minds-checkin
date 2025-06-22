@@ -1,13 +1,13 @@
-/* Base Colors */
+/* ========== القيم الأساسية (الألوان) ========== */
 :root {
-  --main-bg: #D3DEDC;
-  --accent1: #92A9BD;
-  --accent2: #7C99AC;
-  --soft-pink: #FFEFEF;
-  --text-color: #1f1f1f;
+  --main-bg: #D3DEDC;        /* اللون الطاغي للخلفية */
+  --accent1: #92A9BD;        /* لون الأزرار الأساسي */
+  --accent2: #7C99AC;        /* لون خلفية الـ container */
+  --soft-pink: #FFEFEF;      /* لون الحقل */
+  --text-color: #1f1f1f;     /* لون النصوص */
 }
 
-/* Reset */
+/* ========== إعادة ضبط الأساسيات ========== */
 * {
   margin: 0;
   padding: 0;
@@ -15,74 +15,54 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+/* ========== الخطوط ========== */
 @font-face {
   font-family: 'SwinglyLours';
   src: url('fonts/SwinglyLours.otf') format('opentype');
 }
-
 @font-face {
   font-family: 'Philosopher';
   src: url('fonts/PhilosopherRegular.ttf') format('truetype');
 }
-
 .philosopher-text {
   font-family: 'Philosopher', sans-serif;
 }
 
+/* ========== الجسم (Light Mode فقط) ========== */
 html, body {
   height: 100%;
 }
-
 body {
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  color: #222;
+  background-color: var(--main-bg);
+  color: var(--text-color);
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
   position: relative;
   overflow-x: hidden;
-  background-color: var(--main-bg);
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
+/* خلفيات زخرفية */
 .bg-pattern {
-  background: radial-gradient(circle at top left, var(--soft-pink), transparent 60%),
-              radial-gradient(circle at bottom right, var(--accent1), transparent 70%);
+  background:
+    radial-gradient(circle at top left, var(--soft-pink), transparent 60%),
+    radial-gradient(circle at bottom right, var(--accent1), transparent 70%);
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
   z-index: -1;
 }
 
-body.dark {
-  background-color: #1a1a1d;
-  color: #f4f4f4;
-}
-
-/* خلفية مشرقة */
-body:not(.dark)::before,
-.dark::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(to right, #fceabb, #f8b500);
-}
-
-.dark::before {
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-}
-/* العنوان */
+/* ========== العنوان الرئيسي ========== */
 .center-title {
   font-family: 'SwinglyLours', cursive;
   font-size: 30px;
+  color: black;
   text-align: center;
   margin: 60px auto 10px;
-  line-height: 1.1;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,344 +70,216 @@ body:not(.dark)::before,
   z-index: 2;
   position: relative;
 }
-
-body:not(.dark) .center-title {
-  color: #000;
-}
-
 .center-title span {
   display: block;
 }
-
 @media screen and (min-width: 768px) {
   .center-title {
     flex-direction: row;
-    gap: 8px;
     font-size: 42px;
-  }
-  
-  .top-left,
-  .top-right {
-    display: flex;
-    align-items: center;
-    transform: scale(1.3);
-  }
-
-  .container {
-  transform: scale(1.15);
-}
-
-  .center-title span {
-    display: inline;
+    gap: 8px;
   }
 }
 
-/* عناصر أعلى الصفحة */
-.top-controls {
-  position: absolute;
-  width: 100%;
-  top: 20px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  z-index: 3;
-}
-
-.top-left,
-.top-right {
-  display: flex;
-  align-items: center;
-}
-
-/* المحتوى */
+/* ========== واجهة النموذج ========== */
 .main-content {
   flex-grow: 1;
   display: flex;
-  align-items: flex-start; /* ← بدل center */
   justify-content: center;
-  padding-top: 80px; /* ← يرفع البوكس */
+  align-items: flex-start;
+  padding-top: 80px;
   min-height: calc(100vh - 100px);
-  box-sizing: border-box;
   z-index: 2;
 }
-
 .container {
-  width: 90%;             /* ← يكون مرن بناءً على حجم الشاشة */
-  max-width: 400px;       /* ← بدل 400px أو 480px */
+  width: 90%;
+  max-width: 400px;
+  background-color: var(--accent2);
   padding: 3rem 2rem;
+  margin: 3rem 0;
   border-radius: 20px;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   gap: 0.8rem;
-  position: relative;
-  z-index: 2;
-  margin: 3rem 0;
-  background-color: var(--accent2);
+  align-items: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 2;
 }
-
-body.dark .container {
-  background: linear-gradient(to bottom right, rgba(32, 32, 35, 0.95), rgba(24, 24, 28, 0.9));
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-
 @media screen and (max-width: 767px) {
   .container {
     margin-top: -50px;
-    width: 95%;
-    max-width: 95%;
-    gap: 1.0rem; /* ← للجوال */
+    gap: 1rem;
   }
-  
-  .center-title {
-    font-family: 'SwinglyLours', cursive;
-    margin: 120px auto 10px;
- }
-  
-  .main-content {
-    padding-top: 200px;
-  }
-} 
+}
 
-/* الشعار */
+/* ========== الشعار والعنوان داخل البوكس ========== */
 .logo {
   max-width: 120px;
   width: 90%;
-  height: auto;
   margin-bottom: 1rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  transform: translateY(5px);
 }
-
-/* عنوان داخل النموذج */
 .form-title {
   font-family: 'Philosopher', sans-serif;
   font-size: 1.8rem;
   font-weight: 600;
-  text-align: center;
-  margin-bottom: 1.5rem;
   color: white;
 }
 
-/* الحقل */
+/* ========== حقل الاسم ========== */
 #nameInput {
   width: 100%;
   padding: 0.8rem 1rem;
   font-size: 1rem;
   border-radius: 12px;
-  margin-bottom: 1.2rem;
+  background-color: var(--soft-pink);
   text-align: center;
   direction: ltr;
-  transform: translateY(5px);
-  background-color: var(--soft-pink);
-  backdrop-filter: blur(6px);
   border: none;
   color: var(--text-color);
+  backdrop-filter: blur(6px);
 }
-
 #nameInput:focus {
   box-shadow: 0 0 10px rgba(100, 150, 255, 0.6);
 }
 
-/* الزر */
+/* ========== الزر ========== */
 button {
-  color: white !important;
-  opacity: 1 !important;
-  z-index: 9999 !important;
-  position: relative !important;
+  background-color: var(--accent1);
+  color: white;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
+  font-weight: 600;
   border: none;
   border-radius: 12px;
-  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  pointer-events: auto;
   animation: pulse 2s infinite ease-in-out;
-  background-color: var(--accent1);
   box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
 }
-
 button:hover {
   background-color: var(--accent2);
   filter: brightness(1.1);
 }
 
-/* الرسائل */
+/* ========== الرسالة بعد التسجيل ========== */
 #statusMessage {
   margin-top: 1rem;
   padding: 0.75rem 1rem;
   border-radius: 12px;
   font-weight: 500;
   font-size: 0.95rem;
-  transition: opacity 0.4s ease, transform 0.4s ease;
   opacity: 0;
   transform: translateY(10px);
+  transition: 0.4s ease;
 }
-
 #statusMessage.show {
   opacity: 1;
   transform: translateY(0);
 }
-
 #statusMessage.success {
   background-color: #dcfce7;
   color: #166534;
-  border: 1px solid #bbf7d0;
 }
-
 #statusMessage.warning {
   background-color: #fef9c3;
   color: #92400e;
-  border: 1px solid #fde68a;
 }
-
 #statusMessage.error {
   background-color: #fee2e2;
   color: #991b1b;
-  border: 1px solid #fecaca;
 }
 
-/* الفوتر */
-footer {
-  margin-top: auto;
-  font-size: 1rem;
-  text-align: center;
-  padding: 1rem 0;
-  opacity: 0.7;
-  z-index: 2;
-}
-
-.emoji {
-  margin: 0 4px;
-}
-
-/* اللغة */
+/* ========== زر اللغة ========== */
 .language-switcher {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 100px;
   height: 42px;
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 20px;
-  position: relative;
   overflow: hidden;
   z-index: 2;
 }
-
 .language-switcher .lang-option {
   flex: 1;
   text-align: center;
-  color: #000000;
   font-weight: bold;
   font-size: 14px;
-  z-index: 2;
   cursor: pointer;
   line-height: 36px;
 }
-
 .language-switcher .slider {
   position: absolute;
   top: 2px;
   bottom: 2px;
+  left: 2px;
   width: 46px;
   border-radius: 18px;
   background-color: #00aaff;
   transition: transform 0.3s ease;
-  left: 2px;
-  z-index: 1;
 }
-
 .language-switcher.ar .slider {
   transform: translateX(50px);
 }
 
-.dark .language-switcher {
-  background-color: #2c2c2c;
-}
-
-.dark .language-switcher .lang-option {
-  color: #ffffff;
-}
-
-.dark .language-switcher .slider {
-  background-color: #0ea5e9;
-}
-
-/* زر الوضع الليلي */
+/* ========== زر الوضع الليلي ========== */
 #mode-toggle {
   width: 80px;
   height: 42px;
   border-radius: 20px;
-  position: relative;
-  cursor: pointer;
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   display: flex;
   align-items: center;
   padding: 0 4px;
-  box-sizing: border-box;
-  z-index: 2;
+  cursor: pointer;
 }
-
-.dark #mode-toggle {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-}
-
 #mode-toggle::before {
   content: "☀️";
   width: 34px;
   height: 34px;
   background-color: white;
   border-radius: 50%;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   transition: transform 0.4s ease-in-out;
-  position: absolute;
+  position: relative;
   left: 4px;
-  top: 4px;
 }
 
-.dark #mode-toggle::before {
-  content: "🌙";
-  transform: translateX(36px);
+/* ========== الفوتر ========== */
+footer {
+  margin-top: auto;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem 0;
+  opacity: 0.7;
+}
+.emoji {
+  margin: 0 4px;
 }
 
-/* أنميشن */
-.fade-in {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.8s ease-out forwards;
+/* ========== أنميشن ========== */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
-
 @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.8s ease-out forwards;
 }
-
 .pulse {
   animation: pulse 2s infinite;
 }
