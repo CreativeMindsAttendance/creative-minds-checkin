@@ -147,7 +147,7 @@ body:not(.dark) .center-title {
   gap: 1.5rem; /* ← زودت المسافة */
   position: relative;
   z-index: 2;
-  margin: 1rem 0;
+  margin: 2rem 1.2;
 }
 
 body.dark .container {
