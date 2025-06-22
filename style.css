@@ -223,8 +223,9 @@ button {
   transition: background-color 0.25s, transform 0.2s;
   position: relative;
   z-index: 3; /* ← لضمان أنه فوق كل شيء */
-  animation: pulse 2s infinite;
   pointer-events: auto; /* ← للتأكد أن الزر يشتغل */
+  .pulse {
+  animation: pulse 2s infinite;
 }
 
 button:hover {
