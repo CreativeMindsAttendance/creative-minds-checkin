@@ -157,17 +157,18 @@ body.dark .container {
   }
   
   .center-title {
-  font-family: 'SwinglyLours', cursive;
-  margin: 80px auto 10px;
+    font-family: 'SwinglyLours', cursive;
+    margin: 80px auto 10px;
+ }
 }
 
 /* الشعار */
-.logo {
-  width: clamp(80px, 40vw, 120px);
+..logo {
+ max-width: 120px;
+  width: 100%;
   height: auto;
   margin-bottom: 1.2rem;
   display: block;
-  max-width: 120px;
   margin-left: auto;
   margin-right: auto;
   transform: translateY(5px);
