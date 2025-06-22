@@ -133,7 +133,6 @@ body:not(.dark) .center-title {
 }
 
 .container {
- .container {
   width: 90%;             /* ← يكون مرن بناءً على حجم الشاشة */
   max-width: 600px;       /* ← بدل 400px أو 480px */
   padding: 2rem;
@@ -145,7 +144,7 @@ body:not(.dark) .center-title {
   align-items: center;
   gap: 1.5rem;
   position: relative;
-  z-index: 3;
+  z-index: 2;
   margin: 3rem 0;
 }
 
