@@ -155,6 +155,10 @@ body.dark .container {
     margin-top: 30px;
     gap: 1.2rem; /* ← للجوال */
   }
+  
+  .center-title {
+  font-family: 'SwinglyLours', cursive;
+  margin: 80px auto 10px;
 }
 
 /* الشعار */
