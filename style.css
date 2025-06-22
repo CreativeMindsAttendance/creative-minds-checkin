@@ -15,6 +15,10 @@
   src: url('fonts/PhilosopherRegular.ttf') format('truetype');
 }
 
+.philosopher-text {
+  font-family: 'Philosopher', sans-serif;
+}
+
 html, body {
   height: 100%;
 }
@@ -62,7 +66,7 @@ body:not(.dark)::before,
   font-family: 'SwinglyLours', cursive;
   font-size: 30px;
   text-align: center;
-  margin: 20px auto 10px;
+  margin: 40px auto 10px;
   line-height: 1.1;
   color: white;
   display: flex;
