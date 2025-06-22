@@ -231,8 +231,9 @@ button {
   cursor: pointer;
   transition: background-color 0.25s, transform 0.2s;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   animation: pulse 2s infinite;
+   pointer-events: auto;
 }
 
 button:hover {
