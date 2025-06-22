@@ -234,10 +234,9 @@ button {
 }
 
 /* هذا هو الكود الصحيح */
-
 button.pulse:hover {
+  transform: scale(1.05); /* الآن بيشتغل فقط مع الهوفر وما يعطل الأنميشن */
   background-color: #2563eb;
-  transform: scale(1.05);
 }
 
 /* الرسائل */
