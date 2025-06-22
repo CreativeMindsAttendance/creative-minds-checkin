@@ -235,7 +235,7 @@ button {
 
 /* هذا هو الكود الصحيح */
 .pulse {
-  animation: pulse 2s infinite;
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
 button:hover {
