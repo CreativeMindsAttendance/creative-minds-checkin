@@ -205,6 +205,7 @@ body:not(.dark) .center-title {
   direction: ltr;
   background-color: white;
   transform: translateY(5px); /* ← نفس الفكرة: زود أو نقص الرقم */
+  font-size: 1.3rem;
 }
 
 /* Button */
