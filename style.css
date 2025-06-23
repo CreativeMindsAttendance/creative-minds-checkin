@@ -1,24 +1,26 @@
 /* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
 @font-face {
     font-family: 'SwinglyLours';
-    src: url('fonts/SwinglyLours.otf') format('opentype'), /* Added .otf format */
+    src: url('fonts/SwinglyLours.otf') format('opentype'),
          url('fonts/SwinglyLours.woff2') format('woff2'),
          url('fonts/SwinglyLours.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap; /* Ensures font loads nicely */
 }
 
 @font-face {
     font-family: 'QatarMedium';
     src: url('fonts/QatarMedium.woff2') format('woff2'),
          url('fonts/QatarMedium.woff') format('woff'),
-         url('fonts/QatarMedium.ttf') format('truetype'); /* Added .ttf as a common fallback */
+         url('fonts/QatarMedium.ttf') format('truetype');
     font-weight: 500; /* Assuming Medium weight, adjust if necessary */
     font-style: normal;
+    font-display: swap; /* Ensures font loads nicely */
 }
 
-/* Google Fonts: Only Philosopher for English content */
-@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap');
+/* Google Fonts: Only Philosopher for English content (loaded via link in HTML) */
+/* @import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap'); */
 
 
 :root {
@@ -38,11 +40,11 @@
     --gemini-btn-gradient-start-light: #FF9A8B; /* Soft orange-pink for Gemini feature */
     --gemini-btn-gradient-end-light: #FF6A88;
 
-    /* Background curvy shapes colors (specific for light mode) - Adjusted to match image closer */
-    --curve-color-top: #E0F2F7; /* Lighter blue-green from image */
-    --curve-color-bottom: #F0E6E8; /* Lighter pink from image */
-    --main-pattern-radial1: #D3DEDC; /* Main background base color */
-    --main-pattern-radial2: #A3BFCC; /* A slightly darker shade for the second radial */
+    /* Background curvy shapes colors (specific for light mode) - Adjusted for image match */
+    --bg-primary-light: #E0F2F7; /* Lighter background color, top left */
+    --bg-secondary-light: #F0E6E8; /* Lighter background color, bottom right */
+    --curvy-shape-color-left-light: #C0D8E4; /* Blueish for left curve */
+    --curvy-shape-color-right-light: #E8D4D6; /* Pinkish for right curve */
 
 
     /* Dark Mode Colors */
@@ -62,10 +64,10 @@
     --gemini-btn-gradient-end-dark: #4A00E0;
 
     /* Background curvy shapes colors (specific for dark mode) */
-    --curve-color-top-dark: #2E4057; /* Darker blueish */
-    --curve-color-bottom-dark: #3A4C62; /* Darker grey-blue */
-    --main-pattern-radial1-dark: #1a1a2e; /* Dark background base color */
-    --main-pattern-radial2-dark: #2C3E50; /* A slightly darker shade for the second radial */
+    --bg-primary-dark: #1D2A42; /* Darker background color, top left */
+    --bg-secondary-dark: #2A3B50; /* Darker background color, bottom right */
+    --curvy-shape-color-left-dark: #3C5069; /* Darker blueish for left curve */
+    --curvy-shape-color-right-dark: #5A4E63; /* Darker purpleish for right curve */
 
 
     /* General/Status Colors */
@@ -91,10 +93,11 @@
     --current-mode-toggle-bg: var(--mode-toggle-bg-light);
     --current-gemini-btn-gradient-start: var(--gemini-btn-gradient-start-light);
     --current-gemini-btn-gradient-end: var(--gemini-btn-gradient-end-light);
-    --current-curve-color-top: var(--curve-color-top);
-    --current-curve-color-bottom: var(--curve-color-bottom);
-    --current-main-pattern-radial1: var(--main-pattern-radial1);
-    --current-main-pattern-radial2: var(--main-pattern-radial2);
+
+    --current-bg-primary: var(--bg-primary-light);
+    --current-bg-secondary: var(--bg-secondary-light);
+    --current-curvy-shape-left: var(--curvy-shape-color-left-light);
+    --current-curvy-shape-right: var(--curvy-shape-color-right-light);
 }
 
 body.dark-mode {
@@ -112,10 +115,11 @@ body.dark-mode {
     --current-mode-toggle-bg: var(--mode-toggle-bg-dark);
     --current-gemini-btn-gradient-start: var(--gemini-btn-gradient-start-dark);
     --current-gemini-btn-gradient-end: var(--gemini-btn-gradient-end-dark);
-    --current-curve-color-top: var(--curve-color-top-dark);
-    --current-curve-color-bottom: var(--curve-color-bottom-dark);
-    --current-main-pattern-radial1: var(--main-pattern-radial1-dark);
-    --current-main-pattern-radial2: var(--main-pattern-radial2-dark);
+
+    --current-bg-primary: var(--bg-primary-dark);
+    --current-bg-secondary: var(--bg-secondary-dark);
+    --current-curvy-shape-left: var(--curvy-shape-color-left-dark);
+    --current-curvy-shape-right: var(--curvy-shape-color-right-dark);
 }
 
 * {
@@ -127,9 +131,9 @@ body.dark-mode {
 /* Basic body and HTML styling for full height and responsive fonts */
 html, body {
     height: 100%;
-    background-color: var(--current-main-bg);
+    background-color: var(--current-main-bg); /* Fallback, but gradient divs should cover */
     color: var(--current-text-color);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     display: flex;
     flex-direction: column; /* Allows main content to push footer down */
     font-family: 'QatarMedium', sans-serif; /* Default for Arabic using local font */
@@ -142,55 +146,55 @@ html[lang="en"] body {
 }
 
 /* Background gradient patterns (main background colors) */
-.bg-gradient-top-left {
+/* These elements create the large, soft color washes */
+.bg-gradient-primary {
     position: fixed;
     top: 0;
     left: 0;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle at 0% 0%, var(--current-main-pattern-radial1), transparent 70%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 10%, var(--current-bg-primary), transparent 60%);
     z-index: -3; /* Lowest layer */
     transition: background 0.4s ease;
 }
 
-.bg-gradient-bottom-right {
+.bg-gradient-secondary {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 70%;
-    height: 70%;
-    background: radial-gradient(circle at 100% 100%, var(--current-main-pattern-radial2), transparent 70%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 90% 90%, var(--current-bg-secondary), transparent 60%);
     z-index: -3; /* Lowest layer */
     transition: background 0.4s ease;
 }
 
 /* Curvy shapes using dedicated divs for better control, matching image */
-.bg-curvy-shape-top, .bg-curvy-shape-bottom {
+/* These elements create the distinct curved blobs at corners */
+.bg-curvy-shape-left, .bg-curvy-shape-right {
     position: fixed;
-    width: 100vw;
-    height: 100vw; /* Make it large circles to allow for clipping */
-    border-radius: 50%; /* Make it a circle */
+    width: 120vw; /* Make them larger than viewport to ensure curves */
+    height: 120vh; /* Make them larger than viewport to ensure curves */
+    border-radius: 50%; /* Makes it a circle */
     z-index: -2; /* Above gradients, below content */
-    opacity: 0.6; /* Slight transparency */
+    opacity: 0.6; /* Slight transparency for layering effect */
     transition: background 0.4s ease, transform 0.4s ease;
 }
 
-.bg-curvy-shape-top {
-    background: var(--current-curve-color-top);
-    top: -30vh; /* Adjusted position for a more subtle curve off-screen */
-    left: -50vw;
-    /* This clip-path creates a top-left soft, wide curve */
-    clip-path: ellipse(70% 30% at 20% 10%); /* Fine-tuned values */
-    transform: rotate(-10deg); /* Slight rotation */
+.bg-curvy-shape-left {
+    background: var(--current-curvy-shape-left);
+    top: -60vh; /* Position it high up and left to create a curve from top-left */
+    left: -60vw;
+    clip-path: ellipse(60% 40% at 20% 10%); /* Adjust values for desired curve shape */
+    transform: rotate(-15deg); /* Slight rotation for dynamic look */
 }
 
-.bg-curvy-shape-bottom {
-    background: var(--current-curve-color-bottom);
-    bottom: -30vh; /* Adjusted position for a more subtle curve off-screen */
-    right: -50vw;
-    /* This clip-path creates a bottom-right soft, wide curve */
-    clip-path: ellipse(70% 30% at 80% 90%); /* Fine-tuned values */
-    transform: rotate(10deg); /* Slight rotation */
+.bg-curvy-shape-right {
+    background: var(--current-curvy-shape-right);
+    bottom: -60vh; /* Position it low down and right to create a curve from bottom-right */
+    right: -60vw;
+    clip-path: ellipse(60% 40% at 80% 90%); /* Adjust values for desired curve shape */
+    transform: rotate(15deg); /* Slight rotation */
 }
 
 
@@ -204,7 +208,7 @@ html[lang="en"] body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 100; /* Ensure it's always on top */
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.1);
     transition: background 0.4s ease;
@@ -330,7 +334,8 @@ body.dark-mode .top-controls {
     text-align: center;
     font-family: 'SwinglyLours', cursive; /* Applied SwinglyLours font */
     font-size: clamp(28px, 6vw, 48px); /* Slightly larger for impact */
-    margin: 80px auto 20px;
+    margin-top: 1rem; /* Reduced margin to bring it closer to top controls */
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -363,7 +368,7 @@ body.dark-mode .top-controls {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    padding-top: 100px; /* Adjusted padding-top to account for fixed top-controls */
+    padding-top: 100px; /* Adjusted padding-top to account for fixed top-controls and new margin on site-title */
     margin-bottom: 0; /* Handled by flex-grow on main */
     width: 100%;
     z-index: 1; /* Ensure it's above background elements */
@@ -689,11 +694,11 @@ html[lang="en"] .footer-content {
 /* Responsive design */
 @media screen and (max-width: 768px) {
     #site-title {
-        margin-top: 60px;
+        margin-top: 60px; /* Adjust for smaller screens too */
         font-size: clamp(24px, 5vw, 42px);
     }
     .main-content {
-        padding-top: 100px; /* Adjusted padding-top to account for fixed top-controls */
+        padding-top: 100px; /* Consistent padding-top */
     }
 }
 
