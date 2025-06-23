@@ -1,3 +1,4 @@
+// Translations data
 const translations = {
     en: {
         siteTitleCreative: "Creative",
@@ -20,8 +21,8 @@ const translations = {
         website: "www.creativeminds.edu.sa"
     },
     ar: {
-        siteTitleCreative: "الإبداعية", // أو "معهد الإبداع" حسب الرغبة
-        siteTitleMinds: "للعقول", // أو "معهد الإبداع"
+        siteTitleCreative: "الإبداعية",
+        siteTitleMinds: "للعقول",
         title: "نموذج تحضير",
         placeholder: "اكتب اسمك الثلاثي",
         submit: "تسجيل الحضور",
@@ -40,3 +41,9 @@ const translations = {
         website: "www.creativeminds.edu.sa"
     }
 };
+
+// Location settings (moved here for easier configuration)
+const DEST_LAT = 16.889264;
+const DEST_LON = 42.548691;
+const ALLOWED_DISTANCE_KM = 0.2; // in kilometers
+const ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2"];
