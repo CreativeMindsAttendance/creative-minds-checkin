@@ -57,3 +57,62 @@
   <script src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Minds - نموذج التحضير</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+  <!-- خلفية مزخرفة -->
+  <div class="bg-pattern"></div>
+
+  <!-- شريط اللغة والوضع الليلي -->
+  <div class="top-controls">
+    <div class="top-left">
+      <div id="lang-toggle" class="language-switcher">
+        <div class="lang-option">EN</div>
+        <div class="lang-option">AR</div>
+        <div class="slider"></div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div id="mode-toggle" class="mode-switcher"></div>
+    </div>
+  </div>
+
+  <!-- عنوان الصفحة -->
+  <div class="center-title">
+    <span class="line-1 fade-in">Creative</span>
+    <span class="line-2 fade-in">Minds</span>
+  </div>
+
+  <!-- نموذج الحضور -->
+  <main class="main-content fade-in">
+    <div class="container">
+      <img src="logo.png" class="logo fade-in glow-text" alt="Creative Minds Logo" />
+      <h2 class="form-title fade-in philosopher-text">Attendance Form</h2>
+      <input type="text" id="nameInput" class="name-input" placeholder="Enter your full name" />
+      <button id="submitBtn" class="check-in-btn pulse">Submit Attendance</button>
+      <p id="statusMessage"></p>
+    </div>
+  </main>
+
+  <!-- الفوتر -->
+  <footer>
+    <p>
+      <span class="emoji">📍</span> Jazan, Saudi Arabia
+      <span class="emoji">📧</span> example@creativeminds.edu.sa
+      <span class="emoji">🌐</span> www.creativeminds.edu.sa
+    </p>
+  </footer>
+
+  <!-- السكربتات -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
