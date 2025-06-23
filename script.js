@@ -1,6 +1,12 @@
 // Global variables
-let currentLang = localStorage.getItem("lang") || "ar"; // Renamed from 'lang' to avoid conflict
-let isDarkMode = localStorage.getItem("darkMode") === "true"; // Renamed from 'submittedToday' to avoid confusion
+let currentLang = localStorage.getItem("lang") || "ar";
+let isDarkMode = localStorage.getItem("darkMode") === "true";
+
+// Location settings
+const DEST_LAT = 16.889264;
+const DEST_LON = 42.548691;
+const ALLOWED_DISTANCE_KM = 0.2; // in kilometers
+const ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2"];
 
 // DOM elements (cached for performance)
 const htmlElement = document.documentElement;
@@ -8,12 +14,10 @@ const bodyElement = document.body;
 const langToggle = document.getElementById("lang-toggle");
 const langOptions = langToggle.querySelectorAll(".lang-option");
 const modeToggle = document.getElementById("mode-toggle");
-const modeToggleIcon = modeToggle.querySelector(".toggle-icon");
-const siteTitleCreative = document.getElementById("site-title-creative");
-const siteTitleMinds = document.getElementById("site-title-minds");
 const formTitle = document.getElementById("form-title");
 const nameInput = document.getElementById("nameInput");
 const submitBtn = document.getElementById("submitBtn");
+const generateTipBtn = document.getElementById("generateTipBtn"); // New DOM element for the Gemini button
 const statusMessage = document.getElementById("statusMessage");
 const locationText = document.getElementById("location-text");
 const emailText = document.getElementById("email-text");
@@ -28,20 +32,21 @@ function loadLang() {
     htmlElement.lang = currentLang;
 
     // Update text content
-    siteTitleCreative.textContent = t.siteTitleCreative;
-    siteTitleMinds.textContent = t.siteTitleMinds;
+    // Site title remains English and is not translated
     formTitle.textContent = t.title;
     nameInput.placeholder = t.placeholder;
     submitBtn.textContent = t.submit;
+    generateTipBtn.textContent = t.generateTipButton; // Update text for the new button
     locationText.textContent = t.location;
     emailText.textContent = t.email;
     websiteText.textContent = t.website;
 
     // Manage text direction for specific elements that are language-sensitive
-    // Only apply 'rtl' or 'ltr' to these specific elements, not the whole body
     nameInput.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
     statusMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
-    // The main site title has its font handled by CSS based on html[lang]
+    // Also apply direction to the tip button for consistency if its text changes
+    generateTipBtn.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
+
 
     // Update language switcher active state and slider position
     langToggle.dataset.activeLang = currentLang; // Set data attribute for CSS
@@ -129,6 +134,7 @@ function submitAttendance() {
     nameInput.disabled = true;
     submitBtn.disabled = true;
     submitBtn.classList.add("loading");
+    generateTipBtn.disabled = true; // Also disable tip button during attendance check
 
     // Validate name input
     if (!name) {
@@ -136,6 +142,7 @@ function submitAttendance() {
         nameInput.disabled = false;
         submitBtn.disabled = false;
         submitBtn.classList.remove("loading");
+        generateTipBtn.disabled = false;
         nameInput.focus();
         return;
     }
@@ -151,6 +158,7 @@ function submitAttendance() {
         nameInput.disabled = false;
         submitBtn.disabled = false;
         submitBtn.classList.remove("loading");
+        generateTipBtn.disabled = false;
         return;
     }
 
@@ -162,6 +170,7 @@ function submitAttendance() {
         nameInput.disabled = false;
         submitBtn.disabled = false;
         submitBtn.classList.remove("loading");
+        generateTipBtn.disabled = false;
         return;
     }
 
@@ -171,6 +180,7 @@ function submitAttendance() {
         nameInput.disabled = false;
         submitBtn.disabled = false;
         submitBtn.classList.remove("loading");
+        generateTipBtn.disabled = false;
         return;
     }
 
@@ -192,6 +202,7 @@ function submitAttendance() {
             nameInput.disabled = false;
             submitBtn.disabled = false;
             submitBtn.classList.remove("loading");
+            generateTipBtn.disabled = false;
         },
         (error) => {
             console.error("Geolocation error:", error);
@@ -207,6 +218,7 @@ function submitAttendance() {
             nameInput.disabled = false;
             submitBtn.disabled = false;
             submitBtn.classList.remove("loading");
+            generateTipBtn.disabled = false;
         },
         {
             enableHighAccuracy: true,
@@ -216,10 +228,57 @@ function submitAttendance() {
     );
 }
 
+// ✨ Gemini API Integration: Generate Study Tip ✨
+async function generateStudyTip() {
+    const t = translations[currentLang];
+    generateTipBtn.disabled = true;
+    generateTipBtn.classList.add("loading");
+    submitBtn.disabled = true; // Disable other button during API call
+    nameInput.disabled = true; // Disable input too
+
+    showMessage(t.generatingTip, "info");
+
+    try {
+        let chatHistory = [];
+        const prompt = "Generate a short, encouraging and actionable study or work tip for students/employees in an educational institute like 'Creative Minds'. Keep it concise and positive.";
+        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+        const payload = { contents: chatHistory };
+        const apiKey = ""; // Canvas will provide this key at runtime
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (result.candidates && result.candidates.length > 0 &&
+            result.candidates[0].content && result.candidates[0].content.parts &&
+            result.candidates[0].content.parts.length > 0) {
+            const tipText = result.candidates[0].content.parts[0].text;
+            showMessage(`✨ ${tipText}`, "success", 7000); // Display tip for longer
+        } else {
+            showMessage(t.tipError, "error");
+            console.error("Gemini API response structure unexpected:", result);
+        }
+    } catch (error) {
+        console.error("Error calling Gemini API:", error);
+        showMessage(t.tipError, "error");
+    } finally {
+        generateTipBtn.disabled = false;
+        generateTipBtn.classList.remove("loading");
+        submitBtn.disabled = false; // Re-enable other button
+        nameInput.disabled = false; // Re-enable input
+    }
+}
+
+
 // Initialize the application
 function init() {
     // Load dark mode preference
-    isDarkMode = localStorage.getItem("darkMode") === "true"; // Ensure isDarkMode variable is updated
+    isDarkMode = localStorage.getItem("darkMode") === "true";
     applyDarkMode();
 
     // Load language
@@ -241,7 +300,10 @@ function init() {
     // Event listener for submit button
     submitBtn.addEventListener("click", submitAttendance);
 
-    // Allow Enter key to submit
+    // Event listener for the new Gemini feature button
+    generateTipBtn.addEventListener("click", generateStudyTip);
+
+    // Allow Enter key to submit on name input
     nameInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
             submitAttendance();
