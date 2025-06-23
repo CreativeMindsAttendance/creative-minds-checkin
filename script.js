@@ -2,11 +2,10 @@
 let currentLang = localStorage.getItem("lang") || "ar"; // Current language, defaults to Arabic
 let isDarkMode = localStorage.getItem("darkMode") === "true"; // Dark mode state, defaults to false
 
-// Configuration for location services and allowed names (these are also in config.js)
-const DEST_LAT = 16.889264; // Latitude of Creative Minds institute
-const DEST_LON = 42.548691; // Longitude of Creative Minds institute
-const ALLOWED_DISTANCE_KM = 0.2; // Allowed distance from institute in kilometers (e.g., 200 meters)
-const ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2"]; // Names allowed to check-in from anywhere
+// Configuration for location services and allowed names:
+// These constants are now accessed from the global `window` object,
+// as they are declared in `config.js` and become globally available when `config.js` loads.
+// DO NOT re-declare them here to avoid "already been declared" errors.
 
 // Cached DOM elements for efficient access
 const htmlElement = document.documentElement;
@@ -29,6 +28,11 @@ const websiteText = document.getElementById("website-text");
  * Updates HTML lang attribute and specific text directions.
  */
 function loadLang() {
+    // Ensure `translations` object is available from config.js
+    if (typeof translations === 'undefined') {
+        console.error("Error: 'translations' object not found. Make sure config.js is loaded correctly.");
+        return;
+    }
     const t = translations[currentLang]; // Get translations for the current language
 
     // Update HTML lang attribute for accessibility and browser features
@@ -198,8 +202,17 @@ function submitAttendance() {
         return;
     }
 
+    // Access location constants from the global scope (defined in config.js)
+    // Using `window` explicitly ensures they are accessed from the global scope
+    // where `config.js` has defined them.
+    const DEST_LAT_GLOBAL = window.DEST_LAT;
+    const DEST_LON_GLOBAL = window.DEST_LON;
+    const ALLOWED_DISTANCE_KM_GLOBAL = window.ALLOWED_DISTANCE_KM;
+    const ALLOWED_OUTSIDE_NAMES_GLOBAL = window.ALLOWED_OUTSIDE_NAMES;
+
+
     // Check if the user's name is in the allowed list for outside check-ins
-    if (ALLOWED_OUTSIDE_NAMES.map(n => n.toLowerCase()).includes(name.toLowerCase())) {
+    if (ALLOWED_OUTSIDE_NAMES_GLOBAL.map(n => n.toLowerCase()).includes(name.toLowerCase())) {
         saveAttendance(name); // Save attendance without GPS check
         showMessage(t.success, "success");
         nameInput.value = ""; // Clear input
@@ -224,14 +237,14 @@ function submitAttendance() {
 
     showMessage(t.loading, "info"); // Show loading message while checking location
 
-    // Request current geographical position
     navigator.geolocation.getCurrentPosition(
         (position) => {
             const userLat = position.coords.latitude;
             const userLon = position.coords.longitude;
-            const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT, DEST_LON);
+            // Use the global constants for distance calculation
+            const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT_GLOBAL, DEST_LON_GLOBAL);
 
-            if (distance <= ALLOWED_DISTANCE_KM) {
+            if (distance <= ALLOWED_DISTANCE_KM_GLOBAL) {
                 saveAttendance(name); // Save attendance if within allowed distance
                 showMessage(t.success, "success");
                 nameInput.value = ""; // Clear input
