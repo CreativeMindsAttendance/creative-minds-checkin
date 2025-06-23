@@ -18,6 +18,23 @@ function loadLang() {
   document.body.classList.toggle("ltr", lang === "en");
 
   const t = translations[lang];
+
+  const titleEl = document.querySelector(".philosopher-text");
+  if (titleEl) titleEl.textContent = t.title || "Attendance";
+
+  const inputEl = document.getElementById("nameInput");
+  if (inputEl) inputEl.placeholder = t.placeholder || "Enter your name";
+
+  const btnEl = document.getElementById("submitBtn");
+  if (btnEl) btnEl.textContent = t.submit || "Submit";
+
+  const langToggle = document.getElementById("lang-toggle");
+  if (langToggle) {
+    langToggle.setAttribute("data-label", lang === "ar" ? "AR" : "EN");
+  }
+}
+
+  const t = translations[lang];
   document.querySelector(".philosopher-text").textContent = t.title || "Attendance";
   document.getElementById("nameInput").placeholder = t.placeholder || "Enter your name";
   document.getElementById("submitBtn").textContent = t.submit || "Submit";
