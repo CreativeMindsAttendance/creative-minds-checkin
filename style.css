@@ -1,4 +1,3 @@
-/* ========== الألوان الرئيسية ========== */
 :root {
   --main-bg: #D3DEDC;
   --accent1: #92A9BD;
@@ -7,7 +6,6 @@
   --text-color: #1f1f1f;
 }
 
-/* ========== إعادة ضبط ========== */
 * {
   margin: 0;
   padding: 0;
@@ -17,157 +15,159 @@
 
 html, body {
   height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-body {
   background-color: var(--main-bg);
   color: var(--text-color);
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 0;
 }
 
-/* ========== الخلفية المزخرفة ========== */
+/* الخلفية المزخرفة */
 .bg-pattern {
+  background:
+    radial-gradient(circle at top left, var(--soft-pink), transparent 60%),
+    radial-gradient(circle at bottom right, var(--accent1), transparent 70%);
   position: absolute;
-  inset: 0;
-  background-image: url('background-decor.svg'); /* صورة الزخرفة */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
   z-index: -1;
 }
 
-/* ========== أعلى الصفحة: التحكم ========== */
+/* أزرار اللغة والوضع الليلي */
 .top-controls {
-  position: absolute;
-  top: 20px;
-  width: 100%;
-  padding: 0 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 1.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 10;
 }
-
-/* ========== زر اللغة ========== */
-.language-switcher {
-  width: 100px;
-  height: 42px;
-  border-radius: 20px;
-  background-color: white;
+.top-left, .top-right {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 4px;
-  position: relative;
+}
+.top-left {
+  justify-content: flex-start;
+}
+.top-right {
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
+.language-switcher {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+  height: 36px;
+  background-color: white;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
 .language-switcher .lang-option {
   flex: 1;
   text-align: center;
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
-  z-index: 2;
+  line-height: 36px;
 }
-
 .language-switcher .slider {
   position: absolute;
-  width: 46px;
   top: 2px;
   bottom: 2px;
   left: 2px;
+  width: 36px;
   border-radius: 18px;
   background-color: #00aaff;
   transition: transform 0.3s ease;
-  z-index: 1;
 }
-
 .language-switcher.ar .slider {
-  transform: translateX(50px);
+  transform: translateX(40px);
 }
 
-/* ========== زر الوضع الليلي ========== */
 #mode-toggle {
-  width: 80px;
-  height: 42px;
-  border-radius: 20px;
+  width: 60px;
+  height: 36px;
+  border-radius: 18px;
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   display: flex;
   align-items: center;
   padding: 4px;
   cursor: pointer;
+  margin-left: 16px;
 }
-
 #mode-toggle::before {
   content: "☀️";
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   background-color: white;
   border-radius: 50%;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.4s ease-in-out;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  position: relative;
+  left: 0;
 }
 
-/* ========== العنوان الرئيسي ========== */
+/* العنوان */
 .center-title {
-  font-family: 'SwinglyLours', cursive;
-  font-size: 40px;
+  margin-top: 80px;
+  font-size: 36px;
+  font-weight: bold;
   text-align: center;
-  margin-top: 120px;
-  margin-bottom: 30px;
   z-index: 2;
 }
-
 .center-title span {
   display: block;
 }
-
-/* ========== البوكس ========== */
-.main-content {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  z-index: 2;
+@media (min-width: 768px) {
+  .center-title {
+    font-size: 44px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+  }
 }
 
+/* النموذج */
+main.main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
 .container {
-  background-color: var(--accent2);
-  border-radius: 20px;
-  padding: 3rem 2rem;
   width: 90%;
   max-width: 400px;
+  background-color: var(--accent2);
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
-
-/* ========== داخل البوكس ========== */
 .logo {
-  max-width: 120px;
+  width: 100px;
   margin-bottom: 1rem;
 }
-
 .form-title {
   font-family: 'Philosopher', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: white;
   margin-bottom: 1rem;
 }
 
-/* ========== الحقل ========== */
+/* الحقل */
 #nameInput {
   width: 100%;
   padding: 0.8rem 1rem;
@@ -175,12 +175,11 @@ body {
   border-radius: 12px;
   background-color: var(--soft-pink);
   border: none;
-  color: var(--text-color);
   text-align: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
-/* ========== الزر ========== */
+/* الزر */
 button {
   background-color: var(--accent1);
   color: white;
@@ -190,62 +189,26 @@ button {
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  animation: pulse 2s infinite;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }
-
 button:hover {
   background-color: var(--accent2);
 }
 
-/* ========== الرسائل ========== */
-#statusMessage {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  display: none;
-}
-
-#statusMessage.success {
-  background-color: #dcfce7;
-  color: #166534;
-}
-
-#statusMessage.error {
-  background-color: #fee2e2;
-  color: #991b1b;
-}
-
-/* ========== الفوتر ========== */
+/* الفوتر */
 footer {
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0;
   opacity: 0.7;
-  z-index: 2;
-  margin-top: auto;
 }
-
+footer p {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .emoji {
   margin: 0 4px;
-}
-
-/* ========== أنميشن ========== */
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
