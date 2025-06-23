@@ -117,22 +117,24 @@ html, body {
 
 /* العنوان */
 .center-title {
-  margin-top: 80px;
-  font-size: 36px;
-  font-weight: bold;
+  direction: ltr; /* يجبر الترتيب يكون Left-to-Right حتى لو الصفحة RTL */
   text-align: center;
+  font-family: 'SwinglyLours', cursive;
+  font-size: 30px;
+  margin: 60px auto 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
   z-index: 2;
+  position: relative;
 }
-.center-title span {
-  display: block;
-}
-@media (min-width: 768px) {
+
+@media screen and (min-width: 768px) {
   .center-title {
-    font-size: 44px;
-    display: flex;
     flex-direction: row;
+    font-size: 42px;
     gap: 8px;
-    justify-content: center;
   }
 }
 
