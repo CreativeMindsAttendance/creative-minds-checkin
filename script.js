@@ -140,21 +140,70 @@ async function submitAttendance() {
 document.addEventListener("DOMContentLoaded", () => {
   const langToggle = document.getElementById("lang-toggle");
   const modeToggle = document.getElementById("mode-toggle");
+  const body = document.body;
+  const nameInput = document.getElementById("nameInput");
   const submitBtn = document.getElementById("submitBtn");
+  const statusMessage = document.getElementById("statusMessage");
+  const formTitle = document.getElementById("form-title");
+  const siteTitle = document.getElementById("site-title");
+  const locationText = document.getElementById("location-text");
+  const emailText = document.getElementById("email-text");
+  const websiteText = document.getElementById("website-text");
 
-  if (localStorage.getItem("darkMode") === "true") {
-    document.body.classList.add("dark");
+  let currentLang = localStorage.getItem("lang") || "ar";
+  let isDarkMode = localStorage.getItem("darkMode") === "true";
+
+  const translations = {
+    ar: {
+      siteTitle: "Creative Minds",
+      formTitle: "نموذج تحضير",
+      placeholder: "اكتب اسمك الثلاثي",
+      submit: "تسجيل الحضور",
+      location: "Jazan, Saudi Arabia",
+      email: "example@creativeminds.edu.sa",
+      website: "www.creativeminds.edu.sa"
+    },
+    en: {
+      siteTitle: "Creative Minds",
+      formTitle: "Attendance Form",
+      placeholder: "Enter your full name",
+      submit: "Check In",
+      location: "Jazan, Saudi Arabia",
+      email: "example@creativeminds.edu.sa",
+      website: "www.creativeminds.edu.sa"
+    }
+  };
+
+  function applyLanguage(lang) {
+    if (!translations[lang]) return;
+
+    siteTitle.textContent = translations[lang].siteTitle;
+    formTitle.textContent = translations[lang].formTitle;
+    nameInput.placeholder = translations[lang].placeholder;
+    submitBtn.textContent = translations[lang].submit;
+    locationText.textContent = translations[lang].location;
+    emailText.textContent = translations[lang].email;
+    websiteText.textContent = translations[lang].website;
+
+    document.dir = lang === "ar" ? "rtl" : "ltr";
+    localStorage.setItem("lang", lang);
   }
 
-  loadLang();
+  if (langToggle) {
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      applyLanguage(currentLang);
+    });
+  }
 
-  langToggle.addEventListener("click", () => {
-    lang = lang === "ar" ? "en" : "ar";
-    localStorage.setItem("lang", lang);
-    langToggle.classList.toggle("ar", lang === "ar");
-    loadLang();
-  });
+  if (modeToggle) {
+    modeToggle.addEventListener("click", () => {
+      isDarkMode = !isDarkMode;
+      body.classList.toggle("dark-mode", isDarkMode);
+      localStorage.setItem("darkMode", isDarkMode);
+    });
+  }
 
-  modeToggle.addEventListener("click", toggleDarkMode);
-  submitBtn.addEventListener("click", submitAttendance);
+  applyLanguage(currentLang);
+  body.classList.toggle("dark-mode", isDarkMode);
 });
