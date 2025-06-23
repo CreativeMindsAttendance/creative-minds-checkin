@@ -1,14 +1,25 @@
-/* Custom Fonts */
+/* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
 @font-face {
     font-family: 'SwinglyLours';
-    src: url('https://fonts.cdnfonts.com/s/32007/SwinglyLours.woff') format('woff'),
-         url('https://fonts.cdnfonts.com/s/32007/SwinglyLours.woff2') format('woff2');
-    /* Fallback to local if CDN fails, or provide more formats */
-    /* Check if this CDN link is stable and reliable, if not, user might need to host the font. */
+    src: url('fonts/SwinglyLours.otf') format('opentype'), /* Added .otf format */
+         url('fonts/SwinglyLours.woff2') format('woff2'),
+         url('fonts/SwinglyLours.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
-/* For QatarMedium, I'll use Almarai as it's a good, modern Arabic font available on Google Fonts. */
-@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap');
+@font-face {
+    font-family: 'QatarMedium';
+    src: url('fonts/QatarMedium.woff2') format('woff2'),
+         url('fonts/QatarMedium.woff') format('woff'),
+         url('fonts/QatarMedium.ttf') format('truetype'); /* Added .ttf as a common fallback */
+    font-weight: 500; /* Assuming Medium weight, adjust if necessary */
+    font-style: normal;
+}
+
+/* Google Fonts: Only Philosopher for English content */
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap');
+
 
 :root {
     /* Light Mode Colors */
@@ -24,11 +35,14 @@
     --button-shadow-light: rgba(146, 169, 189, 0.3); /* Button shadow */
     --language-switcher-bg-light: rgba(255, 255, 255, 0.9); /* Language switcher background */
     --mode-toggle-bg-light: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Mode toggle background */
-    /* Site title gradient (originally from form colors, adjust for main title if different desired) */
-    --site-title-gradient-start-light: #7C99AC;
-    --site-title-gradient-end-light: #92A9BD;
     --gemini-btn-gradient-start-light: #FF9A8B; /* Soft orange-pink for Gemini feature */
     --gemini-btn-gradient-end-light: #FF6A88;
+
+    /* Background curvy shapes colors (specific for light mode) - Adjusted to match image closer */
+    --curve-color-top: #E0F2F7; /* Lighter blue-green from image */
+    --curve-color-bottom: #F0E6E8; /* Lighter pink from image */
+    --main-pattern-radial1: #D3DEDC; /* Main background base color */
+    --main-pattern-radial2: #A3BFCC; /* A slightly darker shade for the second radial */
 
 
     /* Dark Mode Colors */
@@ -44,11 +58,15 @@
     --button-shadow-dark: rgba(102, 126, 234, 0.3); /* Dark mode button shadow */
     --language-switcher-bg-dark: rgba(30, 41, 59, 0.9); /* Dark mode language switcher background */
     --mode-toggle-bg-dark: linear-gradient(135deg, #667eea, #764ba2); /* Dark mode toggle background */
-    /* Site title gradient for dark mode */
-    --site-title-gradient-start-dark: #a1c4fd;
-    --site-title-gradient-end-dark: #c2e9fb;
     --gemini-btn-gradient-start-dark: #8E2DE2; /* Dark purple for Gemini feature */
     --gemini-btn-gradient-end-dark: #4A00E0;
+
+    /* Background curvy shapes colors (specific for dark mode) */
+    --curve-color-top-dark: #2E4057; /* Darker blueish */
+    --curve-color-bottom-dark: #3A4C62; /* Darker grey-blue */
+    --main-pattern-radial1-dark: #1a1a2e; /* Dark background base color */
+    --main-pattern-radial2-dark: #2C3E50; /* A slightly darker shade for the second radial */
+
 
     /* General/Status Colors */
     --white: #ffffff;
@@ -58,7 +76,7 @@
     --warning-color: #f59e0b;
     --info-color: #3b82f6; /* For loading messages */
 
-    /* Active Theme Variables - will be overwritten by dark-mode */
+    /* Active Theme Variables - these will be used in components */
     --current-main-bg: var(--main-bg-light);
     --current-accent1: var(--accent1-light);
     --current-accent2: var(--accent2-light);
@@ -71,12 +89,12 @@
     --current-button-shadow: var(--button-shadow-light);
     --current-language-switcher-bg: var(--language-switcher-bg-light);
     --current-mode-toggle-bg: var(--mode-toggle-bg-light);
-    --current-site-title-gradient-start: var(--site-title-gradient-start-light);
-    --current-site-title-gradient-end: var(--site-title-gradient-end-light);
-    --current-bg-pattern-radial1: var(--soft-pink-light);
-    --current-bg-pattern-radial2: var(--accent1-light);
     --current-gemini-btn-gradient-start: var(--gemini-btn-gradient-start-light);
     --current-gemini-btn-gradient-end: var(--gemini-btn-gradient-end-light);
+    --current-curve-color-top: var(--curve-color-top);
+    --current-curve-color-bottom: var(--curve-color-bottom);
+    --current-main-pattern-radial1: var(--main-pattern-radial1);
+    --current-main-pattern-radial2: var(--main-pattern-radial2);
 }
 
 body.dark-mode {
@@ -92,12 +110,12 @@ body.dark-mode {
     --current-button-shadow: var(--button-shadow-dark);
     --current-language-switcher-bg: var(--language-switcher-bg-dark);
     --current-mode-toggle-bg: var(--mode-toggle-bg-dark);
-    --current-site-title-gradient-start: var(--site-title-gradient-start-dark);
-    --current-site-title-gradient-end: var(--site-title-gradient-end-dark);
-    --current-bg-pattern-radial1: rgba(59, 130, 246, 0.1); /* Blue tint for dark mode background */
-    --current-bg-pattern-radial2: rgba(147, 51, 234, 0.1); /* Purple tint for dark mode background */
     --current-gemini-btn-gradient-start: var(--gemini-btn-gradient-start-dark);
     --current-gemini-btn-gradient-end: var(--gemini-btn-gradient-end-dark);
+    --current-curve-color-top: var(--curve-color-top-dark);
+    --current-curve-color-bottom: var(--curve-color-bottom-dark);
+    --current-main-pattern-radial1: var(--main-pattern-radial1-dark);
+    --current-main-pattern-radial2: var(--main-pattern-radial2-dark);
 }
 
 * {
@@ -106,72 +124,77 @@ body.dark-mode {
     box-sizing: border-box;
 }
 
+/* Basic body and HTML styling for full height and responsive fonts */
 html, body {
     height: 100%;
     background-color: var(--current-main-bg);
     color: var(--current-text-color);
     overflow-x: hidden;
     display: flex;
-    flex-direction: column;
-    font-family: 'Almarai', sans-serif; /* Default for Arabic, Almarai as QatarMedium alternative */
+    flex-direction: column; /* Allows main content to push footer down */
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic using local font */
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* Apply English font when language is English */
 html[lang="en"] body {
-    font-family: 'Philosopher', serif; /* For English content */
+    font-family: 'Philosopher', serif; /* For English content from Google Fonts */
 }
 
-/* Background pattern with curvy shapes */
-.bg-pattern {
+/* Background gradient patterns (main background colors) */
+.bg-gradient-top-left {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -3; /* Ensure it's behind other background elements */
-    background:
-        radial-gradient(circle at 15% 15%, var(--current-bg-pattern-radial1), transparent 60%),
-        radial-gradient(circle at 85% 85%, var(--current-bg-pattern-radial2), transparent 70%);
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle at 0% 0%, var(--current-main-pattern-radial1), transparent 70%);
+    z-index: -3; /* Lowest layer */
     transition: background 0.4s ease;
 }
 
-/* Curvy shapes using pseudo-elements */
-.bg-curve {
+.bg-gradient-bottom-right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle at 100% 100%, var(--current-main-pattern-radial2), transparent 70%);
+    z-index: -3; /* Lowest layer */
+    transition: background 0.4s ease;
+}
+
+/* Curvy shapes using dedicated divs for better control, matching image */
+.bg-curvy-shape-top, .bg-curvy-shape-bottom {
     position: fixed;
     width: 100vw;
-    height: 100vw; /* Use vw for responsiveness */
-    border-radius: 50%; /* Makes it a circle */
-    z-index: -2; /* Above main pattern, below content */
+    height: 100vw; /* Make it large circles to allow for clipping */
+    border-radius: 50%; /* Make it a circle */
+    z-index: -2; /* Above gradients, below content */
     opacity: 0.6; /* Slight transparency */
     transition: background 0.4s ease, transform 0.4s ease;
 }
 
-.top-left-curve {
-    background: var(--soft-pink-light); /* Light mode */
-    top: -50vh; /* Adjust to move curve off-screen partially */
+.bg-curvy-shape-top {
+    background: var(--current-curve-color-top);
+    top: -30vh; /* Adjusted position for a more subtle curve off-screen */
     left: -50vw;
-    /* Create a specific curved shape (example) */
-    clip-path: ellipse(50% 30% at 0% 0%);
-    transform: rotate(-10deg); /* Slight rotation for dynamic feel */
+    /* This clip-path creates a top-left soft, wide curve */
+    clip-path: ellipse(70% 30% at 20% 10%); /* Fine-tuned values */
+    transform: rotate(-10deg); /* Slight rotation */
 }
 
-body.dark-mode .top-left-curve {
-    background: var(--soft-pink-dark); /* Dark mode */
-}
-
-.bottom-right-curve {
-    background: var(--accent1-light); /* Light mode */
-    bottom: -50vh; /* Adjust to move curve off-screen partially */
+.bg-curvy-shape-bottom {
+    background: var(--current-curve-color-bottom);
+    bottom: -30vh; /* Adjusted position for a more subtle curve off-screen */
     right: -50vw;
-    /* Create a specific curved shape (example) */
-    clip-path: ellipse(50% 30% at 100% 100%);
+    /* This clip-path creates a bottom-right soft, wide curve */
+    clip-path: ellipse(70% 30% at 80% 90%); /* Fine-tuned values */
     transform: rotate(10deg); /* Slight rotation */
 }
 
-body.dark-mode .bottom-right-curve {
-    background: var(--accent1-dark); /* Dark mode */
-}
 
-
-/* Top controls */
+/* Top controls (language and dark mode toggles) */
 .top-controls {
     display: flex;
     justify-content: space-between;
@@ -253,7 +276,7 @@ body.dark-mode .top-controls {
 }
 
 /* Dark mode toggle */
-#mode-toggle { /* Changed from .mode-toggle to #mode-toggle */
+#mode-toggle {
     width: 60px;
     height: 36px;
     border-radius: 18px;
@@ -303,49 +326,47 @@ body.dark-mode .top-controls {
 
 
 /* Site title - Always English, SwinglyLours font */
-.site-title {
+#site-title { /* Using ID as it's a unique element */
     text-align: center;
     font-family: 'SwinglyLours', cursive; /* Applied SwinglyLours font */
-    font-size: clamp(24px, 5vw, 42px);
+    font-size: clamp(28px, 6vw, 48px); /* Slightly larger for impact */
     margin: 80px auto 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 8px; /* Increased gap */
     z-index: 2;
     position: relative;
     font-weight: 700;
-    /* Using direct colors for gradient as it's fixed, not theme-dependent */
-    background: linear-gradient(135deg, #7C99AC, #92A9BD); /* From original light accent colors */
+    /* Fixed gradient for the title as it's always English */
+    background: linear-gradient(135deg, #7C99AC, #92A9BD); /* Light mode accent colors */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: fadeInDown 1s ease-out;
-    /* No transition for background since it's fixed colors */
 }
-/* Ensure no Arabic font override for this title */
-html[lang="ar"] .site-title {
-    font-family: 'SwinglyLours', cursive; /* Keep SwinglyLours even for Arabic language setting */
-}
+/* Ensure no Arabic font override for this title, it's explicitly set to SwinglyLours above */
 
 
 @media screen and (min-width: 768px) {
-    .site-title {
+    #site-title {
         flex-direction: row;
-        font-size: 48px; /* Slightly larger for desktop */
+        font-size: clamp(36px, 7vw, 60px); /* Larger on desktop */
         gap: 12px;
     }
 }
 
-/* Main content */
+/* Main content container (pushes footer down) */
 .main-content {
-    flex-grow: 1;
+    flex-grow: 1; /* Allows it to take available space and push footer down */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    margin-bottom: 2rem;
+    padding-top: 100px; /* Adjusted padding-top to account for fixed top-controls */
+    margin-bottom: 0; /* Handled by flex-grow on main */
     width: 100%;
+    z-index: 1; /* Ensure it's above background elements */
 }
 
 .container {
@@ -362,45 +383,45 @@ html[lang="ar"] .site-title {
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: fadeInUp 1s ease-out 0.3s both;
     transition: all 0.3s ease;
-    display: flex; /* Use flexbox for button layout */
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center items horizontally */
-    gap: 1.5rem; /* Space between elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Space between elements */
 }
 
 body.dark-mode .container {
     box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.3),
         0 0 0 1px rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Slightly darker border for dark mode */
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Logo Image */
+/* Logo Image Styling */
 .logo {
-    width: 80px; /* Adjust size as needed */
-    height: 80px; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure image fits without distortion */
-    margin-bottom: 0; /* Remove margin as gap handles spacing */
-    border-radius: 50%; /* Make it circular if desired */
+    width: 100px; /* Adjusted size for better visibility */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain;
+    margin-bottom: 0.5rem; /* Small margin after logo */
     animation: pulse 2s infinite; /* Keep pulse for the logo */
 }
 
-#form-title { /* Changed from .form-title to #form-title */
-    font-family: 'Almarai', sans-serif; /* Use Almarai for Arabic forms */
+/* Form Title (Attendance Form / نموذج تحضير) */
+#form-title {
+    font-family: 'QatarMedium', sans-serif; /* For Arabic using local font */
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--current-text-color);
-    margin-bottom: 0; /* Remove margin as gap handles spacing */
+    margin-bottom: 1rem; /* Space after title */
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
 html[lang="en"] #form-title {
-    font-family: 'Philosopher', serif; /* For English forms */
+    font-family: 'Philosopher', serif; /* For English from Google Fonts */
 }
 
 
 /* Input field */
-#nameInput { /* Changed from .name-input to #nameInput */
+#nameInput {
     width: 100%;
     padding: 1rem 1.2rem;
     font-size: 1rem;
@@ -408,8 +429,8 @@ html[lang="en"] #form-title {
     background-color: var(--current-input-bg);
     border: 2px solid transparent;
     text-align: center;
-    margin-bottom: 0; /* Remove margin as gap handles spacing */
-    font-family: 'Almarai', sans-serif; /* Default for Arabic input */
+    margin-bottom: 1rem; /* Space after input */
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic input */
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     color: var(--current-text-color);
@@ -425,17 +446,17 @@ html[lang="en"] #nameInput {
 #nameInput:focus {
     outline: none;
     border-color: var(--current-accent1);
-    background-color: var(--current-input-bg); /* Keep same bg on focus, only border changes */
+    background-color: var(--current-input-bg);
     box-shadow: 0 0 0 4px rgba(146, 169, 189, 0.1);
     transform: translateY(-2px);
 }
 body.dark-mode #nameInput:focus {
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1); /* Dark mode focus shadow */
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
 
 /* Submit button */
-#submitBtn { /* Changed from .submit-btn to #submitBtn */
+#submitBtn {
     background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
     color: white;
     padding: 1rem 2rem;
@@ -446,11 +467,11 @@ body.dark-mode #nameInput:focus {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 8px 20px var(--current-button-shadow);
-    font-family: 'Almarai', sans-serif; /* Default for Arabic */
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
     position: relative;
     overflow: hidden;
     min-width: 160px;
-    /* margin-bottom: 1.5rem; */ /* Removed as gap handles spacing */
+    margin-bottom: 0.5rem; /* Space between submit and Gemini button */
 }
 html[lang="en"] #submitBtn {
     font-family: 'Philosopher', serif; /* For English */
@@ -486,7 +507,7 @@ html[lang="en"] #submitBtn {
 }
 
 /* New Gemini Feature Button */
-.gemini-feature-btn {
+#generateTipBtn {
     background: linear-gradient(135deg, var(--current-gemini-btn-gradient-start), var(--current-gemini-btn-gradient-end));
     color: white;
     padding: 1rem 2rem;
@@ -497,33 +518,33 @@ html[lang="en"] #submitBtn {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 8px 20px rgba(255, 106, 136, 0.3); /* Custom shadow for Gemini button */
-    font-family: 'Almarai', sans-serif;
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
     position: relative;
     overflow: hidden;
     min-width: 160px;
-    margin-top: 0; /* Gap handles spacing */
+    margin-top: 0.5rem; /* Space after submit button */
 }
 
-html[lang="en"] .gemini-feature-btn {
-    font-family: 'Philosopher', serif;
+html[lang="en"] #generateTipBtn {
+    font-family: 'Philosopher', serif; /* For English */
 }
 
-.gemini-feature-btn:hover {
+#generateTipBtn:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(255, 106, 136, 0.4);
 }
 
-.gemini-feature-btn:active {
+#generateTipBtn:active {
     transform: translateY(-1px);
     box-shadow: 0 5px 15px rgba(255, 106, 136, 0.2);
 }
 
-.gemini-feature-btn.loading {
+#generateTipBtn.loading {
     pointer-events: none;
     opacity: 0.8;
 }
 
-.gemini-feature-btn.loading::after {
+#generateTipBtn.loading::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -539,8 +560,8 @@ html[lang="en"] .gemini-feature-btn {
 
 
 /* Status message */
-#statusMessage { /* Changed from .status-message to #statusMessage */
-    margin-top: 0; /* Gap handles spacing */
+#statusMessage {
+    margin-top: 1rem;
     padding: 0.75rem 1rem;
     border-radius: 12px;
     font-weight: 500;
@@ -548,7 +569,7 @@ html[lang="en"] .gemini-feature-btn {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
-    font-family: 'Almarai', sans-serif; /* Default for Arabic */
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
     line-height: 1.4;
     min-height: 20px; /* Prevents layout shift */
     max-width: 100%; /* Ensure it doesn't overflow */
@@ -589,17 +610,18 @@ html[lang="en"] #statusMessage {
 }
 
 
-/* Footer */
+/* Footer styling */
 .footer {
     font-size: 0.85rem;
     text-align: center;
     padding: 1.5rem 1rem;
-    opacity: 0.7;
+    opacity: 0.8; /* Slightly more opaque for readability */
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    margin-top: auto; /* Pushes footer to the bottom */
+    margin-top: auto; /* Pushes footer to the bottom of the flex container (body) */
     color: var(--current-text-color);
     transition: background 0.4s ease, color 0.4s ease;
+    width: 100%; /* Ensure it spans full width */
 }
 
 body.dark-mode .footer {
@@ -619,16 +641,16 @@ body.dark-mode .footer {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    direction: ltr; /* Always LTR for footer items */
+    direction: ltr; /* Always LTR for footer items to prevent emoji flipping and layout issues */
     text-align: left; /* Ensure text is left-aligned within item */
 }
 
-/* For Arabic language, align the *group* of footer items to the right if needed, but not each item's direction */
+/* For Arabic language, align the *group* of footer items to the center */
 html[lang="ar"] .footer-content {
-    justify-content: center; /* or flex-end if you want to push them right */
+    justify-content: center;
 }
 html[lang="en"] .footer-content {
-    justify-content: center; /* or flex-start if you want to push them left */
+    justify-content: center;
 }
 
 .emoji {
@@ -665,6 +687,16 @@ html[lang="en"] .footer-content {
 }
 
 /* Responsive design */
+@media screen and (max-width: 768px) {
+    #site-title {
+        margin-top: 60px;
+        font-size: clamp(24px, 5vw, 42px);
+    }
+    .main-content {
+        padding-top: 100px; /* Adjusted padding-top to account for fixed top-controls */
+    }
+}
+
 @media screen and (max-width: 480px) {
     .top-controls {
         padding: 0.75rem 1rem;
@@ -698,15 +730,15 @@ html[lang="en"] .footer-content {
         transform: translateX(20px);
     }
 
-    .site-title {
-        font-size: clamp(20px, 6vw, 36px); /* Adjust for smaller screens */
+    #site-title {
+        font-size: clamp(20px, 6vw, 36px);
         margin-top: 60px;
     }
 
     #form-title {
         font-size: 1.4rem;
     }
-    #nameInput, #submitBtn, .gemini-feature-btn { /* Apply to new button as well */
+    #nameInput, #submitBtn, #generateTipBtn {
         padding: 0.8rem 1rem;
         font-size: 0.95rem;
     }
