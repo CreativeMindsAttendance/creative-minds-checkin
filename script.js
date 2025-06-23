@@ -1,7 +1,7 @@
 console.log("Script loaded!");
 
 // === المتغيرات ===
-let lang = localStorage.getItem("lang") || "ar";  // تم نقل currentLang هنا
+let lang = localStorage.getItem("lang") || "ar";
 let submittedToday = false;
 let storedName = "";
 
@@ -31,7 +31,7 @@ function toggleDarkMode() {
   localStorage.setItem("darkMode", isDark);
 }
 
-// === المسافة بين نقطتين ===
+// === حساب المسافة بين نقطتين باستخدام Haversine Formula ===
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
   const dLat = deg2rad(lat2 - lat1);
@@ -46,14 +46,15 @@ function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
 
-// === رسائل المستخدم ===
+// === إظهار رسالة حالة للمستخدم ===
 function showMessage(msg, isError = false) {
   const el = document.getElementById("statusMessage");
   el.innerHTML = msg;
   el.style.color = isError ? "crimson" : "green";
+  el.classList.add("show");
 }
 
-// === تخزين الحضور في localStorage ===
+// === التحقق من التسجيل المسبق اليوم ===
 function hasCheckedInToday() {
   const record = localStorage.getItem("attendanceRecord");
   if (!record) return false;
@@ -62,30 +63,33 @@ function hasCheckedInToday() {
   return date === today ? name : false;
 }
 
+// === حفظ الحضور في localStorage ===
 function saveAttendance(name) {
   const today = new Date().toISOString().split("T")[0];
   localStorage.setItem("attendanceRecord", JSON.stringify({ name, date: today }));
 }
 
-// === تسجيل الحضور ===
+// === تنفيذ التسجيل الفعلي ===
 async function submitAttendance() {
   const name = document.getElementById("nameInput").value.trim();
   const statusMessage = document.getElementById("statusMessage");
   const t = translations[lang];
+  const submitBtn = document.getElementById("submitBtn");
 
   if (!name) return showMessage(t.required, true);
 
   const existingName = hasCheckedInToday();
-if (existingName) {
-  if (name !== existingName) {
-    return showMessage(t.nameMismatch.replace("{name}", existingName), true);
-  } else {
-    return showMessage(t.already.replace("{name}", existingName), true);
+  if (existingName) {
+    if (name !== existingName) {
+      return showMessage(t.nameMismatch.replace("{name}", existingName), true);
+    } else {
+      return showMessage(t.already.replace("{name}", existingName), true);
+    }
   }
-}
 
   if (allowedOutsideNames.includes(name)) {
     saveAttendance(name);
+    submitBtn.classList.remove("pulse"); // وقف النبض بعد التسجيل
     return showMessage(t.success);
   }
 
@@ -95,19 +99,27 @@ if (existingName) {
 
   navigator.geolocation.getCurrentPosition(
     (pos) => {
-      const d = getDistanceFromLatLonInKm(pos.coords.latitude, pos.coords.longitude, DEST_LAT, DEST_LON);
+      const d = getDistanceFromLatLonInKm(
+        pos.coords.latitude,
+        pos.coords.longitude,
+        DEST_LAT,
+        DEST_LON
+      );
+
       if (d <= allowedDistance) {
         saveAttendance(name);
+        submitBtn.classList.remove("pulse"); // وقف النبض بعد التسجيل
         showMessage(t.success);
       } else {
         showMessage(t.outOfRange, true);
       }
     },
-    () => showMessage(t.geoError, true)
+    () => showMessage(t.geoError, true),
+    { timeout: 10000 } // ⏰ Timeout لحماية من الانتظار الطويل
   );
 }
 
-// === عند تحميل الصفحة ===
+// === التهيئة عند تحميل الصفحة ===
 document.addEventListener("DOMContentLoaded", () => {
   const langToggle = document.getElementById("lang-toggle");
   const modeToggle = document.getElementById("mode-toggle");
