@@ -1,69 +1,58 @@
 console.log("Script loaded!");
 
-// === المتغيرات ===
+// === المتغيرات العامة ===
 let lang = localStorage.getItem("lang") || "ar";
 let submittedToday = false;
-let storedName = "";
 
 // === إعدادات الموقع الجغرافي ===
 const DEST_LAT = 16.889264;
 const DEST_LON = 42.548691;
-const allowedDistance = 0.2;
+const allowedDistance = 0.2; // بالكيلومتر
 const allowedOutsideNames = ["TEST1", "TEST2"];
 
-// === تحميل اللغة ===
+// === تحميل اللغة من config.js ===
 function loadLang() {
+  const t = translations[lang];
+
   document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   document.body.classList.toggle("rtl", lang === "ar");
   document.body.classList.toggle("ltr", lang === "en");
 
-  const t = translations[lang];
-
-  const titleEl = document.querySelector(".philosopher-text");
-  if (titleEl) titleEl.textContent = t.title || "Attendance";
-
-  const inputEl = document.getElementById("nameInput");
-  if (inputEl) inputEl.placeholder = t.placeholder || "Enter your name";
-
-  const btnEl = document.getElementById("submitBtn");
-  if (btnEl) btnEl.textContent = t.submit || "Submit";
-
-  const langToggle = document.getElementById("lang-toggle");
-  if (langToggle) {
-    langToggle.setAttribute("data-label", lang === "ar" ? "AR" : "EN");
-  }
-}
-
-  const t = translations[lang];
-  document.querySelector(".philosopher-text").textContent = t.title || "Attendance";
-  document.getElementById("nameInput").placeholder = t.placeholder || "Enter your name";
-  document.getElementById("submitBtn").textContent = t.submit || "Submit";
-  document.getElementById("lang-toggle").setAttribute("data-label", lang === "ar" ? "AR" : "EN");
+  // تحديث النصوص حسب اللغة
+  document.getElementById("form-title").textContent = t.title;
+  document.getElementById("nameInput").placeholder = t.placeholder;
+  document.getElementById("submitBtn").textContent = t.submit;
+  document.getElementById("location-text").textContent = t.location || "Jazan, Saudi Arabia";
+  document.getElementById("email-text").textContent = t.email || "example@creativeminds.edu.sa";
+  document.getElementById("website-text").textContent = t.website || "www.creativeminds.edu.sa";
 }
 
 // === الوضع الليلي ===
 function toggleDarkMode() {
-  const isDark = document.body.classList.toggle("dark");
+  const isDark = document.body.classList.toggle("dark-mode");
   document.getElementById("mode-toggle").classList.toggle("active", isDark);
   localStorage.setItem("darkMode", isDark);
 }
 
-// === حساب المسافة بين نقطتين باستخدام Haversine Formula ===
+// === حساب المسافة بين نقطتين ===
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
   const dLat = deg2rad(lat2 - lat1);
   const dLon = deg2rad(lon2 - lon1);
-  const a = Math.sin(dLat / 2) ** 2 +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-            Math.sin(dLon / 2) ** 2;
-  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
 
-// === إظهار رسالة حالة للمستخدم ===
+// === عرض رسالة على الصفحة ===
 function showMessage(msg, isError = false) {
   const el = document.getElementById("statusMessage");
   el.innerHTML = msg;
@@ -71,25 +60,28 @@ function showMessage(msg, isError = false) {
   el.classList.add("show");
 }
 
-// === التحقق من التسجيل المسبق اليوم ===
+// === هل تم تسجيل الحضور مسبقًا اليوم؟ ===
 function hasCheckedInToday() {
   const record = localStorage.getItem("attendanceRecord");
   if (!record) return false;
+
   const { name, date } = JSON.parse(record);
   const today = new Date().toISOString().split("T")[0];
   return date === today ? name : false;
 }
 
-// === حفظ الحضور في localStorage ===
+// === حفظ الحضور في LocalStorage ===
 function saveAttendance(name) {
   const today = new Date().toISOString().split("T")[0];
-  localStorage.setItem("attendanceRecord", JSON.stringify({ name, date: today }));
+  localStorage.setItem(
+    "attendanceRecord",
+    JSON.stringify({ name, date: today })
+  );
 }
 
-// === تنفيذ التسجيل الفعلي ===
-async function submitAttendance() {
+// === تنفيذ الحضور ===
+function submitAttendance() {
   const name = document.getElementById("nameInput").value.trim();
-  const statusMessage = document.getElementById("statusMessage");
   const t = translations[lang];
   const submitBtn = document.getElementById("submitBtn");
 
@@ -98,21 +90,28 @@ async function submitAttendance() {
   const existingName = hasCheckedInToday();
   if (existingName) {
     if (name !== existingName) {
-      return showMessage(t.nameMismatch.replace("{name}", existingName), true);
+      return showMessage(
+        t.nameMismatch.replace("{name}", existingName),
+        true
+      );
     } else {
-      return showMessage(t.already.replace("{name}", existingName), true);
+      return showMessage(
+        t.already.replace("{name}", existingName),
+        true
+      );
     }
   }
 
   if (allowedOutsideNames.includes(name)) {
     saveAttendance(name);
-    submitBtn.classList.remove("pulse"); // وقف النبض بعد التسجيل
+    submitBtn.classList.remove("pulse");
     return showMessage(t.success);
   }
 
   showMessage(t.loading);
 
-  if (!navigator.geolocation) return showMessage(t.geoError, true);
+  if (!navigator.geolocation)
+    return showMessage(t.geoError, true);
 
   navigator.geolocation.getCurrentPosition(
     (pos) => {
@@ -125,85 +124,42 @@ async function submitAttendance() {
 
       if (d <= allowedDistance) {
         saveAttendance(name);
-        submitBtn.classList.remove("pulse"); // وقف النبض بعد التسجيل
+        submitBtn.classList.remove("pulse");
         showMessage(t.success);
       } else {
         showMessage(t.outOfRange, true);
       }
     },
     () => showMessage(t.geoError, true),
-    { timeout: 10000 } // ⏰ Timeout لحماية من الانتظار الطويل
+    { timeout: 10000 }
   );
 }
 
-// === التهيئة عند تحميل الصفحة ===
+// === عند تحميل الصفحة ===
 document.addEventListener("DOMContentLoaded", () => {
   const langToggle = document.getElementById("lang-toggle");
   const modeToggle = document.getElementById("mode-toggle");
-  const body = document.body;
-  const nameInput = document.getElementById("nameInput");
   const submitBtn = document.getElementById("submitBtn");
-  const statusMessage = document.getElementById("statusMessage");
-  const formTitle = document.getElementById("form-title");
-  const siteTitle = document.getElementById("site-title");
-  const locationText = document.getElementById("location-text");
-  const emailText = document.getElementById("email-text");
-  const websiteText = document.getElementById("website-text");
 
-  let currentLang = localStorage.getItem("lang") || "ar";
-  let isDarkMode = localStorage.getItem("darkMode") === "true";
+  // تحميل الوضع الليلي من التخزين
+  const isDark = localStorage.getItem("darkMode") === "true";
+  if (isDark) {
+    document.body.classList.add("dark-mode");
+    document.getElementById("mode-toggle").classList.add("active");
+  }
 
-  const translations = {
-    ar: {
-      siteTitle: "Creative Minds",
-      formTitle: "نموذج تحضير",
-      placeholder: "اكتب اسمك الثلاثي",
-      submit: "تسجيل الحضور",
-      location: "Jazan, Saudi Arabia",
-      email: "example@creativeminds.edu.sa",
-      website: "www.creativeminds.edu.sa"
-    },
-    en: {
-      siteTitle: "Creative Minds",
-      formTitle: "Attendance Form",
-      placeholder: "Enter your full name",
-      submit: "Check In",
-      location: "Jazan, Saudi Arabia",
-      email: "example@creativeminds.edu.sa",
-      website: "www.creativeminds.edu.sa"
-    }
-  };
+  loadLang();
 
-  function applyLanguage(lang) {
-    if (!translations[lang]) return;
-
-    siteTitle.textContent = translations[lang].siteTitle;
-    formTitle.textContent = translations[lang].formTitle;
-    nameInput.placeholder = translations[lang].placeholder;
-    submitBtn.textContent = translations[lang].submit;
-    locationText.textContent = translations[lang].location;
-    emailText.textContent = translations[lang].email;
-    websiteText.textContent = translations[lang].website;
-
-    document.dir = lang === "ar" ? "rtl" : "ltr";
+  // تغيير اللغة
+  langToggle.addEventListener("click", () => {
+    lang = lang === "ar" ? "en" : "ar";
     localStorage.setItem("lang", lang);
-  }
+    loadLang();
+  });
 
-  if (langToggle) {
-    langToggle.addEventListener("click", () => {
-      currentLang = currentLang === "ar" ? "en" : "ar";
-      applyLanguage(currentLang);
-    });
-  }
+  // تفعيل الوضع الليلي
+  modeToggle.addEventListener("click", toggleDarkMode);
 
-  if (modeToggle) {
-    modeToggle.addEventListener("click", () => {
-      isDarkMode = !isDarkMode;
-      body.classList.toggle("dark-mode", isDarkMode);
-      localStorage.setItem("darkMode", isDarkMode);
-    });
-  }
-
-  applyLanguage(currentLang);
-  body.classList.toggle("dark-mode", isDarkMode);
+  // زر الحضور
+  submitBtn.addEventListener("click", submitAttendance);
 });
