@@ -13,14 +13,14 @@
     font-family: 'QatarMedium';
     src: url('fonts/QatarMedium.woff2') format('woff2'),
          url('fonts/QatarMedium.woff') format('woff'),
-         url('fonts/QatarMedium.ttf') format('truetype');
+         url('fonts/QatarMedium.ttf') format('truetype'), /* Added .ttf as a common fallback */
+         url('fonts/QatarMedium.otf') format('opentype'); /* Added .otf as another common fallback */
     font-weight: 500; /* Assuming Medium weight, adjust if necessary */
     font-style: normal;
     font-display: swap; /* Ensures font loads nicely */
 }
 
 /* Google Fonts: Only Philosopher for English content (loaded via link in HTML) */
-/* @import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap'); */
 
 
 :root {
@@ -64,8 +64,10 @@
     --gemini-btn-gradient-end-dark: #4A00E0;
 
     /* Background curvy shapes colors (specific for dark mode) */
-    --bg-primary-dark: #1D2A42; /* Darker background color, top left */
-    --bg-secondary-dark: #2A3B50; /* Darker background color, bottom right */
+    --curve-color-top-dark: #2E4057; /* Darker blueish */
+    --curve-color-bottom-dark: #3A4C62; /* Darker grey-blue */
+    --bg-primary-dark: #1a1a2e; /* Dark background base color */
+    --bg-secondary-dark: #2C3E50; /* A slightly darker shade for the second radial */
     --curvy-shape-color-left-dark: #3C5069; /* Darker blueish for left curve */
     --curvy-shape-color-right-dark: #5A4E63; /* Darker purpleish for right curve */
 
@@ -130,7 +132,7 @@ body.dark-mode {
 
 /* Basic body and HTML styling for full height and responsive fonts */
 html, body {
-    height: 100%;
+    min-height: 100vh; /* Changed from height to min-height to allow content to push footer down */
     background-color: var(--current-main-bg); /* Fallback, but gradient divs should cover */
     color: var(--current-text-color);
     overflow-x: hidden; /* Prevent horizontal scroll */
@@ -334,7 +336,7 @@ body.dark-mode .top-controls {
     text-align: center;
     font-family: 'SwinglyLours', cursive; /* Applied SwinglyLours font */
     font-size: clamp(28px, 6vw, 48px); /* Slightly larger for impact */
-    margin-top: 1rem; /* Reduced margin to bring it closer to top controls */
+    margin-top: 2rem; /* Adjusted margin to move it down slightly from top controls */
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -368,7 +370,7 @@ body.dark-mode .top-controls {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    padding-top: 100px; /* Adjusted padding-top to account for fixed top-controls and new margin on site-title */
+    padding-top: 140px; /* Adjusted padding-top to account for fixed top-controls and new margin on site-title */
     margin-bottom: 0; /* Handled by flex-grow on main */
     width: 100%;
     z-index: 1; /* Ensure it's above background elements */
