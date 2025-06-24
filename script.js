@@ -18,7 +18,7 @@ const formTitle = document.getElementById("form-title");
 const nameInput = document.getElementById("nameInput");
 const submitBtn = document.getElementById("submitBtn");
 const dailyDhikrDisplay = document.getElementById("dailyDhikr"); // Element to display Dhikr
-const newDhikrBtn = document.getElementById("newDhikrBtn"); // Optional button for new Dhikr
+// const newDhikrBtn = document.getElementById("newDhikrBtn"); // Removed as per user request
 const statusMessage = document.getElementById("statusMessage");
 const locationText = document.getElementById("location-text");
 const emailText = document.getElementById("email-text");
@@ -48,8 +48,9 @@ function loadLang() {
     formTitle.textContent = t.title;
     nameInput.placeholder = t.placeholder;
     submitBtn.textContent = t.submit;
-    dailyDhikrDisplay.style.direction = (currentLang === "ar" ? "rtl" : "ltr"); // Ensure Dhikr text direction is correct
-    newDhikrBtn.textContent = t.newDhikrButton; // Update text for new Dhikr button
+    // dailyDhikrDisplay.style.direction is set directly in displayRandomDhikr() for accuracy
+    // newDhikrBtn.textContent is no longer needed as button is removed
+
     locationText.textContent = t.location;
     emailText.textContent = t.email;
     websiteText.textContent = t.website;
@@ -173,7 +174,7 @@ function submitAttendance() {
     // Disable inputs and buttons during processing to prevent multiple submissions
     nameInput.disabled = true;
     submitBtn.disabled = true;
-    newDhikrBtn.disabled = true; // Disable new Dhikr button
+    // Removed newDhikrBtn.disabled = true; as the button is gone
     submitBtn.classList.add("loading"); // Show loading spinner on submit button
 
     // Validate if name input is empty
@@ -182,7 +183,6 @@ function submitAttendance() {
         // Re-enable elements if validation fails
         nameInput.disabled = false;
         submitBtn.disabled = false;
-        newDhikrBtn.disabled = false; // Re-enable new Dhikr button
         submitBtn.classList.remove("loading");
         nameInput.focus(); // Focus back on input for user to correct
         return;
@@ -201,7 +201,6 @@ function submitAttendance() {
         // Re-enable elements
         nameInput.disabled = false;
         submitBtn.disabled = false;
-        newDhikrBtn.disabled = false; // Re-enable new Dhikr button
         submitBtn.classList.remove("loading");
         return;
     }
@@ -225,7 +224,6 @@ function submitAttendance() {
             // Re-enable elements
             nameInput.disabled = false;
             submitBtn.disabled = false;
-            newDhikrBtn.disabled = false; // Re-enable new Dhikr button
             submitBtn.classList.remove("loading");
             return;
         }
@@ -249,7 +247,6 @@ function submitAttendance() {
                 // Always re-enable elements after a successful or failed location check
                 nameInput.disabled = false;
                 submitBtn.disabled = false;
-                newDhikrBtn.disabled = false; // Re-enable new Dhikr button
                 submitBtn.classList.remove("loading");
             },
             (error) => {
@@ -267,7 +264,6 @@ function submitAttendance() {
                 // Always re-enable elements after an error
                 nameInput.disabled = false;
                 submitBtn.disabled = false;
-                newDhikrBtn.disabled = false; // Re-enable new Dhikr button
                 submitBtn.classList.remove("loading");
             },
             {
@@ -307,9 +303,9 @@ function init() {
     // Display initial random Dhikr
     displayRandomDhikr();
 
-    // Optional: Auto-change Dhikr every X seconds
-    // clearInterval(dhikrInterval); // Clear any existing interval before setting a new one
-    // dhikrInterval = setInterval(displayRandomDhikr, 10000); // Change every 10 seconds
+    // Auto-change Dhikr every 10 seconds (user requested auto-renewal, no "New Dhikr" button)
+    clearInterval(dhikrInterval); // Clear any existing interval before setting a new one
+    dhikrInterval = setInterval(displayRandomDhikr, 10000); // Change every 10 seconds
 
     // Event listener for language toggle button
     langToggle.addEventListener("click", () => {
@@ -317,7 +313,7 @@ function init() {
         currentLang = (currentLang === "ar" ? "en" : "ar");
         localStorage.setItem("lang", currentLang); // Save new language preference
         loadLang(); // Reload UI with new language
-        displayRandomDhikr(); // Display a new Dhikr relevant to the language
+        displayRandomDhikr(); // Display a new Dhikr relevant to the language immediately
     });
 
     // Event listener for dark mode toggle button
@@ -329,10 +325,10 @@ function init() {
     // Event listener for the "Submit Attendance" button
     submitBtn.addEventListener("click", submitAttendance);
 
-    // Event listener for the "New Dhikr" button (if visible)
-    if (newDhikrBtn) {
-        newDhikrBtn.addEventListener("click", displayRandomDhikr);
-    }
+    // "New Dhikr" button event listener is removed as the button is gone.
+    // if (newDhikrBtn) {
+    //     newDhikrBtn.addEventListener("click", displayRandomDhikr);
+    // }
 
     // Allow "Enter" key press in the name input field to submit attendance
     nameInput.addEventListener("keypress", (e) => {
