@@ -4,23 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Creative Minds - نموذج التحضير</title>
-    <!-- Google Fonts: Only Philosopher for English content, local fonts for others -->
+    <!-- Google Fonts for Philosopher and Noto Sans Arabic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Noto+Sans+Arabic:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Background elements for curvy shapes and gradients -->
-    <!-- These divs create the layered, colored background with curved sections -->
-    <div class="bg-gradient-primary"></div>
-    <div class="bg-gradient-secondary"></div>
-    <div class="bg-curvy-shape-left"></div>
-    <div class="bg-curvy-shape-right"></div>
+    <!-- Wavy liquid shapes in corners for background effect -->
+    <div class="liquid-shape liquid-top-left"></div>
+    <div class="liquid-shape liquid-top-right"></div>
+    <div class="liquid-shape liquid-bottom-left"></div>
+    <div class="liquid-shape liquid-bottom-right"></div>
+    <div class="liquid-shape liquid-center"></div>
+
+    <!-- Floating geometric shapes for extra layer effect -->
+    <div class="geometric-shape triangle-1"></div>
+    <div class="geometric-shape circle-1"></div>
+    <div class="geometric-shape square-1"></div>
+    <div class="geometric-shape triangle-2"></div>
 
     <!-- Site title - Always English, SwinglyLours font -->
-    <!-- Positioned here to ensure it's visually above the top-controls and not blurred -->
+    <!-- Positioned to be visibly above the top-controls and not blurred -->
     <div id="site-title" class="site-title">
         <span id="site-title-creative">Creative</span>
         <span id="site-title-minds">Minds</span>
@@ -54,7 +60,6 @@
             <div id="statusMessage" class="status-message"></div>
             <!-- Display area for Daily Dhikr (ذكور اليوم) -->
             <div id="dailyDhikr" class="daily-dhikr-message"></div>
-            <!-- "New Dhikr" button is removed as per user request for auto-renewal -->
         </div>
     </main>
 
