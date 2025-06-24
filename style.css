@@ -204,17 +204,17 @@ html[lang="en"] body {
 #site-title {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
-    font-size: clamp(28px, 6vw, 48px);
+    font-size: clamp(36px, 7vw, 60px); /* Larger font size for prominence */
     /* Position fixed to be always visible and above other content */
     position: fixed;
-    top: 50px; /* Position below top-controls but above main content */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%; /* Take full width for centering */
+    top: 50px; /* Position below top-controls */
+    left: 0; /* Take full width for centering content */
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Keep creative minds side by side */
+    justify-content: center; /* Center the words */
     align-items: center;
-    gap: 8px;
+    gap: 12px; /* Increased gap between words */
     z-index: 101; /* Higher than top-controls so it's not blurred */
     font-weight: 700;
     background: linear-gradient(135deg, #7C99AC, #92A9BD);
@@ -376,7 +376,7 @@ body.dark-mode .top-controls {
     width: 90%;
     max-width: 420px;
     background: var(--current-form-bg);
-    padding: 2.5rem 2rem;
+    padding: 1.8rem 1.8rem; /* Reduced padding */
     border-radius: 24px;
     text-align: center;
     box-shadow:
@@ -389,7 +389,7 @@ body.dark-mode .top-controls {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem; /* Increased gap between elements inside container */
+    gap: 0.8rem; /* Reduced gap between elements inside container */
 }
 
 body.dark-mode .container {
@@ -401,39 +401,39 @@ body.dark-mode .container {
 
 /* Logo Image Styling */
 .logo {
-    width: 100px; /* Adjusted size for better visibility */
+    width: 90px; /* Slightly smaller logo to save space */
     height: auto; /* Maintain aspect ratio */
     object-fit: contain;
-    margin-bottom: 0.5rem; /* Small margin after logo */
+    margin-bottom: 0.2rem; /* Reduced margin after logo */
     animation: pulse 2s infinite; /* Keep pulse for the logo */
 }
 
 /* Form Title (Attendance Form / نموذج تحضير) */
 #form-title {
     font-family: 'QatarMedium', sans-serif; /* For Arabic using local font */
-    font-size: 1.6rem; /* Slightly larger */
+    font-size: 1.5rem; /* Slightly smaller to fit better */
     font-weight: 600;
     color: var(--current-text-color);
-    margin-bottom: 1rem; /* Space after title */
+    margin-bottom: 0.6rem; /* Reduced space after title */
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
 html[lang="en"] #form-title {
     font-family: 'Philosopher', serif; /* For English from Google Fonts */
-    font-size: 1.7rem; /* Larger for English */
+    font-size: 1.6rem; /* Adjusted larger for English */
 }
 
 
 /* Input field */
 #nameInput {
     width: 100%;
-    padding: 1.1rem 1.3rem; /* Larger padding */
-    font-size: 1.05rem; /* Slightly larger font */
+    padding: 1rem 1.2rem; /* Adjusted padding */
+    font-size: 1rem; /* Adjusted font size */
     border-radius: 16px;
     background-color: var(--current-input-bg);
     border: 2px solid transparent;
     text-align: center;
-    margin-bottom: 0.8rem; /* Adjusted margin */
+    margin-bottom: 0.6rem; /* Reduced margin */
     font-family: 'QatarMedium', sans-serif; /* Default for Arabic input */
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -441,7 +441,7 @@ html[lang="en"] #form-title {
 }
 html[lang="en"] #nameInput {
     font-family: 'Philosopher', serif; /* For English input */
-    font-size: 1.1rem; /* Larger for English */
+    font-size: 1.05rem; /* Adjusted larger for English */
 }
 #nameInput::placeholder {
     color: var(--current-text-color);
@@ -464,8 +464,8 @@ body.dark-mode #nameInput:focus {
 #submitBtn {
     background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
     color: white;
-    padding: 1.1rem 2.2rem; /* Larger padding */
-    font-size: 1.1rem; /* Larger font */
+    padding: 1.2rem 2.5rem; /* Significantly larger padding for bigger button */
+    font-size: 1.2rem; /* Significantly larger font */
     font-weight: 600;
     border: none;
     border-radius: 16px;
@@ -475,12 +475,12 @@ body.dark-mode #nameInput:focus {
     font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
     position: relative;
     overflow: hidden;
-    min-width: 180px; /* Slightly wider */
-    margin-bottom: 0.8rem; /* Space between submit and Dhikr message */
+    min-width: 200px; /* Wider button */
+    margin-bottom: 0.6rem; /* Space between submit and Dhikr message */
 }
 html[lang="en"] #submitBtn {
     font-family: 'Philosopher', serif; /* For English */
-    font-size: 1.15rem; /* Larger for English */
+    font-size: 1.25rem; /* Larger for English */
 }
 
 #submitBtn:hover {
@@ -514,8 +514,8 @@ html[lang="en"] #submitBtn {
 
 /* Daily Dhikr Display */
 .daily-dhikr-message {
-    margin-top: 0.8rem;
-    padding: 0.9rem 1.2rem;
+    margin-top: 0.6rem; /* Reduced margin */
+    padding: 1rem 1.5rem; /* Adjusted padding */
     border-radius: 16px;
     font-weight: 500;
     font-size: 1.05rem;
@@ -529,9 +529,10 @@ html[lang="en"] #submitBtn {
     display: flex; /* Use flex for vertical centering of text */
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.8rem; /* Space before status message */
+    margin-bottom: 0.6rem; /* Reduced space before status message */
     font-family: 'QatarMedium', sans-serif; /* Apply Arabic font */
     transition: all 0.3s ease;
+    width: 100%; /* Ensure it takes full width */
 }
 
 body.dark-mode .daily-dhikr-message {
@@ -548,19 +549,21 @@ html[lang="en"] .daily-dhikr-message {
 .new-dhikr-btn {
     background: linear-gradient(135deg, var(--current-adhkar-btn-gradient-start), var(--current-adhkar-btn-gradient-end));
     color: white;
-    padding: 0.7rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 1rem 2rem; /* Larger padding */
+    font-size: 1rem; /* Larger font */
     font-weight: 500;
     border: none;
-    border-radius: 12px;
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 5px 15px rgba(255, 106, 136, 0.2);
     font-family: 'QatarMedium', sans-serif;
-    margin-top: 0.5rem;
+    margin-top: 0.5rem; /* Reduced margin */
+    min-width: 160px;
 }
 html[lang="en"] .new-dhikr-btn {
     font-family: 'Philosopher', serif;
+    font-size: 1.05rem;
 }
 .new-dhikr-btn:hover {
     transform: translateY(-2px);
@@ -572,10 +575,9 @@ html[lang="en"] .new-dhikr-btn {
 }
 
 
-
 /* Status message */
 #statusMessage {
-    margin-top: 0.8rem; /* Adjusted margin */
+    margin-top: 0.6rem; /* Reduced margin */
     padding: 0.75rem 1rem;
     border-radius: 12px;
     font-weight: 500;
@@ -644,33 +646,24 @@ body.dark-mode .footer {
 
 .footer-content {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    justify-content: center; /* Center horizontally */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1.0rem; /* Reduced gap between items */
     max-width: 600px;
     margin: 0 auto;
-    /* Ensure content is LTR for consistent ordering, then centered */
-    direction: ltr;
+    direction: ltr; /* Ensure LTR order for consistency regardless of page language */
+    font-size: 0.8rem; /* Smaller font for contact info */
 }
 
 .footer-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    /* Removed explicit direction here, inherited from footer-content */
+    gap: 0.3rem; /* Smaller gap within item */
     text-align: left; /* Ensure text is left-aligned within item */
 }
 
-/* No special alignment needed for Arabic now due to explicit LTR on footer-content */
-/* html[lang="ar"] .footer-content {
-    justify-content: center;
-}
-html[lang="en"] .footer-content {
-    justify-content: center;
-} */
-
 .emoji {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Smaller emoji */
     display: inline-block;
     transform: scaleX(1); /* Ensure emoji is not flipped */
 }
@@ -703,13 +696,24 @@ html[lang="en"] .footer-content {
 }
 
 /* Responsive design */
+@media screen and (min-width: 768px) {
+    #site-title {
+        font-size: clamp(36px, 7vw, 60px); /* Larger on desktop */
+    }
+}
+
 @media screen and (max-width: 768px) {
     #site-title {
-        font-size: clamp(24px, 5vw, 42px);
-        margin-top: calc(50px + 1rem); /* Adjusted for mobile */
+        font-size: clamp(28px, 6vw, 48px); /* Adjust for smaller screens */
+        gap: 8px;
     }
     .main-content {
-        padding-top: calc(50px + 60px + 1.5rem); /* Consistent padding for smaller screens */
+        /* Adjust padding for mobile based on new fixed title position */
+        padding-top: calc(50px + 60px + 1rem); /* top-controls height + site-title approx height + margin */
+    }
+    .footer-content {
+        flex-direction: column; /* Stack contact info vertically on small screens */
+        gap: 0.75rem; /* Adjusted gap */
     }
 }
 
@@ -719,9 +723,9 @@ html[lang="en"] .footer-content {
     }
 
     .container {
-        padding: 2rem 1.5rem;
-        margin: 0 1rem;
-        gap: 0.8rem; /* Smaller gap for mobile */
+        padding: 1.5rem 1.2rem; /* More reduced padding for very small screens */
+        margin: 0 0.8rem;
+        gap: 0.6rem; /* Even smaller gap */
     }
 
     .language-switcher, #mode-toggle {
@@ -748,28 +752,27 @@ html[lang="en"] .footer-content {
     }
 
     #site-title {
-        font-size: clamp(20px, 6vw, 36px);
-        margin-top: calc(50px + 1rem); /* Consistent top margin for small screens */
+        font-size: clamp(24px, 6vw, 36px);
     }
 
     #form-title {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
-    #nameInput, #submitBtn, .daily-dhikr-message { /* Also target dhikr message for size consistency */
-        padding: 0.8rem 1rem;
-        font-size: 0.95rem;
+    #nameInput, #submitBtn, .daily-dhikr-message, .new-dhikr-btn {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.9rem;
     }
     #submitBtn {
-        min-width: 150px;
+        min-width: 140px;
     }
-
     .new-dhikr-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
+        min-width: 120px;
     }
-
     .footer-content {
-        flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.5rem; /* Even smaller gap for mobile vertical stack */
+        font-size: 0.75rem; /* Even smaller font */
+    }
+    .emoji {
+        font-size: 0.8rem;
     }
 }
