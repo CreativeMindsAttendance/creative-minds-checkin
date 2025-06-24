@@ -19,6 +19,13 @@
     <div class="bg-curvy-shape-left"></div>
     <div class="bg-curvy-shape-right"></div>
 
+    <!-- Site title - Always English, SwinglyLours font -->
+    <!-- Positioned here to ensure it's visually above the top-controls and not blurred -->
+    <div id="site-title" class="site-title">
+        <span id="site-title-creative">Creative</span>
+        <span id="site-title-minds">Minds</span>
+    </div>
+
     <!-- Top controls (Language and Dark Mode toggles) -->
     <div class="top-controls">
         <div class="top-left">
@@ -35,12 +42,6 @@
         </div>
     </div>
 
-    <!-- Site title - Always English, SwinglyLours font -->
-    <div id="site-title" class="site-title">
-        <span id="site-title-creative">Creative</span>
-        <span id="site-title-minds">Minds</span>
-    </div>
-
     <!-- Main content area for the attendance form -->
     <main class="main-content">
         <div class="container">
@@ -49,8 +50,10 @@
             <h2 id="form-title" class="form-title">نموذج تحضير</h2>
             <input type="text" id="nameInput" class="name-input" placeholder="اكتب اسمك الثلاثي" />
             <button id="submitBtn" class="submit-btn">تسجيل الحضور</button>
-            <!-- Button for Gemini API Feature -->
-            <button id="generateTipBtn" class="gemini-feature-btn">✨ نصيحة اليوم ✨</button>
+            <!-- Display area for Daily Dhikr (ذكور اليوم) -->
+            <div id="dailyDhikr" class="daily-dhikr-message"></div>
+            <!-- Optional button to get new Dhikr -->
+            <button id="newDhikrBtn" class="new-dhikr-btn" style="display: none;">ذكر جديد</button>
             <div id="statusMessage" class="status-message"></div>
         </div>
     </main>
