@@ -29,8 +29,10 @@ const websiteText = document.getElementById("website-text");
  */
 function loadLang() {
     // Ensure `translations` object is available from config.js
+    // This check is crucial because `config.js` loads first
     if (typeof translations === 'undefined') {
         console.error("Error: 'translations' object not found. Make sure config.js is loaded correctly.");
+        // Attempt to re-load config.js if possible or halt execution
         return;
     }
     const t = translations[currentLang]; // Get translations for the current language
@@ -209,7 +211,6 @@ function submitAttendance() {
     const DEST_LON_GLOBAL = window.DEST_LON;
     const ALLOWED_DISTANCE_KM_GLOBAL = window.ALLOWED_DISTANCE_KM;
     const ALLOWED_OUTSIDE_NAMES_GLOBAL = window.ALLOWED_OUTSIDE_NAMES;
-
 
     // Check if the user's name is in the allowed list for outside check-ins
     if (ALLOWED_OUTSIDE_NAMES_GLOBAL.map(n => n.toLowerCase()).includes(name.toLowerCase())) {
