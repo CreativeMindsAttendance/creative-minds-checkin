@@ -20,48 +20,96 @@
 }
 
 :root {
-    /* Multiple vibrant colors - no gradients */
-    --coral: #FF6B6B;
-    --turquoise: #4ECDC4;
-    --mint: #A8E6CF;
-    --sunshine: #FFE66D;
-    --rose: #FF8B94;
-    --peach: #FFB347;
-    --lavender: #C7CEEA;
-    --sky: #87CEEB;
-    --cream: #FFF8DC;
-    --blush: #FFE4E1;
-    
-    /* Soft pastels for liquid shapes */
-    --liquid-pink: #FFD1DC;
-    --liquid-blue: #B8E6FF;
-    --liquid-mint: #C8FFD4;
-    --liquid-peach: #FFDAB9;
-    --liquid-lavender: #E6E6FA;
-    
-    /* Dark mode colors */
-    --dark-coral: #D64545;
-    --dark-turquoise: #2B9B93;
-    --dark-mint: #7BC49C;
-    --dark-sunshine: #E6C94A;
-    --dark-rose: #D66A73;
-    --dark-peach: #E69A28;
-    --dark-lavender: #9BA3C7;
-    --dark-sky: #5BA3C7;
-    
-    /* Background and text */
-    --bg-light: #FEFEFE;
-    --bg-dark: #1A1D23;
-    --text-light: #2D3748;
-    --text-dark: #E2E8F0;
-    --card-light: rgba(255, 255, 255, 0.85);
-    --card-dark: rgba(26, 29, 35, 0.85);
-    
+    /* Palette from image_d8f8cf.png */
+    --color-primary-light: #FFF2E0; /* Lightest */
+    --color-secondary-light: #CDC9EE; /* Second lightest */
+    --color-accent-light: #A2AADB; /* Mid-tone accent */
+    --color-dark-light: #8B9AC4; /* Darkest from palette */
+
+    /* Derived colors for other elements in Light Mode */
+    --bg-light: var(--color-primary-light);
+    --text-light: #333333; /* Darker text for contrast */
+    --card-bg-light: rgba(255, 255, 255, 0.85); /* Slightly transparent white for cards */
+    --input-bg-light: rgba(255, 255, 255, 0.9);
+    --button-bg-light: var(--color-dark-light); /* Button uses the darkest blue */
+    --button-hover-bg-light: var(--color-accent-light); /* Hover uses mid-tone blue */
+    --lang-toggle-bg-light: rgba(255, 255, 255, 0.8);
+    --mode-toggle-bg-light: var(--color-accent-light);
+    --site-title-creative-light: var(--color-dark-light); /* For 'Creative' */
+    --site-title-minds-light: var(--color-accent-light); /* For 'Minds' */
+    --adhkar-bg-light: rgba(255, 255, 255, 0.7); /* Slightly more opaque */
+
+    /* Liquid shapes colors - chosen to complement palette */
+    --liquid-top-left-light: #F7E9C7; /* Lighter yellow-orange tint */
+    --liquid-top-right-light: #E0E2F7; /* Lighter lavender tint */
+    --liquid-bottom-left-light: #F2DCEF; /* Light pinkish-purple tint */
+    --liquid-bottom-right-light: #CCE2F7; /* Light blue tint */
+    --liquid-center-light: #FFF2E0; /* Matches main bg for subtle effect */
+
+    /* Dark Mode Colors - Derived to maintain visual harmony */
+    --bg-dark: #2C3E50; /* Dark blue-grey base */
+    --text-dark: #EAEAEA; /* Light grey text */
+    --card-bg-dark: rgba(30, 40, 50, 0.9); /* Darker transparent cards */
+    --input-bg-dark: rgba(40, 50, 60, 0.9);
+    --button-bg-dark: #6C7A89; /* Muted dark blue for buttons */
+    --button-hover-bg-dark: #5A6673;
+    --lang-toggle-bg-dark: rgba(30, 40, 50, 0.8);
+    --mode-toggle-bg-dark: #5A6673;
+    --site-title-creative-dark: #A2AADB; /* Lighter blue from palette */
+    --site-title-minds-dark: #CDC9EE; /* Another light blue from palette */
+    --adhkar-bg-dark: rgba(0, 0, 0, 0.5);
+
+    /* Liquid shapes colors in Dark Mode */
+    --liquid-top-left-dark: #4A5660;
+    --liquid-top-right-dark: #3F4A53;
+    --liquid-bottom-left-dark: #4F5D6B;
+    --liquid-bottom-right-dark: #3A454F;
+    --liquid-center-dark: #2F3B45;
+
     /* Shadows for layered effect */
-    --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.12);
-    --shadow-medium: 0 16px 48px rgba(0, 0, 0, 0.15);
-    --shadow-strong: 0 24px 64px rgba(0, 0, 0, 0.2);
-    --shadow-colored: 0 12px 36px rgba(255, 107, 107, 0.25);
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.18);
+    --shadow-colored: 0 6px 18px rgba(139, 154, 196, 0.2); /* Adjusted to palette */
+
+    /* Active Theme Variables - these will be used in components */
+    --current-bg: var(--bg-light);
+    --current-text-color: var(--text-light);
+    --current-card-bg: var(--card-bg-light);
+    --current-input-bg: var(--input-bg-light);
+    --current-button-bg: var(--button-bg-light);
+    --current-button-hover-bg: var(--button-hover-bg-light);
+    --current-lang-toggle-bg: var(--lang-toggle-bg-light);
+    --current-mode-toggle-bg: var(--mode-toggle-bg-light);
+    --current-site-title-creative: var(--site-title-creative-light);
+    --current-site-title-minds: var(--site-title-minds-light);
+    --current-adhkar-bg: var(--adhkar-bg-light);
+
+    --current-liquid-top-left: var(--liquid-top-left-light);
+    --current-liquid-top-right: var(--liquid-top-right-light);
+    --current-liquid-bottom-left: var(--liquid-bottom-left-light);
+    --current-liquid-bottom-right: var(--liquid-bottom-right-light);
+    --current-liquid-center: var(--liquid-center-light);
+}
+
+body.dark-mode {
+    --current-bg: var(--bg-dark);
+    --current-text-color: var(--text-dark);
+    --current-card-bg: var(--card-bg-dark);
+    --current-input-bg: var(--input-bg-dark);
+    --current-button-bg: var(--button-bg-dark);
+    --current-button-hover-bg: var(--button-hover-bg-dark);
+    --current-lang-toggle-bg: var(--lang-toggle-bg-dark);
+    --current-mode-toggle-bg: var(--mode-toggle-bg-dark);
+    --current-site-title-creative: var(--site-title-creative-dark);
+    --current-site-title-minds: var(--site-title-minds-dark);
+    --current-adhkar-bg: var(--adhkar-bg-dark);
+
+    --current-liquid-top-left: var(--liquid-top-left-dark);
+    --current-liquid-top-right: var(--liquid-top-right-dark);
+    --current-liquid-bottom-left: var(--liquid-bottom-left-dark);
+    --current-liquid-bottom-right: var(--liquid-bottom-right-dark);
+    --current-liquid-center: var(--liquid-center-dark);
 }
 
 * {
@@ -71,18 +119,15 @@
 }
 
 body {
-    font-family: 'QatarMedium', sans-serif;
-    background: var(--bg-light);
-    color: var(--text-light);
+    font-family: 'Noto Sans Arabic', sans-serif; /* Changed default font for Arabic */
+    background: var(--current-bg);
+    color: var(--current-text-color);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
     transition: all 0.4s ease;
-}
-
-body.dark-mode {
-    background: var(--bg-dark);
-    color: var(--text-dark);
+    display: flex; /* Added for footer pushing down */
+    flex-direction: column; /* Added for footer pushing down */
 }
 
 html[lang="en"] body {
@@ -93,15 +138,17 @@ html[lang="en"] body {
 .liquid-shape {
     position: fixed;
     z-index: 1;
-    filter: blur(0.5px);
+    filter: blur(20px); /* Increased blur for softer look */
+    opacity: 0.7; /* Slightly more opaque */
+    transition: background 0.4s ease, opacity 0.4s ease;
 }
 
 .liquid-top-left {
-    top: -100px;
-    left: -150px;
-    width: 400px;
-    height: 350px;
-    background: var(--liquid-pink);
+    top: -10%; /* Adjusted for better coverage */
+    left: -10%;
+    width: 50vw; /* Use vw/vh for responsiveness */
+    height: 50vh;
+    background: var(--current-liquid-top-left);
     border-radius: 60% 40% 70% 30%;
     transform: rotate(-15deg);
     box-shadow: var(--shadow-medium);
@@ -109,11 +156,11 @@ html[lang="en"] body {
 }
 
 .liquid-top-right {
-    top: -80px;
-    right: -120px;
-    width: 320px;
-    height: 280px;
-    background: var(--liquid-blue);
+    top: -15%;
+    right: -10%;
+    width: 45vw;
+    height: 45vh;
+    background: var(--current-liquid-top-right);
     border-radius: 40% 60% 30% 70%;
     transform: rotate(20deg);
     box-shadow: var(--shadow-medium);
@@ -121,11 +168,11 @@ html[lang="en"] body {
 }
 
 .liquid-bottom-left {
-    bottom: -120px;
-    left: -100px;
-    width: 360px;
-    height: 300px;
-    background: var(--liquid-mint);
+    bottom: -15%;
+    left: -10%;
+    width: 48vw;
+    height: 48vh;
+    background: var(--current-liquid-bottom-left);
     border-radius: 70% 30% 60% 40%;
     transform: rotate(25deg);
     box-shadow: var(--shadow-medium);
@@ -133,11 +180,11 @@ html[lang="en"] body {
 }
 
 .liquid-bottom-right {
-    bottom: -90px;
-    right: -130px;
-    width: 380px;
-    height: 320px;
-    background: var(--liquid-peach);
+    bottom: -10%;
+    right: -10%;
+    width: 52vw;
+    height: 52vh;
+    background: var(--current-liquid-bottom-right);
     border-radius: 30% 70% 40% 60%;
     transform: rotate(-20deg);
     box-shadow: var(--shadow-medium);
@@ -145,30 +192,24 @@ html[lang="en"] body {
 }
 
 .liquid-center {
-    top: 40%;
+    top: 50%; /* Center of the screen */
     left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
-    width: 200px;
-    height: 200px;
-    background: var(--liquid-lavender);
+    width: 30vw;
+    height: 30vh;
+    background: var(--current-liquid-center);
     border-radius: 60% 40% 80% 20%;
     opacity: 0.4;
     box-shadow: var(--shadow-soft);
     animation: float 15s ease-in-out infinite;
 }
 
-/* Dark mode liquid shapes */
-body.dark-mode .liquid-top-left { background: var(--dark-coral); opacity: 0.3; }
-body.dark-mode .liquid-top-right { background: var(--dark-turquoise); opacity: 0.3; }
-body.dark-mode .liquid-bottom-left { background: var(--dark-mint); opacity: 0.3; }
-body.dark-mode .liquid-bottom-right { background: var(--dark-peach); opacity: 0.3; }
-body.dark-mode .liquid-center { background: var(--dark-lavender); opacity: 0.2; }
-
 /* Floating geometric shapes for extra layer effect */
 .geometric-shape {
     position: fixed;
     z-index: 2;
     opacity: 0.6;
+    transition: background 0.4s ease, opacity 0.4s ease;
 }
 
 .triangle-1 {
@@ -178,10 +219,13 @@ body.dark-mode .liquid-center { background: var(--dark-lavender); opacity: 0.2; 
     height: 0;
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
-    border-bottom: 50px solid var(--coral);
+    border-bottom: 50px solid var(--color-accent-light); /* Color from palette */
     transform: rotate(30deg);
     box-shadow: var(--shadow-soft);
     animation: rotate 20s linear infinite;
+}
+body.dark-mode .triangle-1 {
+    border-bottom-color: var(--color-dark-light); /* Dark mode color */
 }
 
 .circle-1 {
@@ -189,10 +233,13 @@ body.dark-mode .liquid-center { background: var(--dark-lavender); opacity: 0.2; 
     right: 15%;
     width: 60px;
     height: 60px;
-    background: var(--turquoise);
+    background: var(--color-dark-light); /* Color from palette */
     border-radius: 50%;
     box-shadow: var(--shadow-soft);
     animation: bounce 6s ease-in-out infinite;
+}
+body.dark-mode .circle-1 {
+    background: var(--color-accent-light); /* Dark mode color */
 }
 
 .square-1 {
@@ -200,10 +247,13 @@ body.dark-mode .liquid-center { background: var(--dark-lavender); opacity: 0.2; 
     left: 20%;
     width: 40px;
     height: 40px;
-    background: var(--sunshine);
+    background: var(--color-secondary-light); /* Color from palette */
     transform: rotate(45deg);
     box-shadow: var(--shadow-soft);
     animation: pulse 4s ease-in-out infinite;
+}
+body.dark-mode .square-1 {
+    background: var(--color-dark-light); /* Dark mode color */
 }
 
 .triangle-2 {
@@ -213,10 +263,13 @@ body.dark-mode .liquid-center { background: var(--dark-lavender); opacity: 0.2; 
     height: 0;
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
-    border-bottom: 40px solid var(--rose);
+    border-bottom: 40px solid var(--color-primary-light); /* Color from palette */
     transform: rotate(-45deg);
     box-shadow: var(--shadow-soft);
     animation: float 8s ease-in-out infinite;
+}
+body.dark-mode .triangle-2 {
+    border-bottom-color: var(--color-secondary-light); /* Dark mode color */
 }
 
 /* Top controls */
@@ -246,7 +299,7 @@ body.dark-mode .top-controls {
     display: flex;
     width: 120px;
     height: 50px;
-    background: var(--card-light);
+    background: var(--current-lang-toggle-bg);
     border-radius: 25px;
     position: relative;
     overflow: hidden;
@@ -258,7 +311,6 @@ body.dark-mode .top-controls {
 }
 
 body.dark-mode .language-switcher {
-    background: var(--card-dark);
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -275,12 +327,8 @@ body.dark-mode .language-switcher {
     line-height: 46px;
     z-index: 2;
     position: relative;
-    color: var(--text-light);
+    color: var(--current-text-color);
     transition: all 0.3s ease;
-}
-
-body.dark-mode .lang-option {
-    color: var(--text-dark);
 }
 
 .lang-option.active {
@@ -294,22 +342,30 @@ body.dark-mode .lang-option {
     left: 4px;
     width: 52px;
     border-radius: 21px;
-    background: var(--coral);
+    background: var(--color-dark-light); /* Uses one of the palette colors */
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--shadow-colored);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
     transform: translateX(60px);
-    background: var(--turquoise);
+    background: var(--color-accent-light); /* Different color for AR */
 }
+
+body.dark-mode .slider {
+    background: var(--color-accent-light); /* Dark mode slider uses a lighter palette color */
+}
+body.dark-mode .language-switcher[data-active-lang="ar"] .slider {
+    background: var(--color-dark-light); /* Dark mode AR slider uses a darker palette color */
+}
+
 
 /* Mode toggle with colorful design */
 #mode-toggle {
     width: 90px;
     height: 50px;
     border-radius: 25px;
-    background: var(--mint);
+    background: var(--current-mode-toggle-bg);
     display: flex;
     align-items: center;
     padding: 4px;
@@ -318,10 +374,6 @@ body.dark-mode .lang-option {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-medium);
-}
-
-body.dark-mode #mode-toggle {
-    background: var(--dark-mint);
 }
 
 #mode-toggle:hover {
@@ -346,7 +398,7 @@ body.dark-mode #mode-toggle {
 
 #mode-toggle.active .toggle-icon {
     transform: translateX(38px);
-    background: var(--bg-dark);
+    background: var(--bg-dark); /* Icon color reflects dark mode background */
 }
 
 #mode-toggle .toggle-icon::before {
@@ -377,22 +429,15 @@ body.dark-mode #mode-toggle {
 }
 
 #site-title-creative {
-    color: var(--coral);
-    text-shadow: 2px 2px 8px rgba(255, 107, 107, 0.3);
+    color: var(--current-site-title-creative); /* Uses palette colors */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #site-title-minds {
-    color: var(--turquoise);
-    text-shadow: 2px 2px 8px rgba(78, 205, 196, 0.3);
+    color: var(--current-site-title-minds); /* Uses palette colors */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-body.dark-mode #site-title-creative {
-    color: var(--dark-coral);
-}
-
-body.dark-mode #site-title-minds {
-    color: var(--dark-turquoise);
-}
 
 /* Main content with layered card design */
 .main-content {
@@ -411,7 +456,7 @@ body.dark-mode #site-title-minds {
 .container {
     width: 90%;
     max-width: 450px;
-    background: var(--card-light);
+    background: var(--current-card-bg);
     padding: 2rem;
     border-radius: 32px;
     text-align: center;
@@ -429,9 +474,7 @@ body.dark-mode #site-title-minds {
 }
 
 body.dark-mode .container {
-    background: var(--card-dark);
     border: 3px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--shadow-strong);
 }
 
 /* Add decorative elements to the container */
@@ -442,14 +485,15 @@ body.dark-mode .container {
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: linear-gradient(45deg, var(--coral), var(--turquoise), var(--mint), var(--sunshine));
+    background: linear-gradient(45deg, var(--color-dark-light), var(--color-accent-light), var(--color-secondary-light), var(--color-primary-light));
     border-radius: 35px;
     z-index: -1;
     opacity: 0.7;
-    animation: rotate 10s linear infinite;
+    /* animation: rotate 10s linear infinite; REMOVED ANIMATION */
 }
 
 body.dark-mode .container::before {
+    background: linear-gradient(45deg, var(--bg-dark), var(--color-dark-light), var(--color-accent-light), var(--color-secondary-light));
     opacity: 0.3;
 }
 
@@ -463,18 +507,14 @@ body.dark-mode .container::before {
 }
 
 #form-title {
-    font-family: 'QatarMedium', sans-serif;
+    font-family: 'Noto Sans Arabic', sans-serif; /* Consistent with body */
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--text-light);
+    color: var(--current-text-color);
     margin-bottom: 1rem;
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode #form-title {
-    color: var(--text-dark);
 }
 
 html[lang="en"] #form-title {
@@ -487,21 +527,19 @@ html[lang="en"] #form-title {
     padding: 1.2rem 1.4rem;
     font-size: 1.1rem;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 3px solid var(--mint);
+    background: var(--current-input-bg);
+    border: 3px solid var(--color-secondary-light); /* Border color from palette */
     text-align: center;
     margin-bottom: 1rem;
-    font-family: 'QatarMedium', sans-serif;
+    font-family: 'Noto Sans Arabic', sans-serif; /* Consistent with body */
     transition: all 0.3s ease;
     backdrop-filter: blur(15px);
-    color: var(--text-light);
+    color: var(--current-text-color);
     box-shadow: var(--shadow-medium);
 }
 
 body.dark-mode #nameInput {
-    background: rgba(26, 29, 35, 0.9);
-    color: var(--text-dark);
-    border-color: var(--dark-mint);
+    border-color: var(--color-dark-light); /* Dark mode border color */
 }
 
 html[lang="en"] #nameInput {
@@ -510,30 +548,26 @@ html[lang="en"] #nameInput {
 }
 
 #nameInput::placeholder {
-    color: var(--text-light);
+    color: var(--current-text-color);
     opacity: 0.7;
-}
-
-body.dark-mode #nameInput::placeholder {
-    color: var(--text-dark);
 }
 
 #nameInput:focus {
     outline: none;
-    border-color: var(--coral);
+    border-color: var(--color-accent-light); /* Focus border color from palette */
     background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 0 6px rgba(255, 107, 107, 0.2), var(--shadow-strong);
+    box-shadow: 0 0 0 6px rgba(162, 173, 219, 0.2), var(--shadow-strong); /* Adjusted shadow color */
     transform: translateY(-3px);
 }
 
 body.dark-mode #nameInput:focus {
     background: rgba(26, 29, 35, 0.95);
-    border-color: var(--dark-coral);
-    box-shadow: 0 0 0 6px rgba(214, 69, 69, 0.2), var(--shadow-strong);
+    border-color: var(--color-secondary-light); /* Dark mode focus border */
+    box-shadow: 0 0 0 6px rgba(205, 201, 238, 0.2), var(--shadow-strong); /* Adjusted shadow color */
 }
 
 #submitBtn {
-    background: var(--turquoise);
+    background: var(--current-button-bg); /* Uses current theme button bg */
     color: white;
     padding: 1.4rem 3rem;
     font-size: 1.3rem;
@@ -543,16 +577,12 @@ body.dark-mode #nameInput:focus {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--shadow-strong);
-    font-family: 'QatarMedium', sans-serif;
+    font-family: 'Noto Sans Arabic', sans-serif; /* Consistent with body */
     position: relative;
     overflow: hidden;
     min-width: 220px;
     margin-bottom: 1rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-body.dark-mode #submitBtn {
-    background: var(--dark-turquoise);
 }
 
 html[lang="en"] #submitBtn {
@@ -562,13 +592,8 @@ html[lang="en"] #submitBtn {
 
 #submitBtn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(78, 205, 196, 0.4);
-    background: var(--coral);
-}
-
-body.dark-mode #submitBtn:hover {
-    background: var(--dark-coral);
-    box-shadow: 0 20px 40px rgba(214, 69, 69, 0.4);
+    box-shadow: 0 20px 40px var(--shadow-colored); /* Use general colored shadow variable */
+    background: var(--current-button-hover-bg); /* Use current theme button hover bg */
 }
 
 #submitBtn:active {
@@ -604,12 +629,12 @@ body.dark-mode #submitBtn:hover {
     opacity: 0;
     transform: translateY(15px);
     transition: all 0.3s ease;
-    font-family: 'QatarMedium', sans-serif;
+    font-family: 'Noto Sans Arabic', sans-serif; /* Consistent with body */
     line-height: 1.5;
     min-height: 24px;
     max-width: 100%;
     word-wrap: break-word;
-    margin-bottom: 1rem; /* Adjusted to be right below submit button */
+    margin-bottom: 1rem;
     box-shadow: var(--shadow-soft);
 }
 
@@ -622,57 +647,73 @@ html[lang="en"] #statusMessage {
     transform: translateY(0);
 }
 
+/* Status message colors based on new palette */
 #statusMessage.success {
-    background: var(--mint);
+    background: var(--color-secondary-light); /* Mint/light purple from palette */
     color: var(--text-light);
-    border: 2px solid rgba(168, 230, 207, 0.5);
+    border: 2px solid rgba(205, 201, 238, 0.5);
+}
+
+body.dark-mode #statusMessage.success {
+    background: var(--color-accent-light);
+    color: var(--text-dark);
 }
 
 #statusMessage.error {
-    background: var(--rose);
+    background: var(--color-dark-light); /* Darker blue for error */
     color: white;
-    border: 2px solid rgba(255, 139, 148, 0.5);
+    border: 2px solid rgba(139, 154, 196, 0.5);
+}
+body.dark-mode #statusMessage.error {
+    background: var(--color-primary-light);
+    color: var(--text-dark);
 }
 
 #statusMessage.warning {
-    background: var(--sunshine);
+    background: var(--color-accent-light); /* Mid-blue for warning */
     color: var(--text-light);
-    border: 2px solid rgba(255, 230, 109, 0.5);
+    border: 2px solid rgba(162, 173, 219, 0.5);
+}
+body.dark-mode #statusMessage.warning {
+    background: var(--color-secondary-light);
+    color: var(--text-dark);
 }
 
 #statusMessage.info {
-    background: var(--sky);
-    color: white;
-    border: 2px solid rgba(135, 206, 235, 0.5);
+    background: var(--color-primary-light); /* Lightest for info */
+    color: var(--text-light);
+    border: 2px solid rgba(255, 242, 224, 0.5);
 }
+body.dark-mode #statusMessage.info {
+    background: var(--color-dark-light);
+    color: white;
+}
+
 
 /* Daily Dhikr Display */
 .daily-dhikr-message {
-    margin-top: 1rem; /* Adjusted to be right below status message */
+    margin-top: 1rem;
     padding: 1rem 1.5rem;
     border-radius: 16px;
     font-weight: 500;
     font-size: 1.05rem;
-    color: var(--text-light);
-    background: rgba(255, 255, 255, 0.7); /* Slightly transparent white for light mode */
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: var(--current-text-color);
+    background: var(--current-adhkar-bg);
+    backdrop-filter: blur(10px); /* Increased blur for Dhikr box */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Thicker border */
     line-height: 1.6;
     text-align: center;
     min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Removed margin-bottom as no button below */
-    font-family: 'QatarMedium', sans-serif;
+    font-family: 'Noto Sans Arabic', sans-serif; /* Consistent with body */
     transition: all 0.3s ease;
     width: 100%;
     box-shadow: var(--shadow-soft);
 }
 
 body.dark-mode .daily-dhikr-message {
-    background: rgba(26, 29, 35, 0.7); /* Darker transparent for dark mode */
-    color: var(--text-dark);
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -690,7 +731,7 @@ html[lang="en"] .daily-dhikr-message {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
     margin-top: auto;
-    color: var(--text-light);
+    color: var(--current-text-color);
     transition: all 0.4s ease;
     width: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -700,7 +741,6 @@ html[lang="en"] .daily-dhikr-message {
 
 body.dark-mode .footer {
     background: rgba(0, 0, 0, 0.1);
-    color: var(--text-dark);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -790,7 +830,7 @@ body.dark-mode .footer-item:hover {
 /* Responsive design */
 @media screen and (max-width: 768px) {
     .main-content {
-        padding-top: 150px; /* Adjusted padding for smaller screens */
+        padding-top: 150px;
     }
     
     .container {
@@ -804,14 +844,19 @@ body.dark-mode .footer-item:hover {
     }
     
     .footer-content {
-        flex-direction: column; /* Stack contact info vertically on small screens */
+        flex-direction: column;
         gap: 1rem;
     }
     
     .liquid-top-left, .liquid-top-right, 
     .liquid-bottom-left, .liquid-bottom-right {
-        width: 250px;
-        height: 200px;
+        width: 300px; /* Slightly larger for better effect on tablet */
+        height: 250px;
+        filter: blur(15px); /* Less blur for tablet */
+    }
+    .liquid-center {
+        width: 25vw;
+        height: 25vh;
     }
     
     .geometric-shape {
@@ -822,23 +867,23 @@ body.dark-mode .footer-item:hover {
 @media screen and (max-width: 480px) {
     .top-controls {
         padding: 0.75rem 1rem;
-        height: 60px; /* Keep height consistent with larger buttons */
+        height: 60px;
     }
     
     .language-switcher {
         width: 100px;
         height: 42px;
-        border-radius: 21px; /* Corrected border-radius */
+        border-radius: 21px;
     }
     
     .lang-option {
         font-size: 14px;
-        line-height: 38px; /* Adjusted line-height */
+        line-height: 38px;
     }
     
     .slider {
         width: 42px;
-        border-radius: 19px; /* Corrected border-radius */
+        border-radius: 19px;
     }
     
     .language-switcher[data-active-lang="ar"] .slider {
@@ -848,13 +893,13 @@ body.dark-mode .footer-item:hover {
     #mode-toggle {
         width: 70px;
         height: 42px;
-        border-radius: 21px; /* Corrected border-radius */
+        border-radius: 21px;
     }
     
     .container {
         margin: 0 0.5rem;
         padding: 1.2rem;
-        gap: 0.8rem; /* Slightly more space */
+        gap: 0.8rem;
     }
     
     #site-title {
@@ -867,7 +912,7 @@ body.dark-mode .footer-item:hover {
     }
 
     #form-title {
-        font-size: 1.6rem; /* Make sure title is still prominent */
+        font-size: 1.6rem;
     }
 
     #nameInput {
@@ -878,11 +923,11 @@ body.dark-mode .footer-item:hover {
     #submitBtn {
         padding: 1.2rem 2.5rem;
         font-size: 1.2rem;
-        min-width: 180px; /* Ensure button remains large */
+        min-width: 180px;
     }
 
     #statusMessage, .daily-dhikr-message {
-        font-size: 0.95rem; /* Slightly larger for readability */
+        font-size: 0.95rem;
         padding: 0.8rem 1rem;
     }
 
@@ -892,5 +937,19 @@ body.dark-mode .footer-item:hover {
     }
     .emoji {
         font-size: 0.9rem;
+    }
+
+    .liquid-shape {
+        filter: blur(10px); /* Even less blur for small mobile */
+        opacity: 0.6;
+    }
+    .liquid-top-left, .liquid-top-right, 
+    .liquid-bottom-left, .liquid-bottom-right {
+        width: 200px;
+        height: 180px;
+    }
+    .liquid-center {
+        width: 40vw;
+        height: 40vh;
     }
 }
