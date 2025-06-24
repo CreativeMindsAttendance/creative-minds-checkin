@@ -31,6 +31,7 @@ const websiteText = document.getElementById("website-text");
  */
 function loadLang() {
     // Ensure `translations` object is available from config.js
+    // This check is crucial because `config.js` loads first
     if (typeof translations === 'undefined') {
         console.error("Error: 'translations' object not found. Make sure config.js is loaded correctly.");
         // Attempt to re-load config.js if possible or halt execution
@@ -289,6 +290,7 @@ function displayRandomDhikr() {
     }
     const randomIndex = Math.floor(Math.random() * adhkar.length);
     dailyDhikrDisplay.textContent = adhkar[randomIndex];
+    dailyDhikrDisplay.style.direction = (currentLang === "ar" ? "rtl" : "ltr"); // Ensure Dhikr text direction is correct
 }
 
 /**
