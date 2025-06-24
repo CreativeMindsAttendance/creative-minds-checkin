@@ -20,57 +20,57 @@
 }
 
 :root {
-    /* Palette from image_d8f8cf.png */
-    --color-primary-light: #FFF2E0; /* Lightest */
-    --color-secondary-light: #CDC9EE; /* Second lightest */
-    --color-accent-light: #A2AADB; /* Mid-tone accent */
-    --color-dark-light: #8B9AC4; /* Darkest from palette */
+    /* Palette from image_d90b39.png */
+    --color-lightest: #C8DABF; /* Light Green */
+    --color-light: #9CA986;   /* Muted Green */
+    --color-mid: #808D7C;    /* Grey-Green */
+    --color-darkest: #5F8F85;  /* Dark Teal-Green */
 
-    /* Derived colors for other elements in Light Mode */
-    --bg-light: var(--color-primary-light);
+    /* Derived colors for Light Mode */
+    --bg-light: var(--color-lightest);
     --text-light: #333333; /* Darker text for contrast */
     --card-bg-light: rgba(255, 255, 255, 0.85); /* Slightly transparent white for cards */
     --input-bg-light: rgba(255, 255, 255, 0.9);
-    --button-bg-light: var(--color-dark-light); /* Button uses the darkest blue */
-    --button-hover-bg-light: var(--color-accent-light); /* Hover uses mid-tone blue */
+    --button-bg-light: var(--color-darkest);
+    --button-hover-bg-light: var(--color-mid);
     --lang-toggle-bg-light: rgba(255, 255, 255, 0.8);
-    --mode-toggle-bg-light: var(--color-accent-light);
-    --site-title-creative-light: var(--color-dark-light); /* For 'Creative' */
-    --site-title-minds-light: var(--color-accent-light); /* For 'Minds' */
-    --adhkar-bg-light: rgba(255, 255, 255, 0.7); /* Slightly more opaque */
+    --mode-toggle-bg-light: var(--color-mid);
+    --site-title-creative-light: var(--color-darkest);
+    --site-title-minds-light: var(--color-light);
+    --adhkar-bg-light: rgba(255, 255, 255, 0.7);
 
     /* Liquid shapes colors - chosen to complement palette */
-    --liquid-top-left-light: #F7E9C7; /* Lighter yellow-orange tint */
-    --liquid-top-right-light: #E0E2F7; /* Lighter lavender tint */
-    --liquid-bottom-left-light: #F2DCEF; /* Light pinkish-purple tint */
-    --liquid-bottom-right-light: #CCE2F7; /* Light blue tint */
-    --liquid-center-light: #FFF2E0; /* Matches main bg for subtle effect */
+    --liquid-top-left-light: #DEE8D6; /* Lighter shade of light green */
+    --liquid-top-right-light: #B7C8A9; /* Muted light green */
+    --liquid-bottom-left-light: #A4B598; /* Deeper muted green */
+    --liquid-bottom-right-light: #8DA08C; /* Greyish green */
+    --liquid-center-light: #E0EADD; /* Very light green */
 
     /* Dark Mode Colors - Derived to maintain visual harmony */
-    --bg-dark: #2C3E50; /* Dark blue-grey base */
+    --bg-dark: #3F4F4D; /* Dark greenish-grey base */
     --text-dark: #EAEAEA; /* Light grey text */
-    --card-bg-dark: rgba(30, 40, 50, 0.9); /* Darker transparent cards */
-    --input-bg-dark: rgba(40, 50, 60, 0.9);
-    --button-bg-dark: #6C7A89; /* Muted dark blue for buttons */
-    --button-hover-bg-dark: #5A6673;
-    --lang-toggle-bg-dark: rgba(30, 40, 50, 0.8);
-    --mode-toggle-bg-dark: #5A6673;
-    --site-title-creative-dark: #A2AADB; /* Lighter blue from palette */
-    --site-title-minds-dark: #CDC9EE; /* Another light blue from palette */
+    --card-bg-dark: rgba(45, 55, 53, 0.9); /* Darker transparent cards */
+    --input-bg-dark: rgba(55, 65, 63, 0.9);
+    --button-bg-dark: #7A9B93; /* Muted dark green for buttons */
+    --button-hover-bg-dark: #6C8982;
+    --lang-toggle-bg-dark: rgba(45, 55, 53, 0.8);
+    --mode-toggle-bg-dark: #6C8982;
+    --site-title-creative-dark: #A2AADB; /* Using previous palette for contrast or adjust */
+    --site-title-minds-dark: #CDC9EE; /* Using previous palette for contrast or adjust */
     --adhkar-bg-dark: rgba(0, 0, 0, 0.5);
 
     /* Liquid shapes colors in Dark Mode */
-    --liquid-top-left-dark: #4A5660;
-    --liquid-top-right-dark: #3F4A53;
-    --liquid-bottom-left-dark: #4F5D6B;
-    --liquid-bottom-right-dark: #3A454F;
-    --liquid-center-dark: #2F3B45;
+    --liquid-top-left-dark: #4A5C5A;
+    --liquid-top-right-dark: #556865;
+    --liquid-bottom-left-dark: #607572;
+    --liquid-bottom-right-dark: #6B827E;
+    --liquid-center-dark: #4D5C5A;
 
     /* Shadows for layered effect */
     --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
     --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.18);
-    --shadow-colored: 0 6px 18px rgba(139, 154, 196, 0.2); /* Adjusted to palette */
+    --shadow-colored: 0 6px 18px rgba(95, 143, 133, 0.25); /* Adjusted to new palette */
 
     /* Active Theme Variables - these will be used in components */
     --current-bg: var(--bg-light);
@@ -101,8 +101,8 @@ body.dark-mode {
     --current-button-hover-bg: var(--button-hover-bg-dark);
     --current-lang-toggle-bg: var(--lang-toggle-bg-dark);
     --current-mode-toggle-bg: var(--mode-toggle-bg-dark);
-    --current-site-title-creative: var(--site-title-creative-dark);
-    --current-site-title-minds: var(--site-title-minds-dark);
+    --current-site-title-creative: #C8DABF; /* Adjusting for dark mode contrast */
+    --current-site-title-minds: #9CA986; /* Adjusting for dark mode contrast */
     --current-adhkar-bg: var(--adhkar-bg-dark);
 
     --current-liquid-top-left: var(--liquid-top-left-dark);
@@ -138,20 +138,20 @@ html[lang="en"] body {
 .liquid-shape {
     position: fixed;
     z-index: 1;
-    filter: blur(20px); /* Increased blur for softer look */
+    /* Removed filter: blur(20px); as requested */
     opacity: 0.7; /* Slightly more opaque */
-    transition: background 0.4s ease, opacity 0.4s ease;
+    transition: background 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease; /* Added box-shadow to transition */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
 }
 
 .liquid-top-left {
-    top: -10%; /* Adjusted for better coverage */
+    top: -10%;
     left: -10%;
-    width: 50vw; /* Use vw/vh for responsiveness */
+    width: 50vw;
     height: 50vh;
     background: var(--current-liquid-top-left);
     border-radius: 60% 40% 70% 30%;
     transform: rotate(-15deg);
-    box-shadow: var(--shadow-medium);
     animation: float 8s ease-in-out infinite;
 }
 
@@ -163,7 +163,6 @@ html[lang="en"] body {
     background: var(--current-liquid-top-right);
     border-radius: 40% 60% 30% 70%;
     transform: rotate(20deg);
-    box-shadow: var(--shadow-medium);
     animation: float 10s ease-in-out infinite reverse;
 }
 
@@ -175,7 +174,6 @@ html[lang="en"] body {
     background: var(--current-liquid-bottom-left);
     border-radius: 70% 30% 60% 40%;
     transform: rotate(25deg);
-    box-shadow: var(--shadow-medium);
     animation: float 12s ease-in-out infinite;
 }
 
@@ -187,12 +185,11 @@ html[lang="en"] body {
     background: var(--current-liquid-bottom-right);
     border-radius: 30% 70% 40% 60%;
     transform: rotate(-20deg);
-    box-shadow: var(--shadow-medium);
     animation: float 9s ease-in-out infinite reverse;
 }
 
 .liquid-center {
-    top: 50%; /* Center of the screen */
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
     width: 30vw;
@@ -200,7 +197,6 @@ html[lang="en"] body {
     background: var(--current-liquid-center);
     border-radius: 60% 40% 80% 20%;
     opacity: 0.4;
-    box-shadow: var(--shadow-soft);
     animation: float 15s ease-in-out infinite;
 }
 
@@ -219,13 +215,13 @@ html[lang="en"] body {
     height: 0;
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
-    border-bottom: 50px solid var(--color-accent-light); /* Color from palette */
+    border-bottom: 50px solid var(--color-light); /* Color from palette */
     transform: rotate(30deg);
     box-shadow: var(--shadow-soft);
     animation: rotate 20s linear infinite;
 }
 body.dark-mode .triangle-1 {
-    border-bottom-color: var(--color-dark-light); /* Dark mode color */
+    border-bottom-color: var(--color-mid); /* Dark mode color */
 }
 
 .circle-1 {
@@ -233,13 +229,13 @@ body.dark-mode .triangle-1 {
     right: 15%;
     width: 60px;
     height: 60px;
-    background: var(--color-dark-light); /* Color from palette */
+    background: var(--color-mid); /* Color from palette */
     border-radius: 50%;
     box-shadow: var(--shadow-soft);
     animation: bounce 6s ease-in-out infinite;
 }
 body.dark-mode .circle-1 {
-    background: var(--color-accent-light); /* Dark mode color */
+    background: var(--color-light); /* Dark mode color */
 }
 
 .square-1 {
@@ -247,13 +243,13 @@ body.dark-mode .circle-1 {
     left: 20%;
     width: 40px;
     height: 40px;
-    background: var(--color-secondary-light); /* Color from palette */
+    background: var(--color-darkest); /* Color from palette */
     transform: rotate(45deg);
     box-shadow: var(--shadow-soft);
     animation: pulse 4s ease-in-out infinite;
 }
 body.dark-mode .square-1 {
-    background: var(--color-dark-light); /* Dark mode color */
+    background: var(--color-lightest); /* Dark mode color */
 }
 
 .triangle-2 {
@@ -263,13 +259,13 @@ body.dark-mode .square-1 {
     height: 0;
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
-    border-bottom: 40px solid var(--color-primary-light); /* Color from palette */
+    border-bottom: 40px solid var(--color-lightest); /* Color from palette */
     transform: rotate(-45deg);
     box-shadow: var(--shadow-soft);
     animation: float 8s ease-in-out infinite;
 }
 body.dark-mode .triangle-2 {
-    border-bottom-color: var(--color-secondary-light); /* Dark mode color */
+    border-bottom-color: var(--color-light); /* Dark mode color */
 }
 
 /* Top controls */
@@ -342,21 +338,21 @@ body.dark-mode .language-switcher {
     left: 4px;
     width: 52px;
     border-radius: 21px;
-    background: var(--color-dark-light); /* Uses one of the palette colors */
+    background: var(--color-darkest); /* Uses darkest from palette */
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--shadow-colored);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
     transform: translateX(60px);
-    background: var(--color-accent-light); /* Different color for AR */
+    background: var(--color-mid); /* Uses mid from palette for AR */
 }
 
 body.dark-mode .slider {
-    background: var(--color-accent-light); /* Dark mode slider uses a lighter palette color */
+    background: var(--color-mid); /* Dark mode slider uses mid */
 }
 body.dark-mode .language-switcher[data-active-lang="ar"] .slider {
-    background: var(--color-dark-light); /* Dark mode AR slider uses a darker palette color */
+    background: var(--color-darkest); /* Dark mode AR slider uses darkest */
 }
 
 
@@ -485,7 +481,7 @@ body.dark-mode .container {
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: linear-gradient(45deg, var(--color-dark-light), var(--color-accent-light), var(--color-secondary-light), var(--color-primary-light));
+    background: linear-gradient(45deg, var(--color-darkest), var(--color-mid), var(--color-light), var(--color-lightest));
     border-radius: 35px;
     z-index: -1;
     opacity: 0.7;
@@ -493,7 +489,7 @@ body.dark-mode .container {
 }
 
 body.dark-mode .container::before {
-    background: linear-gradient(45deg, var(--bg-dark), var(--color-dark-light), var(--color-accent-light), var(--color-secondary-light));
+    background: linear-gradient(45deg, var(--bg-dark), var(--color-darkest), var(--color-mid), var(--color-light));
     opacity: 0.3;
 }
 
@@ -528,7 +524,7 @@ html[lang="en"] #form-title {
     font-size: 1.1rem;
     border-radius: 20px;
     background: var(--current-input-bg);
-    border: 3px solid var(--color-secondary-light); /* Border color from palette */
+    border: 3px solid var(--color-light); /* Border color from palette */
     text-align: center;
     margin-bottom: 1rem;
     font-family: 'Noto Sans Arabic', sans-serif; /* Consistent with body */
@@ -539,7 +535,7 @@ html[lang="en"] #form-title {
 }
 
 body.dark-mode #nameInput {
-    border-color: var(--color-dark-light); /* Dark mode border color */
+    border-color: var(--color-mid); /* Dark mode border color */
 }
 
 html[lang="en"] #nameInput {
@@ -554,16 +550,16 @@ html[lang="en"] #nameInput {
 
 #nameInput:focus {
     outline: none;
-    border-color: var(--color-accent-light); /* Focus border color from palette */
+    border-color: var(--color-darkest); /* Focus border color from palette */
     background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 0 6px rgba(162, 173, 219, 0.2), var(--shadow-strong); /* Adjusted shadow color */
+    box-shadow: 0 0 0 6px rgba(95, 143, 133, 0.2), var(--shadow-strong); /* Adjusted shadow color */
     transform: translateY(-3px);
 }
 
 body.dark-mode #nameInput:focus {
     background: rgba(26, 29, 35, 0.95);
-    border-color: var(--color-secondary-light); /* Dark mode focus border */
-    box-shadow: 0 0 0 6px rgba(205, 201, 238, 0.2), var(--shadow-strong); /* Adjusted shadow color */
+    border-color: var(--color-light); /* Dark mode focus border */
+    box-shadow: 0 0 0 6px rgba(156, 169, 134, 0.2), var(--shadow-strong); /* Adjusted shadow color */
 }
 
 #submitBtn {
@@ -649,43 +645,43 @@ html[lang="en"] #statusMessage {
 
 /* Status message colors based on new palette */
 #statusMessage.success {
-    background: var(--color-secondary-light); /* Mint/light purple from palette */
+    background: var(--color-light);
     color: var(--text-light);
-    border: 2px solid rgba(205, 201, 238, 0.5);
+    border: 2px solid rgba(156, 169, 134, 0.5);
 }
 
 body.dark-mode #statusMessage.success {
-    background: var(--color-accent-light);
+    background: var(--color-mid);
     color: var(--text-dark);
 }
 
 #statusMessage.error {
-    background: var(--color-dark-light); /* Darker blue for error */
+    background: var(--color-darkest);
     color: white;
-    border: 2px solid rgba(139, 154, 196, 0.5);
+    border: 2px solid rgba(95, 143, 133, 0.5);
 }
 body.dark-mode #statusMessage.error {
-    background: var(--color-primary-light);
+    background: var(--color-light);
     color: var(--text-dark);
 }
 
 #statusMessage.warning {
-    background: var(--color-accent-light); /* Mid-blue for warning */
+    background: var(--color-mid);
     color: var(--text-light);
-    border: 2px solid rgba(162, 173, 219, 0.5);
+    border: 2px solid rgba(128, 141, 124, 0.5);
 }
 body.dark-mode #statusMessage.warning {
-    background: var(--color-secondary-light);
+    background: var(--color-light);
     color: var(--text-dark);
 }
 
 #statusMessage.info {
-    background: var(--color-primary-light); /* Lightest for info */
+    background: var(--color-lightest);
     color: var(--text-light);
-    border: 2px solid rgba(255, 242, 224, 0.5);
+    border: 2px solid rgba(200, 218, 191, 0.5);
 }
 body.dark-mode #statusMessage.info {
-    background: var(--color-dark-light);
+    background: var(--color-darkest);
     color: white;
 }
 
@@ -850,9 +846,9 @@ body.dark-mode .footer-item:hover {
     
     .liquid-top-left, .liquid-top-right, 
     .liquid-bottom-left, .liquid-bottom-right {
-        width: 300px; /* Slightly larger for better effect on tablet */
+        width: 300px;
         height: 250px;
-        filter: blur(15px); /* Less blur for tablet */
+        /* Removed filter: blur() for responsiveness */
     }
     .liquid-center {
         width: 25vw;
@@ -940,7 +936,7 @@ body.dark-mode .footer-item:hover {
     }
 
     .liquid-shape {
-        filter: blur(10px); /* Even less blur for small mobile */
+        /* Removed filter: blur() for responsiveness */
         opacity: 0.6;
     }
     .liquid-top-left, .liquid-top-right, 
