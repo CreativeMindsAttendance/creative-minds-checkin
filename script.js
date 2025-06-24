@@ -1,6 +1,7 @@
 // Global variables for application state
 let currentLang = localStorage.getItem("lang") || "ar"; // Current language, defaults to Arabic
 let isDarkMode = localStorage.getItem("darkMode") === "true"; // Dark mode state, defaults to false
+let dhikrInterval; // Variable to hold the interval for changing dhikr
 
 // Configuration for location services and allowed names:
 // These constants are now accessed from the global `window` object,
@@ -16,7 +17,8 @@ const modeToggle = document.getElementById("mode-toggle");
 const formTitle = document.getElementById("form-title");
 const nameInput = document.getElementById("nameInput");
 const submitBtn = document.getElementById("submitBtn");
-const generateTipBtn = document.getElementById("generateTipBtn"); // Button for Gemini feature
+const dailyDhikrDisplay = document.getElementById("dailyDhikr"); // Element to display Dhikr
+const newDhikrBtn = document.getElementById("newDhikrBtn"); // Optional button for new Dhikr
 const statusMessage = document.getElementById("statusMessage");
 const locationText = document.getElementById("location-text");
 const emailText = document.getElementById("email-text");
@@ -29,7 +31,6 @@ const websiteText = document.getElementById("website-text");
  */
 function loadLang() {
     // Ensure `translations` object is available from config.js
-    // This check is crucial because `config.js` loads first
     if (typeof translations === 'undefined') {
         console.error("Error: 'translations' object not found. Make sure config.js is loaded correctly.");
         // Attempt to re-load config.js if possible or halt execution
@@ -46,7 +47,8 @@ function loadLang() {
     formTitle.textContent = t.title;
     nameInput.placeholder = t.placeholder;
     submitBtn.textContent = t.submit;
-    generateTipBtn.textContent = t.generateTipButton;
+    dailyDhikrDisplay.style.direction = (currentLang === "ar" ? "rtl" : "ltr"); // Ensure Dhikr text direction is correct
+    newDhikrBtn.textContent = t.newDhikrButton; // Update text for new Dhikr button
     locationText.textContent = t.location;
     emailText.textContent = t.email;
     websiteText.textContent = t.website;
@@ -55,7 +57,6 @@ function loadLang() {
     // This avoids flipping the entire page layout while still ensuring text reads correctly.
     nameInput.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
     statusMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
-    generateTipBtn.style.direction = (currentLang === "ar" ? "rtl" : "ltr"); // Ensure button text direction is correct
 
 
     // Update the language switcher UI (active state and slider position)
@@ -171,7 +172,7 @@ function submitAttendance() {
     // Disable inputs and buttons during processing to prevent multiple submissions
     nameInput.disabled = true;
     submitBtn.disabled = true;
-    generateTipBtn.disabled = true;
+    newDhikrBtn.disabled = true; // Disable new Dhikr button
     submitBtn.classList.add("loading"); // Show loading spinner on submit button
 
     // Validate if name input is empty
@@ -180,7 +181,7 @@ function submitAttendance() {
         // Re-enable elements if validation fails
         nameInput.disabled = false;
         submitBtn.disabled = false;
-        generateTipBtn.disabled = false;
+        newDhikrBtn.disabled = false; // Re-enable new Dhikr button
         submitBtn.classList.remove("loading");
         nameInput.focus(); // Focus back on input for user to correct
         return;
@@ -199,150 +200,96 @@ function submitAttendance() {
         // Re-enable elements
         nameInput.disabled = false;
         submitBtn.disabled = false;
-        generateTipBtn.disabled = false;
+        newDhikrBtn.disabled = false; // Re-enable new Dhikr button
         submitBtn.classList.remove("loading");
         return;
     }
 
     // Access location constants from the global scope (defined in config.js)
-    // Using `window` explicitly ensures they are accessed from the global scope
-    // where `config.js` has defined them.
     const DEST_LAT_GLOBAL = window.DEST_LAT;
     const DEST_LON_GLOBAL = window.DEST_LON;
     const ALLOWED_DISTANCE_KM_GLOBAL = window.ALLOWED_DISTANCE_KM;
     const ALLOWED_OUTSIDE_NAMES_GLOBAL = window.ALLOWED_OUTSIDE_NAMES;
+
 
     // Check if the user's name is in the allowed list for outside check-ins
     if (ALLOWED_OUTSIDE_NAMES_GLOBAL.map(n => n.toLowerCase()).includes(name.toLowerCase())) {
         saveAttendance(name); // Save attendance without GPS check
         showMessage(t.success, "success");
         nameInput.value = ""; // Clear input
-        // Re-enable elements
-        nameInput.disabled = false;
-        submitBtn.disabled = false;
-        generateTipBtn.disabled = false;
-        submitBtn.classList.remove("loading");
-        return;
-    }
-
-    // If Geolocation API is not available in the browser
-    if (!navigator.geolocation) {
-        showMessage(t.geoError, "error");
-        // Re-enable elements
-        nameInput.disabled = false;
-        submitBtn.disabled = false;
-        generateTipBtn.disabled = false;
-        submitBtn.classList.remove("loading");
-        return;
-    }
-
-    showMessage(t.loading, "info"); // Show loading message while checking location
-
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            const userLat = position.coords.latitude;
-            const userLon = position.coords.longitude;
-            // Use the global constants for distance calculation
-            const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT_GLOBAL, DEST_LON_GLOBAL);
-
-            if (distance <= ALLOWED_DISTANCE_KM_GLOBAL) {
-                saveAttendance(name); // Save attendance if within allowed distance
-                showMessage(t.success, "success");
-                nameInput.value = ""; // Clear input
-            } else {
-                showMessage(t.outOfRange, "error"); // User is too far from the institute
-            }
-            // Always re-enable elements after a successful or failed location check
+    } else {
+        // If Geolocation API is not available in the browser
+        if (!navigator.geolocation) {
+            showMessage(t.geoError, "error");
+            // Re-enable elements
             nameInput.disabled = false;
             submitBtn.disabled = false;
-            generateTipBtn.disabled = false;
+            newDhikrBtn.disabled = false; // Re-enable new Dhikr button
             submitBtn.classList.remove("loading");
-        },
-        (error) => {
-            console.error("Geolocation error:", error); // Log detailed error to console
-            let errorMessage = t.geoError; // Default error message
-            // Provide more specific error messages based on Geolocation API error codes
-            if (error.code === error.PERMISSION_DENIED) {
-                errorMessage = t.permissionDenied || t.geoError;
-            } else if (error.code === error.POSITION_UNAVAILABLE) {
-                errorMessage = t.positionUnavailable || t.geoError;
-            } else if (error.code === error.TIMEOUT) {
-                errorMessage = t.timeout || t.geoError;
-            }
-            showMessage(errorMessage, "error"); // Display specific error message
-            // Always re-enable elements after an error
-            nameInput.disabled = false;
-            submitBtn.disabled = false;
-            generateTipBtn.disabled = false;
-            submitBtn.classList.remove("loading");
-        },
-        {
-            enableHighAccuracy: true, // Request the most accurate position
-            timeout: 10000, // Maximum time (10 seconds) to wait for a position
-            maximumAge: 0 // Do not use a cached position; request a fresh one
+            return;
         }
-    );
+
+        showMessage(t.loading, "info"); // Show loading message while checking location
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLat = position.coords.latitude;
+                const userLon = position.coords.longitude;
+                // Use the global constants for distance calculation
+                const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT_GLOBAL, DEST_LON_GLOBAL);
+
+                if (distance <= ALLOWED_DISTANCE_KM_GLOBAL) {
+                    saveAttendance(name); // Save attendance if within allowed distance
+                    showMessage(t.success, "success");
+                    nameInput.value = ""; // Clear input
+                } else {
+                    showMessage(t.outOfRange, "error"); // User is too far from the institute
+                }
+                // Always re-enable elements after a successful or failed location check
+                nameInput.disabled = false;
+                submitBtn.disabled = false;
+                newDhikrBtn.disabled = false; // Re-enable new Dhikr button
+                submitBtn.classList.remove("loading");
+            },
+            (error) => {
+                console.error("Geolocation error:", error); // Log detailed error to console
+                let errorMessage = t.geoError; // Default error message
+                // Provide more specific error messages based on Geolocation API error codes
+                if (error.code === error.PERMISSION_DENIED) {
+                    errorMessage = t.permissionDenied || t.geoError;
+                } else if (error.code === error.POSITION_UNAVAILABLE) {
+                    errorMessage = t.positionUnavailable || t.geoError;
+                } else if (error.code === error.TIMEOUT) {
+                    errorMessage = t.timeout || t.geoError;
+                }
+                showMessage(errorMessage, "error"); // Display specific error message
+                // Always re-enable elements after an error
+                nameInput.disabled = false;
+                submitBtn.disabled = false;
+                newDhikrBtn.disabled = false; // Re-enable new Dhikr button
+                submitBtn.classList.remove("loading");
+            },
+            {
+                enableHighAccuracy: true, // Request the most accurate position
+                timeout: 10000, // Maximum time (10 seconds) to wait for a position
+                maximumAge: 0 // Do not use a cached position; request a fresh one
+            }
+        );
+    }
 }
 
 /**
- * Asynchronously generates a study/work tip using the Gemini API.
- * Handles loading states and displays the tip or an error message.
+ * Displays a random Dhikr from the pre-defined list in config.js.
  */
-async function generateStudyTip() {
-    const t = translations[currentLang]; // Get current language translations
-
-    // Disable buttons and input during API call
-    generateTipBtn.disabled = true;
-    generateTipBtn.classList.add("loading"); // Show loading spinner on the tip button
-    submitBtn.disabled = true;
-    nameInput.disabled = true;
-
-    showMessage(t.generatingTip, "info"); // Show loading message for tip generation
-
-    try {
-        let chatHistory = [];
-        const prompt = "Generate a short, encouraging and actionable study or work tip for students/employees in an educational institute like 'Creative Minds'. Keep it concise and positive. Respond in one sentence.";
-        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-        const payload = { contents: chatHistory };
-        const apiKey = ""; // API key will be provided by the Canvas environment at runtime
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        // Check if the response was successful (HTTP status 200 OK)
-        if (!response.ok) {
-            const errorBody = await response.text();
-            throw new Error(`Gemini API HTTP error! Status: ${response.status}, Body: ${errorBody}`);
-        }
-
-        const result = await response.json();
-
-        // Check if the API response structure is as expected and contains content
-        if (result.candidates && result.candidates.length > 0 &&
-            result.candidates[0].content && result.candidates[0].content.parts &&
-            result.candidates[0].content.parts.length > 0) {
-            const tipText = result.candidates[0].content.parts[0].text;
-            showMessage(`✨ ${tipText}`, "success", 7000); // Display the generated tip for longer
-        } else {
-            showMessage(t.tipError, "error"); // Show a generic error if response structure is bad
-            console.error("Gemini API response structure unexpected:", result);
-        }
-    } catch (error) {
-        console.error("Error calling Gemini API:", error); // Log any network or API errors
-        showMessage(t.tipError, "error"); // Display error message to user
-    } finally {
-        // Always re-enable buttons and input, and remove loading state
-        generateTipBtn.disabled = false;
-        generateTipBtn.classList.remove("loading");
-        submitBtn.disabled = false;
-        nameInput.disabled = false;
+function displayRandomDhikr() {
+    // Ensure `adhkar` array is available from config.js
+    if (typeof adhkar === 'undefined' || adhkar.length === 0) {
+        dailyDhikrDisplay.textContent = translations[currentLang].adhkarError;
+        return;
     }
+    const randomIndex = Math.floor(Math.random() * adhkar.length);
+    dailyDhikrDisplay.textContent = adhkar[randomIndex];
 }
-
 
 /**
  * Initializes the application: loads preferences, sets up event listeners.
@@ -355,12 +302,20 @@ function init() {
     // Load and apply language preferences from localStorage
     loadLang();
 
+    // Display initial random Dhikr
+    displayRandomDhikr();
+
+    // Optional: Auto-change Dhikr every X seconds
+    // clearInterval(dhikrInterval); // Clear any existing interval before setting a new one
+    // dhikrInterval = setInterval(displayRandomDhikr, 10000); // Change every 10 seconds
+
     // Event listener for language toggle button
     langToggle.addEventListener("click", () => {
         // Toggle language between Arabic and English
         currentLang = (currentLang === "ar" ? "en" : "ar");
         localStorage.setItem("lang", currentLang); // Save new language preference
         loadLang(); // Reload UI with new language
+        displayRandomDhikr(); // Display a new Dhikr relevant to the language
     });
 
     // Event listener for dark mode toggle button
@@ -372,8 +327,10 @@ function init() {
     // Event listener for the "Submit Attendance" button
     submitBtn.addEventListener("click", submitAttendance);
 
-    // Event listener for the "Generate Study Tip" button
-    generateTipBtn.addEventListener("click", generateStudyTip);
+    // Event listener for the "New Dhikr" button (if visible)
+    if (newDhikrBtn) {
+        newDhikrBtn.addEventListener("click", displayRandomDhikr);
+    }
 
     // Allow "Enter" key press in the name input field to submit attendance
     nameInput.addEventListener("keypress", (e) => {
