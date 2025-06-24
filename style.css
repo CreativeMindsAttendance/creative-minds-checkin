@@ -37,8 +37,7 @@
     --button-shadow-light: rgba(146, 169, 189, 0.3); /* Button shadow */
     --language-switcher-bg-light: rgba(255, 255, 255, 0.9); /* Language switcher background */
     --mode-toggle-bg-light: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Mode toggle background */
-    --adhkar-btn-gradient-start-light: #FF9A8B; /* Soft orange-pink for Adhkar feature */
-    --adhkar-btn-gradient-end-light: #FF6A88;
+    --adhkar-bg-light: rgba(255, 255, 255, 0.15); /* Background for Dhikr message */
 
     /* Background curvy shapes colors (specific for light mode) - Adjusted for image match */
     --bg-primary-light: #E0F2F7; /* Lighter background color, top left */
@@ -60,8 +59,7 @@
     --button-shadow-dark: rgba(102, 126, 234, 0.3); /* Dark mode button shadow */
     --language-switcher-bg-dark: rgba(30, 41, 59, 0.9); /* Dark mode language switcher background */
     --mode-toggle-bg-dark: linear-gradient(135deg, #667eea, #764ba2); /* Dark mode toggle background */
-    --adhkar-btn-gradient-start-dark: #8E2DE2; /* Dark purple for Adhkar feature */
-    --adhkar-btn-gradient-end-dark: #4A00E0;
+    --adhkar-bg-dark: rgba(0, 0, 0, 0.15); /* Background for Dhikr message in dark mode */
 
     /* Background curvy shapes colors (specific for dark mode) */
     --curve-color-top-dark: #2E4057; /* Darker blueish */
@@ -93,8 +91,7 @@
     --current-button-shadow: var(--button-shadow-light);
     --current-language-switcher-bg: var(--language-switcher-bg-light);
     --current-mode-toggle-bg: var(--mode-toggle-bg-light);
-    --current-adhkar-btn-gradient-start: var(--adhkar-btn-gradient-start-light);
-    --current-adhkar-btn-gradient-end: var(--adhkar-btn-gradient-end-light);
+    --current-adhkar-bg: var(--adhkar-bg-light);
 
     --current-bg-primary: var(--bg-primary-light);
     --current-bg-secondary: var(--bg-secondary-light);
@@ -115,8 +112,7 @@ body.dark-mode {
     --current-button-shadow: var(--button-shadow-dark);
     --current-language-switcher-bg: var(--language-switcher-bg-dark);
     --current-mode-toggle-bg: var(--mode-toggle-bg-dark);
-    --current-adhkar-btn-gradient-start: var(--adhkar-btn-gradient-start-dark);
-    --current-adhkar-btn-gradient-end: var(--adhkar-btn-gradient-end-dark);
+    --current-adhkar-bg: var(--adhkar-bg-dark);
 
     --current-bg-primary: var(--bg-primary-dark);
     --current-bg-secondary: var(--bg-secondary-dark);
@@ -240,7 +236,7 @@ html[lang="en"] body {
     backdrop-filter: blur(8px); /* Slightly less blur */
     background: rgba(255, 255, 255, 0.05); /* Lighter background to allow title to show */
     transition: background 0.4s ease;
-    height: 50px; /* Fixed height for consistency */
+    height: 60px; /* Increased height for bigger buttons */
 }
 
 body.dark-mode .top-controls {
@@ -255,10 +251,10 @@ body.dark-mode .top-controls {
 /* Language switcher */
 .language-switcher {
     display: flex;
-    width: 80px;
-    height: 36px;
+    width: 100px; /* Wider */
+    height: 44px; /* Taller */
     background-color: var(--current-language-switcher-bg);
-    border-radius: 20px;
+    border-radius: 22px; /* Adjusted border-radius for new height */
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -277,8 +273,8 @@ body.dark-mode .top-controls {
     flex: 1;
     text-align: center;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 36px;
+    font-size: 14px; /* Slightly larger font */
+    line-height: 44px; /* Adjusted line-height for new height */
     z-index: 2;
     position: relative;
     color: var(--current-text-color);
@@ -294,15 +290,15 @@ body.dark-mode .top-controls {
     top: 2px;
     bottom: 2px;
     left: 2px;
-    width: 36px;
-    border-radius: 18px;
+    width: 44px; /* Adjusted width for new height */
+    border-radius: 20px; /* Adjusted border-radius for new height */
     background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px); /* Moves slider to AR position */
+    transform: translateX(54px); /* Adjusted translation for new width */
 }
 .language-switcher[data-active-lang="en"] .slider {
     transform: translateX(0); /* Moves slider to EN position */
@@ -310,9 +306,9 @@ body.dark-mode .top-controls {
 
 /* Dark mode toggle */
 #mode-toggle {
-    width: 60px;
-    height: 36px;
-    border-radius: 18px;
+    width: 70px; /* Wider */
+    height: 44px; /* Taller */
+    border-radius: 22px; /* Adjusted border-radius for new height */
     background: var(--current-mode-toggle-bg);
     display: flex;
     align-items: center;
@@ -331,11 +327,11 @@ body.dark-mode .top-controls {
 }
 
 #mode-toggle .toggle-icon {
-    width: 28px;
-    height: 28px;
+    width: 36px; /* Larger icon */
+    height: 36px; /* Larger icon */
     background-color: white;
     border-radius: 50%;
-    font-size: 14px;
+    font-size: 18px; /* Larger icon font size */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -346,7 +342,7 @@ body.dark-mode .top-controls {
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(24px); /* Moves icon to the right for dark mode */
+    transform: translateX(22px); /* Adjusted translation for new width */
 }
 
 #mode-toggle .toggle-icon::before {
@@ -366,7 +362,7 @@ body.dark-mode .top-controls {
     justify-content: center;
     padding: 1rem;
     /* Adjusted padding-top to ensure content is below fixed site title and controls */
-    padding-top: calc(50px + 60px + 1.5rem); /* top-controls height + site-title approx height + margin */
+    padding-top: calc(60px + 60px + 1.5rem); /* top-controls height + site-title approx height + margin */
     margin-bottom: 0; /* Handled by flex-grow on main */
     width: 100%;
     z-index: 1; /* Ensure it's above background elements */
@@ -376,7 +372,7 @@ body.dark-mode .top-controls {
     width: 90%;
     max-width: 420px;
     background: var(--current-form-bg);
-    padding: 1.8rem 1.8rem; /* Reduced padding */
+    padding: 1.5rem 1.5rem; /* Further reduced padding */
     border-radius: 24px;
     text-align: center;
     box-shadow:
@@ -389,7 +385,7 @@ body.dark-mode .top-controls {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem; /* Reduced gap between elements inside container */
+    gap: 0.6rem; /* Further reduced gap between elements inside container */
 }
 
 body.dark-mode .container {
@@ -476,7 +472,7 @@ body.dark-mode #nameInput:focus {
     position: relative;
     overflow: hidden;
     min-width: 200px; /* Wider button */
-    margin-bottom: 0.6rem; /* Space between submit and Dhikr message */
+    margin-bottom: 0.6rem; /* Space between submit and status message */
 }
 html[lang="en"] #submitBtn {
     font-family: 'Philosopher', serif; /* For English */
@@ -512,72 +508,10 @@ html[lang="en"] #submitBtn {
     animation: spin 1s linear infinite;
 }
 
-/* Daily Dhikr Display */
-.daily-dhikr-message {
-    margin-top: 0.6rem; /* Reduced margin */
-    padding: 1rem 1.5rem; /* Adjusted padding */
-    border-radius: 16px;
-    font-weight: 500;
-    font-size: 1.05rem;
-    color: var(--current-text-color);
-    background: rgba(255, 255, 255, 0.15); /* Slightly visible background */
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    line-height: 1.6;
-    text-align: center;
-    min-height: 50px; /* Ensure some height even if empty */
-    display: flex; /* Use flex for vertical centering of text */
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0.6rem; /* Reduced space before status message */
-    font-family: 'QatarMedium', sans-serif; /* Apply Arabic font */
-    transition: all 0.3s ease;
-    width: 100%; /* Ensure it takes full width */
-}
-
-body.dark-mode .daily-dhikr-message {
-    background: rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-html[lang="en"] .daily-dhikr-message {
-    font-family: 'Philosopher', serif; /* Apply English font */
-    font-size: 1.1rem;
-}
-
-/* Optional New Dhikr Button */
-.new-dhikr-btn {
-    background: linear-gradient(135deg, var(--current-adhkar-btn-gradient-start), var(--current-adhkar-btn-gradient-end));
-    color: white;
-    padding: 1rem 2rem; /* Larger padding */
-    font-size: 1rem; /* Larger font */
-    font-weight: 500;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 106, 136, 0.2);
-    font-family: 'QatarMedium', sans-serif;
-    margin-top: 0.5rem; /* Reduced margin */
-    min-width: 160px;
-}
-html[lang="en"] .new-dhikr-btn {
-    font-family: 'Philosopher', serif;
-    font-size: 1.05rem;
-}
-.new-dhikr-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 106, 136, 0.3);
-}
-.new-dhikr-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(255, 106, 136, 0.1);
-}
-
 
 /* Status message */
 #statusMessage {
-    margin-top: 0.6rem; /* Reduced margin */
+    margin-top: 0.6rem; /* Adjusted margin to be right below submit button */
     padding: 0.75rem 1rem;
     border-radius: 12px;
     font-weight: 500;
@@ -590,6 +524,7 @@ html[lang="en"] .new-dhikr-btn {
     min-height: 20px; /* Prevents layout shift */
     max-width: 100%; /* Ensure it doesn't overflow */
     word-wrap: break-word; /* Break long words */
+    margin-bottom: 0.6rem; /* Space between status message and dhikr */
 }
 html[lang="en"] #statusMessage {
     font-family: 'Philosopher', serif; /* For English */
@@ -625,6 +560,39 @@ html[lang="en"] #statusMessage {
     border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
+/* Daily Dhikr Display */
+.daily-dhikr-message {
+    margin-top: 0.6rem; /* Adjusted margin to be right below status message */
+    padding: 1rem 1.5rem; /* Adjusted padding */
+    border-radius: 16px;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--current-text-color);
+    background: var(--current-adhkar-bg); /* Use theme variable for background */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    line-height: 1.6;
+    text-align: center;
+    min-height: 50px; /* Ensure some height even if empty */
+    display: flex; /* Use flex for vertical centering of text */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.6rem; /* Reduced space before status message */
+    font-family: 'QatarMedium', sans-serif; /* Apply Arabic font */
+    transition: all 0.3s ease;
+    width: 100%; /* Ensure it takes full width */
+}
+
+html[lang="en"] .daily-dhikr-message {
+    font-family: 'Philosopher', serif; /* Apply English font */
+    font-size: 1.1rem;
+}
+
+/* New Dhikr Button (removed from HTML, but keeping styles if it were to be re-added) */
+.new-dhikr-btn {
+    display: none; /* Hide the button */
+}
+
 
 /* Footer styling */
 .footer {
@@ -647,7 +615,7 @@ body.dark-mode .footer {
 .footer-content {
     display: flex;
     justify-content: center; /* Center horizontally */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: nowrap; /* Prevent wrapping on desktop */
     gap: 1.0rem; /* Reduced gap between items */
     max-width: 600px;
     margin: 0 auto;
@@ -709,7 +677,7 @@ body.dark-mode .footer {
     }
     .main-content {
         /* Adjust padding for mobile based on new fixed title position */
-        padding-top: calc(50px + 60px + 1rem); /* top-controls height + site-title approx height + margin */
+        padding-top: calc(60px + 60px + 1rem); /* top-controls height + site-title approx height + margin */
     }
     .footer-content {
         flex-direction: column; /* Stack contact info vertically on small screens */
@@ -720,54 +688,66 @@ body.dark-mode .footer {
 @media screen and (max-width: 480px) {
     .top-controls {
         padding: 0.75rem 1rem;
+        height: 50px; /* Smaller height for very small screens */
+    }
+    .language-switcher {
+        width: 90px;
+        height: 38px;
+        border-radius: 19px;
+    }
+    .lang-option {
+        font-size: 12px;
+        line-height: 38px;
+    }
+    .slider {
+        width: 38px;
+        border-radius: 17px;
+    }
+    .language-switcher[data-active-lang="ar"] .slider {
+        transform: translateX(50px);
+    }
+    #mode-toggle {
+        width: 60px;
+        height: 38px;
+        border-radius: 19px;
+    }
+    #mode-toggle .toggle-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    #mode-toggle.active .toggle-icon {
+        transform: translateX(18px);
     }
 
     .container {
-        padding: 1.5rem 1.2rem; /* More reduced padding for very small screens */
-        margin: 0 0.8rem;
-        gap: 0.6rem; /* Even smaller gap */
-    }
-
-    .language-switcher, #mode-toggle {
-        width: 70px;
-        height: 32px;
-    }
-    .lang-option {
-        font-size: 11px;
-        line-height: 32px;
-    }
-    .slider {
-        width: 32px;
-    }
-    .language-switcher[data-active-lang="ar"] .slider {
-        transform: translateX(36px);
-    }
-    #mode-toggle .toggle-icon {
-        width: 24px;
-        height: 24px;
-        font-size: 12px;
-    }
-    #mode-toggle.active .toggle-icon {
-        transform: translateX(20px);
+        padding: 1.2rem 1rem; /* More reduced padding for very small screens */
+        margin: 0 0.5rem;
+        gap: 0.5rem; /* Even smaller gap */
     }
 
     #site-title {
         font-size: clamp(24px, 6vw, 36px);
+        margin-top: calc(50px + 0.5rem); /* Adjusted for mobile */
     }
 
     #form-title {
         font-size: 1.3rem;
     }
-    #nameInput, #submitBtn, .daily-dhikr-message, .new-dhikr-btn {
+    #nameInput, #submitBtn, .daily-dhikr-message {
         padding: 0.7rem 0.9rem;
         font-size: 0.9rem;
     }
     #submitBtn {
         min-width: 140px;
+        padding: 1rem 2rem; /* Adjusted for smaller screens */
+        font-size: 1.1rem;
     }
-    .new-dhikr-btn {
-        min-width: 120px;
+    .daily-dhikr-message {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
     }
+
     .footer-content {
         gap: 0.5rem; /* Even smaller gap for mobile vertical stack */
         font-size: 0.75rem; /* Even smaller font */
