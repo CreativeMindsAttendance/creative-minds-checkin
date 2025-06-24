@@ -5,7 +5,7 @@ const translations = {
         title: "Attendance Form",
         placeholder: "Enter your full name",
         submit: "Check In",
-        newDhikrButton: "New Dhikr", // Text for new Dhikr button
+        // newDhikrButton: "New Dhikr", // Removed as button is gone
         success: "✅ Your attendance has been recorded successfully!",
         already: "⚠️ You have already checked in today as ({name}).",
         nameMismatch: '❌ You have already checked in today as <span dir="ltr">({name})</span>. You cannot use a different name.',
@@ -26,7 +26,7 @@ const translations = {
         title: "نموذج تحضير",
         placeholder: "اكتب اسمك الثلاثي",
         submit: "تسجيل الحضور",
-        newDhikrButton: "ذكر جديد", // Text for new Dhikr button
+        // newDhikrButton: "ذكر جديد", // Removed as button is gone
         success: "✅ تم تسجيل حضورك بنجاح!",
         already: "⚠️ لقد تم تحضيرك مسبقًا اليوم باسم ({name}).",
         nameMismatch: '❌ لقد تم تحضيرك مسبقًا اليوم باسم <span dir="ltr">({name})</span>، لا يمكنك اختيار اسم مختلف.',
