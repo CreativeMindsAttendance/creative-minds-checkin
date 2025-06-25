@@ -172,30 +172,29 @@ html[lang="en"] body {
 }
 
 
-/* Specific positioning and scaling for each SVG (reverted to previous good state) */
+/* Specific positioning and scaling for each SVG (reverted to previous good state from css-code-v26) */
 .svg-top-left-blob-light {
-    top: -20vh; /* Reverted */
-    left: -20vw; /* Reverted */
-    width: 60vw; /* Reverted */
-    height: 60vh; /* Reverted */
+    top: -20vh;
+    left: -20vw;
+    width: 60vw;
+    height: 60vh;
     opacity: 1;
 }
 
 .svg-middle-left-blob-green {
-    bottom: -5vh; /* Reverted */
-    left: -10vw; /* Reverted */
-    width: 40vw; /* Reverted */
-    height: 40vh; /* Reverted */
+    bottom: -5vh;
+    left: -10vw;
+    width: 40vw;
+    height: 40vh;
     opacity: 1;
 }
 
 .svg-form-backdrop-blob {
-    /* Reverted to the centering trick, but with visually adjusted values */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 450px; /* Keeping fixed px for form backdrop */
-    height: 600px; /* Keeping fixed px for form backdrop */
+    width: 450px;
+    height: 600px;
     max-width: 90vw;
     max-height: 90vh;
     z-index: 2;
@@ -203,10 +202,10 @@ html[lang="en"] body {
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -10vh; /* Reverted */
-    right: -10vw; /* Reverted */
-    width: 30vw; /* Reverted */
-    height: 40vh; /* Reverted */
+    bottom: -10vh;
+    right: -10vw;
+    width: 30vw;
+    height: 40vh;
     opacity: 1;
 }
 
@@ -374,7 +373,6 @@ body.dark-mode .bg-svg-container {
     font-size: clamp(28px, 6vw, 48px);
     margin-top: 80px; /* Adjusted margin to provide space from top controls */
     margin-bottom: 20px;
-    /* Removed display:flex and related properties, it's just text now */
     display: block; /* Ensures it takes full width for text-align: center */
     z-index: 2;
     position: relative;
@@ -385,15 +383,6 @@ body.dark-mode .bg-svg-container {
     background-clip: text;
     animation: fadeInDown 1s ease-out;
 }
-
-/* Styling for the logo within the site title (removed, as logo is back in form) */
-/*
-.site-title-logo {
-    width: 60px;
-    height: auto;
-    object-fit: contain;
-}
-*/
 
 
 /* Main content container (pushes footer down) */
@@ -432,9 +421,9 @@ body.dark-mode .container {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Logo Image Styling (Re-added, as it's back in the form) */
+/* Logo Image Styling - Returned to original position, adjusted size */
 .logo {
-    width: 100px;
+    width: 100px; /* Adjusted for better visibility */
     height: auto;
     object-fit: contain;
     margin-bottom: 0.5rem;
