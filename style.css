@@ -47,7 +47,7 @@
     --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD); /* Blue gradient for slider */
 
 
-    /* Dark Mode Colors (approximated from light mode, adjust as needed) */
+    /* Dark Mode Colors (approximated from light mode) */
     --main-bg-dark: #1a1a2e;
     --text-color-dark: #f8fafc;
     --form-bg-dark: #2A3B50; /* Darker form background */
@@ -138,7 +138,7 @@ html[lang="en"] body {
     left: -10vw; /* Shifted right from -150px */
     width: 60vw;
     height: 60vh;
-    mix-blend-mode: screen; /* Standard blend mode to mimic plus-lighter */
+    /* Removed mix-blend-mode for better compatibility */
     opacity: 0.8; /* Adjust opacity for subtle effect */
 }
 
@@ -147,7 +147,7 @@ html[lang="en"] body {
     left: -15vw; /* Shifted further left */
     width: 35vw; /* Slightly larger */
     height: 35vh; /* Slightly larger */
-    mix-blend-mode: multiply; /* Example blend mode */
+    /* Removed mix-blend-mode for better compatibility */
     opacity: 0.7;
 }
 
@@ -157,7 +157,7 @@ html[lang="en"] body {
     width: 55vw; /* Adjusted size */
     height: 80vh; /* Adjusted size */
     z-index: -1; /* Slightly higher z-index to be closer to form */
-    mix-blend-mode: screen; /* Standard blend mode */
+    /* Removed mix-blend-mode for better compatibility */
     opacity: 0.7;
 }
 
@@ -166,7 +166,7 @@ html[lang="en"] body {
     right: -10vw; /* Adjusted position */
     width: 30vw;
     height: 40vh;
-    mix-blend-mode: multiply; /* Example blend mode */
+    /* Removed mix-blend-mode for better compatibility */
     opacity: 0.6;
 }
 
@@ -183,30 +183,34 @@ html[lang="en"] body {
     width: 100%;
     height: 100%;
     display: block; /* Remove extra space below inline SVGs */
+    /* Ensure internal SVG fills are not overridden by a global rule */
+    fill: inherit; /* Ensure SVG path takes fill from its container if set */
 }
 
 /* Dark mode SVG appearance adjustments */
 /* Using filter and opacity to simulate dark mode color changes for SVGs */
 body.dark-mode .bg-svg-container {
-    filter: invert(0.8) hue-rotate(180deg) brightness(0.8); /* General inversion for all SVGs */
-    opacity: 0.6; /* Reduced opacity in dark mode */
+    filter: invert(0.9) hue-rotate(180deg) brightness(0.8); /* General inversion for all SVGs */
+    opacity: 0.7; /* Reduced opacity in dark mode */
 }
 /* More specific overrides if needed for individual SVGs in dark mode */
+/* Note: Direct fill colors within the SVG paths override CSS 'fill' on the container,
+   so filters are the primary way to adjust colors for these embedded SVGs. */
 body.dark-mode .svg-top-left-blob-light {
     filter: brightness(0.7) hue-rotate(180deg);
-    opacity: 0.7;
+    opacity: 0.8;
 }
 body.dark-mode .svg-middle-left-blob-green {
     filter: brightness(0.8) hue-rotate(180deg);
-    opacity: 0.8;
+    opacity: 0.9;
 }
 body.dark-mode .svg-form-backdrop-blob {
     filter: brightness(0.6) hue-rotate(180deg);
-    opacity: 0.6;
+    opacity: 0.7;
 }
 body.dark-mode .svg-bottom-right-blob-dark {
     filter: brightness(1.2) hue-rotate(180deg); /* Make it lighter in dark mode */
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 
