@@ -108,18 +108,18 @@ body.dark-mode {
 }
 
 html, body {
-    min-height: 100vh; /* Ensure body takes full viewport height */
-    background-color: var(--current-main-bg); /* Base background color */
+    min-height: 100vh;
+    background-color: var(--current-main-bg);
     color: var(--current-text-color);
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
     display: flex;
-    flex-direction: column; /* Allows main content to push footer down */
-    font-family: 'QatarMedium', sans-serif; /* Default for Arabic using local font */
+    flex-direction: column;
+    font-family: 'QatarMedium', sans-serif;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 html[lang="en"] body {
-    font-family: 'Philosopher', serif; /* For English content from local font */
+    font-family: 'Philosopher', serif;
 }
 
 /* Base styling for SVG containers */
@@ -127,55 +127,9 @@ html[lang="en"] body {
     position: fixed;
     pointer-events: none; /* Allows clicks to pass through to elements behind */
     z-index: -2; /* Layered below main content */
-    transition: filter 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Smooth transition for dark mode filter */
-    /* Use overflow hidden if SVGs extend beyond their desired area */
-}
-
-/* Specific positioning and scaling for each SVG based on Figma */
-/* Adjusted positions to match Figma more closely */
-.svg-top-left-blob-light {
-    top: -10vh; /* Raised from -150px */
-    left: -10vw; /* Shifted right from -150px */
-    width: 60vw;
-    height: 60vh;
-    /* Removed mix-blend-mode for better compatibility */
-    opacity: 0.8; /* Adjust opacity for subtle effect */
-}
-
-.svg-middle-left-blob-green {
-    bottom: 20vh;
-    left: -15vw; /* Shifted further left */
-    width: 35vw; /* Slightly larger */
-    height: 35vh; /* Slightly larger */
-    /* Removed mix-blend-mode for better compatibility */
-    opacity: 0.7;
-}
-
-.svg-form-backdrop-blob {
-    top: -5vh; /* Adjusted to be slightly above the form */
-    right: -10vw; /* Adjusted position */
-    width: 55vw; /* Adjusted size */
-    height: 80vh; /* Adjusted size */
-    z-index: -1; /* Slightly higher z-index to be closer to form */
-    /* Removed mix-blend-mode for better compatibility */
-    opacity: 0.7;
-}
-
-.svg-bottom-right-blob-dark {
-    bottom: -10vh; /* Adjusted position */
-    right: -10vw; /* Adjusted position */
-    width: 30vw;
-    height: 40vh;
-    /* Removed mix-blend-mode for better compatibility */
-    opacity: 0.6;
-}
-
-.svg-footer-bg {
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 200px; /* Fixed height for footer background */
-    z-index: -1; /* Should be above other background SVGs but below footer content */
+    /* Removed transition for filters/opacity for initial debugging */
+    /* Removed mix-blend-mode for initial debugging */
+    opacity: 1; /* Set opacity to 1 for debugging visibility */
 }
 
 /* Styling for SVGs themselves within their containers */
@@ -183,35 +137,90 @@ html[lang="en"] body {
     width: 100%;
     height: 100%;
     display: block; /* Remove extra space below inline SVGs */
-    /* Ensure internal SVG fills are not overridden by a global rule */
-    fill: inherit; /* Ensure SVG path takes fill from its container if set */
 }
 
-/* Dark mode SVG appearance adjustments */
-/* Using filter and opacity to simulate dark mode color changes for SVGs */
-body.dark-mode .bg-svg-container {
-    filter: invert(0.9) hue-rotate(180deg) brightness(0.8); /* General inversion for all SVGs */
-    opacity: 0.7; /* Reduced opacity in dark mode */
+/* Explicitly set fill colors for SVGs to ensure visibility */
+.svg-top-left-blob-light svg path {
+    fill: #D3DEDC; /* A light, visible color for testing */
 }
+.svg-middle-left-blob-green svg path {
+    fill: #92A9BD; /* A muted blue for testing */
+}
+.svg-form-backdrop-blob svg path {
+    fill: #C0D8E4; /* A light blue for testing */
+}
+.svg-bottom-right-blob-dark svg path {
+    fill: #5A4E63; /* A dark purple-grey for testing */
+}
+.svg-footer-bg svg rect {
+    fill: #15253A; /* Dark blue for footer */
+}
+
+
+/* Specific positioning and scaling for each SVG based on Figma */
+.svg-top-left-blob-light {
+    top: -10vh;
+    left: -10vw;
+    width: 60vw;
+    height: 60vh;
+}
+
+.svg-middle-left-blob-green {
+    bottom: 20vh;
+    left: -15vw;
+    width: 35vw;
+    height: 35vh;
+}
+
+.svg-form-backdrop-blob {
+    top: -5vh;
+    right: -10vw;
+    width: 55vw;
+    height: 80vh;
+    z-index: -1;
+}
+
+.svg-bottom-right-blob-dark {
+    bottom: -10vh;
+    right: -10vw;
+    width: 30vw;
+    height: 40vh;
+}
+
+.svg-footer-bg {
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 200px;
+    z-index: -1;
+}
+
+
+/* Dark mode SVG appearance adjustments - Temporarily removed filters for debugging */
+body.dark-mode .bg-svg-container {
+    /* filter: invert(0.9) hue-rotate(180deg) brightness(0.8); */
+    opacity: 1; /* Set opacity to 1 for debugging visibility */
+}
+
 /* More specific overrides if needed for individual SVGs in dark mode */
 /* Note: Direct fill colors within the SVG paths override CSS 'fill' on the container,
    so filters are the primary way to adjust colors for these embedded SVGs. */
-body.dark-mode .svg-top-left-blob-light {
-    filter: brightness(0.7) hue-rotate(180deg);
-    opacity: 0.8;
+body.dark-mode .svg-top-left-blob-light svg path {
+    fill: #5A6D81; /* Example dark mode color */
 }
-body.dark-mode .svg-middle-left-blob-green {
-    filter: brightness(0.8) hue-rotate(180deg);
-    opacity: 0.9;
+body.dark-mode .svg-middle-left-blob-green svg path {
+    fill: #A0B38A; /* Example dark mode color */
 }
-body.dark-mode .svg-form-backdrop-blob {
-    filter: brightness(0.6) hue-rotate(180deg);
-    opacity: 0.7;
+body.dark-mode .svg-form-backdrop-blob svg path {
+    fill: #3A4C62; /* Example dark mode color */
 }
-body.dark-mode .svg-bottom-right-blob-dark {
-    filter: brightness(1.2) hue-rotate(180deg); /* Make it lighter in dark mode */
-    opacity: 0.6;
+body.dark-mode .svg-bottom-right-blob-dark svg path {
+    fill: #323232; /* Example dark mode color */
 }
+body.dark-mode .svg-footer-bg svg rect {
+    fill: #0A1B2C; /* Darker footer in dark mode */
+}
+
 
 
 /* Top controls (language and dark mode toggles) */
@@ -220,12 +229,12 @@ body.dark-mode .svg-bottom-right-blob-dark {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    height: 60px; /* Fixed height for consistent spacing */
+    height: 60px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100; /* Ensure it's always on top */
+    z-index: 100;
     backdrop-filter: blur(10px);
     background: var(--current-control-bg);
     border-bottom: 1px solid var(--current-control-border);
@@ -348,17 +357,15 @@ body.dark-mode .svg-bottom-right-blob-dark {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
     font-size: clamp(28px, 6vw, 48px);
-    /* Adjusted top margin to ensure visibility and proper spacing below top-controls */
-    margin-top: calc(60px + 20px); /* height of top-controls + desired margin */
+    margin-top: calc(60px + 20px);
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    z-index: 2; /* Ensure it's above background SVGs */
-    position: relative; /* Needed for z-index to work */
+    z-index: 2;
+    position: relative;
     font-weight: 700;
-    /* Gradient color from Figma for "Creative Minds" */
     background: linear-gradient(90deg, #607D8B 0%, #455A64 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -376,16 +383,16 @@ body.dark-mode .svg-bottom-right-blob-dark {
 
 /* Main content container (pushes footer down) */
 .main-content {
-    flex-grow: 1; /* Allows it to take available space */
+    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    padding-top: 20px; /* Minimal padding here, as site-title has a generous margin */
+    padding-top: 20px;
     margin-bottom: 0;
     width: 100%;
-    z-index: 10; /* Ensure main content is above background elements */
-    position: relative; /* Important for z-index context */
+    z-index: 10;
+    position: relative;
 }
 
 .container {
@@ -395,7 +402,6 @@ body.dark-mode .svg-bottom-right-blob-dark {
     padding: 2.5rem 2rem;
     border-radius: 24px;
     text-align: center;
-    /* Soft, diffused shadow from Figma */
     box-shadow: var(--current-shadow-soft-large);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -699,11 +705,11 @@ html[lang="en"] .footer-content {
 /* Responsive design */
 @media screen and (max-width: 768px) {
     #site-title {
-        margin-top: calc(60px + 10px); /* Adjusted for smaller screens too */
+        margin-top: calc(60px + 10px);
         font-size: clamp(24px, 5vw, 42px);
     }
     .main-content {
-        padding-top: 10px; /* Adjust padding-top for main content */
+        padding-top: 10px;
     }
 }
 
@@ -742,7 +748,7 @@ html[lang="en"] .footer-content {
 
     #site-title {
         font-size: clamp(20px, 6vw, 36px);
-        margin-top: calc(60px + 10px); /* Consistent top margin for small screens */
+        margin-top: calc(60px + 10px);
     }
 
     #form-title {
