@@ -98,6 +98,8 @@ html[lang="en"] body {
     position: fixed; /* Keep them fixed in the background */
     z-index: -1; /* Send to background */
     transition: all 0.4s ease; /* Smooth transition for dark mode */
+    /* Add pointer-events: none; to prevent shapes from intercepting clicks */
+    pointer-events: none;
 }
 
 /* Vector images - using placeholders for now */
@@ -218,7 +220,7 @@ body.dark-mode .ellipse-3 {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    /* Reduced z-index to be below top-controls and main-content */
+    /* Reduced z-index to be below top-controls and main-content, but still above background */
     z-index: 50; 
     font-weight: 700;
     /* Gradient text color (kept as previous for aesthetic appeal) */
@@ -390,7 +392,7 @@ body.dark-mode .top-controls {
     margin-bottom: 0;
     width: 100%;
     /* Ensure main content is above site title */
-    z-index: 100; /* Increased z-index */
+    z-index: 100; /* Increased z-index, higher than site-title */
     position: relative;
 }
 
