@@ -299,6 +299,7 @@ body.dark-mode {
   width: 90px;
   object-fit: contain;
   animation: pulse 2s infinite;
+  margin-bottom: 1.2rem;
 }
 
 #form-title {
@@ -306,6 +307,7 @@ body.dark-mode {
   font-weight: 600;
   color: var(--current-text-color);
   animation: fadeIn 1s ease-out;
+  margin-bottom: 0.8rem;
 }
 
 html[lang="en"] #form-title {
@@ -325,6 +327,7 @@ html[lang="en"] #form-title {
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
   color: var(--current-text-color);
+  margin-bottom: 1rem;
 }
 
 #nameInput::placeholder {
@@ -353,6 +356,7 @@ html[lang="en"] #form-title {
   position: relative;
   overflow: hidden;
   min-width: 200px;
+  margin-bottom: 1.2rem;
 }
 
 #submitBtn.loading::after {
