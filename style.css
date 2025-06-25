@@ -172,13 +172,16 @@ html[lang="en"] body {
 .svg-footer-bg svg rect {
     fill: var(--svg-footer-color);
 }
+
+
 /* Specific positioning and scaling for each SVG based on Figma */
 .svg-top-left-blob-light {
-    top: -17.77vh; /* بناءً على Y من Figma */
-    left: -5.14vw;  /* بناءً على X من Figma */
-    width: 54.74vw; /* بناءً على W من Figma */
-    height: 77.30vh; /* بناءً على H من Figma */
-    opacity: 0.7; /* يمكنك ضبط الشفافية حسب رغبتك */
+    /* Adjusted based on visual estimation for a 1920x1080 artboard */
+    top: -20vh; /* Moved slightly more visible */
+    left: -20vw; /* Moved slightly more visible */
+    width: 60vw; /* Made smaller */
+    height: 60vh; /* Made smaller */
+    opacity: 1; /* Fully opaque */
 }
 
 .svg-middle-left-blob-green {
@@ -191,13 +194,18 @@ html[lang="en"] body {
 }
 
 .svg-form-backdrop-blob {
-    /* Adjusted based on visual estimation for centering behind form */
-    top: -5vh; /* Higher up */
-    right: -10vw; /* Closer to the right edge */
-    width: 55vw; /* Smaller */
-    height: 80vh; /* Smaller */
+    /* Adjusted based on Figma's provided numbers, converted from 1920x1080 artboard */
+    top: 13.33vh; /* Calculated from Y: 144px */
+    left: 29.48vw; /* Calculated from X: 566px */
+    width: 41.05vw; /* Calculated from W: 788.23px */
+    height: 73.29vh; /* Calculated from H: 791.5px */
     z-index: 2; /* Increased z-index to be above other background SVGs */
     opacity: 1; /* Fully opaque */
+    /*
+        Note: The 'right' property is now overridden by 'left' since both are set.
+        Positioning with 'left' and 'top' is generally more consistent for SVGs.
+        You might need to adjust 'left' to center it perfectly if the form is truly centered.
+    */
 }
 
 .svg-bottom-right-blob-dark {
