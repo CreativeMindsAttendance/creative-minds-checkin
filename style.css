@@ -1,9 +1,7 @@
 /* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
 @font-face {
     font-family: 'SwinglyLours';
-    src: url('fonts/SwinglyLours.otf') format('opentype'),
-         url('fonts/SwinglyLours.woff2') format('woff2'),
-         url('fonts/SwinglyLours.woff') format('woff');
+    src: url('fonts/SwinglyLours.otf') format('opentype'); /* Updated to only .otf as per user's file */
     font-weight: normal;
     font-style: normal;
     font-display: swap; /* Ensures font loads nicely */
@@ -11,16 +9,20 @@
 
 @font-face {
     font-family: 'QatarMedium';
-    src: url('fonts/QatarMedium.woff2') format('woff2'),
-         url('fonts/QatarMedium.woff') format('woff'),
-         url('fonts/QatarMedium.ttf') format('truetype'),
-         url('fonts/QatarMedium.otf') format('opentype');
+    src: url('fonts/QatarMedium.ttf') format('truetype'); /* Updated to only .ttf as per user's file */
     font-weight: 500; /* Assuming Medium weight, adjust if necessary */
     font-style: normal;
     font-display: swap; /* Ensures font loads nicely */
 }
 
-/* Google Fonts: Only Philosopher for English content (loaded via link in HTML) */
+@font-face {
+    font-family: 'Philosopher'; /* Adding local Philosopher font as well */
+    src: url('fonts/PhilosopherRegular.ttf') format('truetype');
+    font-weight: 400; /* Assuming Regular weight for Philosopher, adjust if necessary */
+    font-style: normal;
+    font-display: swap;
+}
+/* Removed Google Fonts link for Philosopher from HTML as it's now local */
 
 
 :root {
@@ -60,7 +62,7 @@
 
     --control-bg-dark: rgba(0, 0, 0, 0.5);
     --control-border-dark: rgba(255, 255, 255, 0.1);
-    --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2); /* Dark mode blue-purple gradient */
+    --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
 
 
     /* Active Theme Variables */
@@ -117,7 +119,7 @@ html, body {
 }
 
 html[lang="en"] body {
-    font-family: 'Philosopher', serif; /* For English content from Google Fonts */
+    font-family: 'Philosopher', serif; /* For English content from local font */
 }
 
 /* Base styling for SVG containers */
@@ -126,42 +128,46 @@ html[lang="en"] body {
     pointer-events: none; /* Allows clicks to pass through to elements behind */
     z-index: -2; /* Layered below main content */
     transition: filter 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Smooth transition for dark mode filter */
-    overflow: hidden; /* Clip contents that overflow the SVG's own viewBox */
+    /* Use overflow hidden if SVGs extend beyond their desired area */
 }
 
 /* Specific positioning and scaling for each SVG based on Figma */
+/* Adjusted positions to match Figma more closely */
 .svg-top-left-blob-light {
-    top: -150px;
-    left: -150px;
+    top: -10vh; /* Raised from -150px */
+    left: -10vw; /* Shifted right from -150px */
     width: 60vw;
     height: 60vh;
-    /* This SVG has fill="#D7DDDD" and mix-blend-mode:plus-lighter */
-    /* To make it appear darker in dark mode, we'll invert/adjust brightness */
+    mix-blend-mode: screen; /* Standard blend mode to mimic plus-lighter */
+    opacity: 0.8; /* Adjust opacity for subtle effect */
 }
 
 .svg-middle-left-blob-green {
     bottom: 20vh;
-    left: -10vw;
-    width: 30vw;
-    height: 30vh;
-    /* This SVG has fill="#809165" */
+    left: -15vw; /* Shifted further left */
+    width: 35vw; /* Slightly larger */
+    height: 35vh; /* Slightly larger */
+    mix-blend-mode: multiply; /* Example blend mode */
+    opacity: 0.7;
 }
 
 .svg-form-backdrop-blob {
-    top: -10vh; /* Adjust as needed to align with the form container */
-    right: -20vw;
-    width: 60vw;
-    height: 90vh;
-    z-index: -1; /* Slightly higher z-index if it's meant to be closer to form */
-    /* This SVG has fill="white" and angular gradient with mix-blend-mode:plus-lighter */
+    top: -5vh; /* Adjusted to be slightly above the form */
+    right: -10vw; /* Adjusted position */
+    width: 55vw; /* Adjusted size */
+    height: 80vh; /* Adjusted size */
+    z-index: -1; /* Slightly higher z-index to be closer to form */
+    mix-blend-mode: screen; /* Standard blend mode */
+    opacity: 0.7;
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -150px;
-    right: -100px;
+    bottom: -10vh; /* Adjusted position */
+    right: -10vw; /* Adjusted position */
     width: 30vw;
     height: 40vh;
-    /* This SVG has fill="#2C398B" with fill-opacity="0.46" */
+    mix-blend-mode: multiply; /* Example blend mode */
+    opacity: 0.6;
 }
 
 .svg-footer-bg {
@@ -170,7 +176,6 @@ html[lang="en"] body {
     width: 100vw;
     height: 200px; /* Fixed height for footer background */
     z-index: -1; /* Should be above other background SVGs but below footer content */
-    /* This SVG has fill="#15253A" */
 }
 
 /* Styling for SVGs themselves within their containers */
@@ -181,21 +186,27 @@ html[lang="en"] body {
 }
 
 /* Dark mode SVG appearance adjustments */
+/* Using filter and opacity to simulate dark mode color changes for SVGs */
+body.dark-mode .bg-svg-container {
+    filter: invert(0.8) hue-rotate(180deg) brightness(0.8); /* General inversion for all SVGs */
+    opacity: 0.6; /* Reduced opacity in dark mode */
+}
+/* More specific overrides if needed for individual SVGs in dark mode */
 body.dark-mode .svg-top-left-blob-light {
-    filter: brightness(0.6) hue-rotate(180deg); /* Attempt to invert/darken */
-    opacity: 0.8;
-}
-body.dark-mode .svg-middle-left-blob-green {
     filter: brightness(0.7) hue-rotate(180deg);
-    opacity: 0.9;
-}
-body.dark-mode .svg-form-backdrop-blob {
-    filter: brightness(0.5) hue-rotate(180deg);
     opacity: 0.7;
 }
-body.dark-mode .svg-bottom-right-blob-dark {
-    filter: brightness(1.5); /* Make it lighter in dark mode */
+body.dark-mode .svg-middle-left-blob-green {
+    filter: brightness(0.8) hue-rotate(180deg);
+    opacity: 0.8;
+}
+body.dark-mode .svg-form-backdrop-blob {
+    filter: brightness(0.6) hue-rotate(180deg);
     opacity: 0.6;
+}
+body.dark-mode .svg-bottom-right-blob-dark {
+    filter: brightness(1.2) hue-rotate(180deg); /* Make it lighter in dark mode */
+    opacity: 0.5;
 }
 
 
@@ -212,8 +223,8 @@ body.dark-mode .svg-bottom-right-blob-dark {
     width: 100%;
     z-index: 100; /* Ensure it's always on top */
     backdrop-filter: blur(10px);
-    background: var(--current-control-bg); /* Use new color variable */
-    border-bottom: 1px solid var(--current-control-border); /* Subtle border */
+    background: var(--current-control-bg);
+    border-bottom: 1px solid var(--current-control-border);
     transition: background 0.4s ease, border-color 0.4s ease;
 }
 
@@ -235,7 +246,7 @@ body.dark-mode .svg-bottom-right-blob-dark {
     backdrop-filter: blur(10px);
     border: 1px solid var(--current-control-border);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Simplified shadow */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .language-switcher:hover {
@@ -256,7 +267,7 @@ body.dark-mode .svg-bottom-right-blob-dark {
 }
 
 .lang-option.active {
-    color: white; /* Color of active language text */
+    color: white;
 }
 
 .slider {
@@ -272,10 +283,10 @@ body.dark-mode .svg-bottom-right-blob-dark {
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px); /* Moves slider to AR position */
+    transform: translateX(40px);
 }
 .language-switcher[data-active-lang="en"] .slider {
-    transform: translateX(0); /* Moves slider to EN position */
+    transform: translateX(0);
 }
 
 /* Dark mode toggle */
@@ -316,15 +327,15 @@ body.dark-mode .svg-bottom-right-blob-dark {
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(24px); /* Moves icon to the right for dark mode */
+    transform: translateX(24px);
 }
 
 #mode-toggle .toggle-icon::before {
-    content: "☀️"; /* Sun icon */
+    content: "☀️";
 }
 
 #mode-toggle.active .toggle-icon::before {
-    content: "🌙"; /* Moon icon */
+    content: "🌙";
 }
 
 
@@ -333,7 +344,8 @@ body.dark-mode .svg-bottom-right-blob-dark {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
     font-size: clamp(28px, 6vw, 48px);
-    margin-top: calc(60px + 20px); /* Height of top-controls + desired spacing */
+    /* Adjusted top margin to ensure visibility and proper spacing below top-controls */
+    margin-top: calc(60px + 20px); /* height of top-controls + desired margin */
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -343,7 +355,7 @@ body.dark-mode .svg-bottom-right-blob-dark {
     position: relative; /* Needed for z-index to work */
     font-weight: 700;
     /* Gradient color from Figma for "Creative Minds" */
-    background: linear-gradient(90deg, #607D8B 0%, #455A64 100%); /* Example dark blue-grey gradient */
+    background: linear-gradient(90deg, #607D8B 0%, #455A64 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -365,7 +377,7 @@ body.dark-mode .svg-bottom-right-blob-dark {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    padding-top: 20px; /* Minimal padding here, top margin of site-title controls spacing */
+    padding-top: 20px; /* Minimal padding here, as site-title has a generous margin */
     margin-bottom: 0;
     width: 100%;
     z-index: 10; /* Ensure main content is above background elements */
@@ -380,19 +392,18 @@ body.dark-mode .svg-bottom-right-blob-dark {
     border-radius: 24px;
     text-align: center;
     /* Soft, diffused shadow from Figma */
-    box-shadow: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5); /* Figma-like shadow */
-    backdrop-filter: blur(20px); /* Keep the blur for depth */
+    box-shadow: var(--current-shadow-soft-large);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     animation: fadeInUp 1s ease-out 0.3s both;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem; /* Space between elements */
+    gap: 1rem;
 }
 
 body.dark-mode .container {
-    box-shadow: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -444,7 +455,7 @@ html[lang="en"] #nameInput {
 
 #nameInput:focus {
     outline: none;
-    border-color: var(--current-button-primary-bg); /* Use button color for focus */
+    border-color: var(--current-button-primary-bg);
     background-color: var(--current-input-bg);
     box-shadow: 0 0 0 4px rgba(54, 66, 81, 0.1);
     transform: translateY(-2px);
@@ -455,7 +466,7 @@ body.dark-mode #nameInput:focus {
 
 /* Submit button */
 #submitBtn {
-    background: var(--current-button-primary-bg); /* Solid color based on Figma */
+    background: var(--current-button-primary-bg);
     color: var(--current-button-text);
     padding: 1rem 2rem;
     font-size: 1rem;
@@ -506,7 +517,7 @@ html[lang="en"] #submitBtn {
 
 /* New Gemini Feature Button */
 #generateTipBtn {
-    background: var(--current-button-secondary-bg); /* Olive green based on Figma */
+    background: var(--current-button-secondary-bg);
     color: var(--current-button-text);
     padding: 1rem 2rem;
     font-size: 1rem;
@@ -624,10 +635,6 @@ html[lang="en"] #statusMessage {
     z-index: 11; /* Ensure footer content is above its SVG background */
 }
 
-body.dark-mode .footer {
-    /* Background still transparent, SVG handles color */
-}
-
 .footer-content {
     display: flex;
     justify-content: center;
@@ -688,7 +695,7 @@ html[lang="en"] .footer-content {
 /* Responsive design */
 @media screen and (max-width: 768px) {
     #site-title {
-        margin-top: calc(60px + 10px); /* Height of top-controls + desired spacing for smaller screens */
+        margin-top: calc(60px + 10px); /* Adjusted for smaller screens too */
         font-size: clamp(24px, 5vw, 42px);
     }
     .main-content {
