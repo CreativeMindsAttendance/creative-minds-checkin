@@ -44,7 +44,7 @@ function loadLang() {
     // as per user requirement, and remains English.
     formTitle.textContent = t.title;
     nameInput.placeholder = t.placeholder;
-    submitBtn.querySelector('.check-in').textContent = t.submit; // Updated to target the span inside button
+    submitBtn.textContent = t.submit;
 
     locationText.textContent = t.location;
     emailText.textContent = t.email;
