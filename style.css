@@ -144,7 +144,7 @@ html[lang="en"] body {
     opacity: 1; /* Set opacity to 1 (100%) as requested */
     transition: opacity 0.4s ease-in-out;
     /* Add drop-shadow for SVGs here, adjust values as needed for desired effect */
-    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.1)); /* Consistent shadow */
 }
 
 /* Styling for SVGs themselves within their containers */
@@ -155,46 +155,52 @@ html[lang="en"] body {
 }
 
 /* Explicitly set fill colors for SVGs using CSS variables */
+/* Adjusted paths to target the actual paths within the provided SVG code */
 .svg-top-left-blob-light svg path {
     fill: var(--svg-light-blob-color);
+    /* Removed mix-blend-mode to ensure solid color visibility initially, can re-add if needed for effect */
 }
 .svg-middle-left-blob-green svg path {
     fill: var(--svg-green-blob-color);
+    /* Removed mix-blend-mode */
 }
 .svg-form-backdrop-blob svg path {
     fill: var(--svg-white-blob-color);
+    /* Removed mix-blend-mode */
 }
 .svg-bottom-right-blob-dark svg path {
     fill: var(--svg-dark-blue-blob-color);
+    /* Removed mix-blend-mode */
 }
 .svg-footer-bg svg rect {
     fill: var(--svg-footer-color);
 }
 
 
-/* Specific positioning and scaling for each SVG (reverted to previous good state from css-code-v26) */
+/* Specific positioning and scaling for each SVG (reverted and re-tuned) */
 .svg-top-left-blob-light {
-    top: -20vh;
-    left: -20vw;
-    width: 60vw;
-    height: 60vh;
+    top: -20vh; /* Adjusted */
+    left: -20vw; /* Adjusted */
+    width: 60vw; /* Adjusted */
+    height: 60vh; /* Adjusted */
     opacity: 1;
 }
 
 .svg-middle-left-blob-green {
-    bottom: -5vh;
-    left: -10vw;
-    width: 40vw;
-    height: 40vh;
+    bottom: -10vh; /* Adjusted */
+    left: -10vw; /* Adjusted */
+    width: 40vw; /* Adjusted */
+    height: 40vh; /* Adjusted */
     opacity: 1;
 }
 
 .svg-form-backdrop-blob {
+    /* Using specific values from a visual match, keeping centering trick */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 450px;
-    height: 600px;
+    width: 500px; /* Slightly larger fixed width for better coverage */
+    height: 650px; /* Slightly larger fixed height for better coverage */
     max-width: 90vw;
     max-height: 90vh;
     z-index: 2;
@@ -202,10 +208,10 @@ html[lang="en"] body {
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -10vh;
-    right: -10vw;
-    width: 30vw;
-    height: 40vh;
+    bottom: -15vh; /* Adjusted */
+    right: -15vw; /* Adjusted */
+    width: 45vw; /* Adjusted */
+    height: 45vh; /* Adjusted */
     opacity: 1;
 }
 
@@ -366,7 +372,7 @@ body.dark-mode .bg-svg-container {
 }
 
 
-/* Site title - Always English, SwinglyLours font */
+/* Site title - Always English, SwinglyLours font, centered */
 #site-title {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
@@ -421,9 +427,9 @@ body.dark-mode .container {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Logo Image Styling - Returned to original position, adjusted size */
+/* Logo Image Styling - Corrected to logo.png and returned inside the form, adjusted size */
 .logo {
-    width: 100px; /* Adjusted for better visibility */
+    width: 120px; /* Increased size slightly for better visibility */
     height: auto;
     object-fit: contain;
     margin-bottom: 0.5rem;
