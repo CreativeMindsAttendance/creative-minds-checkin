@@ -153,7 +153,6 @@ body.dark-mode {
   --current-box-bg: var(--box-bg-dark);
   --current-language-switcher-bg: rgba(255, 255, 255, 0.1);
   --current-mode-toggle-bg: rgba(255, 255, 255, 0.1);
-}
 
 .language-switcher {
   display: flex;
