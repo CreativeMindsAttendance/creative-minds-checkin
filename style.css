@@ -1,475 +1,749 @@
-/* ========== 1. Fonts & Base ========== */
+/* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
 @font-face {
-  font-family: 'SwinglyLours';
-  src: url('fonts/SwinglyLours.otf') format('opentype'),
-       url('fonts/SwinglyLours.woff2') format('woff2'),
-       url('fonts/SwinglyLours.woff') format('woff');
-  font-display: swap;
+    font-family: 'SwinglyLours';
+    src: url('fonts/SwinglyLours.otf') format('opentype'),
+         url('fonts/SwinglyLours.woff2') format('woff2'),
+         url('fonts/SwinglyLours.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Ensures font loads nicely */
 }
 
 @font-face {
-  font-family: 'QatarMedium';
-  src: url('fonts/QatarMedium.woff2') format('woff2'),
-       url('fonts/QatarMedium.woff') format('woff'),
-       url('fonts/QatarMedium.ttf') format('truetype'),
-       url('fonts/QatarMedium.otf') format('opentype');
-  font-weight: 500;
-  font-display: swap;
+    font-family: 'QatarMedium';
+    src: url('fonts/QatarMedium.woff2') format('woff2'),
+         url('fonts/QatarMedium.woff') format('woff'),
+         url('fonts/QatarMedium.ttf') format('truetype'),
+         url('fonts/QatarMedium.otf') format('opentype');
+    font-weight: 500; /* Assuming Medium weight, adjust if necessary */
+    font-style: normal;
+    font-display: swap; /* Ensures font loads nicely */
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Google Fonts: Only Philosopher for English content (loaded via link in HTML) */
+
 
 :root {
-  --main-bg-light: #ffffff;
-  --main-bg-dark: #121212;
-  --text-light: #1e1e1e;
-  --text-dark: #f5f5f5;
-  --accent1-light: #92A9BD;
-  --accent2-light: #7C99AC;
-  --soft-pink-light: #FFEFEF;
-  --shadow: rgba(0, 0, 0, 0.1);
+    /* Light Mode Colors from Figma Analysis */
+    --main-bg-light: #E9F1F0; /* Overall background */
+    --text-color-light: #323232; /* Darker grey for text */
+    --form-bg-light: #FFFFFF; /* Pure white for form container */
+    --input-bg-light: rgba(255, 255, 255, 0.8); /* input background */
 
-  --button-gradient-start: #7C99AC;
-  --button-gradient-end: #92A9BD;
+    /* Button colors */
+    --button-primary-bg-light: #364251; /* Dark blue-grey for main button */
+    --button-secondary-bg-light: #809165; /* Olive green for secondary button */
+    --button-text-light: #FFFFFF;
 
-  --box-bg-light: #ffffff;
-  --box-bg-dark: #1f1f1f;
+    /* Shadows */
+    --shadow-soft-large: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5); /* For container */
+    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.1); /* General button shadow */
 
-  --current-bg: var(--main-bg-light);
-  --current-text-color: var(--text-light);
-  --current-button-gradient-start: var(--button-gradient-start);
-  --current-button-gradient-end: var(--button-gradient-end);
-  --current-box-bg: var(--box-bg-light);
-  --current-language-switcher-bg: rgba(255, 255, 255, 0.2);
-  --current-mode-toggle-bg: rgba(255, 255, 255, 0.2);
+    /* Language switcher / Mode toggle */
+    --control-bg-light: rgba(255, 255, 255, 0.9);
+    --control-border-light: rgba(255, 255, 255, 0.2);
+    --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD); /* Blue gradient for slider */
 
-  --current-bg-primary: #D3DEDC;
-  --current-bg-secondary: #FFEFEF;
-  --current-curvy-shape-left: #92A9BD;
-  --current-curvy-shape-right: #7C99AC;
-  --current-input-bg: rgba(255,255,255,0.2);
-  --current-accent1: #92A9BD;
-  --current-button-shadow: rgba(0, 0, 0, 0.1);
-  --success-color: #059669;
-  --error-color: #dc2626;
-  --current-adhkar-bg: rgba(255, 255, 255, 0.08);
-}
 
-html, body {
-  min-height: 100vh;
-  background-color: var(--current-main-bg);
-  color: var(--current-text-color);
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  font-family: 'QatarMedium', sans-serif;
-  transition: background-color 0.4s ease, color 0.4s ease;
-}
+    /* Dark Mode Colors (approximated from light mode, adjust as needed) */
+    --main-bg-dark: #1a1a2e;
+    --text-color-dark: #f8fafc;
+    --form-bg-dark: #2A3B50; /* Darker form background */
+    --input-bg-dark: #3A4C62;
 
-html[lang="en"] body {
-  font-family: 'Philosopher', serif;
-}
+    --button-primary-bg-dark: #5A6D81; /* Lighter dark blue-grey for main button */
+    --button-secondary-bg-dark: #A0B38A; /* Lighter olive green for secondary button */
+    --button-text-dark: #FFFFFF;
 
-/* ========== SVG Backgrounds ========== */
-.bg-deco {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
-}
+    --shadow-soft-large-dark: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
+    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.2);
 
-.svg-bg {
-  position: absolute;
-  z-index: -1;
-}
+    --control-bg-dark: rgba(0, 0, 0, 0.5);
+    --control-border-dark: rgba(255, 255, 255, 0.1);
+    --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2); /* Dark mode blue-purple gradient */
 
-.svg-bg-1 { top: 0; left: 0; width: 100%; }
-.svg-bg-2 { bottom: 0; left: 0; width: 100%; }
-.svg-bg-3 { top: 15%; right: 5%; width: 300px; }
-.svg-bg-4 { bottom: 5%; left: 5%; width: 300px; }
-.svg-bg-5 { top: 30%; left: 0; width: 100%; }
-.svg-bg-6 { top: 5%; left: 50%; transform: translateX(-50%); width: 200px; }
 
-/* ========== 3. Site Title & Controls ========== */
-#site-title {
-  text-align: center;
-  font-family: 'SwinglyLours', cursive;
-  font-size: clamp(36px, 7vw, 60px);
-  position: fixed;
-  top: 50px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  z-index: 101;
-  font-weight: 700;
-  background: linear-gradient(135deg, #7C99AC, #92A9BD);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: fadeInDown 1s ease-out;
-  padding-top: 10px;
-}
+    /* Active Theme Variables */
+    --current-main-bg: var(--main-bg-light);
+    --current-text-color: var(--text-color-light);
+    --current-form-bg: var(--form-bg-light);
+    --current-input-bg: var(--input-bg-light);
+    --current-button-primary-bg: var(--button-primary-bg-light);
+    --current-button-secondary-bg: var(--button-secondary-bg-light);
+    --current-button-text: var(--button-text-light);
+    --current-shadow-soft-large: var(--shadow-soft-large);
+    --current-shadow-button: var(--shadow-button);
+    --current-control-bg: var(--control-bg-light);
+    --current-control-border: var(--control-border-light);
+    --current-slider-bg: var(--slider-bg-light);
 
-.top-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.05);
-  transition: background 0.4s ease;
-  height: 60px;
-}
-
-body {
-  background-color: var(--current-bg);
-  color: var(--current-text-color);
-  font-family: 'Philosopher', sans-serif;
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body.dark-mode .top-controls {
-  background: rgba(0, 0, 0, 0.05);
+    /* Status colors (remain constant) */
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
 }
 
 body.dark-mode {
-  --current-bg: var(--main-bg-dark);
-  --current-text-color: var(--text-dark);
-  --current-box-bg: var(--box-bg-dark);
-  --current-language-switcher-bg: rgba(255, 255, 255, 0.1);
-  --current-mode-toggle-bg: rgba(255, 255, 255, 0.1);
+    --current-main-bg: var(--main-bg-dark);
+    --current-text-color: var(--text-color-dark);
+    --current-form-bg: var(--form-bg-dark);
+    --current-input-bg: var(--input-bg-dark);
+    --current-button-primary-bg: var(--button-primary-bg-dark);
+    --current-button-secondary-bg: var(--button-secondary-bg-dark);
+    --current-button-text: var(--button-text-dark);
+    --current-shadow-soft-large: var(--shadow-soft-large-dark);
+    --current-shadow-button: var(--shadow-button-dark);
+    --current-control-bg: var(--control-bg-dark);
+    --current-control-border: var(--control-border-dark);
+    --current-slider-bg: var(--slider-bg-dark);
+}
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    background-color: var(--current-main-bg); /* Base background color */
+    color: var(--current-text-color);
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    display: flex;
+    flex-direction: column; /* Allows main content to push footer down */
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic using local font */
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+html[lang="en"] body {
+    font-family: 'Philosopher', serif; /* For English content from Google Fonts */
+}
+
+/* Base styling for SVG containers */
+.bg-svg-container {
+    position: fixed;
+    pointer-events: none; /* Allows clicks to pass through to elements behind */
+    z-index: -2; /* Layered below main content */
+    transition: filter 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Smooth transition for dark mode filter */
+    overflow: hidden; /* Clip contents that overflow the SVG's own viewBox */
+}
+
+/* Specific positioning and scaling for each SVG based on Figma */
+.svg-top-left-blob-light {
+    top: -150px;
+    left: -150px;
+    width: 60vw;
+    height: 60vh;
+    /* This SVG has fill="#D7DDDD" and mix-blend-mode:plus-lighter */
+    /* To make it appear darker in dark mode, we'll invert/adjust brightness */
+}
+
+.svg-middle-left-blob-green {
+    bottom: 20vh;
+    left: -10vw;
+    width: 30vw;
+    height: 30vh;
+    /* This SVG has fill="#809165" */
+}
+
+.svg-form-backdrop-blob {
+    top: -10vh; /* Adjust as needed to align with the form container */
+    right: -20vw;
+    width: 60vw;
+    height: 90vh;
+    z-index: -1; /* Slightly higher z-index if it's meant to be closer to form */
+    /* This SVG has fill="white" and angular gradient with mix-blend-mode:plus-lighter */
+}
+
+.svg-bottom-right-blob-dark {
+    bottom: -150px;
+    right: -100px;
+    width: 30vw;
+    height: 40vh;
+    /* This SVG has fill="#2C398B" with fill-opacity="0.46" */
+}
+
+.svg-footer-bg {
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 200px; /* Fixed height for footer background */
+    z-index: -1; /* Should be above other background SVGs but below footer content */
+    /* This SVG has fill="#15253A" */
+}
+
+/* Styling for SVGs themselves within their containers */
+.bg-svg-container svg {
+    width: 100%;
+    height: 100%;
+    display: block; /* Remove extra space below inline SVGs */
+}
+
+/* Dark mode SVG appearance adjustments */
+body.dark-mode .svg-top-left-blob-light {
+    filter: brightness(0.6) hue-rotate(180deg); /* Attempt to invert/darken */
+    opacity: 0.8;
+}
+body.dark-mode .svg-middle-left-blob-green {
+    filter: brightness(0.7) hue-rotate(180deg);
+    opacity: 0.9;
+}
+body.dark-mode .svg-form-backdrop-blob {
+    filter: brightness(0.5) hue-rotate(180deg);
+    opacity: 0.7;
+}
+body.dark-mode .svg-bottom-right-blob-dark {
+    filter: brightness(1.5); /* Make it lighter in dark mode */
+    opacity: 0.6;
+}
+
+
+/* Top controls (language and dark mode toggles) */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    height: 60px; /* Fixed height for consistent spacing */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* Ensure it's always on top */
+    backdrop-filter: blur(10px);
+    background: var(--current-control-bg); /* Use new color variable */
+    border-bottom: 1px solid var(--current-control-border); /* Subtle border */
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.top-left, .top-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Language switcher */
 .language-switcher {
-  display: flex;
-  width: 100px;
-  height: 44px;
-  background-color: var(--current-language-switcher-bg);
-  border-radius: 22px;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px var(--shadow);
+    display: flex;
+    width: 80px;
+    height: 36px;
+    background-color: var(--current-control-bg);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--current-control-border);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Simplified shadow */
 }
 
 .language-switcher:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px var(--shadow);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
 .lang-option {
-  flex: 1;
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 44px;
-  z-index: 2;
-  position: relative;
-  color: var(--current-text-color);
-  transition: color 0.3s ease;
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 36px;
+    z-index: 2;
+    position: relative;
+    color: var(--current-text-color);
+    transition: color 0.3s ease;
 }
 
 .lang-option.active {
-  color: white;
+    color: white; /* Color of active language text */
 }
 
 .slider {
-  position: absolute;
-  top: 2px;
-  bottom: 2px;
-  left: 2px;
-  width: 44px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: 36px;
+    border-radius: 18px;
+    background: var(--current-slider-bg);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-  transform: translateX(54px);
+    transform: translateX(40px); /* Moves slider to AR position */
+}
+.language-switcher[data-active-lang="en"] .slider {
+    transform: translateX(0); /* Moves slider to EN position */
 }
 
+/* Dark mode toggle */
 #mode-toggle {
-  width: 70px;
-  height: 44px;
-  border-radius: 22px;
-  background: var(--current-mode-toggle-bg);
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  cursor: pointer;
-  margin-left: 16px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 8px var(--shadow);
+    width: 60px;
+    height: 36px;
+    border-radius: 18px;
+    background: var(--current-slider-bg);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    cursor: pointer;
+    margin-left: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#mode-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
 #mode-toggle .toggle-icon {
-  width: 36px;
-  height: 36px;
-  background-color: white;
-  border-radius: 50%;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
-  position: relative;
-  left: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 28px;
+    height: 28px;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+    position: relative;
+    left: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 #mode-toggle.active .toggle-icon {
-  transform: translateX(22px);
+    transform: translateX(24px); /* Moves icon to the right for dark mode */
 }
 
 #mode-toggle .toggle-icon::before {
-  content: "☀️";
+    content: "☀️"; /* Sun icon */
 }
 
 #mode-toggle.active .toggle-icon::before {
-  content: "🌙";
+    content: "🌙"; /* Moon icon */
 }
 
-/* ========== 4. Main Content ========== */
+
+/* Site title - Always English, SwinglyLours font */
+#site-title {
+    text-align: center;
+    font-family: 'SwinglyLours', cursive;
+    font-size: clamp(28px, 6vw, 48px);
+    margin-top: calc(60px + 20px); /* Height of top-controls + desired spacing */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2; /* Ensure it's above background SVGs */
+    position: relative; /* Needed for z-index to work */
+    font-weight: 700;
+    /* Gradient color from Figma for "Creative Minds" */
+    background: linear-gradient(90deg, #607D8B 0%, #455A64 100%); /* Example dark blue-grey gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInDown 1s ease-out;
+}
+
+@media screen and (min-width: 768px) {
+    #site-title {
+        flex-direction: row;
+        font-size: clamp(36px, 7vw, 60px);
+        gap: 12px;
+    }
+}
+
+/* Main content container (pushes footer down) */
 .main-content {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  padding-top: calc(60px + 60px + 1.5rem);
-  width: 100%;
-  z-index: 1;
+    flex-grow: 1; /* Allows it to take available space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-top: 20px; /* Minimal padding here, top margin of site-title controls spacing */
+    margin-bottom: 0;
+    width: 100%;
+    z-index: 10; /* Ensure main content is above background elements */
+    position: relative; /* Important for z-index context */
 }
 
 .container {
-  width: 90%;
-  max-width: 420px;
-  background: var(--current-box-bg);
-  padding: 1.5rem;
-  border-radius: 24px;
-  text-align: center;
-  box-shadow: 0 20px 40px var(--shadow), 0 0 0 1px rgba(255,255,255,0.5);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  animation: fadeInUp 1s ease-out;
+    width: 90%;
+    max-width: 420px;
+    background: var(--current-form-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    /* Soft, diffused shadow from Figma */
+    box-shadow: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5); /* Figma-like shadow */
+    backdrop-filter: blur(20px); /* Keep the blur for depth */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInUp 1s ease-out 0.3s both;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Space between elements */
 }
 
+body.dark-mode .container {
+    box-shadow: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Logo Image Styling */
 .logo {
-  width: 105px;
-  object-fit: contain;
-  animation: pulse 2s infinite;
-  margin-bottom: 1.2rem;
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    animation: pulse 2s infinite;
 }
 
+/* Form Title (Attendance Form / نموذج تحضير) */
 #form-title {
-  font-size: 1.9rem;
-  font-weight: 600;
-  color: var(--current-text-color);
-  animation: fadeIn 1s ease-out;
-  margin-bottom: 0.8rem;
+    font-family: 'QatarMedium', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--current-text-color);
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease-out 0.6s both;
+    transition: color 0.4s ease;
 }
-
 html[lang="en"] #form-title {
-  font-family: 'Philosopher', serif;
-  font-size: 1.6rem;
+    font-family: 'Philosopher', serif;
 }
 
+/* Input field */
 #nameInput {
-  width: 100%;
-  padding: 1rem 1.2rem;
-  font-size: 1rem;
-  border-radius: 16px;
-  background-color: var(--current-input-bg);
-  border: 2px solid transparent;
-  text-align: center;
-  font-family: 'QatarMedium', sans-serif;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  color: var(--current-text-color);
-  margin-bottom: 1rem;
+    width: 100%;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 16px;
+    background-color: var(--current-input-bg);
+    border: 2px solid transparent;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'QatarMedium', sans-serif;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    color: var(--current-text-color);
 }
-
+html[lang="en"] #nameInput {
+    font-family: 'Philosopher', serif;
+}
 #nameInput::placeholder {
-  color: var(--current-text-color);
-  opacity: 0.7;
+    color: var(--current-text-color);
+    opacity: 0.7;
 }
 
 #nameInput:focus {
-  outline: none;
-  border-color: var(--current-accent1);
-  box-shadow: 0 0 0 4px rgba(146, 169, 189, 0.1);
-  transform: translateY(-2px);
+    outline: none;
+    border-color: var(--current-button-primary-bg); /* Use button color for focus */
+    background-color: var(--current-input-bg);
+    box-shadow: 0 0 0 4px rgba(54, 66, 81, 0.1);
+    transform: translateY(-2px);
+}
+body.dark-mode #nameInput:focus {
+    box-shadow: 0 0 0 4px rgba(90, 109, 129, 0.1);
 }
 
+/* Submit button */
 #submitBtn {
-  background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
-  color: white;
-  padding: 1.2rem 2.5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px var(--current-button-shadow);
-  position: relative;
-  overflow: hidden;
-  min-width: 200px;
-  margin-bottom: 1.2rem;
+    background: var(--current-button-primary-bg); /* Solid color based on Figma */
+    color: var(--current-button-text);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--current-shadow-button);
+    font-family: 'QatarMedium', sans-serif;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+    margin-bottom: 0.5rem;
+}
+html[lang="en"] #submitBtn {
+    font-family: 'Philosopher', serif;
+}
+
+#submitBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+#submitBtn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#submitBtn.loading {
+    pointer-events: none;
+    opacity: 0.8;
 }
 
 #submitBtn.loading::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px;
-  border: 2px solid transparent;
-  border-top: 2px solid white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-#statusMessage {
-  margin-top: 0.6rem;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  line-height: 1.4;
-  min-height: 20px;
-  max-width: 100%;
-  word-wrap: break-word;
+/* New Gemini Feature Button */
+#generateTipBtn {
+    background: var(--current-button-secondary-bg); /* Olive green based on Figma */
+    color: var(--current-button-text);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--current-shadow-button);
+    font-family: 'QatarMedium', sans-serif;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+    margin-top: 0.5rem;
 }
+
+html[lang="en"] #generateTipBtn {
+    font-family: 'Philosopher', serif;
+}
+
+#generateTipBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+#generateTipBtn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#generateTipBtn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+#generateTipBtn.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+
+/* Status message */
+#statusMessage {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    font-family: 'QatarMedium', sans-serif;
+    line-height: 1.4;
+    min-height: 20px;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+html[lang="en"] #statusMessage {
+    font-family: 'Philosopher', serif;
+}
+
 
 #statusMessage.show {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 #statusMessage.success {
-  background-color: rgba(34, 197, 94, 0.1);
-  color: var(--success-color);
-  border: 1px solid rgba(34, 197, 94, 0.2);
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--success-color);
+    border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
 #statusMessage.error {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: var(--error-color);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-.daily-dhikr-message {
-  margin-top: 0.6rem;
-  padding: 1rem 1.5rem;
-  border-radius: 16px;
-  font-weight: 500;
-  font-size: 1.05rem;
-  color: var(--current-text-color);
-  background: var(--current-adhkar-bg);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  line-height: 1.6;
-  text-align: center;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  width: 100%;
+#statusMessage.warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+#statusMessage.info {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--info-color);
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 
-/* ========== 5. Footer ========== */
+/* Footer styling */
 .footer {
-  font-size: 0.85rem;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  opacity: 0.8;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  margin-top: auto;
-  color: var(--current-text-color);
-  transition: background 0.4s ease, color 0.4s ease;
-  width: 100%;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    opacity: 0.8;
+    background: transparent; /* Background handled by SVG layer */
+    backdrop-filter: blur(10px);
+    margin-top: auto; /* Pushes footer to the bottom */
+    color: var(--current-text-color);
+    transition: color 0.4s ease;
+    width: 100%;
+    position: relative; /* To be above the SVG footer background */
+    z-index: 11; /* Ensure footer content is above its SVG background */
+}
+
+body.dark-mode .footer {
+    /* Background still transparent, SVG handles color */
 }
 
 .footer-content {
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
-  direction: ltr;
-  font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .footer-item {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    direction: ltr; /* Always LTR for footer items to prevent emoji flipping and layout issues */
+    text-align: left;
+}
+
+html[lang="ar"] .footer-content {
+    justify-content: center;
+}
+html[lang="en"] .footer-content {
+    justify-content: center;
 }
 
 .emoji {
-  font-size: 0.9rem;
-  display: inline-block;
-  transform: scaleX(1);
+    font-size: 1rem;
+    display: inline-block;
+    transform: scaleX(1);
 }
 
 
-/* ========== 6. Animations ========== */
+/* Animations */
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    #site-title {
+        margin-top: calc(60px + 10px); /* Height of top-controls + desired spacing for smaller screens */
+        font-size: clamp(24px, 5vw, 42px);
+    }
+    .main-content {
+        padding-top: 10px; /* Adjust padding-top for main content */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .top-controls {
+        padding: 0.75rem 1rem;
+    }
+
+    .container {
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .language-switcher, #mode-toggle {
+        width: 70px;
+        height: 32px;
+    }
+    .lang-option {
+        font-size: 11px;
+        line-height: 32px;
+    }
+    .slider {
+        width: 32px;
+    }
+    .language-switcher[data-active-lang="ar"] .slider {
+        transform: translateX(36px);
+    }
+    #mode-toggle .toggle-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+    #mode-toggle.active .toggle-icon {
+        transform: translateX(20px);
+    }
+
+    #site-title {
+        font-size: clamp(20px, 6vw, 36px);
+        margin-top: calc(60px + 10px); /* Consistent top margin for small screens */
+    }
+
+    #form-title {
+        font-size: 1.4rem;
+    }
+    #nameInput, #submitBtn, #generateTipBtn {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
 }
