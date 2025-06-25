@@ -1,115 +1,105 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- Default language set to English -->
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative Minds - Attendance Form</title>
-    <!-- Custom Fonts (loaded locally) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Removed Google Fonts link for Philosopher as it's now loaded locally via CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Removed Google Fonts link as Philosopher font is now local -->
 </head>
-
 <body>
+
     <!-- Background SVG elements for the complex shapes from Figma -->
     <!-- SVG 1: Large light blob (top-left) -->
     <div class="bg-svg-container svg-top-left-blob-light">
-        <!-- Removed fill attribute from path -->
         <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M202.5 430.5C184.1 546.1 10.5 598 -74 609.5L-57.5 -106L687 -182C698.833 -152.833 720.5 -78.3 712.5 -13.5C702.5 67.5 479 175.5 372.5 123.5C266 71.5 131.5 123.5 107.5 191C83.5 258.5 225.5 286 202.5 430.5Z"/>
+            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
         </svg>
     </div>
 
     <!-- SVG 2: Left middle olive blob -->
     <div class="bg-svg-container svg-middle-left-blob-green">
-        <!-- Removed fill attribute from path -->
-        <svg viewBox="0 0 348 287" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M-140.375 214.744C-86.3378 286.455 -108.37 383.264 -137.559 447.728C-146.593 467.68 -133.211 492.507 -111.317 493.123L245.903 503.167C258.12 503.511 269.162 495.967 272.826 484.307C298.591 402.312 336.188 239.131 319.653 110.614C301.684 -29.058 90.9551 -6.54723 -12.1632 22.1671C-83.4906 48.4181 -208.991 123.685 -140.375 214.744Z"/>
+        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
         </svg>
     </div>
 
-    <!-- SVG 3: Large white blob with angular gradient (form backdrop) -->
+    <!-- SVG 3: Large white blob with angular gradient (Form backdrop) -->
     <div class="bg-svg-container svg-form-backdrop-blob">
-        <!-- Removed fill attribute from path -->
-        <svg viewBox="0 0 563 460" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M563.829 87.6129C690.806 49.3474 794.387 212.281 838.801 316.956C844.372 330.084 838.434 345.027 825.704 351.455L140.709 697.342C134.3 700.579 126.613 701.31 121.566 696.203C105.404 679.85 83.598 630.26 81.4862 516.286C78.295 344.053 257.963 289.27 344.555 265.102C431.147 240.933 392.783 139.159 563.829 87.6129Z"/>
+        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
         </svg>
     </div>
 
     <!-- SVG 4: Bottom right dark blue blob -->
     <div class="bg-svg-container svg-bottom-right-blob-dark">
-        <!-- Removed fill and fill-opacity attributes from path -->
-        <svg viewBox="0 0 260 436" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M37.7197 130.5C12.5197 75.7 42.2197 2 60.2197 -28L425.72 -128L510.72 56L373.72 398C349.553 381.667 296.72 343.9 278.72 323.5C256.22 298 292.72 261 257.22 217C221.72 173 69.2197 199 37.7197 130.5Z"/>
+        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
         </svg>
     </div>
 
     <!-- SVG for Footer background -->
     <div class="bg-svg-container svg-footer-bg">
-        <!-- Removed fill attribute from rect -->
-        <svg viewBox="0 0 1920 196" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect y="64" width="1929" height="150"/>
+        <svg width="1920" height="200" viewBox="0 0 1920 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1920" height="200" fill="#15253A"/>
         </svg>
     </div>
 
-
-    <!-- Top controls (Language and Dark Mode toggles) -->
-    <div class="top-controls">
-        <div class="top-left">
-            <div id="lang-toggle" class="language-switcher" data-active-lang="en"> <!-- Default to EN -->
-                <div class="lang-option active" data-lang="en">EN</div>
-                <div class="lang-option" data-lang="ar">AR</div>
-                <div class="slider"></div>
-            </div>
+    <!-- Top right controls container: language and dark mode toggles -->
+    <div class="fixed-top-right-controls">
+        <!-- Language switcher -->
+        <div class="language-switcher" data-active-lang="en">
+            <div class="slider"></div>
+            <div class="lang-option active" data-lang="en">EN</div>
+            <div class="lang-option" data-lang="ar">AR</div>
         </div>
-        <div class="top-right">
-            <div id="mode-toggle">
-                <span class="toggle-icon"></span>
-            </div>
+
+        <!-- Dark mode toggle -->
+        <div id="mode-toggle">
+            <div class="toggle-icon"></div>
         </div>
     </div>
+
 
     <!-- Site title - Always English, SwinglyLours font -->
-    <div id="site-title" class="site-title">
-        <span id="site-title-creative">Creative</span>
-        <span id="site-title-minds">Minds</span>
+    <h1 id="site-title">Creative Minds Logo</h1>
+
+    <!-- Main content container (pushes footer down) -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Logo Image -->
+            <img src="logo.jpg" alt="Creative Minds Logo" class="logo">
+            <!-- Form Title -->
+            <h2 id="form-title">Attendance Form</h2>
+            <!-- Input field -->
+            <input type="text" id="nameInput" placeholder="Enter your full name">
+            <!-- Submit button -->
+            <button id="submitBtn">Check In</button>
+            <!-- New Gemini Feature Button -->
+            <button id="generateTipBtn">Daily Tip ✨</button>
+            <!-- Status Message -->
+            <p id="statusMessage" aria-live="polite"></p>
+        </div>
     </div>
 
-    <!-- Main content area for the attendance form -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Logo image (ensure logo.png is in the same directory as index.html) -->
-            <img src="logo.png" class="logo" alt="Creative Minds Logo" />
-            <h2 id="form-title" class="form-title">Attendance Form</h2> <!-- Default to English -->
-            <input type="text" id="nameInput" class="name-input" placeholder="Enter your full name" /> <!-- Default to English -->
-            <button id="submitBtn" class="submit-btn">Check In</button> <!-- Default to English -->
-            <!-- Button for Gemini API Feature -->
-            <button id="generateTipBtn" class="gemini-feature-btn">✨ Daily Tip ✨</button> <!-- Default to English -->
-            <div id="statusMessage" class="status-message"></div>
-        </div>
-    </main>
-
-    <!-- Footer for contact information -->
+    <!-- Footer styling -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-item">
                 <span class="emoji">📍</span>
-                <span id="location-text">Jazan, Saudi Arabia</span>
+                <span>Jazan, Saudi Arabia</span>
             </div>
             <div class="footer-item">
                 <span class="emoji">📧</span>
-                <span id="email-text">example@creativeminds.edu.sa</span>
+                <span>example@creativeminds.edu.sa</span>
             </div>
             <div class="footer-item">
                 <span class="emoji">🌐</span>
-                <span id="website-text">www.creativeminds.edu.sa</span>
+                <span>www.creativeminds.edu.sa</span>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript files -->
-    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
