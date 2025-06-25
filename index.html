@@ -45,15 +45,18 @@
         </svg>
     </div>
 
-    <!-- Top right controls container: language and dark mode toggles -->
-    <div class="fixed-top-right-controls">
+    <!-- Left top controls: language switcher -->
+    <div class="fixed-top-left-controls">
         <!-- Language switcher -->
         <div class="language-switcher" data-active-lang="en">
             <div class="slider"></div>
             <div class="lang-option active" data-lang="en">EN</div>
             <div class="lang-option" data-lang="ar">AR</div>
         </div>
+    </div>
 
+    <!-- Right top controls: dark mode toggle -->
+    <div class="fixed-top-right-controls">
         <!-- Dark mode toggle -->
         <div id="mode-toggle">
             <div class="toggle-icon"></div>
@@ -61,14 +64,15 @@
     </div>
 
 
-    <!-- Site title - Always English, SwinglyLours font -->
-    <h1 id="site-title">Creative Minds Logo</h1>
+    <!-- Site title with logo - Always English, SwinglyLours font -->
+    <h1 id="site-title">
+        <img src="logo.jpg" alt="Creative Minds Logo" class="site-title-logo">
+        Creative Minds
+    </h1>
 
     <!-- Main content container (pushes footer down) -->
     <div class="main-content">
         <div class="container">
-            <!-- Logo Image -->
-            <img src="logo.jpg" alt="Creative Minds Logo" class="logo">
             <!-- Form Title -->
             <h2 id="form-title">Attendance Form</h2>
             <!-- Input field -->
