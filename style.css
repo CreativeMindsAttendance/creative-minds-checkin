@@ -176,35 +176,35 @@ html[lang="en"] body {
 
 /* Specific positioning and scaling for each SVG based on Figma */
 .svg-top-left-blob-light {
-    top: -30vh; /* Adjusted for better placement */
-    left: -30vw; /* Adjusted for better placement */
-    width: 80vw; /* Adjusted size */
-    height: 80vh; /* Adjusted size */
+    top: -35vh; /* Adjusted for larger size and position */
+    left: -35vw; /* Adjusted for larger size and position */
+    width: 90vw; /* Made significantly larger */
+    height: 90vh; /* Made significantly larger */
     opacity: 0.7;
 }
 
 .svg-middle-left-blob-green {
-    bottom: -5vh; /* Adjusted for better placement near bottom */
-    left: -20vw; /* Adjusted for better placement */
-    width: 60vw; /* Adjusted size */
-    height: 60vh; /* Adjusted size */
+    bottom: -10vh; /* Adjusted to be more off-screen at the bottom */
+    left: -25vw; /* Adjusted for position */
+    width: 70vw; /* Made larger */
+    height: 70vh; /* Made larger */
     opacity: 0.6;
 }
 
 .svg-form-backdrop-blob {
-    top: -15vh; /* Adjusted for better vertical centering with form */
+    top: -20vh; /* Adjusted for better vertical centering with form */
     right: -20vw; /* Adjusted for better horizontal centering */
-    width: 75vw; /* Adjusted size */
-    height: 120vh; /* Made taller to encompass form */
+    width: 80vw; /* Adjusted size */
+    height: 130vh; /* Made taller to encompass form */
     z-index: 2; /* Increased z-index to be above other background SVGs */
     opacity: 0.6;
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -30vh; /* Moved further down */
-    right: -20vw; /* Adjusted right position */
-    width: 50vw; /* Made larger */
-    height: 60vh; /* Made larger */
+    bottom: -35vh; /* Moved further down */
+    right: -25vw; /* Adjusted right position */
+    width: 60vw; /* Made larger */
+    height: 70vh; /* Made larger */
     opacity: 0.5;
 }
 
