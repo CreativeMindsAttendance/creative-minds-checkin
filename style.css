@@ -172,29 +172,30 @@ html[lang="en"] body {
 }
 
 
-/* Specific positioning and scaling for each SVG based on Figma and visual tuning */
+/* Specific positioning and scaling for each SVG (reverted to previous good state) */
 .svg-top-left-blob-light {
-    top: -15vh;
-    left: -15vw;
-    width: 50vw;
-    height: 50vh;
+    top: -20vh; /* Reverted */
+    left: -20vw; /* Reverted */
+    width: 60vw; /* Reverted */
+    height: 60vh; /* Reverted */
     opacity: 1;
 }
 
 .svg-middle-left-blob-green {
-    bottom: -10vh;
-    left: -10vw;
-    width: 35vw;
-    height: 35vh;
+    bottom: -5vh; /* Reverted */
+    left: -10vw; /* Reverted */
+    width: 40vw; /* Reverted */
+    height: 40vh; /* Reverted */
     opacity: 1;
 }
 
 .svg-form-backdrop-blob {
+    /* Reverted to the centering trick, but with visually adjusted values */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 450px;
-    height: 600px;
+    width: 450px; /* Keeping fixed px for form backdrop */
+    height: 600px; /* Keeping fixed px for form backdrop */
     max-width: 90vw;
     max-height: 90vh;
     z-index: 2;
@@ -202,10 +203,10 @@ html[lang="en"] body {
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -15vh;
-    right: -15vw;
-    width: 40vw;
-    height: 40vh;
+    bottom: -10vh; /* Reverted */
+    right: -10vw; /* Reverted */
+    width: 30vw; /* Reverted */
+    height: 40vh; /* Reverted */
     opacity: 1;
 }
 
@@ -243,7 +244,7 @@ body.dark-mode .bg-svg-container {
 }
 
 
-/* --- New positioning for controls --- */
+/* --- Positioning for controls (separated to left/right) --- */
 /* Left top controls container: language switcher */
 .fixed-top-left-controls {
     position: fixed;
@@ -371,14 +372,10 @@ body.dark-mode .bg-svg-container {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
     font-size: clamp(28px, 6vw, 48px);
-    /* Adjusted margin-top to provide space from top controls */
-    margin-top: 80px; /* Increased margin to push content down from fixed controls */
+    margin-top: 80px; /* Adjusted margin to provide space from top controls */
     margin-bottom: 20px;
-    display: flex; /* Use flexbox to align logo and text */
-    flex-direction: row; /* Align horizontally by default */
-    align-items: center; /* Vertically align items in the middle */
-    justify-content: center; /* Center horizontally */
-    gap: 15px; /* Space between logo and text */
+    /* Removed display:flex and related properties, it's just text now */
+    display: block; /* Ensures it takes full width for text-align: center */
     z-index: 2;
     position: relative;
     font-weight: 700;
@@ -389,12 +386,14 @@ body.dark-mode .bg-svg-container {
     animation: fadeInDown 1s ease-out;
 }
 
-/* Styling for the logo within the site title */
+/* Styling for the logo within the site title (removed, as logo is back in form) */
+/*
 .site-title-logo {
-    width: 60px; /* Adjust size as needed */
+    width: 60px;
     height: auto;
     object-fit: contain;
 }
+*/
 
 
 /* Main content container (pushes footer down) */
@@ -433,8 +432,7 @@ body.dark-mode .container {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Logo Image Styling (Removed, as it's now part of site-title) */
-/*
+/* Logo Image Styling (Re-added, as it's back in the form) */
 .logo {
     width: 100px;
     height: auto;
@@ -442,7 +440,7 @@ body.dark-mode .container {
     margin-bottom: 0.5rem;
     animation: pulse 2s infinite;
 }
-*/
+
 
 /* Form Title (Attendance Form / نموذج تحضير) */
 #form-title {
