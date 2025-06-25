@@ -1,3 +1,4 @@
+/* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
 @font-face {
     font-family: 'SwinglyLours';
     src: url('fonts/SwinglyLours.otf') format('opentype'),
@@ -5,71 +6,118 @@
          url('fonts/SwinglyLours.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: swap; /* Ensures font loads nicely */
 }
 
-/* Noto Sans Arabic added for better Arabic support, QatarMedium can be a fallback/specific use */
 @font-face {
     font-family: 'QatarMedium';
     src: url('fonts/QatarMedium.woff2') format('woff2'),
          url('fonts/QatarMedium.woff') format('woff'),
          url('fonts/QatarMedium.ttf') format('truetype'),
          url('fonts/QatarMedium.otf') format('opentype');
-    font-weight: 500;
+    font-weight: 500; /* Assuming Medium weight, adjust if necessary */
     font-style: normal;
-    font-display: swap;
+    font-display: swap; /* Ensures font loads nicely */
 }
 
+/* Google Fonts: Philosopher for English content (loaded via link in HTML) */
+
+
 :root {
-    /* New Palette from image_d8a638.jpg / The provided CSS */
-    --color-bg-light: #DAD2BC; /* Desktop background */
-    --color-card-light: #A99985; /* Rectangle 1 - main card */
-    --color-light-border: #F5F1ED; /* Rectangle 1 border, input background, text */
-    --color-button-light: #70798C; /* Rectangle 3 - button */
-    --color-dark-text: #252323; /* Footer text, ellipse 2 */
-    --color-ellipse-light: #C2B9AE; /* Ellipse 1 */
-    --color-ellipse-dark: #3C3D3D; /* Ellipse 3 */
+    /* Light Mode Colors */
+    --main-bg-light: #D3DEDC; /* A soft light grey-blue */
+    --accent1-light: #92A9BD; /* A muted blue-grey */
+    --accent2-light: #7C99AC; /* A slightly darker muted blue-grey */
+    --soft-pink-light: #FFEFEF; /* Very light pink */
+    --text-color-light: #1f1f1f; /* Dark grey for text */
+    --form-bg-light: rgba(255, 255, 255, 0.95); /* Nearly white, slightly transparent form background */
+    --input-bg-light: rgba(255, 255, 255, 0.8); /* input background */
+    --button-gradient-start-light: #92A9BD; /* Button gradient start */
+    --button-gradient-end-light: #7C99AC; /* Button gradient end */
+    --button-shadow-light: rgba(146, 169, 189, 0.3); /* Button shadow */
+    --language-switcher-bg-light: rgba(255, 255, 255, 0.9); /* Language switcher background */
+    --mode-toggle-bg-light: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Mode toggle background */
+    --adhkar-bg-light: rgba(255, 255, 255, 0.15); /* Background for Dhikr message */
 
-    /* Derived Dark Mode Colors - Complementary to the new palette */
-    --color-bg-dark: #3F4F4D; /* Darker green-grey */
-    --color-card-dark: #5F8F85; /* Darker teal-green for card */
-    --color-dark-border: #4A5654; /* Darker border/input */
-    --color-button-dark: #808D7C; /* Muted green for button */
-    --color-light-text: #E2E8F0; /* Light text for dark mode */
-    --color-ellipse-dark-mode-light: #6C7A89; /* Darker version of light ellipse */
-    --color-ellipse-dark-mode-dark: #2A2A2A; /* Darker version of dark ellipse */
-
-    /* General Shadows based on Figma values */
-    --shadow-soft-figma: 0px 4px 4px -4px rgba(12, 12, 13, 0.05), 0px 16px 32px -4px rgba(12, 12, 13, 0.1);
-    --shadow-inner-figma: inset 0px 1px 4px 0px rgba(12, 12, 13, 0.05);
-    --shadow-ellipse-figma: 8px 9px 15.9px 5px rgba(0, 0, 0, 0.25); /* Ellipse 1 */
-    --shadow-ellipse-darker-figma: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Ellipse 2, 3 */
+    /* Background curvy shapes colors (specific for light mode) - Adjusted for image match */
+    --bg-primary-light: #E0F2F7; /* Lighter background color, top left */
+    --bg-secondary-light: #F0E6E8; /* Lighter background color, bottom right */
+    --curvy-shape-color-left-light: #C0D8E4; /* Blueish for left curve */
+    --curvy-shape-color-right-light: #E8D4D6; /* Pinkish for right curve */
 
 
-    /* Active Theme Variables */
-    --current-bg: var(--color-bg-light);
-    --current-card-bg: var(--color-card-light);
-    --current-light-border: var(--color-light-border);
-    --current-button-bg: var(--color-button-light);
-    --current-text-color: var(--color-dark-text);
-    --current-ellipse-light: var(--color-ellipse-light);
-    --current-ellipse-dark: var(--color-ellipse-dark);
+    /* Dark Mode Colors */
+    --main-bg-dark: #1a1a2e; /* Dark blue-purple */
+    --accent1-dark: #16213e; /* Darker blue-purple */
+    --accent2-dark: #0f172a; /* Even darker blue-purple */
+    --soft-pink-dark: #374151; /* Dark grey-blue for accents */
+    --text-color-dark: #f8fafc; /* Light white for text */
+    --form-bg-dark: rgba(22, 33, 62, 0.95); /* Darker transparent form background */
+    --input-bg-dark: rgba(55, 65, 81, 0.8); /* Darker input background */
+    --button-gradient-start-dark: #667eea; /* Dark mode button gradient start (blue) */
+    --button-gradient-end-dark: #764ba2; /* Dark mode button gradient end (purple) */
+    --button-shadow-dark: rgba(102, 126, 234, 0.3); /* Dark mode button shadow */
+    --language-switcher-bg-dark: rgba(30, 41, 59, 0.9); /* Dark mode language switcher background */
+    --mode-toggle-bg-dark: linear-gradient(135deg, #667eea, #764ba2); /* Dark mode toggle background */
+    --adhkar-bg-dark: rgba(0, 0, 0, 0.15); /* Background for Dhikr message in dark mode */
 
-    /* Status Colors (kept similar to previous for consistency) */
+    /* Background curvy shapes colors (specific for dark mode) */
+    --curve-color-top-dark: #2E4057; /* Darker blueish */
+    --curve-color-bottom-dark: #3A4C62; /* Darker grey-blue */
+    --bg-primary-dark: #1a1a2e; /* Dark background base color */
+    --bg-secondary-dark: #2C3E50; /* A slightly darker shade for the second radial */
+    --curvy-shape-color-left-dark: #3C5069; /* Darker blueish for left curve */
+    --curvy-shape-color-right-dark: #5A4E63; /* Darker purpleish for right curve */
+
+
+    /* General/Status Colors */
+    --white: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
     --success-color: #22c55e;
     --error-color: #ef4444;
     --warning-color: #f59e0b;
     --info-color: #3b82f6; /* For loading messages */
+
+    /* Active Theme Variables - these will be used in components */
+    --current-main-bg: var(--main-bg-light);
+    --current-accent1: var(--accent1-light);
+    --current-accent2: var(--accent2-light);
+    --current-soft-pink: var(--soft-pink-light);
+    --current-text-color: var(--text-color-light);
+    --current-form-bg: var(--form-bg-light);
+    --current-input-bg: var(--input-bg-light);
+    --current-button-gradient-start: var(--button-gradient-start-light);
+    --current-button-gradient-end: var(--button-gradient-end-light);
+    --current-button-shadow: var(--button-shadow-light);
+    --current-language-switcher-bg: var(--language-switcher-bg-light);
+    --current-mode-toggle-bg: var(--mode-toggle-bg-light);
+    --current-adhkar-bg: var(--adhkar-bg-light);
+
+    --current-bg-primary: var(--bg-primary-light);
+    --current-bg-secondary: var(--bg-secondary-light);
+    --current-curvy-shape-left: var(--curvy-shape-color-left-light);
+    --current-curvy-shape-right: var(--curvy-shape-color-right-light);
 }
 
 body.dark-mode {
-    --current-bg: var(--color-bg-dark);
-    --current-card-bg: var(--color-card-dark);
-    --current-light-border: var(--color-dark-border);
-    --current-button-bg: var(--color-button-dark);
-    --current-text-color: var(--color-light-text);
-    --current-ellipse-light: var(--color-ellipse-dark-mode-light);
-    --current-ellipse-dark: var(--color-ellipse-dark-mode-dark);
+    --current-main-bg: var(--main-bg-dark);
+    --current-accent1: var(--accent1-dark);
+    --current-accent2: var(--accent2-dark);
+    --current-soft-pink: var(--soft-pink-dark);
+    --current-text-color: var(--text-color-dark);
+    --current-form-bg: var(--form-bg-dark);
+    --current-input-bg: var(--input-bg-dark);
+    --current-button-gradient-start: var(--button-gradient-start-dark);
+    --current-button-gradient-end: var(--button-gradient-end-dark);
+    --current-button-shadow: var(--button-shadow-dark);
+    --current-language-switcher-bg: var(--language-switcher-bg-dark);
+    --current-mode-toggle-bg: var(--mode-toggle-bg-dark);
+    --current-adhkar-bg: var(--adhkar-bg-dark);
+
+    --current-bg-primary: var(--bg-primary-dark);
+    --current-bg-secondary: var(--bg-secondary-dark);
+    --current-curvy-shape-left: var(--curvy-shape-color-left-dark);
+    --current-curvy-shape-right: var(--curvy-shape-color-right-dark);
 }
 
 * {
@@ -78,170 +126,99 @@ body.dark-mode {
     box-sizing: border-box;
 }
 
+/* Basic body and HTML styling for full height and responsive fonts */
 html, body {
     min-height: 100vh; /* Changed from height to min-height to allow content to push footer down */
-    background-color: var(--current-bg); /* Fallback, but gradient divs should cover */
+    background-color: var(--current-main-bg); /* Fallback, but gradient divs should cover */
     color: var(--current-text-color);
     overflow-x: hidden; /* Prevent horizontal scroll */
     display: flex;
     flex-direction: column; /* Allows main content to push footer down */
-    font-family: 'Noto Sans Arabic', sans-serif; /* Default for Arabic */
-    transition: all 0.4s ease;
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic using local font */
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* Apply English font when language is English */
 html[lang="en"] body {
-    font-family: 'Philosopher', serif;
+    font-family: 'Philosopher', serif; /* For English content from Google Fonts */
 }
 
-/* Background shapes (vectors and ellipses) */
-.background-shape {
-    position: fixed; /* Keep them fixed in the background */
-    z-index: -1; /* Send to background */
-    transition: all 0.4s ease; /* Smooth transition for dark mode */
-    /* Add pointer-events: none; to prevent shapes from intercepting clicks */
-    pointer-events: none;
+/* Background gradient patterns (main background colors) */
+/* These elements create the large, soft color washes */
+.bg-gradient-primary {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 10%, var(--current-bg-primary), transparent 60%);
+    z-index: -3; /* Lowest layer */
+    transition: background 0.4s ease;
 }
 
-/* Vector images - using placeholders for now */
-.vector-2 {
-    width: 60vw; /* Responsive width */
-    height: auto;
-    top: -10vh; /* Responsive positioning */
-    right: -10vw;
-    transform: rotate(15deg); /* Slight rotation for dynamic feel */
-    filter: brightness(1.05); /* Slightly brighter to stand out from background */
+.bg-gradient-secondary {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 90% 90%, var(--current-bg-secondary), transparent 60%);
+    z-index: -3; /* Lowest layer */
+    transition: background 0.4s ease;
 }
 
-.vector-4 {
-    width: 65vw;
-    height: auto;
-    top: -15vh;
-    left: -15vw;
-    transform: rotate(-10deg);
-    filter: brightness(1.05);
+/* Curvy shapes using dedicated divs for better control, matching image */
+/* These elements create the distinct curved blobs at corners */
+.bg-curvy-shape-left, .bg-curvy-shape-right {
+    position: fixed;
+    width: 120vw; /* Make them larger than viewport to ensure curves */
+    height: 120vh; /* Make them larger than viewport to ensure curves */
+    border-radius: 50%; /* Makes it a circle */
+    z-index: -2; /* Above gradients, below content */
+    opacity: 0.6; /* Slight transparency for layering effect */
+    transition: background 0.4s ease, transform 0.4s ease;
 }
 
-.vector-1 {
-    width: 60vw;
-    height: auto;
-    bottom: -15vh;
-    right: -10vw;
-    transform: rotate(20deg);
-    filter: brightness(1.05);
+.bg-curvy-shape-left {
+    background: var(--current-curvy-shape-left);
+    top: -60vh; /* Position it high up and left to create a curve from top-left */
+    left: -60vw;
+    clip-path: ellipse(60% 40% at 20% 10%); /* Adjust values for desired curve shape */
+    transform: rotate(-15deg); /* Slight rotation for dynamic look */
 }
 
-.vector-3 {
-    width: 40vw;
-    height: auto;
-    top: -10vh;
-    right: 0; /* Adjusted for smaller size */
-    transform: rotate(-25deg);
-    filter: brightness(1.05);
-}
-
-.vector-5 {
-    width: 50vw;
-    height: auto;
-    bottom: -10vh;
-    left: -10vw;
-    transform: rotate(-5deg);
-    filter: brightness(1.05);
-}
-
-.vector-6 {
-    width: 40vw;
-    height: auto;
-    top: 5vh;
-    left: -10vw;
-    transform: rotate(10deg);
-    filter: brightness(1.05);
-}
-
-.vector-7 {
-    width: 55vw;
-    height: auto;
-    bottom: -5vh;
-    left: 20vw; /* Centered towards bottom */
-    transform: rotate(5deg);
-    filter: brightness(1.05);
-}
-
-/* Ellipse shapes */
-.ellipse-1 {
-    background: var(--current-ellipse-light);
-    border-radius: 50%;
-    border: 1px solid var(--current-light-border);
-    width: 20vw;
-    height: 20vw; /* Maintain aspect ratio for circle */
-    top: -5vh;
-    left: 15vw;
-    box-shadow: var(--shadow-ellipse-figma);
-}
-
-.ellipse-2 {
-    background: var(--current-text-color); /* Dark circle, color based on current text color for theme */
-    border-radius: 50%;
-    border: 1px solid var(--current-light-border);
-    width: 15vw;
-    height: 15vw;
-    top: 30vh;
-    right: 10vw;
-    box-shadow: var(--shadow-ellipse-darker-figma);
-}
-body.dark-mode .ellipse-2 {
-    background: var(--color-ellipse-dark-mode-dark);
-}
-
-.ellipse-3 {
-    background: var(--current-ellipse-dark); /* Smaller dark circle */
-    border-radius: 50%;
-    border: 1px solid var(--current-light-border);
-    width: 8vw;
-    height: 8vw;
-    top: 25vh;
-    right: 15vw; /* Positioned relative to ellipse-2 */
-    box-shadow: var(--shadow-ellipse-darker-figma);
-}
-body.dark-mode .ellipse-3 {
-    background: var(--color-ellipse-dark-mode-light);
+.bg-curvy-shape-right {
+    background: var(--current-curvy-shape-right);
+    bottom: -60vh; /* Position it low down and right to create a curve from bottom-right */
+    right: -60vw;
+    clip-path: ellipse(60% 40% at 80% 90%); /* Adjust values for desired curve shape */
+    transform: rotate(15deg); /* Slight rotation */
 }
 
 
-/* Site title */
+/* Site title - Always English, SwinglyLours font */
 #site-title {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
-    font-size: clamp(36px, 7vw, 60px);
+    font-size: clamp(36px, 7vw, 60px); /* Larger font size for prominence */
+    /* Position fixed to be always visible and above other content */
     position: fixed;
-    top: 80px; /* Adjusted to be below the top controls */
-    left: 0;
+    top: 50px; /* Position below top-controls */
+    left: 0; /* Take full width for centering content */
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: row; /* Keep creative minds side by side */
+    justify-content: center; /* Center the words */
     align-items: center;
-    gap: 12px;
-    /* Reduced z-index to be below top-controls and main-content, but still above background */
-    z-index: 50; 
+    gap: 12px; /* Increased gap between words */
+    z-index: 101; /* Higher than top-controls so it's not blurred */
     font-weight: 700;
-    /* Gradient text color (kept as previous for aesthetic appeal) */
     background: linear-gradient(135deg, #7C99AC, #92A9BD);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: fadeInDown 1s ease-out;
-    padding-top: 10px;
-}
-
-#site-title-creative {
-    /* Note: These variables are not defined in current CSS :root, using direct color for now */
-    color: #333333; /* Placeholder color */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-#site-title-minds {
-    /* Note: These variables are not defined in current CSS :root, using direct color for now */
-    color: #555555; /* Placeholder color */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    padding-top: 10px; /* Small padding top to ensure text isn't cut by fixed position */
 }
 
 
@@ -255,13 +232,11 @@ body.dark-mode .ellipse-3 {
     top: 0;
     left: 0;
     width: 100%;
-    /* Increased z-index to ensure it's on top of EVERYTHING interactive */
-    z-index: 9999; /* Increased for maximum priority */
-    backdrop-filter: blur(8px);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    height: 70px;
-    transition: all 0.4s ease;
+    z-index: 100; /* Ensure it's always on top, but below site-title */
+    backdrop-filter: blur(8px); /* Slightly less blur */
+    background: rgba(255, 255, 255, 0.05); /* Lighter background to allow title to show */
+    transition: background 0.4s ease;
+    height: 60px; /* Increased height for bigger buttons */
 }
 
 body.dark-mode .top-controls {
@@ -276,65 +251,65 @@ body.dark-mode .top-controls {
 /* Language switcher */
 .language-switcher {
     display: flex;
-    width: 120px;
-    height: 50px;
-    background-color: var(--current-card-bg); /* Using card background for consistency */
-    border-radius: 25px;
+    width: 100px; /* Wider */
+    height: 44px; /* Taller */
+    background-color: var(--current-language-switcher-bg);
+    border-radius: 22px; /* Adjusted border-radius for new height */
     position: relative;
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
-    border: 2px solid var(--current-light-border);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .language-switcher:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 15px var(--shadow);
 }
 
 .lang-option {
     flex: 1;
     text-align: center;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 46px;
-    z-index: 2; /* Ensure text is above slider */
+    font-size: 14px; /* Slightly larger font */
+    line-height: 44px; /* Adjusted line-height for new height */
+    z-index: 2;
     position: relative;
     color: var(--current-text-color);
     transition: color 0.3s ease;
 }
 
 .lang-option.active {
-    color: white;
+    color: white; /* Color of active language text */
 }
 
 .slider {
     position: absolute;
-    top: 4px;
-    bottom: 4px;
-    left: 4px;
-    width: 52px;
-    border-radius: 21px;
-    background: var(--current-button-bg); /* Using button color for slider */
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: 44px; /* Adjusted width for new height */
+    border-radius: 20px; /* Adjusted border-radius for new height */
+    background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(60px);
+    transform: translateX(54px); /* Adjusted translation for new width */
 }
 .language-switcher[data-active-lang="en"] .slider {
-    transform: translateX(0);
+    transform: translateX(0); /* Moves slider to EN position */
 }
 
 /* Dark mode toggle */
 #mode-toggle {
-    width: 90px;
-    height: 50px;
-    border-radius: 25px;
-    background: var(--current-card-bg); /* Using card background */
+    width: 70px; /* Wider */
+    height: 44px; /* Taller */
+    border-radius: 22px; /* Adjusted border-radius for new height */
+    background: var(--current-mode-toggle-bg);
     display: flex;
     align-items: center;
     padding: 4px;
@@ -343,20 +318,20 @@ body.dark-mode .top-controls {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 #mode-toggle:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 15px var(--shadow);
 }
 
 #mode-toggle .toggle-icon {
-    width: 42px;
-    height: 42px;
-    background-color: var(--current-button-bg); /* Icon color matches button */
+    width: 36px; /* Larger icon */
+    height: 36px; /* Larger icon */
+    background-color: white;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 18px; /* Larger icon font size */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -364,172 +339,156 @@ body.dark-mode .top-controls {
     position: relative;
     left: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    color: white; /* Icon itself is white */
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(38px);
-    background: var(--current-light-border); /* Icon color when active */
-    color: var(--current-text-color); /* Icon text color when active */
+    transform: translateX(22px); /* Adjusted translation for new width */
 }
 
 #mode-toggle .toggle-icon::before {
-    content: "☀️";
+    content: "☀️"; /* Sun icon */
 }
 
 #mode-toggle.active .toggle-icon::before {
-    content: "🌙";
+    content: "🌙"; /* Moon icon */
 }
 
-/* Main content container */
+
+/* Main content container (pushes footer down) */
 .main-content {
-    flex-grow: 1;
+    flex-grow: 1; /* Allows it to take available space and push footer down */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    padding-top: calc(70px + 80px + 2rem); /* top-controls height + site-title top + margin */
-    margin-bottom: 0;
+    /* Adjusted padding-top to ensure content is below fixed site title and controls */
+    padding-top: calc(60px + 60px + 1.5rem); /* top-controls height + site-title approx height + margin */
+    margin-bottom: 0; /* Handled by flex-grow on main */
     width: 100%;
-    /* Ensure main content is above site title */
-    z-index: 100; /* Increased z-index, higher than site-title */
-    position: relative;
+    z-index: 1; /* Ensure it's above background elements */
 }
 
-.container.rectangle-1 {
-    background: var(--current-card-bg);
-    border-radius: 94px; /* From new CSS */
-    border: 5px solid var(--current-light-border); /* From new CSS */
-    width: 90%; /* Responsive width */
-    max-width: 491px; /* Max width from new CSS */
-    min-height: 688px; /* Min height to accommodate content */
+.container {
+    width: 90%;
+    max-width: 420px;
+    background: var(--current-form-bg);
+    padding: 1.5rem 1.5rem; /* Further reduced padding */
+    border-radius: 24px;
+    text-align: center;
+    box-shadow:
+        0 20px 40px var(--shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInUp 1s ease-out 0.3s both;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Align content to top within card */
-    padding: 2rem 1.5rem; /* Adjusted padding */
-    gap: 1.5rem; /* Space between elements */
-    box-shadow: var(--shadow-soft-figma); /* From new CSS */
-    transition: all 0.4s ease;
-    /* Ensure the container is clickable within main-content */
-    z-index: 1; /* Explicit z-index within its stacking context relative to main-content */
+    gap: 0.6rem; /* Further reduced gap between elements inside container */
 }
 
-body.dark-mode .container.rectangle-1 {
-    border-color: var(--current-light-border);
+body.dark-mode .container {
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-
-.logo-1 {
-    width: 161px; /* From new CSS */
-    height: 151px; /* From new CSS */
-    object-fit: cover;
-    aspect-ratio: 161/151;
-    margin-bottom: 1rem;
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+/* Logo Image Styling */
+.logo {
+    width: 90px; /* Slightly smaller logo to save space */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain;
+    margin-bottom: 0.2rem; /* Reduced margin after logo */
+    animation: pulse 2s infinite; /* Keep pulse for the logo */
 }
 
-#form-title.attendance-form {
-    color: var(--current-light-border); /* Color from new CSS for title */
-    text-align: center;
-    font-family: "Philosopher", serif; /* Used Philosopher for bold look */
-    font-size: clamp(28px, 5vw, 40px); /* Responsive font size */
-    font-weight: 700;
-    margin-bottom: 1rem;
+/* Form Title (Attendance Form / نموذج تحضير) */
+#form-title {
+    font-family: 'QatarMedium', sans-serif; /* For Arabic using local font */
+    font-size: 1.5rem; /* Slightly smaller to fit better */
+    font-weight: 600;
+    color: var(--current-text-color);
+    margin-bottom: 0.6rem; /* Reduced space after title */
+    animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
-html[lang="ar"] #form-title.attendance-form {
-    font-family: "Noto Sans Arabic", sans-serif;
-}
-body.dark-mode #form-title.attendance-form {
-    color: var(--current-light-border); /* Keep light color for dark mode on dark card */
+html[lang="en"] #form-title {
+    font-family: 'Philosopher', serif; /* For English from Google Fonts */
+    font-size: 1.6rem; /* Adjusted larger for English */
 }
 
 
-#nameInput.rectangle-2 {
-    background: var(--current-light-border); /* From new CSS */
-    border-radius: 20px;
-    width: 90%; /* Responsive width */
-    max-width: 378px; /* Max width from new CSS */
-    height: 65px; /* From new CSS */
-    padding: 1rem 1.5rem;
-    font-size: 1.1rem;
+/* Input field */
+#nameInput {
+    width: 100%;
+    padding: 1rem 1.2rem; /* Adjusted padding */
+    font-size: 1rem; /* Adjusted font size */
+    border-radius: 16px;
+    background-color: var(--current-input-bg);
+    border: 2px solid transparent;
     text-align: center;
-    color: var(--color-dark-text); /* Input text color */
-    border: none; /* No border initially */
-    outline: none;
+    margin-bottom: 0.6rem; /* Reduced margin */
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic input */
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     color: var(--current-text-color);
 }
-
-html[lang="ar"] #nameInput.rectangle-2 {
-    font-family: "Noto Sans Arabic", sans-serif;
+html[lang="en"] #nameInput {
+    font-family: 'Philosopher', serif; /* For English input */
+    font-size: 1.05rem; /* Adjusted larger for English */
 }
-html[lang="en"] #nameInput.rectangle-2 {
-    font-family: "Philosopher", serif;
-}
-
-#nameInput.rectangle-2::placeholder {
-    color: var(--color-dark-text);
+#nameInput::placeholder {
+    color: var(--current-text-color);
     opacity: 0.7;
 }
 
-body.dark-mode #nameInput.rectangle-2 {
-    background: var(--current-light-border);
-    color: var(--color-dark-text);
-}
-
-
-#nameInput.rectangle-2:focus {
-    box-shadow: 0 0 0 3px var(--current-button-bg); /* Use button color for focus ring */
+#nameInput:focus {
+    outline: none;
+    border-color: var(--current-accent1);
+    background-color: var(--current-input-bg);
+    box-shadow: 0 0 0 4px rgba(146, 169, 189, 0.1);
     transform: translateY(-2px);
 }
+body.dark-mode #nameInput:focus {
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
 
 
-#submitBtn.rectangle-3 {
-    background: var(--current-button-bg); /* From new CSS */
-    border-radius: 20px;
-    width: 90%; /* Responsive width */
-    max-width: 242px; /* Max width from new CSS */
-    height: 85px; /* From new CSS */
-    display: flex; /* For centering text */
-    align-items: center;
-    justify-content: center;
-    color: #FFFFFF;
-    font-size: clamp(28px, 5vw, 40px); /* Responsive font size */
-    font-weight: 700;
+/* Submit button */
+#submitBtn {
+    background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
+    color: white;
+    padding: 1.2rem 2.5rem; /* Significantly larger padding for bigger button */
+    font-size: 1.2rem; /* Significantly larger font */
+    font-weight: 600;
+    border: none;
+    border-radius: 16px;
     cursor: pointer;
-    box-shadow: var(--shadow-inner-figma); /* From new CSS, also standard drop shadow */
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px var(--current-button-shadow);
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
     position: relative;
     overflow: hidden;
+    min-width: 200px; /* Wider button */
+    margin-bottom: 0.6rem; /* Space between submit and status message */
+}
+html[lang="en"] #submitBtn {
+    font-family: 'Philosopher', serif; /* For English */
+    font-size: 1.25rem; /* Larger for English */
 }
 
-#submitBtn.rectangle-3:hover {
+#submitBtn:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-soft-figma); /* Change shadow on hover */
-    filter: brightness(1.1); /* Slight brightness increase */
+    box-shadow: 0 12px 30px var(--current-button-shadow);
 }
 
-#submitBtn.rectangle-3:active {
+#submitBtn:active {
     transform: translateY(-1px);
-    filter: brightness(0.9);
+    box-shadow: 0 5px 15px var(--current-button-shadow);
 }
 
-.check-in {
-    color: inherit; /* Inherit color from button */
-    text-align: center;
-    font-family: "Philosopher", serif; /* From new CSS */
-    font-weight: 700;
-    font-size: inherit; /* Inherit from button */
-}
-html[lang="ar"] .check-in {
-    font-family: "Noto Sans Arabic", sans-serif;
-}
-
-/* Loading state for button */
 #submitBtn.loading {
     pointer-events: none;
     opacity: 0.8;
@@ -540,11 +499,11 @@ html[lang="ar"] .check-in {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 30px; /* Larger loader */
-    height: 30px;
-    margin: -15px 0 0 -15px;
-    border: 4px solid rgba(255, 255, 255, 0.3); /* Thicker, transparent border */
-    border-top: 4px solid white; /* White spinning part */
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -552,33 +511,31 @@ html[lang="ar"] .check-in {
 
 /* Status message */
 #statusMessage {
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 0.6rem; /* Adjusted margin to be right below submit button */
+    padding: 0.75rem 1rem;
     border-radius: 12px;
     font-weight: 500;
-    font-size: 0.95rem; /* Slightly larger */
+    font-size: 0.9rem;
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
-    font-family: 'Noto Sans Arabic', sans-serif;
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
     line-height: 1.4;
     min-height: 20px; /* Prevents layout shift */
-    max-width: 100%;
-    word-wrap: break-word;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    color: var(--current-text-color); /* General text color */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    word-wrap: break-word; /* Break long words */
+    margin-bottom: 0.6rem; /* Space between status message and dhikr */
 }
 html[lang="en"] #statusMessage {
-    font-family: 'Philosopher', serif;
+    font-family: 'Philosopher', serif; /* For English */
 }
+
 
 #statusMessage.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Status colors based on general status logic (not palette specific from Figma) */
 #statusMessage.success {
     background-color: rgba(34, 197, 94, 0.1);
     color: var(--success-color);
@@ -648,11 +605,7 @@ html[lang="en"] .daily-dhikr-message {
     margin-top: auto; /* Pushes footer to the bottom of the flex container (body) */
     color: var(--current-text-color);
     transition: background 0.4s ease, color 0.4s ease;
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    /* Ensure footer is above background shapes */
-    z-index: 80; /* Increased z-index for footer */
+    width: 100%; /* Ensure it spans full width */
 }
 
 body.dark-mode .footer {
@@ -661,73 +614,37 @@ body.dark-mode .footer {
 
 .footer-content {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    max-width: 800px;
+    justify-content: center; /* Center horizontally */
+    flex-wrap: nowrap; /* Prevent wrapping on desktop */
+    gap: 1.0rem; /* Reduced gap between items */
+    max-width: 600px;
     margin: 0 auto;
-    direction: ltr; /* Ensure LTR order for consistency */
+    direction: ltr; /* Ensure LTR order for consistency regardless of page language */
+    font-size: 0.8rem; /* Smaller font for contact info */
 }
 
 .footer-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    text-align: left;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-body.dark-mode .footer-item {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.footer-item:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-body.dark-mode .footer-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Footer text elements (from new CSS, re-mapped to common classes/IDs) */
-.jazan-saudi-arabia,
-.example-creativeminds-edu-sa,
-.www-creativeminds-edu-sa {
-    color: var(--current-text-color); /* Use current text color */
-    font-family: "Philosopher", serif; /* From new CSS, applying to these texts */
-    font-size: 20px; /* Adjusted responsive font size */
-    font-weight: 700;
-    text-align: center;
-    /* Remove absolute positioning as they are now flex items in footer-content */
-    position: static;
-    width: auto;
-    height: auto;
-}
-html[lang="ar"] .jazan-saudi-arabia,
-html[lang="ar"] .example-creativeminds-edu-sa,
-html[lang="ar"] .www-creativeminds-edu-sa {
-    font-family: "Noto Sans Arabic", sans-serif;
+    gap: 0.3rem; /* Smaller gap within item */
+    text-align: left; /* Ensure text is left-aligned within item */
 }
 
 .emoji {
-    font-size: 1.1rem;
+    font-size: 0.9rem; /* Smaller emoji */
     display: inline-block;
     transform: scaleX(1); /* Ensure emoji is not flipped */
 }
 
+
 /* Animations */
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-40px); }
+    from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -759,122 +676,83 @@ html[lang="ar"] .www-creativeminds-edu-sa {
         gap: 8px;
     }
     .main-content {
-        padding-top: calc(70px + 80px + 1rem); /* Adjust padding for smaller screens */
-    }
-    .container.rectangle-1 {
-        padding: 1.5rem;
-        gap: 1rem;
-        min-height: 550px; /* Smaller min-height for mobile */
-    }
-    .logo-1 {
-        width: 120px;
-        height: auto;
-    }
-    #form-title.attendance-form {
-        font-size: 1.8rem;
-    }
-    #nameInput.rectangle-2, #dailyDhikr.rectangle-4 {
-        padding: 0.8rem 1rem;
-        font-size: 1rem;
-    }
-    #submitBtn.rectangle-3 {
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-        height: 70px;
+        /* Adjust padding for mobile based on new fixed title position */
+        padding-top: calc(60px + 60px + 1rem); /* top-controls height + site-title approx height + margin */
     }
     .footer-content {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: column; /* Stack contact info vertically on small screens */
+        gap: 0.75rem; /* Adjusted gap */
     }
-    .jazan-saudi-arabia,
-    .example-creativeminds-edu-sa,
-    .www-creativeminds-edu-sa {
-        font-size: 18px;
-    }
-
-    /* Adjust background shapes for responsiveness */
-    .background-shape.vector-2, .background-shape.vector-4, .background-shape.vector-1,
-    .background-shape.vector-3, .background-shape.vector-5, .background-shape.vector-6, .background-shape.vector-7 {
-        width: 80vw; /* Larger on smaller screens to dominate */
-        height: auto;
-    }
-    .ellipse-1, .ellipse-2, .ellipse-3 {
-        width: 30vw;
-        height: 30vw;
-    }
-    .ellipse-2 { top: 25vh; right: 5vw; }
-    .ellipse-3 { top: 20vh; right: 10vw; }
 }
 
 @media screen and (max-width: 480px) {
     .top-controls {
-        height: 60px;
+        padding: 0.75rem 1rem;
+        height: 50px; /* Smaller height for very small screens */
     }
     .language-switcher {
-        width: 100px;
-        height: 42px;
-        border-radius: 21px;
+        width: 90px;
+        height: 38px;
+        border-radius: 19px;
     }
     .lang-option {
-        font-size: 14px;
+        font-size: 12px;
         line-height: 38px;
     }
     .slider {
-        width: 42px;
-        border-radius: 19px;
+        width: 38px;
+        border-radius: 17px;
     }
     .language-switcher[data-active-lang="ar"] .slider {
         transform: translateX(50px);
     }
     #mode-toggle {
-        width: 70px;
-        height: 42px;
-        border-radius: 21px;
+        width: 60px;
+        height: 38px;
+        border-radius: 19px;
     }
-    .container.rectangle-1 {
-        max-width: 350px;
-        padding: 1.2rem;
-        gap: 0.8rem;
-        min-height: 500px;
+    #mode-toggle .toggle-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
     }
+    #mode-toggle.active .toggle-icon {
+        transform: translateX(18px);
+    }
+
+    .container {
+        padding: 1.2rem 1rem; /* More reduced padding for very small screens */
+        margin: 0 0.5rem;
+        gap: 0.5rem; /* Even smaller gap */
+    }
+
     #site-title {
         font-size: clamp(24px, 6vw, 36px);
-        top: 70px;
+        margin-top: calc(50px + 0.5rem); /* Adjusted for mobile */
     }
-    .main-content {
-        padding-top: 130px;
+
+    #form-title {
+        font-size: 1.3rem;
     }
-    #form-title.attendance-form {
-        font-size: 1.6rem;
-    }
-    #nameInput.rectangle-2, #dailyDhikr.rectangle-4 {
+    #nameInput, #submitBtn, .daily-dhikr-message {
         padding: 0.7rem 0.9rem;
         font-size: 0.9rem;
     }
-    #submitBtn.rectangle-3 {
-        padding: 1rem 2rem;
+    #submitBtn {
+        min-width: 140px;
+        padding: 1rem 2rem; /* Adjusted for smaller screens */
         font-size: 1.1rem;
-        min-width: 180px;
-        height: 65px;
     }
-    .footer-content {
-        gap: 0.75rem;
-    }
-    .jazan-saudi-arabia,
-    .example-creativeminds-edu-sa,
-    .www-creativeminds-edu-sa {
-        font-size: 16px;
+    .daily-dhikr-message {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
     }
 
-    /* Further adjust background shapes for very small screens */
-    .background-shape.vector-2, .background-shape.vector-4, .background-shape.vector-1,
-    .background-shape.vector-3, .background-shape.vector-5, .background-shape.vector-6, .background-shape.vector-7 {
-        width: 95vw; /* Even larger on very small screens */
+    .footer-content {
+        gap: 0.5rem; /* Even smaller gap for mobile vertical stack */
+        font-size: 0.75rem; /* Even smaller font */
     }
-    .ellipse-1, .ellipse-2, .ellipse-3 {
-        width: 40vw;
-        height: 40vw;
+    .emoji {
+        font-size: 0.8rem;
     }
-    .ellipse-2 { top: 20vh; right: 0vw; }
-    .ellipse-3 { top: 15vh; right: 5vw; }
 }
