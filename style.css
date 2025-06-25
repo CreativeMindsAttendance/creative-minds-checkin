@@ -59,7 +59,7 @@
     --success-color: #22c55e;
     --error-color: #ef4444;
     --warning-color: #f59e0b;
-    --info-color: #3b82f6;
+    --info-color: #3b82f6; /* For loading messages */
 }
 
 body.dark-mode {
@@ -79,12 +79,12 @@ body.dark-mode {
 }
 
 html, body {
-    min-height: 100vh;
-    background: var(--current-bg);
+    min-height: 100vh; /* Changed from height to min-height to allow content to push footer down */
+    background-color: var(--current-bg); /* Fallback, but gradient divs should cover */
     color: var(--current-text-color);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Allows main content to push footer down */
     font-family: 'Noto Sans Arabic', sans-serif; /* Default for Arabic */
     transition: all 0.4s ease;
 }
@@ -218,19 +218,25 @@ body.dark-mode .ellipse-3 {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    z-index: 101;
+    /* Adjusted z-index to be below top-controls but still high */
+    z-index: 99;
     font-weight: 700;
+    /* Gradient text color (kept as previous for aesthetic appeal) */
+    background: linear-gradient(135deg, #7C99AC, #92A9BD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     animation: fadeInDown 1s ease-out;
     padding-top: 10px;
 }
 
 #site-title-creative {
-    color: var(--current-site-title-creative);
+    color: var(--current-site-title-creative); /* These variables are not defined in current CSS */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #site-title-minds {
-    color: var(--current-site-title-minds);
+    color: var(--current-site-title-minds); /* These variables are not defined in current CSS */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -245,11 +251,12 @@ body.dark-mode .ellipse-3 {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    /* Increased z-index to ensure it's on top of everything interactive */
+    z-index: 102;
     backdrop-filter: blur(8px);
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    height: 70px; /* Consistent with new design */
+    height: 70px;
     transition: all 0.4s ease;
 }
 
@@ -445,6 +452,8 @@ body.dark-mode #form-title.attendance-form {
     border: none; /* No border initially */
     outline: none;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    color: var(--current-text-color);
 }
 
 html[lang="ar"] #nameInput.rectangle-2 {
@@ -546,7 +555,7 @@ html[lang="ar"] .check-in {
     transition: all 0.3s ease;
     font-family: 'Noto Sans Arabic', sans-serif;
     line-height: 1.4;
-    min-height: 20px;
+    min-height: 20px; /* Prevents layout shift */
     max-width: 100%;
     word-wrap: break-word;
     margin-bottom: 1rem;
@@ -581,7 +590,7 @@ html[lang="en"] #statusMessage {
     border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
-#statusMessage.info {
+#statusMessage.info { /* For loading, etc. */
     background-color: rgba(59, 130, 246, 0.1);
     color: var(--info-color);
     border: 1px solid rgba(59, 130, 246, 0.2);
@@ -697,6 +706,7 @@ html[lang="ar"] .www-creativeminds-edu-sa {
 .emoji {
     font-size: 1.1rem;
     display: inline-block;
+    transform: scaleX(1); /* Ensure emoji is not flipped */
 }
 
 /* Animations */
@@ -726,9 +736,15 @@ html[lang="ar"] .www-creativeminds-edu-sa {
 }
 
 /* Responsive design */
+@media screen and (min-width: 768px) {
+    #site-title {
+        font-size: clamp(36px, 7vw, 60px); /* Larger on desktop */
+    }
+}
+
 @media screen and (max-width: 768px) {
     #site-title {
-        font-size: clamp(28px, 6vw, 48px);
+        font-size: clamp(28px, 6vw, 48px); /* Adjust for smaller screens */
         gap: 8px;
     }
     .main-content {
