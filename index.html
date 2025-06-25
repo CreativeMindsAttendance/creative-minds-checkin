@@ -4,29 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Creative Minds - نموذج التحضير</title>
-    <!-- Google Fonts: Only Philosopher for English content, local fonts for others -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Background elements for curvy shapes and gradients -->
-    <!-- These divs create the layered, colored background with curved sections -->
+    <!-- Decorative background shapes -->
     <div class="bg-gradient-primary"></div>
     <div class="bg-gradient-secondary"></div>
     <div class="bg-curvy-shape-left"></div>
     <div class="bg-curvy-shape-right"></div>
 
-    <!-- Site title - Always English, SwinglyLours font -->
-    <!-- Positioned here to ensure it's visually above the top-controls and not blurred -->
+    <!-- Site title -->
     <div id="site-title" class="site-title">
         <span id="site-title-creative">Creative</span>
         <span id="site-title-minds">Minds</span>
     </div>
 
-    <!-- Top controls (Language and Dark Mode toggles) -->
+    <!-- Top controls -->
     <div class="top-controls">
         <div class="top-left">
             <div id="lang-toggle" class="language-switcher" data-active-lang="ar">
@@ -42,22 +38,19 @@
         </div>
     </div>
 
-    <!-- Main content area for the attendance form -->
+    <!-- Main content -->
     <main class="main-content">
         <div class="container">
-            <!-- Logo image (ensure logo.png is in the same directory as index.html) -->
             <img src="logo.png" class="logo" alt="Creative Minds Logo" />
             <h2 id="form-title" class="form-title">نموذج تحضير</h2>
             <input type="text" id="nameInput" class="name-input" placeholder="اكتب اسمك الثلاثي" />
             <button id="submitBtn" class="submit-btn">تسجيل الحضور</button>
-            <!-- Status message element, now directly below the submit button -->
             <div id="statusMessage" class="status-message"></div>
-            <!-- Display area for Daily Dhikr (ذكور اليوم) -->
             <div id="dailyDhikr" class="daily-dhikr-message"></div>
         </div>
     </main>
 
-    <!-- Footer for contact information -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-item">
@@ -75,7 +68,6 @@
         </div>
     </footer>
 
-    <!-- JavaScript files -->
     <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
