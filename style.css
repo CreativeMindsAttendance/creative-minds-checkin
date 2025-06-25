@@ -293,7 +293,6 @@ body.dark-mode {
   align-items: center;
   gap: 0.6rem;
   animation: fadeInUp 1s ease-out;
-  outline: 2px dashed red;
 }
 
 .logo {
