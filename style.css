@@ -1,109 +1,781 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Minds - Attendance Form</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Removed Google Fonts link as Philosopher font is now local -->
-</head>
-<body>
+/* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
+@font-face {
+    font-family: 'SwinglyLours';
+    src: url('fonts/SwinglyLours.otf') format('opentype'); /* Updated to only .otf as per user's file */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Ensures font loads nicely */
+}
 
-    <!-- Background SVG elements for the complex shapes from Figma -->
-    <!-- SVG 1: Large light blob (top-left) -->
-    <div class="bg-svg-container svg-top-left-blob-light">
-        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
-        </svg>
-    </div>
+@font-face {
+    font-family: 'QatarMedium';
+    src: url('fonts/QatarMedium.ttf') format('truetype'); /* Updated to only .ttf as per user's file */
+    font-weight: 500; /* Assuming Medium weight, adjust if necessary */
+    font-style: normal;
+    font-display: swap; /* Ensures font loads nicely */
+}
 
-    <!-- SVG 2: Left middle olive blob -->
-    <div class="bg-svg-container svg-middle-left-blob-green">
-        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
-        </svg>
-    </div>
-
-    <!-- SVG 3: Large white blob with angular gradient (Form backdrop) -->
-    <div class="bg-svg-container svg-form-backdrop-blob">
-        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
-        </svg>
-    </div>
-
-    <!-- SVG 4: Bottom right dark blue blob -->
-    <div class="bg-svg-container svg-bottom-right-blob-dark">
-        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
-        </svg>
-    </div>
-
-    <!-- SVG for Footer background -->
-    <div class="bg-svg-container svg-footer-bg">
-        <svg width="1920" height="200" viewBox="0 0 1920 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="1920" height="200" fill="#15253A"/>
-        </svg>
-    </div>
-
-    <!-- Left top controls: language switcher -->
-    <div class="fixed-top-left-controls">
-        <!-- Language switcher -->
-        <div class="language-switcher" data-active-lang="en">
-            <div class="slider"></div>
-            <div class="lang-option active" data-lang="en">EN</div>
-            <div class="lang-option" data-lang="ar">AR</div>
-        </div>
-    </div>
-
-    <!-- Right top controls: dark mode toggle -->
-    <div class="fixed-top-right-controls">
-        <!-- Dark mode toggle -->
-        <div id="mode-toggle">
-            <div class="toggle-icon"></div>
-        </div>
-    </div>
+@font-face {
+    font-family: 'Philosopher'; /* Adding local Philosopher font as well */
+    src: url('fonts/PhilosopherRegular.ttf') format('truetype');
+    font-weight: 400; /* Assuming Regular weight for Philosopher, adjust if necessary */
+    font-style: normal;
+    font-display: swap;
+}
+/* Removed Google Fonts link for Philosopher from HTML as it's now local */
 
 
-    <!-- Site title with logo - Always English, SwinglyLours font -->
-    <h1 id="site-title">
-        <img src="logo.jpg" alt="Creative Minds Logo" class="site-title-logo">
-        Creative Minds
-    </h1>
+:root {
+    /* Light Mode Colors from Figma Analysis */
+    --main-bg-light: #E9F1F0; /* Overall background */
+    --text-color-light: #323232; /* Darker grey for text */
+    --form-bg-light: #FFFFFF; /* Pure white for form container */
+    --input-bg-light: rgba(255, 255, 255, 0.8); /* input background */
 
-    <!-- Main content container (pushes footer down) -->
-    <div class="main-content">
-        <div class="container">
-            <!-- Form Title -->
-            <h2 id="form-title">Attendance Form</h2>
-            <!-- Input field -->
-            <input type="text" id="nameInput" placeholder="Enter your full name">
-            <!-- Submit button -->
-            <button id="submitBtn">Check In</button>
-            <!-- New Gemini Feature Button -->
-            <button id="generateTipBtn">Daily Tip ✨</button>
-            <!-- Status Message -->
-            <p id="statusMessage" aria-live="polite"></p>
-        </div>
-    </div>
+    /* Button colors */
+    --button-primary-bg-light: #364251; /* Dark blue-grey for main button */
+    --button-secondary-bg-light: #809165; /* Olive green for secondary button */
+    --button-text-light: #FFFFFF;
 
-    <!-- Footer styling -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-item">
-                <span class="emoji">📍</span>
-                <span>Jazan, Saudi Arabia</span>
-            </div>
-            <div class="footer-item">
-                <span class="emoji">📧</span>
-                <span>example@creativeminds.edu.sa</span>
-            </div>
-            <div class="footer-item">
-                <span class="emoji">🌐</span>
-                <span>www.creativeminds.edu.sa</span>
-            </div>
-        </div>
-    </footer>
+    /* Shadows */
+    --shadow-soft-large: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5); /* For container */
+    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.1); /* General button shadow */
 
-    <script src="script.js"></script>
-</body>
-</html>
+    /* Language switcher / Mode toggle */
+    --control-bg-light: rgba(255, 255, 255, 0.9);
+    --control-border-light: rgba(255, 255, 255, 0.2);
+    --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD); /* Blue gradient for slider */
+
+    /* SVG Colors - These are explicitly set to make the SVGs visible and match Figma where possible */
+    --svg-light-blob-color: #D7DDDD; /* Light grey-blue from Figma */
+    --svg-green-blob-color: #A0B38A; /* A slightly lighter olive green for better visibility */
+    --svg-white-blob-color: #E6EAF0; /* A very light grey for the form backdrop to distinguish it */
+    --svg-dark-blue-blob-color: #4A5B70; /* A slightly lighter dark blue for visibility */
+    --svg-footer-color: #15253A; /* Very dark blue for footer */
+
+
+    /* Dark Mode Colors (approximated from light mode) */
+    --main-bg-dark: #1a1a2e;
+    --text-color-dark: #f8fafc;
+    --form-bg-dark: #2A3B50; /* Darker form background */
+    --input-bg-dark: #3A4C62;
+
+    --button-primary-bg-dark: #5A6D81; /* Lighter dark blue-grey for main button */
+    --button-secondary-bg-dark: #A0B38A; /* Lighter olive green for secondary button */
+    --button-text-dark: #FFFFFF;
+
+    --shadow-soft-large-dark: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
+    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.2);
+
+    --control-bg-dark: rgba(0, 0, 0, 0.5);
+    --control-border-dark: rgba(255, 255, 255, 0.1);
+    --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
+
+    /* Dark Mode SVG Colors - Adjusted to be visible and aesthetically pleasing */
+    --svg-light-blob-color-dark: #3A4C62; /* Darker version of light blob */
+    --svg-green-blob-color-dark: #5A6D81; /* Darker version of green blob */
+    --svg-white-blob-color-dark: #202D3D; /* Darker version of white blob */
+    --svg-dark-blue-blob-color-dark: #0A1B2C; /* Darker version of dark blue blob */
+    --svg-footer-color-dark: #050E17; /* Even darker footer */
+
+
+    /* Active Theme Variables */
+    --current-main-bg: var(--main-bg-light);
+    --current-text-color: var(--text-color-light);
+    --current-form-bg: var(--form-bg-light);
+    --current-input-bg: var(--input-bg-light);
+    --current-button-primary-bg: var(--button-primary-bg-light);
+    --current-button-secondary-bg: var(--button-secondary-bg-light);
+    --current-button-text: var(--button-text-light);
+    --current-shadow-soft-large: var(--shadow-soft-large);
+    --current-shadow-button: var(--shadow-button);
+    --current-control-bg: var(--control-bg-light);
+    --current-control-border: var(--control-border-light);
+    --current-slider-bg: var(--slider-bg-light);
+
+    /* Status colors (remain constant) */
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
+}
+
+body.dark-mode {
+    --current-main-bg: var(--main-bg-dark);
+    --current-text-color: var(--text-color-dark);
+    --current-form-bg: var(--form-bg-dark);
+    --current-input-bg: var(--input-bg-dark);
+    --current-button-primary-bg: var(--button-primary-bg-dark);
+    --current-button-secondary-bg: var(--button-secondary-bg-dark);
+    --current-button-text: var(--button-text-dark);
+    --current-shadow-soft-large: var(--shadow-soft-large-dark);
+    --current-shadow-button: var(--shadow-button-dark);
+    --current-control-bg: var(--control-bg-dark);
+    --current-control-border: var(--current-control-border);
+    --current-slider-bg: var(--slider-bg-dark);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100vh;
+    background-color: var(--current-main-bg);
+    color: var(--current-text-color);
+    overflow-x: hidden; /* Ensure no horizontal scrollbar from SVGs */
+    display: flex;
+    flex-direction: column;
+    font-family: 'QatarMedium', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+html[lang="en"] body {
+    font-family: 'Philosopher', serif;
+}
+
+/* Base styling for SVG containers */
+.bg-svg-container {
+    position: fixed;
+    pointer-events: none; /* Allows clicks to pass through to elements behind */
+    z-index: 1; /* Ensures visibility over background, but behind form content */
+    opacity: 1; /* Set opacity to 1 (100%) as requested */
+    transition: opacity 0.4s ease-in-out;
+    /* Add drop-shadow for SVGs here, adjust values as needed for desired effect */
+    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.1));
+}
+
+/* Styling for SVGs themselves within their containers */
+.bg-svg-container svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Explicitly set fill colors for SVGs using CSS variables */
+.svg-top-left-blob-light svg path {
+    fill: var(--svg-light-blob-color);
+}
+.svg-middle-left-blob-green svg path {
+    fill: var(--svg-green-blob-color);
+}
+.svg-form-backdrop-blob svg path {
+    fill: var(--svg-white-blob-color);
+}
+.svg-bottom-right-blob-dark svg path {
+    fill: var(--svg-dark-blue-blob-color);
+}
+.svg-footer-bg svg rect {
+    fill: var(--svg-footer-color);
+}
+
+
+/* Specific positioning and scaling for each SVG based on Figma and visual tuning */
+.svg-top-left-blob-light {
+    top: -15vh;
+    left: -15vw;
+    width: 50vw;
+    height: 50vh;
+    opacity: 1;
+}
+
+.svg-middle-left-blob-green {
+    bottom: -10vh;
+    left: -10vw;
+    width: 35vw;
+    height: 35vh;
+    opacity: 1;
+}
+
+.svg-form-backdrop-blob {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 600px;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 2;
+    opacity: 1;
+}
+
+.svg-bottom-right-blob-dark {
+    bottom: -15vh;
+    right: -15vw;
+    width: 40vw;
+    height: 40vh;
+    opacity: 1;
+}
+
+.svg-footer-bg {
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 200px;
+    z-index: 0;
+    opacity: 1;
+}
+
+
+/* Dark mode SVG appearance adjustments */
+body.dark-mode .svg-top-left-blob-light svg path {
+    fill: var(--svg-light-blob-color-dark);
+}
+body.dark-mode .svg-middle-left-blob-green svg path {
+    fill: var(--svg-green-blob-color-dark);
+}
+body.dark-mode .svg-form-backdrop-blob svg path {
+    fill: var(--svg-white-blob-color-dark);
+}
+body.dark-mode .svg-bottom-right-blob-dark svg path {
+    fill: var(--svg-dark-blue-blob-color-dark);
+}
+body.dark-mode .svg-footer-bg svg rect {
+    fill: var(--svg-footer-color-dark);
+}
+
+/* Overall dark mode opacity adjustment for SVGs for a subtle effect */
+body.dark-mode .bg-svg-container {
+    opacity: 0.9;
+    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.2)); /* Darker shadow for dark mode */
+}
+
+
+/* --- New positioning for controls --- */
+/* Left top controls container: language switcher */
+.fixed-top-left-controls {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+/* Right top controls container: dark mode toggle */
+.fixed-top-right-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+/* Language switcher (no change in internal styling, only position handled by parent) */
+.language-switcher {
+    display: flex;
+    width: 80px;
+    height: 36px;
+    background-color: var(--current-control-bg);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--current-control-border);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.language-switcher:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.lang-option {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 36px;
+    z-index: 2;
+    position: relative;
+    color: var(--current-text-color);
+    transition: color 0.3s ease;
+}
+
+.lang-option.active {
+    color: white;
+}
+
+.slider {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: 36px;
+    border-radius: 18px;
+    background: var(--current-slider-bg);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.language-switcher[data-active-lang="ar"] .slider {
+    transform: translateX(40px);
+}
+.language-switcher[data-active-lang="en"] .slider {
+    transform: translateX(0);
+}
+
+/* Dark mode toggle (no change in internal styling, only position handled by parent) */
+#mode-toggle {
+    width: 60px;
+    height: 36px;
+    border-radius: 18px;
+    background: var(--current-slider-bg);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    cursor: pointer;
+    margin-left: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#mode-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+#mode-toggle .toggle-icon {
+    width: 28px;
+    height: 28px;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+    position: relative;
+    left: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+#mode-toggle.active .toggle-icon {
+    transform: translateX(24px);
+}
+
+#mode-toggle .toggle-icon::before {
+    content: "☀️";
+}
+
+#mode-toggle.active .toggle-icon::before {
+    content: "🌙";
+}
+
+
+/* Site title - Always English, SwinglyLours font */
+#site-title {
+    text-align: center;
+    font-family: 'SwinglyLours', cursive;
+    font-size: clamp(28px, 6vw, 48px);
+    /* Adjusted margin-top to provide space from top controls */
+    margin-top: 80px; /* Increased margin to push content down from fixed controls */
+    margin-bottom: 20px;
+    display: flex; /* Use flexbox to align logo and text */
+    flex-direction: row; /* Align horizontally by default */
+    align-items: center; /* Vertically align items in the middle */
+    justify-content: center; /* Center horizontally */
+    gap: 15px; /* Space between logo and text */
+    z-index: 2;
+    position: relative;
+    font-weight: 700;
+    background: linear-gradient(90deg, #607D8B 0%, #455A64 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInDown 1s ease-out;
+}
+
+/* Styling for the logo within the site title */
+.site-title-logo {
+    width: 60px; /* Adjust size as needed */
+    height: auto;
+    object-fit: contain;
+}
+
+
+/* Main content container (pushes footer down) */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-top: 20px;
+    margin-bottom: 0;
+    width: 100%;
+    z-index: 10;
+    position: relative;
+}
+
+.container {
+    width: 90%;
+    max-width: 420px;
+    background: var(--current-form-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: var(--current-shadow-soft-large);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInUp 1s ease-out 0.3s both;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+body.dark-mode .container {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Logo Image Styling (Removed, as it's now part of site-title) */
+/*
+.logo {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    animation: pulse 2s infinite;
+}
+*/
+
+/* Form Title (Attendance Form / نموذج تحضير) */
+#form-title {
+    font-family: 'QatarMedium', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--current-text-color);
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease-out 0.6s both;
+    transition: color 0.4s ease;
+}
+html[lang="en"] #form-title {
+    font-family: 'Philosopher', serif;
+}
+
+/* Input field */
+#nameInput {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 16px;
+    background-color: var(--current-input-bg);
+    border: 2px solid transparent;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'QatarMedium', sans-serif;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    color: var(--current-text-color);
+}
+html[lang="en"] #nameInput {
+    font-family: 'Philosopher', serif;
+}
+#nameInput::placeholder {
+    color: var(--current-text-color);
+    opacity: 0.7;
+}
+
+#nameInput:focus {
+    outline: none;
+    border-color: var(--current-button-primary-bg);
+    background-color: var(--current-input-bg);
+    box-shadow: 0 0 0 4px rgba(54, 66, 81, 0.1);
+    transform: translateY(-2px);
+}
+body.dark-mode #nameInput:focus {
+    box-shadow: 0 0 0 4px rgba(90, 109, 129, 0.1);
+}
+
+/* Submit button */
+#submitBtn {
+    background: var(--current-button-primary-bg);
+    color: var(--current-button-text);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--current-shadow-button);
+    font-family: 'QatarMedium', sans-serif;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+    margin-bottom: 0.5rem;
+}
+html[lang="en"] #submitBtn {
+    font-family: 'Philosopher', serif;
+}
+
+#submitBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+#submitBtn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#submitBtn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+#submitBtn.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* New Gemini Feature Button */
+#generateTipBtn {
+    background: var(--current-button-secondary-bg);
+    color: var(--current-button-text);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--current-shadow-button);
+    font-family: 'QatarMedium', sans-serif;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+    margin-top: 0.5rem;
+}
+
+html[lang="en"] #generateTipBtn {
+    font-family: 'Philosopher', serif;
+}
+
+#generateTipBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+#generateTipBtn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#generateTipBtn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+#generateTipBtn.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+
+/* Status message */
+#statusMessage {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    font-family: 'QatarMedium', sans-serif;
+    line-height: 1.4;
+    min-height: 20px;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+html[lang="en"] #statusMessage {
+    font-family: 'Philosopher', serif;
+}
+
+
+#statusMessage.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#statusMessage.success {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--success-color);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+#statusMessage.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+#statusMessage.warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+#statusMessage.info {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--info-color);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+
+/* Footer styling */
+.footer {
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    opacity: 0.8;
+    background: none; /* Ensure no background */
+    backdrop-filter: none; /* Ensure no blur */
+    margin-top: auto;
+    color: var(--current-text-color);
+    transition: color 0.4s ease;
+    width: 100%;
+    position: relative;
+    z-index: 11;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    direction: ltr;
+    text-align: left;
+}
+
+html[lang="ar"] .footer-content {
+    justify-content: center;
+}
+html[lang="en"] .footer-content {
+    justify-content: center;
+}
+
+.emoji {
+    font-size: 1rem;
+    display: inline-block;
+    transform: scaleX(1);
+}
+
+
+/* Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    #site-title {
+        margin-top: calc(60px + 10px);
+        font-size: clamp(24px, 5vw, 42px);
+    }
+    .main-content {
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .fixed-top-right-controls {
+        top: 10px;
+        right: 10px;
+        gap: 8px;
+    }
+
+    .language-switcher, #mode-toggle {
+        width: 70px;
+        height: 32px;
+    }
+    .lang-option {
+        font-size: 11px;
+        line-height: 32px;
+    }
+    .slider {
+        width: 32px;
+    }
+    .language-switcher[data-active-lang="ar"] .slider {
+        transform: translateX(36px);
+    }
+    #mode-toggle .toggle-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+    #mode-toggle.active .toggle-icon {
+        transform: translateX(20px);
+    }
+
+    #site-title {
+        font-size: clamp(20px, 6vw, 36px);
+        margin-top: calc(60px + 10px);
+    }
+
+    #form-title {
+        font-size: 1.4rem;
+    }
+    #nameInput, #submitBtn, #generateTipBtn {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
