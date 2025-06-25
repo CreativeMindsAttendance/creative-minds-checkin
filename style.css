@@ -218,8 +218,8 @@ body.dark-mode .ellipse-3 {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    /* Adjusted z-index to be below top-controls but still high */
-    z-index: 99;
+    /* Reduced z-index to be below top-controls and main-content */
+    z-index: 50; 
     font-weight: 700;
     /* Gradient text color (kept as previous for aesthetic appeal) */
     background: linear-gradient(135deg, #7C99AC, #92A9BD);
@@ -231,12 +231,14 @@ body.dark-mode .ellipse-3 {
 }
 
 #site-title-creative {
-    color: var(--current-site-title-creative); /* These variables are not defined in current CSS */
+    /* Note: These variables are not defined in current CSS :root, using direct color for now */
+    color: #333333; /* Placeholder color */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #site-title-minds {
-    color: var(--current-site-title-minds); /* These variables are not defined in current CSS */
+    /* Note: These variables are not defined in current CSS :root, using direct color for now */
+    color: #555555; /* Placeholder color */
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -251,8 +253,8 @@ body.dark-mode .ellipse-3 {
     top: 0;
     left: 0;
     width: 100%;
-    /* Increased z-index to ensure it's on top of everything interactive */
-    z-index: 102;
+    /* Increased z-index to ensure it's on top of EVERYTHING interactive */
+    z-index: 100;
     backdrop-filter: blur(8px);
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -296,7 +298,7 @@ body.dark-mode .top-controls {
     font-weight: 600;
     font-size: 16px;
     line-height: 46px;
-    z-index: 2;
+    z-index: 2; /* Ensure text is above slider */
     position: relative;
     color: var(--current-text-color);
     transition: color 0.3s ease;
@@ -387,7 +389,8 @@ body.dark-mode .top-controls {
     padding-top: calc(70px + 80px + 2rem); /* top-controls height + site-title top + margin */
     margin-bottom: 0;
     width: 100%;
-    z-index: 10; /* Ensure content is above background */
+    /* Ensure main content is above site title */
+    z-index: 60; 
     position: relative;
 }
 
@@ -406,6 +409,8 @@ body.dark-mode .top-controls {
     gap: 1.5rem; /* Space between elements */
     box-shadow: var(--shadow-soft-figma); /* From new CSS */
     transition: all 0.4s ease;
+    /* Ensure the container is clickable within main-content */
+    z-index: 1; /* Explicit z-index within its stacking context */
 }
 
 body.dark-mode .container.rectangle-1 {
@@ -641,7 +646,8 @@ html[lang="ar"] #dailyDhikr.rectangle-4 {
     width: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
-    z-index: 10;
+    /* Ensure footer is above background shapes */
+    z-index: 50; 
 }
 
 body.dark-mode .footer {
