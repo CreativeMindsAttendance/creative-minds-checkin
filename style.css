@@ -143,6 +143,8 @@ html[lang="en"] body {
     z-index: 1; /* Ensures visibility over background, but behind form content */
     opacity: 1; /* Set opacity to 1 (100%) as requested */
     transition: opacity 0.4s ease-in-out;
+    /* Add drop-shadow for SVGs here, adjust values as needed for desired effect */
+    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.1));
 }
 
 /* Styling for SVGs themselves within their containers */
@@ -155,19 +157,15 @@ html[lang="en"] body {
 /* Explicitly set fill colors for SVGs using CSS variables */
 .svg-top-left-blob-light svg path {
     fill: var(--svg-light-blob-color);
-    /* Removed mix-blend-mode to ensure solid color visibility initially */
 }
 .svg-middle-left-blob-green svg path {
     fill: var(--svg-green-blob-color);
-    /* Removed mix-blend-mode to ensure solid color visibility initially */
 }
 .svg-form-backdrop-blob svg path {
     fill: var(--svg-white-blob-color);
-    /* Removed mix-blend-mode to ensure solid color visibility initially */
 }
 .svg-bottom-right-blob-dark svg path {
     fill: var(--svg-dark-blue-blob-color);
-    /* Removed mix-blend-mode to ensure solid color visibility initially */
 }
 .svg-footer-bg svg rect {
     fill: var(--svg-footer-color);
@@ -176,40 +174,39 @@ html[lang="en"] body {
 
 /* Specific positioning and scaling for each SVG based on Figma and visual tuning */
 .svg-top-left-blob-light {
-    top: -15vh; /* Adjusted for better visibility from top-left */
-    left: -15vw; /* Adjusted for better visibility from top-left */
-    width: 50vw; /* Smaller, more subtle */
-    height: 50vh; /* Smaller, more subtle */
-    opacity: 1; /* Fully opaque */
+    top: -15vh;
+    left: -15vw;
+    width: 50vw;
+    height: 50vh;
+    opacity: 1;
 }
 
 .svg-middle-left-blob-green {
-    bottom: -10vh; /* Adjusted for subtle appearance from bottom-left */
-    left: -10vw; /* Adjusted for subtle appearance from bottom-left */
-    width: 35vw; /* Smaller, more subtle */
-    height: 35vh; /* Smaller, more subtle */
-    opacity: 1; /* Fully opaque */
+    bottom: -10vh;
+    left: -10vw;
+    width: 35vw;
+    height: 35vh;
+    opacity: 1;
 }
 
 .svg-form-backdrop-blob {
-    /* Manual adjustment to center behind the form */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centering trick */
-    width: 450px; /* Using fixed px for precise centering relative to form, can be vw/vh if form is responsive */
-    height: 600px; /* Using fixed px */
-    max-width: 90vw; /* Ensures it doesn't overflow on small screens */
-    max-height: 90vh; /* Ensures it doesn't overflow on small screens */
-    z-index: 2; /* Ensures it's behind the form but above other blobs */
-    opacity: 1; /* Fully opaque */
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 600px;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 2;
+    opacity: 1;
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -15vh; /* Adjusted for subtle appearance from bottom-right */
-    right: -15vw; /* Adjusted for subtle appearance from bottom-right */
-    width: 40vw; /* Smaller, more subtle */
-    height: 40vh; /* Smaller, more subtle */
-    opacity: 1; /* Fully opaque */
+    bottom: -15vh;
+    right: -15vw;
+    width: 40vw;
+    height: 40vh;
+    opacity: 1;
 }
 
 .svg-footer-bg {
@@ -217,8 +214,8 @@ html[lang="en"] body {
     left: 0;
     width: 100vw;
     height: 200px;
-    z-index: 0; /* Keep it at 0 to be behind other background SVGs if they overlap */
-    opacity: 1; /* Footer background should be fully visible and always opaque */
+    z-index: 0;
+    opacity: 1;
 }
 
 
@@ -241,31 +238,20 @@ body.dark-mode .svg-footer-bg svg rect {
 
 /* Overall dark mode opacity adjustment for SVGs for a subtle effect */
 body.dark-mode .bg-svg-container {
-    opacity: 0.9; /* Adjusted for dark mode, can be changed based on preference */
+    opacity: 0.9;
+    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.2)); /* Darker shadow for dark mode */
 }
 
 
-/* Top controls (language and dark mode toggles) */
-.top-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    height: 60px;
+/* New container for top right controls */
+.fixed-top-right-controls {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-    background: var(--current-control-bg);
-    border-bottom: 1px solid var(--current-control-border);
-    transition: background 0.4s ease, border-color 0.4s ease;
-}
-
-.top-left, .top-right {
+    top: 20px; /* Adjusted from 1rem */
+    right: 20px; /* Adjusted from 1.5rem */
     display: flex;
     align-items: center;
+    gap: 16px; /* Space between language switcher and mode toggle */
+    z-index: 100; /* Ensure it's always on top */
 }
 
 /* Language switcher */
@@ -275,7 +261,7 @@ body.dark-mode .bg-svg-container {
     height: 36px;
     background-color: var(--current-control-bg);
     border-radius: 20px;
-    position: relative;
+    position: relative; /* Changed from fixed */
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
@@ -334,9 +320,9 @@ body.dark-mode .bg-svg-container {
     align-items: center;
     padding: 4px;
     cursor: pointer;
-    margin-left: 16px;
+    margin-left: 0; /* Removed margin-left as gap handles spacing */
     transition: all 0.3s ease;
-    position: relative;
+    position: relative; /* Changed from fixed */
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -379,7 +365,8 @@ body.dark-mode .bg-svg-container {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
     font-size: clamp(28px, 6vw, 48px);
-    margin-top: calc(60px + 20px);
+    /* Adjusted margin-top to account for removed top-controls */
+    margin-top: 80px; /* Increased margin to push content down from fixed controls */
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -657,8 +644,9 @@ html[lang="en"] #statusMessage {
     text-align: center;
     padding: 1.5rem 1rem;
     opacity: 0.8;
-    background: transparent;
-    backdrop-filter: blur(10px);
+    /* Removed background and backdrop-filter as requested */
+    background: none; /* Ensure no background */
+    backdrop-filter: none; /* Ensure no blur */
     margin-top: auto;
     color: var(--current-text-color);
     transition: color 0.4s ease;
@@ -736,13 +724,10 @@ html[lang="en"] .footer-content {
 }
 
 @media screen and (max-width: 480px) {
-    .top-controls {
-        padding: 0.75rem 1rem;
-    }
-
-    .container {
-        padding: 2rem 1.5rem;
-        margin: 0 1rem;
+    .fixed-top-right-controls {
+        top: 10px;
+        right: 10px;
+        gap: 8px;
     }
 
     .language-switcher, #mode-toggle {
