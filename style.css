@@ -254,7 +254,7 @@ body.dark-mode .ellipse-3 {
     left: 0;
     width: 100%;
     /* Increased z-index to ensure it's on top of EVERYTHING interactive */
-    z-index: 100;
+    z-index: 9999; /* Increased for maximum priority */
     backdrop-filter: blur(8px);
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -390,7 +390,7 @@ body.dark-mode .top-controls {
     margin-bottom: 0;
     width: 100%;
     /* Ensure main content is above site title */
-    z-index: 60; 
+    z-index: 100; /* Increased z-index */
     position: relative;
 }
 
@@ -410,7 +410,7 @@ body.dark-mode .top-controls {
     box-shadow: var(--shadow-soft-figma); /* From new CSS */
     transition: all 0.4s ease;
     /* Ensure the container is clickable within main-content */
-    z-index: 1; /* Explicit z-index within its stacking context */
+    z-index: 1; /* Explicit z-index within its stacking context relative to main-content */
 }
 
 body.dark-mode .container.rectangle-1 {
@@ -601,53 +601,56 @@ html[lang="en"] #statusMessage {
     border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-/* Daily Dhikr Display - using rectangle-4 styling */
-#dailyDhikr.rectangle-4 {
-    width: 90%;
-    max-width: 350px; /* From new CSS */
-    min-height: 73px; /* From new CSS */
-    background: var(--current-light-border); /* Using light border color as background */
-    border-radius: 20px; /* Assuming rounded corners */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8rem 1.2rem;
-    font-size: 1rem;
+/* Daily Dhikr Display */
+.daily-dhikr-message {
+    margin-top: 0.6rem; /* Adjusted margin to be right below status message */
+    padding: 1rem 1.5rem; /* Adjusted padding */
+    border-radius: 16px;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--current-text-color);
+    background: var(--current-adhkar-bg); /* Use theme variable for background */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     line-height: 1.6;
     text-align: center;
-    color: var(--color-dark-text); /* Dark text on light background */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 50px; /* Ensure some height even if empty */
+    display: flex; /* Use flex for vertical centering of text */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.6rem; /* Reduced space before status message */
+    font-family: 'QatarMedium', sans-serif; /* Apply Arabic font */
     transition: all 0.3s ease;
-    /* overflow: visible; from new CSS, but not directly applicable as it's a div */
+    width: 100%; /* Ensure it takes full width */
 }
-body.dark-mode #dailyDhikr.rectangle-4 {
-    background: var(--current-light-border); /* Keep light background in dark mode */
-    color: var(--color-dark-text); /* Keep dark text in dark mode for this box */
+
+html[lang="en"] .daily-dhikr-message {
+    font-family: 'Philosopher', serif; /* Apply English font */
+    font-size: 1.1rem;
 }
-html[lang="en"] #dailyDhikr.rectangle-4 {
-    font-family: 'Philosopher', serif;
-}
-html[lang="ar"] #dailyDhikr.rectangle-4 {
-    font-family: 'Noto Sans Arabic', sans-serif;
+
+/* New Dhikr Button (removed from HTML, but keeping styles if it were to be re-added) */
+.new-dhikr-btn {
+    display: none; /* Hide the button */
 }
 
 
 /* Footer styling */
 .footer {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-align: center;
-    padding: 2rem 1rem;
-    opacity: 0.8;
+    padding: 1.5rem 1rem;
+    opacity: 0.8; /* Slightly more opaque for readability */
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    margin-top: auto;
+    margin-top: auto; /* Pushes footer to the bottom of the flex container (body) */
     color: var(--current-text-color);
     transition: background 0.4s ease, color 0.4s ease;
     width: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
     /* Ensure footer is above background shapes */
-    z-index: 50; 
+    z-index: 80; /* Increased z-index for footer */
 }
 
 body.dark-mode .footer {
