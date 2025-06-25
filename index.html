@@ -7,106 +7,184 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Philosopher', sans-serif;
+      position: relative;
+      min-height: 100vh;
+      background-color: #D3DEDC;
+      color: #1e1e1e;
+      overflow: hidden;
+    }
+
     .bg-deco {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
       z-index: -1;
+      pointer-events: none;
     }
 
     .svg-bg {
       position: absolute;
+      z-index: -1;
     }
 
-    .svg-bg-1 { top: 0; left: 0; width: 100%; }
-    .svg-bg-2 { bottom: 0; left: 0; width: 100%; }
-    .svg-bg-3 { top: 15%; right: 5%; width: 300px; }
-    .svg-bg-4 { bottom: 5%; left: 5%; width: 300px; }
-    .svg-bg-5 { top: 30%; left: 0; width: 100%; }
-    .svg-bg-6 { top: 5%; left: 50%; transform: translateX(-50%); width: 200px; }
+    .svg-1 { bottom: 0; left: 0; width: 100%; }
+    .svg-2 { top: 0; right: 0; width: 50%; max-width: 777px; }
+    .svg-3 { top: 0; left: 0; width: 55%; max-width: 645px; }
+    .svg-4 { top: 0; right: 0; width: 30%; max-width: 260px; }
+    .svg-5 { bottom: 0; left: 0; width: 40%; max-width: 348px; }
+    .svg-6 { bottom: 0; width: 100%; }
+
+    .site-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-top: 30px;
+    }
+
+    .top-controls {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      max-width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .form-title {
+      margin-bottom: 20px;
+    }
+
+    .name-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 20px;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background: linear-gradient(to right, #7C99AC, #92A9BD);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+
+    .footer-item {
+      margin: 5px 0;
+    }
   </style>
 </head>
 <body>
-  <!-- Decorative background shapes -->
+  <!-- Background Decorations -->
   <div class="bg-deco">
-    <svg class="svg-bg svg-bg-1" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,160L60,176C120,192,240,224,360,229.3C480,235,600,213,720,186.7C840,160,960,128,1080,133.3C1200,139,1320,181,1380,202.7L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z" fill="#7C99AC" fill-opacity="0.25"/>
+    <!-- 1. المستطيل الأزرق السفلي -->
+    <svg class="svg-bg svg-1" viewBox="0 0 1920 196" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d)">
+        <rect y="64" width="1929" height="150" fill="#15253A"/>
+      </g>
+      <defs>
+        <filter id="filter0_d" x="-32" y="0" width="1987" height="214" filterUnits="userSpaceOnUse">
+          <feOffset dx="-3" dy="-35"/>
+          <feGaussianBlur stdDeviation="14.5"/>
+          <feComposite in2="SourceAlpha" operator="out"/>
+        </filter>
+      </defs>
     </svg>
-    <svg class="svg-bg svg-bg-2" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,224L80,208C160,192,320,160,480,154.7C640,149,800,171,960,154.7C1120,139,1280,85,1360,58.7L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" fill="#92A9BD" fill-opacity="0.2"/>
+
+    <!-- 2. الرمادي فوق يسار -->
+    <svg class="svg-bg svg-2" viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M202.5 430.5C184.1 546.1 10.5 598 -74 609.5L-57.5 -106L687 -182C698.833 -152.833 720.5 -78.3 712.5 -13.5C702.5 67.5 479 175.5 372.5 123.5C266 71.5 131.5 123.5 107.5 191C83.5 258.5 225.5 286 202.5 430.5Z" fill="#D7DDDD" style="mix-blend-mode:plus-lighter"/>
     </svg>
-    <svg class="svg-bg svg-bg-3" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="1200" cy="150" r="200" fill="#FFEFEF" fill-opacity="0.2"/>
+
+    <!-- 3. الأخضر فوق يمين -->
+    <svg class="svg-bg svg-3" viewBox="0 0 645 414" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M644.878 362.602C735.278 367.802 776.545 265.769 785.878 214.102L816.378 -39.3977L129.878 -101.898C85.8784 -109.064 8.27841 -84.5977 49.8784 70.6023C101.878 264.602 195.878 172.102 330.378 181.102C464.878 190.102 531.878 356.102 644.878 362.602Z" fill="#809165" fill-opacity="0.68"/>
     </svg>
-    <svg class="svg-bg svg-bg-4" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="300" r="180" fill="#1D2B44" fill-opacity="0.15"/>
+
+    <!-- 4. الأزرق فوق يمين -->
+    <svg class="svg-bg svg-4" viewBox="0 0 260 436" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M37.7197 130.5C12.5197 75.7 42.2197 2 60.2197 -28L425.72 -128L510.72 56L373.72 398C349.553 381.667 296.72 343.9 278.72 323.5C256.22 298 292.72 261 257.22 217C221.72 173 69.2197 199 37.7197 130.5Z" fill="#2C398B" fill-opacity="0.46"/>
     </svg>
-    <svg class="svg-bg svg-bg-5" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,128L60,122.7C120,117,240,107,360,122.7C480,139,600,181,720,208C840,235,960,245,1080,213.3C1200,181,1320,107,1380,69.3L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z" fill="#70845A" fill-opacity="0.15"/>
-    </svg>
-    <svg class="svg-bg svg-bg-6" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="900" cy="50" r="100" fill="#E5F0F7" fill-opacity="0.4"/>
+
+    <!-- 5. الأخضر تحت يسار -->
+    <svg class="svg-bg svg-5" viewBox="0 0 348 287" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-140.375 214.744C-86.3378 286.455 -108.37 383.264 -137.559 447.728C-146.593 467.68 -133.211 492.507 -111.317 493.123L245.903 503.167C258.12 503.511 269.162 495.967 272.826 484.307C298.591 402.312 336.188 239.131 319.653 110.614C301.684 -29.058 90.9551 -6.54723 -12.1632 22.1671C-83.4906 48.4181 -208.991 123.685 -140.375 214.744Z" fill="#809165"/>
     </svg>
   </div>
 
-  <!-- Site title -->
-  <div id="site-title" class="site-title">
+  <!-- Content -->
+  <div class="site-title">
     <span id="site-title-creative">Creative</span>
     <span id="site-title-minds">Minds</span>
   </div>
 
-  <!-- Top controls -->
   <div class="top-controls">
     <div class="top-left">
-      <div id="lang-toggle" class="language-switcher" data-active-lang="ar">
-        <div class="lang-option" data-lang="en">EN</div>
-        <div class="lang-option active" data-lang="ar">AR</div>
-        <div class="slider"></div>
-      </div>
+      <div id="lang-toggle">AR | EN</div>
     </div>
     <div class="top-right">
-      <div id="mode-toggle">
-        <span class="toggle-icon"></span>
-      </div>
+      <div id="mode-toggle">☾</div>
     </div>
   </div>
 
-  <!-- Main content -->
   <main class="main-content">
     <div class="container">
       <img src="logo.png" class="logo" alt="Creative Minds Logo" />
-      <h2 id="form-title" class="form-title">نموذج تحضير</h2>
+      <h2 class="form-title">نموذج تحضير</h2>
       <input type="text" id="nameInput" class="name-input" placeholder="اكتب اسمك الثلاثي" />
       <button id="submitBtn" class="submit-btn">تسجيل الحضور</button>
       <div id="statusMessage" class="status-message"></div>
-      <div id="dailyDhikr" class="daily-dhikr-message"></div>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-item">
-        <span class="emoji">📍</span>
-        <span id="location-text">Jazan, Saudi Arabia</span>
-      </div>
-      <div class="footer-item">
-        <span class="emoji">📧</span>
-        <span id="email-text">example@creativeminds.edu.sa</span>
-      </div>
-      <div class="footer-item">
-        <span class="emoji">🌐</span>
-        <span id="website-text">www.creativeminds.edu.sa</span>
-      </div>
-    </div>
+    <div class="footer-item">📍 Jazan, Saudi Arabia</div>
+    <div class="footer-item">📧 example@creativeminds.edu.sa</div>
+    <div class="footer-item">🌐 www.creativeminds.edu.sa</div>
   </footer>
 
-  <script src="config.js"></script>
-  <script src="script.js"></script>
+  <script>
+    // JavaScript بسيط للزر
+    document.getElementById("submitBtn").onclick = function() {
+      document.getElementById("statusMessage").textContent = "تم تسجيل حضورك ✅";
+    }
+  </script>
 </body>
 </html>
