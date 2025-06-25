@@ -296,7 +296,7 @@ body.dark-mode {
 }
 
 .logo {
-  width: 90px;
+  width: 120px;
   object-fit: contain;
   animation: pulse 2s infinite;
   margin-bottom: 1.2rem;
