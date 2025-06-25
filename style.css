@@ -47,11 +47,11 @@
     --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD); /* Blue gradient for slider */
 
     /* SVG Colors - These are explicitly set to make the SVGs visible and match Figma where possible */
-    --svg-light-blob-color: #D7DDDD; /* From Figma: light grey-blue */
-    --svg-green-blob-color: #809165; /* From Figma: olive green */
-    --svg-white-blob-color: #FFFFFF; /* From Figma: white */
-    --svg-dark-blue-blob-color: #2C398B; /* From Figma: dark blue */
-    --svg-footer-color: #15253A; /* From Figma: very dark blue for footer */
+    --svg-light-blob-color: #D7DDDD; /* Light grey-blue from Figma */
+    --svg-green-blob-color: #A0B38A; /* A slightly lighter olive green for better visibility */
+    --svg-white-blob-color: #E6EAF0; /* A very light grey for the form backdrop to distinguish it */
+    --svg-dark-blue-blob-color: #4A5B70; /* A slightly lighter dark blue for visibility */
+    --svg-footer-color: #15253A; /* Very dark blue for footer */
 
 
     /* Dark Mode Colors (approximated from light mode) */
@@ -141,7 +141,7 @@ html[lang="en"] body {
     position: fixed;
     pointer-events: none; /* Allows clicks to pass through to elements behind */
     z-index: 1; /* Ensures visibility over background, but behind form content */
-    opacity: 0.7; /* Initial opacity for all SVGs, will adjust per SVG */
+    opacity: 1; /* Set opacity to 1 (100%) as requested */
     transition: opacity 0.4s ease-in-out;
 }
 
@@ -155,19 +155,19 @@ html[lang="en"] body {
 /* Explicitly set fill colors for SVGs using CSS variables */
 .svg-top-left-blob-light svg path {
     fill: var(--svg-light-blob-color);
-    mix-blend-mode: screen; /* Re-added mix-blend-mode */
+    /* Removed mix-blend-mode to ensure solid color visibility initially */
 }
 .svg-middle-left-blob-green svg path {
     fill: var(--svg-green-blob-color);
-    mix-blend-mode: multiply; /* Re-added mix-blend-mode */
+    /* Removed mix-blend-mode to ensure solid color visibility initially */
 }
 .svg-form-backdrop-blob svg path {
     fill: var(--svg-white-blob-color);
-    mix-blend-mode: screen; /* Re-added mix-blend-mode */
+    /* Removed mix-blend-mode to ensure solid color visibility initially */
 }
 .svg-bottom-right-blob-dark svg path {
     fill: var(--svg-dark-blue-blob-color);
-    mix-blend-mode: multiply; /* Re-added mix-blend-mode */
+    /* Removed mix-blend-mode to ensure solid color visibility initially */
 }
 .svg-footer-bg svg rect {
     fill: var(--svg-footer-color);
@@ -176,36 +176,40 @@ html[lang="en"] body {
 
 /* Specific positioning and scaling for each SVG based on Figma */
 .svg-top-left-blob-light {
-    top: -17.77vh; /* بناءً على Y من Figma */
-    left: -5.14vw;  /* بناءً على X من Figma */
-    width: 54.74vw; /* بناءً على W من Figma */
-    height: 77.30vh; /* بناءً على H من Figma */
-    opacity: 0.7; /* يمكنك ضبط الشفافية حسب رغبتك */
+    /* Adjusted based on visual estimation for a 1920x1080 artboard */
+    top: -20vh; /* Moved slightly more visible */
+    left: -20vw; /* Moved slightly more visible */
+    width: 60vw; /* Made smaller */
+    height: 60vh; /* Made smaller */
+    opacity: 1; /* Fully opaque */
 }
 
 .svg-middle-left-blob-green {
-    bottom: -10vh; /* Adjusted to be more off-screen at the bottom */
-    left: -25vw; /* Adjusted for position */
-    width: 70vw; /* Made larger */
-    height: 70vh; /* Made larger */
-    opacity: 0.6;
+    /* Adjusted based on visual estimation */
+    bottom: -5vh; /* Closer to the bottom */
+    left: -10vw; /* Closer to the left edge */
+    width: 40vw; /* Made smaller */
+    height: 40vh; /* Made smaller */
+    opacity: 1; /* Fully opaque */
 }
 
 .svg-form-backdrop-blob {
-    top: -20vh; /* Adjusted for better vertical centering with form */
-    right: -20vw; /* Adjusted for better horizontal centering */
-    width: 80vw; /* Adjusted size */
-    height: 130vh; /* Made taller to encompass form */
+    /* Adjusted based on visual estimation for centering behind form */
+    top: -5vh; /* Higher up */
+    right: -10vw; /* Closer to the right edge */
+    width: 55vw; /* Smaller */
+    height: 80vh; /* Smaller */
     z-index: 2; /* Increased z-index to be above other background SVGs */
-    opacity: 0.6;
+    opacity: 1; /* Fully opaque */
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -35vh; /* Moved further down */
-    right: -25vw; /* Adjusted right position */
-    width: 60vw; /* Made larger */
-    height: 70vh; /* Made larger */
-    opacity: 0.5;
+    /* Adjusted based on visual estimation */
+    bottom: -10vh; /* Closer to the bottom */
+    right: -10vw; /* Closer to the right edge */
+    width: 30vw; /* Smaller */
+    height: 40vh; /* Smaller */
+    opacity: 1; /* Fully opaque */
 }
 
 .svg-footer-bg {
@@ -214,7 +218,7 @@ html[lang="en"] body {
     width: 100vw;
     height: 200px;
     z-index: 0; /* Keep it at 0 to be behind other background SVGs if they overlap */
-    opacity: 1; /* Footer background should be fully visible */
+    opacity: 1; /* Footer background should be fully visible and always opaque */
 }
 
 
@@ -236,8 +240,9 @@ body.dark-mode .svg-footer-bg svg rect {
 }
 
 /* Overall dark mode opacity adjustment for SVGs for a subtle effect */
+/* Since all are set to 1, this global adjustment will override for a more subtle look if needed */
 body.dark-mode .bg-svg-container {
-    opacity: 0.8;
+    opacity: 0.9; /* Adjusted for dark mode, can be changed based on preference */
 }
 
 
