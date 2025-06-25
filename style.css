@@ -46,6 +46,13 @@
     --control-border-light: rgba(255, 255, 255, 0.2);
     --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD); /* Blue gradient for slider */
 
+    /* SVG Colors - These are explicitly set to make the SVGs visible and match Figma where possible */
+    --svg-light-blob-color: #D7DDDD; /* From Figma: light grey-blue */
+    --svg-green-blob-color: #809165; /* From Figma: olive green */
+    --svg-white-blob-color: #FFFFFF; /* From Figma: white */
+    --svg-dark-blue-blob-color: #2C398B; /* From Figma: dark blue */
+    --svg-footer-color: #15253A; /* From Figma: very dark blue for footer */
+
 
     /* Dark Mode Colors (approximated from light mode) */
     --main-bg-dark: #1a1a2e;
@@ -64,6 +71,13 @@
     --control-border-dark: rgba(255, 255, 255, 0.1);
     --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
 
+    /* Dark Mode SVG Colors - Adjusted to be visible and aesthetically pleasing */
+    --svg-light-blob-color-dark: #3A4C62; /* Darker version of light blob */
+    --svg-green-blob-color-dark: #5A6D81; /* Darker version of green blob */
+    --svg-white-blob-color-dark: #202D3D; /* Darker version of white blob */
+    --svg-dark-blue-blob-color-dark: #0A1B2C; /* Darker version of dark blue blob */
+    --svg-footer-color-dark: #050E17; /* Even darker footer */
+
 
     /* Active Theme Variables */
     --current-main-bg: var(--main-bg-light);
@@ -78,12 +92,6 @@
     --current-control-bg: var(--control-bg-light);
     --current-control-border: var(--control-border-light);
     --current-slider-bg: var(--slider-bg-light);
-
-    /* Status colors (remain constant) */
-    --success-color: #22c55e;
-    --error-color: #ef4444;
-    --warning-color: #f59e0b;
-    --info-color: #3b82f6;
 }
 
 body.dark-mode {
@@ -127,9 +135,8 @@ html[lang="en"] body {
     position: fixed;
     pointer-events: none; /* Allows clicks to pass through to elements behind */
     z-index: -2; /* Layered below main content */
-    /* Removed transition for filters/opacity for initial debugging */
-    /* Removed mix-blend-mode for initial debugging */
-    opacity: 1; /* Set opacity to 1 for debugging visibility */
+    opacity: 0.7; /* Initial opacity for all SVGs, will adjust per SVG */
+    transition: opacity 0.4s ease-in-out; /* Smooth transition for opacity */
 }
 
 /* Styling for SVGs themselves within their containers */
@@ -140,20 +147,21 @@ html[lang="en"] body {
 }
 
 /* Explicitly set fill colors for SVGs to ensure visibility */
+/* These colors will be managed by CSS variables for theme switching */
 .svg-top-left-blob-light svg path {
-    fill: #D3DEDC; /* A light, visible color for testing */
+    fill: var(--svg-light-blob-color);
 }
 .svg-middle-left-blob-green svg path {
-    fill: #92A9BD; /* A muted blue for testing */
+    fill: var(--svg-green-blob-color);
 }
 .svg-form-backdrop-blob svg path {
-    fill: #C0D8E4; /* A light blue for testing */
+    fill: var(--svg-white-blob-color);
 }
 .svg-bottom-right-blob-dark svg path {
-    fill: #5A4E63; /* A dark purple-grey for testing */
+    fill: var(--svg-dark-blue-blob-color);
 }
 .svg-footer-bg svg rect {
-    fill: #15253A; /* Dark blue for footer */
+    fill: var(--svg-footer-color);
 }
 
 
@@ -163,6 +171,8 @@ html[lang="en"] body {
     left: -10vw;
     width: 60vw;
     height: 60vh;
+    /* mix-blend-mode: screen; Temporarily removed, re-add if stable */
+    opacity: 0.7;
 }
 
 .svg-middle-left-blob-green {
@@ -170,6 +180,8 @@ html[lang="en"] body {
     left: -15vw;
     width: 35vw;
     height: 35vh;
+    /* mix-blend-mode: multiply; Temporarily removed, re-add if stable */
+    opacity: 0.6;
 }
 
 .svg-form-backdrop-blob {
@@ -178,6 +190,8 @@ html[lang="en"] body {
     width: 55vw;
     height: 80vh;
     z-index: -1;
+    /* mix-blend-mode: screen; Temporarily removed, re-add if stable */
+    opacity: 0.6;
 }
 
 .svg-bottom-right-blob-dark {
@@ -185,6 +199,8 @@ html[lang="en"] body {
     right: -10vw;
     width: 30vw;
     height: 40vh;
+    /* mix-blend-mode: multiply; Temporarily removed, re-add if stable */
+    opacity: 0.5;
 }
 
 .svg-footer-bg {
@@ -193,34 +209,32 @@ html[lang="en"] body {
     width: 100vw;
     height: 200px;
     z-index: -1;
+    opacity: 1; /* Footer background should be fully visible */
 }
 
 
-/* Dark mode SVG appearance adjustments - Temporarily removed filters for debugging */
-body.dark-mode .bg-svg-container {
-    /* filter: invert(0.9) hue-rotate(180deg) brightness(0.8); */
-    opacity: 1; /* Set opacity to 1 for debugging visibility */
-}
-
-/* More specific overrides if needed for individual SVGs in dark mode */
-/* Note: Direct fill colors within the SVG paths override CSS 'fill' on the container,
-   so filters are the primary way to adjust colors for these embedded SVGs. */
+/* Dark mode SVG appearance adjustments */
 body.dark-mode .svg-top-left-blob-light svg path {
-    fill: #5A6D81; /* Example dark mode color */
+    fill: var(--svg-light-blob-color-dark);
 }
 body.dark-mode .svg-middle-left-blob-green svg path {
-    fill: #A0B38A; /* Example dark mode color */
+    fill: var(--svg-green-blob-color-dark);
 }
 body.dark-mode .svg-form-backdrop-blob svg path {
-    fill: #3A4C62; /* Example dark mode color */
+    fill: var(--svg-white-blob-color-dark);
 }
 body.dark-mode .svg-bottom-right-blob-dark svg path {
-    fill: #323232; /* Example dark mode color */
+    fill: var(--svg-dark-blue-blob-color-dark);
 }
 body.dark-mode .svg-footer-bg svg rect {
-    fill: #0A1B2C; /* Darker footer in dark mode */
+    fill: var(--svg-footer-color-dark);
 }
 
+/* Overall dark mode opacity adjustment for SVGs for a subtle effect */
+body.dark-mode .bg-svg-container {
+    opacity: 0.8; /* Slightly higher opacity in dark mode to show colors */
+}
+/* No global filter: invert() applied anymore, as fill colors are direct */
 
 
 /* Top controls (language and dark mode toggles) */
