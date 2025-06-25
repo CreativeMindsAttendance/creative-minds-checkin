@@ -174,46 +174,41 @@ html[lang="en"] body {
 }
 
 
-/* Specific positioning and scaling for each SVG based on Figma */
+/* Specific positioning and scaling for each SVG based on Figma and visual tuning */
 .svg-top-left-blob-light {
-    /* Adjusted based on visual estimation for a 1920x1080 artboard */
-    top: -20vh; /* Moved slightly more visible */
-    left: -20vw; /* Moved slightly more visible */
-    width: 60vw; /* Made smaller */
-    height: 60vh; /* Made smaller */
+    top: -15vh; /* Adjusted for better visibility from top-left */
+    left: -15vw; /* Adjusted for better visibility from top-left */
+    width: 50vw; /* Smaller, more subtle */
+    height: 50vh; /* Smaller, more subtle */
     opacity: 1; /* Fully opaque */
 }
 
 .svg-middle-left-blob-green {
-    /* Adjusted based on visual estimation */
-    bottom: -5vh; /* Closer to the bottom */
-    left: -10vw; /* Closer to the left edge */
-    width: 40vw; /* Made smaller */
-    height: 40vh; /* Made smaller */
+    bottom: -10vh; /* Adjusted for subtle appearance from bottom-left */
+    left: -10vw; /* Adjusted for subtle appearance from bottom-left */
+    width: 35vw; /* Smaller, more subtle */
+    height: 35vh; /* Smaller, more subtle */
     opacity: 1; /* Fully opaque */
 }
 
 .svg-form-backdrop-blob {
-    /* Adjusted based on Figma's provided numbers, converted from 1920x1080 artboard */
-    top: 13.33vh; /* Calculated from Y: 144px */
-    left: 29.48vw; /* Calculated from X: 566px */
-    width: 41.05vw; /* Calculated from W: 788.23px */
-    height: 73.29vh; /* Calculated from H: 791.5px */
-    z-index: 2; /* Increased z-index to be above other background SVGs */
+    /* Manual adjustment to center behind the form */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centering trick */
+    width: 450px; /* Using fixed px for precise centering relative to form, can be vw/vh if form is responsive */
+    height: 600px; /* Using fixed px */
+    max-width: 90vw; /* Ensures it doesn't overflow on small screens */
+    max-height: 90vh; /* Ensures it doesn't overflow on small screens */
+    z-index: 2; /* Ensures it's behind the form but above other blobs */
     opacity: 1; /* Fully opaque */
-    /*
-        Note: The 'right' property is now overridden by 'left' since both are set.
-        Positioning with 'left' and 'top' is generally more consistent for SVGs.
-        You might need to adjust 'left' to center it perfectly if the form is truly centered.
-    */
 }
 
 .svg-bottom-right-blob-dark {
-    /* Adjusted based on visual estimation */
-    bottom: -10vh; /* Closer to the bottom */
-    right: -10vw; /* Closer to the right edge */
-    width: 30vw; /* Smaller */
-    height: 40vh; /* Smaller */
+    bottom: -15vh; /* Adjusted for subtle appearance from bottom-right */
+    right: -15vw; /* Adjusted for subtle appearance from bottom-right */
+    width: 40vw; /* Smaller, more subtle */
+    height: 40vh; /* Smaller, more subtle */
     opacity: 1; /* Fully opaque */
 }
 
@@ -245,7 +240,6 @@ body.dark-mode .svg-footer-bg svg rect {
 }
 
 /* Overall dark mode opacity adjustment for SVGs for a subtle effect */
-/* Since all are set to 1, this global adjustment will override for a more subtle look if needed */
 body.dark-mode .bg-svg-container {
     opacity: 0.9; /* Adjusted for dark mode, can be changed based on preference */
 }
