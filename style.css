@@ -1,689 +1,446 @@
-/* ========================================
-   الخطوط المخصصة - Custom Fonts
-======================================== */
+/* ========== 1. Fonts & Base ========== */
 @font-face {
-    font-family: 'SwinglyLours';
-    src: url('fonts/SwinglyLours.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'SwinglyLours';
+  src: url('fonts/SwinglyLours.otf') format('opentype'),
+       url('fonts/SwinglyLours.woff2') format('woff2'),
+       url('fonts/SwinglyLours.woff') format('woff');
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'QatarMedium';
-    src: url('fonts/QatarMedium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'QatarMedium';
+  src: url('fonts/QatarMedium.woff2') format('woff2'),
+       url('fonts/QatarMedium.woff') format('woff'),
+       url('fonts/QatarMedium.ttf') format('truetype'),
+       url('fonts/QatarMedium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
 }
 
-@font-face {
-    font-family: 'Philosopher';
-    src: url('fonts/PhilosopherRegular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* ========================================
-   متغيرات الألوان والتصميم - Design Variables
-======================================== */
-:root {
-    /* ألوان الخلفية - Background Colors */
-    --main-bg-light: #E9F1F0; /* Soft light background */
-    --main-bg-dark: #1A202C; /* Dark background */
-    
-    /* ألوان النصوص - Text Colors */
-    --text-color-light: #323232; /* Dark grey for light mode text */
-    --text-color-dark: #F7FAFC; /* Light text for dark mode */
-    
-    /* ألوان النماذج - Form Colors */
-    --form-bg-light: #FFFFFF; /* Pure white form */
-    --form-bg-dark: #2D3748; /* Darker form background */
-    --input-bg-light: #F7FAFC; /* Light input background */
-    --input-bg-dark: #4A5568; /* Dark input background */
-    
-    /* ألوان الأزرار - Button Colors */
-    --button-primary-bg-light: #364251; /* Deep blue-grey */
-    --button-primary-bg-dark: #63758F; /* Lighter blue-grey for dark mode */
-    --button-secondary-bg-light: #809165; /* Vibrant olive green */
-    --button-secondary-bg-dark: #9CAF88; /* Slightly lighter olive green for dark mode */
-    --button-text-light: #FFFFFF;
-    --button-text-dark: #FFFFFF;
-    
-    /* الظلال - Shadows (More prominent and consistent) */
-    --shadow-soft-large: 0px 10px 30px rgba(0, 0, 0, 0.15), 0px 0px 0px 1px rgba(255, 255, 255, 0.6); /* Form shadow */
-    --shadow-soft-large-dark: 0px 10px 30px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.08); /* Dark form shadow */
-    --shadow-button: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Button shadow */
-    --shadow-button-dark: 0px 5px 15px rgba(0, 0, 0, 0.35); /* Dark button shadow */
-
-    /* ألوان عناصر التحكم - Control Colors */
-    --control-bg-light: rgba(255, 255, 255, 0.95);
-    --control-bg-dark: rgba(0, 0, 0, 0.6);
-    --control-border-light: rgba(255, 255, 255, 0.2);
-    --control-border-dark: rgba(255, 255, 255, 0.1);
-    --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD);
-    --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
-    
-    /* ألوان تدرج زر Gemini */
-    --gemini-btn-gradient-start-light: #FF9A8B; /* Soft orange-pink */
-    --gemini-btn-gradient-end-light: #FF6A88; /* Slightly darker pink */
-    --gemini-btn-gradient-start-dark: #8E2DE2; /* Dark purple */
-    --gemini-btn-gradient-end-dark: #4A00E0; /* Deep purple */
-
-    /* لون خلفية التذييل */
-    --footer-bg-light: #15253A; /* Dark blue for footer in light mode */
-    --footer-bg-dark: #050E17; /* Even darker blue for footer in dark mode */
-    
-    /* ألوان الحالة - Status Colors */
-    --success-color: #22c55e;
-    --error-color: #ef4444;
-    --warning-color: #f59e0b;
-    --info-color: #3b82f6;
-    
-    /* المتغيرات النشطة - هذه المتغيرات سيتم استخدامها في المكونات */
-    --current-main-bg: var(--main-bg-light);
-    --current-text-color: var(--text-color-light);
-    --current-form-bg: var(--form-bg-light);
-    --current-input-bg: var(--input-bg-light);
-    --current-button-primary-bg: var(--button-primary-bg-light);
-    --current-button-secondary-bg: var(--button-secondary-bg-light);
-    --current-button-text: var(--button-text-light);
-    --current-shadow-soft-large: var(--shadow-soft-large);
-    --current-shadow-button: var(--shadow-button);
-    --current-control-bg: var(--control-bg-light);
-    --current-control-border: var(--control-border-light);
-    --current-slider-bg: var(--slider-bg-light);
-    --current-gemini-btn-gradient-start: var(--gemini-btn-gradient-start-light);
-    --current-gemini-btn-gradient-end: var(--gemini-btn-gradient-end-light);
-    --current-footer-bg: var(--footer-bg-light);
-}
-
-/* ========================================
-   الوضع المظلم - Dark Mode
-======================================== */
-body.dark-mode {
-    --current-main-bg: var(--main-bg-dark);
-    --current-text-color: var(--text-color-dark);
-    --current-form-bg: var(--form-bg-dark);
-    --current-input-bg: var(--input-bg-dark);
-    --current-button-primary-bg: var(--button-primary-bg-dark);
-    --current-button-secondary-bg: var(--button-secondary-bg-dark);
-    --current-button-text: var(--button-text-dark);
-    --current-shadow-soft-large: var(--shadow-soft-large-dark);
-    --current-shadow-button: var(--shadow-button-dark);
-    --current-control-bg: var(--control-bg-dark);
-    --current-control-border: var(--control-border-dark);
-    --current-slider-bg: var(--slider-bg-dark);
-    --current-gemini-btn-gradient-start: var(--gemini-btn-gradient-start-dark);
-    --current-gemini-btn-gradient-end: var(--gemini-btn-gradient-end-dark);
-    --current-footer-bg: var(--footer-bg-dark);
-}
-
-/* ========================================
-   إعدادات عامة - General Settings
-======================================== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
-    min-height: 100vh; /* Ensure body takes full viewport height */
-    background-color: var(--current-main-bg); /* Base background color */
-    color: var(--current-text-color);
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    display: flex;
-    flex-direction: column; /* Allows main content to push footer down */
-    font-family: 'QatarMedium', sans-serif; /* Default for Arabic using local font */
-    transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  background-color: var(--current-main-bg);
+  color: var(--current-text-color);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'QatarMedium', sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Apply English font when language is English */
 html[lang="en"] body {
-    font-family: 'Philosopher', serif;
+  font-family: 'Philosopher', serif;
 }
 
-/* تم إزالة جميع قواعد CSS لأشكال SVG الخلفية المعقدة */
 
-
-/* ========================================
-   عناصر التحكم الثابتة - Fixed Controls
-======================================== */
-.fixed-top-right-controls {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-    display: flex; /* لضمان ظهورهم جنبًا إلى جنب */
-    gap: 15px; /* المسافة بين عناصر التحكم */
+/* ========== 2. Background ========== */
+.bg-gradient-primary,
+.bg-gradient-secondary {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  transition: background 0.4s ease;
 }
 
-/* ========================================
-   مبدل اللغة - Language Switcher
-======================================== */
+.bg-gradient-primary {
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle at 10% 10%, var(--current-bg-primary), transparent 60%);
+}
+
+.bg-gradient-secondary {
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(circle at 90% 90%, var(--current-bg-secondary), transparent 60%);
+}
+
+.bg-curvy-shape-left,
+.bg-curvy-shape-right {
+  position: fixed;
+  width: 120vw;
+  height: 120vh;
+  border-radius: 50%;
+  z-index: -2;
+  opacity: 0.6;
+  transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.bg-curvy-shape-left {
+  background: var(--current-curvy-shape-left);
+  top: -60vh;
+  left: -60vw;
+  clip-path: ellipse(60% 40% at 20% 10%);
+  transform: rotate(-15deg);
+}
+
+.bg-curvy-shape-right {
+  background: var(--current-curvy-shape-right);
+  bottom: -60vh;
+  right: -60vw;
+  clip-path: ellipse(60% 40% at 80% 90%);
+  transform: rotate(15deg);
+}
+
+/* ========== 3. Site Title & Controls ========== */
+#site-title {
+  text-align: center;
+  font-family: 'SwinglyLours', cursive;
+  font-size: clamp(36px, 7vw, 60px);
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 101;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7C99AC, #92A9BD);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInDown 1s ease-out;
+  padding-top: 10px;
+}
+
+.top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.4s ease;
+  height: 60px;
+}
+
+body.dark-mode .top-controls {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .language-switcher {
-    display: flex;
-    width: 90px;
-    height: 46px;
-    background-color: var(--current-control-bg);
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--current-control-border);
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: flex;
+  width: 100px;
+  height: 44px;
+  background-color: var(--current-language-switcher-bg);
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .language-switcher:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--shadow);
 }
 
 .lang-option {
-    flex: 1;
-    text-align: center;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 46px; /* Adjusted line-height to match height */
-    z-index: 2;
-    position: relative;
-    color: var(--current-text-color);
-    transition: color 0.3s ease;
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 44px;
+  z-index: 2;
+  position: relative;
+  color: var(--current-text-color);
+  transition: color 0.3s ease;
 }
 
 .lang-option.active {
-    color: white; /* لون نص اللغة النشطة */
+  color: white;
 }
 
 .slider {
-    position: absolute;
-    top: 2px;
-    bottom: 2px;
-    left: 2px;
-    width: 43px; /* Adjusted: (90 - 4px padding) / 2 = 43px */
-    border-radius: 18px;
-    background: linear-gradient(135deg, var(--current-slider-bg));
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: 44px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(43px); /* يحرك المؤشر إلى موضع AR */
-}
-.language-switcher[data-active-lang="en"] .slider {
-    transform: translateX(0); /* يحرك المؤشر إلى موضع EN */
+  transform: translateX(54px);
 }
 
-/* ========================================
-   مبدل الوضع المظلم - Dark Mode Toggle
-======================================== */
 #mode-toggle {
-    width: 60px;
-    height: 36px;
-    border-radius: 18px;
-    background: var(--current-slider-bg);
-    display: flex;
-    align-items: center;
-    padding: 4px;
-    cursor: pointer;
-    margin-left: 16px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-#mode-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+  width: 70px;
+  height: 44px;
+  border-radius: 22px;
+  background: var(--current-mode-toggle-bg);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  cursor: pointer;
+  margin-left: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 #mode-toggle .toggle-icon {
-    width: 28px;
-    height: 28px;
-    background-color: white;
-    border-radius: 50%;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
-    position: relative;
-    left: 0;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  background-color: white;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+  position: relative;
+  left: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(20px); /* يحرك الأيقونة إلى اليمين للوضع المظلم */
+  transform: translateX(22px);
 }
 
 #mode-toggle .toggle-icon::before {
-    content: "☀️"; /* أيقونة الشمس */
+  content: "☀️";
 }
 
 #mode-toggle.active .toggle-icon::before {
-    content: "🌙"; /* أيقونة القمر */
+  content: "🌙";
 }
 
-
-/* ========================================
-   عنوان الموقع - Site Title
-======================================== */
-#site-title { /* استخدام ID لأنه عنصر فريد */
-    text-align: center;
-    font-family: 'SwinglyLours', cursive;
-    font-size: clamp(3rem, 5vw, 7rem);
-    margin-top: 80px; /* Adjusted margin-top for spacing below top controls */
-    margin-bottom: 20px;
-    display: block; /* Ensure it takes full width for text-align: center */
-    z-index: 2;
-    position: relative;
-    font-weight: 700;
-    /* Using solid background color for title as requested for simplicity */
-    background-color: var(--current-button-primary-bg); /* Use primary button color for solid look */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInDown 1s ease-out;
-    letter-spacing: 2px;
-}
-
-@media screen and (min-width: 768px) {
-    #site-title {
-        font-size: clamp(36px, 7vw, 60px); /* Larger on desktop */
-    }
-}
-
-/* ========================================
-   المحتوى الرئيسي - Main Content
-======================================== */
+/* ========== 4. Main Content ========== */
 .main-content {
-    flex-grow: 1; /* يسمح لها بأخذ المساحة المتاحة ودفع التذييل للأسفل */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    padding-top: 40px; /* Adjusted padding-top to bring form up */
-    margin-bottom: 0;
-    width: 100%;
-    z-index: 10; /* Ensure content is above any remaining background elements */
-    position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  padding-top: calc(60px + 60px + 1.5rem);
+  width: 100%;
+  z-index: 1;
 }
 
 .container {
-    width: 90%;
-    max-width: 420px;
-    background: var(--current-form-bg);
-    padding: 2.5rem 2rem;
-    border-radius: 24px;
-    text-align: center;
-    box-shadow: var(--current-shadow-soft-large);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: fadeInUp 1s ease-out 0.3s both;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  width: 90%;
+  max-width: 420px;
+  background: var(--current-form-bg);
+  padding: 1.5rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px var(--shadow), 0 0 0 1px rgba(255,255,255,0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  animation: fadeInUp 1s ease-out;
 }
 
-body.dark-mode .container {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* ========================================
-   الشعار - Logo
-======================================== */
 .logo {
-    width: 120px; /* Adjusted size slightly for better visibility */
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 0.5rem;
-    animation: pulse 2s infinite;
+  width: 90px;
+  object-fit: contain;
+  animation: pulse 2s infinite;
 }
 
-/* ========================================
-   عنوان النموذج - Form Title
-======================================== */
 #form-title {
-    font-family: 'QatarMedium', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--current-text-color);
-    margin-bottom: 1rem;
-    animation: fadeIn 1s ease-out 0.6s both;
-    transition: color 0.4s ease;
-}
-html[lang="en"] #form-title {
-    font-family: 'Philosopher', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--current-text-color);
+  animation: fadeIn 1s ease-out;
 }
 
-/* ========================================
-   حقل الإدخال - Input Field
-======================================== */
+html[lang="en"] #form-title {
+  font-family: 'Philosopher', serif;
+  font-size: 1.6rem;
+}
+
 #nameInput {
-    width: 100%;
-    padding: 1rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 16px;
-    background-color: var(--current-input-bg);
-    border: 2px solid transparent;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-family: 'QatarMedium', sans-serif;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    color: var(--current-text-color);
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 16px;
+  background-color: var(--current-input-bg);
+  border: 2px solid transparent;
+  text-align: center;
+  font-family: 'QatarMedium', sans-serif;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  color: var(--current-text-color);
 }
-html[lang="en"] #nameInput {
-    font-family: 'Philosopher', serif;
-}
+
 #nameInput::placeholder {
-    color: var(--current-text-color);
-    opacity: 0.7;
+  color: var(--current-text-color);
+  opacity: 0.7;
 }
 
 #nameInput:focus {
-    outline: none;
-    border-color: var(--current-button-primary-bg);
-    background-color: var(--current-input-bg);
-    box-shadow: 0 0 0 4px rgba(54, 66, 81, 0.1);
-    transform: translateY(-2px);
-}
-body.dark-mode #nameInput:focus {
-    box-shadow: 0 0 0 4px rgba(90, 109, 129, 0.1);
+  outline: none;
+  border-color: var(--current-accent1);
+  box-shadow: 0 0 0 4px rgba(146, 169, 189, 0.1);
+  transform: translateY(-2px);
 }
 
-/* ========================================
-   الزر الرئيسي - Primary Button
-======================================== */
 #submitBtn {
-    background: var(--current-button-primary-bg); /* Using solid color variable */
-    color: var(--current-button-text);
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--current-shadow-button);
-    font-family: 'QatarMedium', sans-serif;
-    position: relative;
-    overflow: hidden;
-    min-width: 160px;
-    margin-bottom: 0.5rem;
-}
-html[lang="en"] #submitBtn {
-    font-family: 'Philosopher', serif;
-}
-
-#submitBtn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-}
-
-#submitBtn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-#submitBtn.loading {
-    pointer-events: none;
-    opacity: 0.8;
+  background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
+  color: white;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px var(--current-button-shadow);
+  position: relative;
+  overflow: hidden;
+  min-width: 200px;
 }
 
 #submitBtn.loading::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 2px solid transparent;
-    border-top: 2px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-/* New Gemini Feature Button */
-#generateTipBtn {
-    background: linear-gradient(135deg, var(--current-gemini-btn-gradient-start), var(--current-gemini-btn-gradient-end));
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--current-shadow-button); /* Using general button shadow */
-    font-family: 'QatarMedium', sans-serif;
-    position: relative;
-    overflow: hidden;
-    min-width: 160px;
-    margin-top: 0.5rem;
-}
-
-html[lang="en"] #generateTipBtn {
-    font-family: 'Philosopher', serif;
-}
-
-#generateTipBtn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-}
-
-#generateTipBtn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-#generateTipBtn.loading {
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-#generateTipBtn.loading::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 2px solid transparent;
-    border-top: 2px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-
-/* Status message */
 #statusMessage {
-    margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    font-family: 'QatarMedium', sans-serif;
-    line-height: 1.4;
-    min-height: 20px;
-    max-width: 100%;
-    word-wrap: break-word;
+  margin-top: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  line-height: 1.4;
+  min-height: 20px;
+  max-width: 100%;
+  word-wrap: break-word;
 }
-html[lang="en"] #statusMessage {
-    font-family: 'Philosopher', serif;
-}
-
 
 #statusMessage.show {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #statusMessage.success {
-    background-color: rgba(34, 197, 94, 0.1);
-    color: var(--success-color);
-    border: 1px solid rgba(34, 197, 94, 0.2);
+  background-color: rgba(34, 197, 94, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
 #statusMessage.error {
-    background-color: rgba(239, 68, 68, 0.1);
-    color: var(--error-color);
-    border: 1px solid rgba(239, 68, 68, 0.2);
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error-color);
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-#statusMessage.warning {
-    background-color: rgba(245, 158, 11, 0.1);
-    color: var(--warning-color);
-    border: 1px solid rgba(245, 158, 11, 0.2);
+.daily-dhikr-message {
+  margin-top: 0.6rem;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--current-text-color);
+  background: var(--current-adhkar-bg);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  line-height: 1.6;
+  text-align: center;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
-#statusMessage.info {
-    background-color: rgba(59, 130, 246, 0.1);
-    color: var(--info-color);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-}
 
-
-/* Footer styling */
+/* ========== 5. Footer ========== */
 .footer {
-    font-size: 0.85rem;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    opacity: 1; /* Full opacity for solid background */
-    background-color: var(--current-footer-bg); /* Use solid background color */
-    backdrop-filter: none; /* No blur needed for solid background */
-    margin-top: auto; /* Pushes footer to the bottom */
-    color: var(--current-text-color);
-    transition: background-color 0.4s ease, color 0.4s ease;
-    width: 100%;
-    position: relative; /* For z-index context if needed */
-    z-index: 11;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  margin-top: auto;
+  color: var(--current-text-color);
+  transition: background 0.4s ease, color 0.4s ease;
+  width: 100%;
 }
 
 .footer-content {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    max-width: 600px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  direction: ltr;
+  font-size: 0.8rem;
 }
 
 .footer-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    direction: ltr; /* Always LTR for footer items to prevent emoji flipping and layout issues */
-    text-align: left;
-}
-
-html[lang="ar"] .footer-content {
-    justify-content: center;
-}
-html[lang="en"] .footer-content {
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: left;
 }
 
 .emoji {
-    font-size: 1rem;
-    display: inline-block;
-    transform: scaleX(1);
+  font-size: 0.9rem;
+  display: inline-block;
+  transform: scaleX(1);
 }
 
 
-/* Animations */
+/* ========== 6. Animations ========== */
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Responsive design */
-@media screen and (max-width: 768px) {
-    #site-title {
-        margin-top: calc(60px + 10px); /* Adjusted for smaller screens too */
-        font-size: clamp(24px, 5vw, 42px);
-    }
-    .main-content {
-        padding-top: 10px; /* Adjust padding-top for main content */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .fixed-top-right-controls {
-        top: 15px;
-        right: 15px;
-    }
-
-    .language-switcher, #mode-toggle {
-        width: 70px;
-        height: 32px;
-    }
-    .lang-option {
-        font-size: 11px;
-        line-height: 32px;
-    }
-    .slider {
-        width: 32px;
-    }
-    .language-switcher[data-active-lang="ar"] .slider {
-        transform: translateX(36px);
-    }
-    #mode-toggle .toggle-icon {
-        width: 24px;
-        height: 24px;
-        font-size: 12px;
-    }
-    #mode-toggle.active .toggle-icon {
-        transform: translateX(20px);
-    }
-
-    #site-title {
-        font-size: clamp(20px, 6vw, 36px);
-        margin-top: calc(60px + 10px); /* Consistent top margin for small screens */
-    }
-
-    #form-title {
-        font-size: 1.4rem;
-    }
-    #nameInput, #submitBtn, #generateTipBtn {
-        padding: 0.8rem 1rem;
-        font-size: 0.95rem;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        gap: 0.75rem;
-    }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
