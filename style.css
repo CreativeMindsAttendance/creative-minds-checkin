@@ -172,9 +172,9 @@ html[lang="en"] body {
 }
 
 
-/* Specific positioning and scaling for each SVG (re-tuned based on user's computed styles) */
+/* Specific positioning and scaling for each SVG (re-tuned based on user's computed styles and new image) */
 .svg-top-left-blob-light {
-    /* Converted from px to vw/vh assuming 1920x1080 viewport for responsiveness */
+    /* This one is correct based on user feedback */
     top: -0.85vh; /* from -9.17px */
     left: -8vw; /* from -153.6px */
     width: 50vw; /* from 960px */
@@ -183,16 +183,16 @@ html[lang="en"] body {
 }
 
 .svg-middle-left-blob-green {
-    /* Converted from px to vw/vh assuming 1920x1080 viewport for responsiveness */
-    bottom: -1.7vh; /* from -18.34px */
-    left: -2vw; /* from -38.4px */
-    width: 25vw; /* from 480px */
-    height: 21.23vh; /* from 229.25px */
+    /* Adjusted based on the new screenshot */
+    bottom: -15vh; /* Moved further down */
+    left: -5vw; /* Adjusted left position */
+    width: 30vw; /* Slightly smaller */
+    height: 35vh; /* Adjusted height */
     opacity: 1;
 }
 
 .svg-form-backdrop-blob {
-    /* Adjusted to keep it centered and maintain specified fixed dimensions with responsiveness */
+    /* This one appears correct in the screenshot */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -205,11 +205,11 @@ html[lang="en"] body {
 }
 
 .svg-bottom-right-blob-dark {
-    /* Reverted to previous settings as it was not in the provided computed styles */
-    bottom: -10vh;
-    right: -10vw;
-    width: 30vw;
-    height: 40vh;
+    /* Adjusted based on the new screenshot */
+    bottom: -20vh; /* Moved further down */
+    right: -10vw; /* Adjusted right position */
+    width: 40vw; /* Slightly larger */
+    height: 50vh; /* Adjusted height */
     opacity: 1;
 }
 
@@ -275,7 +275,7 @@ body.dark-mode .bg-svg-container {
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
-    border: 1px solid var(--current-control-border);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
