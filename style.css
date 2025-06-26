@@ -1,7 +1,7 @@
 /* Custom Fonts */
 @font-face {
-    font-family: 'SwinglyLours';
-    src: url('fonts/SwinglyLours.otf') format('opentype');
+    font-family: 'MacondoSwashCaps-Regular.ttf';
+    src: url('fonts/MacondoSwashCaps-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -354,7 +354,7 @@ body.dark-mode .bg-svg-container {
 /* Site title - Bigger and more prominent */
 #site-title {
     text-align: center;
-    font-family: 'SwinglyLours', cursive;
+    font-family: 'MacondoSwashCaps-Regular.ttf', cursive;
     font-size: clamp(3rem, 5rem, 7rem); /* Much bigger */
     margin-top: 5px;
     margin-bottom: -115px;
