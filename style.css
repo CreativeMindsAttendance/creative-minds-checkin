@@ -68,11 +68,11 @@
     --control-border-dark: rgba(255, 255, 255, 0.1);
     --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
 
-    --svg-light-blob-color-dark: #4A5568;
-    --svg-green-blob-color-dark: #68D391;
-    --svg-white-blob-color-dark: #2D3748;
-    --svg-dark-blue-blob-color-dark: #1A202C;
-    --svg-footer-color-dark: #0A0E17;
+    --svg-light-blob-color-dark: #D7DDDD;
+    --svg-green-blob-color-dark: #809165;
+    --svg-white-blob-color-dark: #FFFFFF;
+    --svg-dark-blue-blob-color-dark: #2C398B;
+    --svg-footer-color-dark: #15253A;
 
     /* Active Theme Variables */
     --current-main-bg: var(--main-bg-light);
@@ -138,7 +138,7 @@ html[lang="en"] body {
     z-index: 1;
     opacity: 0.6; /* Reduced opacity for softer look */
     transition: opacity 0.4s ease-in-out;
-    filter: drop-shadow(rgba(0, 0, 0, 0.05) 0px 5px 15px); /* Much softer shadow */
+    filter: drop-shadow(rgba(0, 0, 0, 0.05) 15px 10px 20px); /* Much softer shadow */
 }
 
 .bg-svg-container svg {
@@ -166,48 +166,48 @@ html[lang="en"] body {
 
 /* Updated SVG positioning to match design */
 .svg-top-left-blob-light {
-    top: -15vh;
-    left: -15vw;
-    width: 70vw;
-    height: 80vh;
-    opacity: 0.4;
+    top: -1vh;
+    left: -8vw;
+    width: 50vw;
+    height: 70vh;
+    opacity: 1;
 }
 
 .svg-middle-left-blob-green {
-    bottom: -15vh;
-    left: -15vw;
-    width: 50vw;
-    height: 60vh;
-    opacity: 0.5;
+    bottom: -2vh;
+    left: -2vw;
+    width: 25vw;
+    height: 25vh;
+    opacity: 1;
 }
 
 .svg-form-backdrop-blob {
-    top: 50%;
-    left: 50%;
+    top: 77%;
+    left: 86%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 520px;
-    max-width: 95vw;
-    max-height: 95vh;
+    width: 49vw;
+    height: 50vh;
+    max-width: 90vw;
+    max-height: 90vh;
     z-index: 2;
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -15vh;
-    right: -15vw;
-    width: 60vw;
-    height: 70vh;
-    opacity: 0.3;
+    bottom: 65vh;
+    right: -7vw;
+    width: 25vw;
+    height: 36vh;
+    opacity: 1;
 }
 
 .svg-footer-bg {
-    bottom: 0;
+    bottom: -31px;
     left: 0;
     width: 100vw;
-    height: 180px;
+    height: 20vh;
     z-index: 0;
-    opacity: 0.9;
+    opacity: 1;
 }
 
 /* Dark mode SVG colors */
@@ -229,7 +229,7 @@ body.dark-mode .svg-footer-bg svg rect {
 
 body.dark-mode .bg-svg-container {
     opacity: 0.7;
-    filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(15px 10px 20px rgba(0, 0, 0, 0.4));
 }
 
 /* Controls positioning */
@@ -250,8 +250,8 @@ body.dark-mode .bg-svg-container {
 /* Language switcher */
 .language-switcher {
     display: flex;
-    width: 80px;
-    height: 36px;
+    width: 90px;
+    height: 46px;
     background-color: var(--current-control-bg);
     border-radius: 20px;
     position: relative;
@@ -355,9 +355,9 @@ body.dark-mode .bg-svg-container {
 #site-title {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
-    font-size: clamp(42px, 8vw, 72px); /* Much bigger */
-    margin-top: 80px;
-    margin-bottom: 30px;
+    font-size: clamp(3rem, 5rem, 7rem); /* Much bigger */
+    margin-top: 5px;
+    margin-bottom: -115px;
     display: block;
     z-index: 2;
     position: relative;
@@ -378,7 +378,7 @@ body.dark-mode .bg-svg-container {
     justify-content: center;
     padding: 1rem;
     padding-top: 20px;
-    margin-bottom: 0;
+    margin-bottom: -50xp;
     width: 100%;
     z-index: 10;
     position: relative;
@@ -386,20 +386,20 @@ body.dark-mode .bg-svg-container {
 
 .container {
     width: 90%;
-    max-width: 440px;
+    max-width: 420px;
     background: var(--current-form-bg);
-    padding: 3rem 2.5rem;
-    border-radius: 28px;
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
     text-align: center;
     box-shadow: var(--current-shadow-soft-large);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     animation: fadeInUp 1s ease-out 0.3s both;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 body.dark-mode .container {
@@ -408,20 +408,20 @@ body.dark-mode .container {
 
 /* Logo - Bigger */
 .logo {
-    width: 140px;
+    width: 120px;
     height: auto;
     object-fit: contain;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     animation: pulse 2s infinite;
 }
 
 /* Form Title */
 #form-title {
     font-family: 'QatarMedium', sans-serif;
-    font-size: 1.75rem;
+    font-size: 2.5rem;
     font-weight: 600;
     color: var(--current-text-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0rem;
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
@@ -432,13 +432,13 @@ html[lang="en"] #form-title {
 /* Input field - Cleaner look */
 #nameInput {
     width: 100%;
-    padding: 1.2rem 1.5rem;
-    font-size: 1.1rem;
-    border-radius: 20px;
+    padding: 1rem 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 16px;
     background-color: var(--current-input-bg);
     border: 2px solid rgba(0, 0, 0, 0.05);
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-family: 'QatarMedium', sans-serif;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -467,19 +467,19 @@ body.dark-mode #nameInput:focus {
 #submitBtn {
     background: var(--current-button-primary-bg);
     color: var(--current-button-text);
-    padding: 1.2rem 2.5rem;
-    font-size: 1.1rem;
+    padding: 1.2rem 3rem;
+    font-size: 2rem;
     font-weight: 600;
     border: none;
-    border-radius: 20px;
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--current-shadow-button);
     font-family: 'QatarMedium', sans-serif;
     position: relative;
     overflow: hidden;
-    min-width: 180px;
-    margin-bottom: 1rem;
+    min-width: 160px;
+    margin-bottom: 0.5rem;
 }
 html[lang="en"] #submitBtn {
     font-family: 'Philosopher', serif;
@@ -568,15 +568,15 @@ html[lang="en"] #generateTipBtn {
 /* Status message */
 #statusMessage {
     margin-top: 1rem;
-    padding: 1rem 1.5rem;
-    border-radius: 16px;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
     font-family: 'QatarMedium', sans-serif;
-    line-height: 1.5;
+    line-height: 1.4;
     min-height: 20px;
     max-width: 100%;
     word-wrap: break-word;
@@ -616,9 +616,9 @@ html[lang="en"] #statusMessage {
 
 /* Footer */
 .footer {
-    font-size: 0.9rem;
+    font-size: 1.7rem;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 1.7rem 1rem;
     opacity: 0.8;
     background: none;
     backdrop-filter: none;
@@ -634,9 +634,9 @@ html[lang="en"] #statusMessage {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 2rem;
-    max-width: 700px;
-    margin: 0 auto;
+    gap: 1.5rem;
+    max-width: max-content;
+    margin: 0 24rem;
 }
 
 .footer-item {
