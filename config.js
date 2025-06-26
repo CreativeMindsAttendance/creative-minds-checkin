@@ -15,7 +15,7 @@ const translations = {
         timeout: "❌ Location request timed out. Please check your connection or try again.",
         required: "⚠️ Please enter your full name.",
         loading: "⏳ Checking your location...",
-        adhkarError: "Could not load Adhkar. Please try again later.", // New error message for Adhkar
+        adhkarError: "Could not load Adhkar. Please try again later.",
         location: "Jazan, Saudi Arabia",
         email: "example@creativeminds.edu.sa",
         website: "www.creativeminds.edu.sa"
@@ -35,14 +35,14 @@ const translations = {
         timeout: "❌ انتهت مهلة طلب الموقع. يرجى التحقق من اتصالك أو المحاولة مرة أخرى.",
         required: "⚠️ الرجاء إدخال الاسم الثلاثي.",
         loading: "⏳ جاري التحقق من موقعك...",
-        adhkarError: "لم نتمكن من تحميل الأذكار. يرجى المحاولة لاحقاً.", // New error message for Adhkar
+        adhkarError: "لم نتمكن من تحميل الأذكار. يرجى المحاولة لاحقاً.",
         location: "جازان، المملكة العربية السعودية",
         email: "example@creativeminds.edu.sa",
         website: "www.creativeminds.edu.sa"
     }
 };
 
-// Location settings for geographical checks
+// Location settings for geographical checks (global scope)
 const DEST_LAT = 16.889264;
 const DEST_LON = 42.548691;
 const ALLOWED_DISTANCE_KM = 0.2; // 200 meters
