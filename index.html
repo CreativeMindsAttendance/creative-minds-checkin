@@ -6,274 +6,54 @@
     <title>Creative Minds - Attendance Form</title>
     <link rel="stylesheet" href="style.css">
     <!-- Removed Google Fonts link as Philosopher font is now local -->
-    <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creative Minds - نموذج التحضير</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      background: #deebf3;
-      overflow: hidden;
-    }
-
-    .vector-4 {
-      position: absolute;
-      width: 431px;
-      height: 561px;
-      left: 739px;
-      top: 495px;
-      transform: translate(-453.96px, -458.57px);
-    }
-
-    .vector-7 {
-      position: absolute;
-      width: 273px;
-      height: 128.22px;
-      left: 100.35px;
-      top: 63.1px;
-      transform: translate(-100.35px, -63.1px);
-    }
-
-    .vector-3 {
-      position: absolute;
-      width: 344px;
-      height: 323.35px;
-      left: 345.31px;
-      top: -31px;
-      transform: translate(-67.79px, 65.42px);
-    }
-
-    .vector-6 {
-      position: absolute;
-      width: 224.61px;
-      height: 233.42px;
-      left: 0.09px;
-      top: 830.75px;
-      transform: translate(-0.09px, -273.92px);
-    }
-
-    .background-box {
-      background: #ffffff;
-      border-radius: 39px;
-      border: 39px solid transparent;
-      width: 352px;
-      height: 498px;
-      position: absolute;
-      left: 50%;
-      top: calc(50% - 294px);
-      transform: translateX(-50%);
-      box-shadow: 0 0 21px 13px rgba(12, 12, 13, 0.1);
-    }
-
-    .vector-2 {
-      position: absolute;
-      width: 778.38px;
-      height: 465.79px;
-      left: 933px;
-      top: -356px;
-    }
-
-    .logo-1 {
-      position: absolute;
-      width: 110px;
-      height: 103px;
-      left: 50%;
-      top: calc(50% - 278px);
-      transform: translateX(-50%);
-      object-fit: cover;
-    }
-
-    .form-title {
-      position: absolute;
-      width: 325px;
-      height: 44px;
-      left: 50%;
-      top: calc(50% - 161px);
-      transform: translateX(-50%);
-      color: #273b54;
-      text-align: center;
-      font-family: 'Philosopher-Bold', sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-    }
-
-    .input-bg {
-      background: #f5f1ed;
-      border-radius: 12px;
-      width: 292px;
-      height: 48px;
-      position: absolute;
-      left: 50%;
-      top: calc(50% - 109px);
-      transform: translateX(-50%);
-    }
-
-    .submit-btn-img {
-      position: absolute;
-      width: 272px;
-      height: 52px;
-      left: 50%;
-      top: calc(50% + 121px);
-      transform: translateX(-50%);
-    }
-
-    .bottom-bar {
-      position: absolute;
-      background: #15253a;
-      width: 402px;
-      height: 183px;
-      left: 0;
-      top: 691px;
-    }
-
-    .vector-8 {
-      position: absolute;
-      width: 155px;
-      height: 92px;
-      left: -37px;
-      top: -25px;
-    }
-
-    .vector-9 {
-      position: absolute;
-      width: 155px;
-      height: 92px;
-      left: 438px;
-      top: -25px;
-      transform: translate(-155px, 25px);
-    }
-
-    .footer-text {
-      color: rgba(255, 255, 255, 0.8);
-      text-align: center;
-      font-family: 'Philosopher-Bold', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      position: absolute;
-    }
-
-    .location {
-      top: calc(50% + 281px);
-      left: calc(50% - 118px);
-      width: 239px;
-      height: 32px;
-    }
-
-    .email {
-      top: calc(50% + 330px);
-      left: 50%;
-      transform: translateX(-50%);
-      width: 363px;
-      height: 31px;
-    }
-
-    .website {
-      top: calc(50% + 303px);
-      left: 50%;
-      transform: translateX(-50%);
-      width: 313px;
-      height: 31px;
-    }
-
-    .brand-text {
-      position: absolute;
-      left: 114px;
-      top: 10px;
-      width: 173px;
-      height: 135px;
-      font-size: 48px;
-      font-family: 'MacondoSwashCaps-Regular', sans-serif;
-      color: #273b54;
-      text-align: center;
-    }
-
-    .submit-button {
-      background: #273b54;
-      border-radius: 8px;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 162px;
-      height: 54px;
-      position: absolute;
-      left: 50%;
-      top: calc(50% - 39px);
-      transform: translateX(-50%);
-    }
-
-    .submit-button-text {
-      color: #ffffff;
-      font-family: 'Philosopher-Bold', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-    }
-  </style>
 </head>
 <body>
 
     <!-- Background SVG elements for the complex shapes from Figma -->
-    <!-- SVG 1: Large light blob (top-left) - Simplified SVG code -->
+    <!-- SVG 1: Large light blob (top-left) -->
     <div class="bg-svg-container svg-top-left-blob-light">
         <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M202.5 430.5C184.1 546.1 10.5 598 -74 609.5L-57.5 -106L687 -182C698.833 -152.833 720.5 -78.3 712.5 -13.5C702.5 67.5 479 175.5 372.5 123.5C266 71.5 131.5 123.5 107.5 191C83.5 258.5 225.5 286 202.5 430.5Z"/>
+            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
         </svg>
     </div>
 
-    <!-- SVG 2: Left middle olive blob - Simplified SVG code -->
+    <!-- SVG 2: Left middle olive blob -->
     <div class="bg-svg-container svg-middle-left-blob-green">
-        <svg viewBox="0 0 348 287" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M-140.375 214.744C-86.3378 286.455 -108.37 383.264 -137.559 447.728C-146.593 467.68 -133.211 492.507 -111.317 493.123L245.903 503.167C258.12 503.511 269.162 495.967 272.826 484.307C298.591 402.312 336.188 239.131 319.653 110.614C301.684 -29.058 90.9551 -6.54723 -12.1632 22.1671C-83.4906 48.4181 -208.991 123.685 -140.375 214.744Z"/>
+        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
         </svg>
     </div>
 
-    <!-- SVG 3: Large white blob with angular gradient (Form backdrop) - Simplified SVG code -->
+    <!-- SVG 3: Large white blob with angular gradient (Form backdrop) -->
     <div class="bg-svg-container svg-form-backdrop-blob">
-        <svg viewBox="0 0 563 460" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M563.829 87.6129C690.806 49.3474 794.387 212.281 838.801 316.956C844.372 330.084 838.434 345.027 825.704 351.455L140.709 697.342C134.3 700.579 126.613 701.31 121.566 696.203C105.404 679.85 83.598 630.26 81.4862 516.286C78.295 344.053 257.963 289.27 344.555 265.102C431.147 240.933 392.783 139.159 563.829 87.6129Z"/>
+        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
         </svg>
     </div>
 
-    <!-- SVG 4: Bottom right dark blue blob - Simplified SVG code -->
+    <!-- SVG 4: Bottom right dark blue blob -->
     <div class="bg-svg-container svg-bottom-right-blob-dark">
-        <svg viewBox="0 0 260 436" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M37.7197 130.5C12.5197 75.7 42.2197 2 60.2197 -28L425.72 -128L510.72 56L373.72 398C349.553 381.667 296.72 343.9 278.72 323.5C256.22 298 292.72 261 257.22 217C221.72 173 69.2197 199 37.7197 130.5Z"/>
+        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
         </svg>
     </div>
 
-    <!-- ... (الأشكال السابقة مثل svg-top-left-blob-light) ... -->
-
-<!-- الشكل الأخضر الجديد: فوق يمين -->
-    <div class="bg-svg-container svg-top-right-blob-green">
-        <!-- ضع كود الـ SVG الذي حصلت عليه من Figma هنا -->
-        <!-- تأكد من أن الـ <path> أو أي عناصر تعبئة داخل الـ SVG لا تحتوي على خصائص fill/style/filter داخلية لكي يتم التحكم بها من CSS -->
-        <svg width="778.38" height="465.79" viewBox="0 0 778.38 465.79" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M... (Your SVG path data here)" />
-        </svg>
-    </div>
-
-<!-- ... (باقي عناصر الـ HTML مثل fixed-top-left-controls, fixed-top-right-controls, etc.) ... -->
-
-    <!-- SVG for Footer background - Simplified SVG code -->
+    <!-- SVG for Footer background -->
     <div class="bg-svg-container svg-footer-bg">
-        <svg width="1920" height="196" viewBox="0 0 1920 196" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect y="64" width="1929" height="150"/>
+        <svg width="1920" height="200" viewBox="0 0 1920 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1920" height="200" fill="#15253A"/>
         </svg>
     </div>
 
-    <!-- Left top controls: language switcher -->
-    <div class="fixed-top-left-controls">
+    <!-- Top right controls container: language and dark mode toggles -->
+    <div class="fixed-top-right-controls">
         <!-- Language switcher -->
         <div class="language-switcher" data-active-lang="en">
             <div class="slider"></div>
             <div class="lang-option active" data-lang="en">EN</div>
             <div class="lang-option" data-lang="ar">AR</div>
         </div>
-    </div>
 
-    <!-- Right top controls: dark mode toggle -->
-    <div class="fixed-top-right-controls">
         <!-- Dark mode toggle -->
         <div id="mode-toggle">
             <div class="toggle-icon"></div>
@@ -281,14 +61,14 @@
     </div>
 
 
-    <!-- Site title - Always English, SwinglyLours font, centered -->
-    <h1 id="site-title">Creative Minds</h1>
+    <!-- Site title - Always English, SwinglyLours font -->
+    <h1 id="site-title">Creative Minds Logo</h1>
 
     <!-- Main content container (pushes footer down) -->
     <div class="main-content">
         <div class="container">
-            <!-- Logo Image - Corrected to logo.png and returned inside the form -->
-            <img src="logo.png" alt="Creative Minds Logo" class="logo">
+            <!-- Logo Image -->
+            <img src="logo.jpg" alt="Creative Minds Logo" class="logo">
             <!-- Form Title -->
             <h2 id="form-title">Attendance Form</h2>
             <!-- Input field -->
@@ -319,28 +99,46 @@
             </div>
         </div>
     </footer>
-
     <script src="script.js"></script>
-    
-      <img src="vector-40.svg" class="vector-4" />
-      <img src="vector-70.svg" class="vector-7" />
-      <img src="vector-30.svg" class="vector-3" />
-      <img src="vector-60.svg" class="vector-6" />
-      <div class="background-box"></div>
-      <img src="vector-20.svg" class="vector-2" />
-      <img src="logo-10.png" class="logo-1" />
-      <div class="form-title">Attendance Form</div>
-      <div class="input-bg"></div>
-      <img src="rectangle-40.svg" class="submit-btn-img" />
-      <div class="bottom-bar"></div>
-      <img src="vector-80.svg" class="vector-8" />
-      <img src="vector-90.svg" class="vector-9" />
-      <div class="footer-text location">📍Jazan, Saudi Arabia</div>
-      <div class="footer-text email">📧example@creativeminds.edu.sa</div>
-      <div class="footer-text website">🌐www.creativeminds.edu.sa</div>
-      <div class="brand-text">Creative Minds</div>
-      <div class="submit-button">
-    <div class="submit-button-text">Check in</div>
-  </div>
+    class="mobile-layout">
+    <!-- Vectors -->
+    <img class="vector-4" src="vector-40.svg" />
+    <img class="vector-7" src="vector-70.svg" />
+    <img class="vector-3" src="vector-30.svg" />
+    <img class="vector-6" src="vector-60.svg" />
+    <img class="vector-2" src="vector-20.svg" />
+    <img class="vector-8" src="vector-80.svg" />
+    <img class="vector-9" src="vector-90.svg" />
+
+    <!-- Form Container -->
+    <div class="form-box"></div>
+
+    <!-- Logo -->
+    <img class="logo-1" src="logo-10.png" alt="Logo" />
+
+    <!-- Main Title -->
+    <div class="main-title">Attendance Form</div>
+
+    <!-- Site Name -->
+    <div class="site-name">Creative Minds</div>
+
+    <!-- Name Input Background -->
+    <div class="name-input-bg"></div>
+
+    <!-- Check-in Button -->
+    <div class="check-in-btn">
+      <div>Check in</div>
+    </div>
+
+    <!-- Rectangle SVG for Button Decoration -->
+    <img class="rectangle-4" src="rectangle-40.svg" />
+
+    <!-- Footer Background Box -->
+    <div class="footer-box"></div>
+
+    <!-- Footer Text -->
+    <div class="footer-text footer-location">📍Jazan, Saudi Arabia</div>
+    <div class="footer-text footer-site">🌐www.creativeminds.edu.sa</div>
+    <div class="footer-text footer-email">📧example@creativeminds.edu.sa</div>
 </body>
 </html>
