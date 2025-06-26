@@ -2,7 +2,7 @@
    الخطوط المخصصة - Custom Fonts
 ======================================== */
 @font-face {
-    font-family: 'Macondo Swash Caps'; /* Changed to a more standard font family name */
+    font-family: 'Macondo Swash Caps';
     src: url('fonts/MacondoSwashCaps-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -30,11 +30,11 @@
 ======================================== */
 :root {
     /* ألوان الخلفية - Background Colors */
-    --main-bg-light: #E9F1F0; /* Reverted to previous background for a softer feel */
+    --main-bg-light: #F5F7FA; /* Updated to match Figma background */
     --main-bg-dark: #1A202C;
     
     /* ألوان النصوص - Text Colors */
-    --text-color-light: #323232; /* Adjusted to a darker grey for better contrast */
+    --text-color-light: #323232;
     --text-color-dark: #F7FAFC;
     
     /* ألوان النماذج - Form Colors */
@@ -44,18 +44,18 @@
     --input-bg-dark: #4A5568;
     
     /* ألوان الأزرار - Button Colors */
-    --button-primary-bg-light: #364251; /* Dark blue-grey */
+    --button-primary-bg-light: #495867; /* Updated to match Figma */
     --button-primary-bg-dark: #63758F;
-    --button-secondary-bg-light: #809165; /* Olive green */
+    --button-secondary-bg-light: #8FA68E; /* Updated to match Figma green */
     --button-secondary-bg-dark: #9CAF88;
     --button-text-light: #FFFFFF;
     --button-text-dark: #FFFFFF;
     
     /* الظلال - Shadows */
-    --shadow-soft-large: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5); /* For container */
+    --shadow-soft-large: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
     --shadow-soft-large-dark: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
-    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.15); /* Increased shadow opacity */
-    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.35); /* Increased dark mode shadow opacity */
+    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.15);
+    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.35);
     
     /* ألوان عناصر التحكم - Control Colors */
     --control-bg-light: rgba(255, 255, 255, 0.9);
@@ -65,25 +65,25 @@
     --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD);
     --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
     
-    /* ألوان أشكال SVG - SVG Colors (ADJUSTED FOR BETTER MATCH TO FIGMA) */
-    --svg-light-blob-color: #D7DDDD; /* Light grey-blue */
-    --svg-green-blob-color: #809165; /* Olive green from user's provided values */
-    --svg-white-blob-color: #FFFFFF; /* Pure white from user's provided values */
-    --svg-dark-blue-blob-color: #2C398B; /* Dark blue from user's provided values */
-    --svg-top-right-green-color: rgba(128, 145, 101, 0.68); /* User's provided transparent green */
-    --svg-footer-color: #15253A;
+    /* ألوان أشكال SVG - CORRECTED TO MATCH FIGMA */
+    --svg-light-blob-color: #E8EEF0; /* Light blue-grey blob */
+    --svg-green-blob-color: #8FA68E; /* Green blob to match button */
+    --svg-white-blob-color: #FFFFFF; /* White blob */
+    --svg-dark-blue-blob-color: #495867; /* Dark blue blob to match button */
+    --svg-top-right-green-color: rgba(143, 166, 142, 0.7); /* Semi-transparent green */
+    --svg-footer-color: #2C3E50; /* Footer background */
 
-    /* ألوان SVG في الوضع المظلم (تعريف صريح بدلاً من darken()) */
-    --svg-light-blob-color-dark: #3A4C62; /* Darker version */
-    --svg-green-blob-color-dark: #5C6B4C; /* Darker version */
-    --svg-white-blob-color-dark: #202D3D; /* Darker version */
-    --svg-dark-blue-blob-color-dark: #0A1B2C; /* Darker version */
-    --svg-top-right-green-color-dark: rgba(90, 100, 70, 0.68); /* Darker transparent green */
-    --svg-footer-color-dark: #050E17;
+    /* ألوان SVG في الوضع المظلم */
+    --svg-light-blob-color-dark: #3A4C62;
+    --svg-green-blob-color-dark: #6B7D68;
+    --svg-white-blob-color-dark: #202D3D;
+    --svg-dark-blue-blob-color-dark: #2C3E50;
+    --svg-top-right-green-color-dark: rgba(107, 125, 104, 0.7);
+    --svg-footer-color-dark: #1A252F;
 
-    /* تدرج لون عنوان الموقع (لضمان الألوان الصحيحة في كلا الوضعين) */
-    --site-title-gradient-start-light: #7C99AC;
-    --site-title-gradient-end-light: #92A9BD;
+    /* تدرج لون عنوان الموقع */
+    --site-title-gradient-start-light: #495867;
+    --site-title-gradient-end-light: #8FA68E;
     --site-title-gradient-start-dark: #a1c4fd;
     --site-title-gradient-end-dark: #c2e9fb;
     
@@ -124,7 +124,7 @@ body.dark-mode {
     --current-shadow-soft-large: var(--shadow-soft-large-dark);
     --current-shadow-button: var(--shadow-button-dark);
     --current-control-bg: var(--control-bg-dark);
-    --current-control-border: var(--current-control-border);
+    --current-control-border: var(--control-border-dark);
     --current-slider-bg: var(--slider-bg-dark);
     --current-site-title-gradient-start: var(--site-title-gradient-start-dark);
     --current-site-title-gradient-end: var(--site-title-gradient-end-dark);
@@ -161,10 +161,9 @@ html[lang="en"] body {
     position: fixed;
     pointer-events: none;
     z-index: 1;
-    opacity: 1; /* Keeping opacity at 1 for vibrant colors */
+    opacity: 1;
     transition: opacity 0.4s ease-in-out;
-    /* Adjusted drop-shadow for a more consistent and visible effect */
-    filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.2)); /* Increased shadow visibility */
+    filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.1));
 }
 
 .bg-svg-container svg {
@@ -173,7 +172,7 @@ html[lang="en"] body {
     display: block;
 }
 
-/* ألوان أشكال SVG */
+/* ألوان أشكال SVG - CORRECTED */
 .svg-top-left-blob-light svg path { fill: var(--svg-light-blob-color); }
 .svg-middle-left-blob-green svg path { fill: var(--svg-green-blob-color); }
 .svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-color); }
@@ -181,7 +180,7 @@ html[lang="en"] body {
 .svg-footer-bg svg rect { fill: var(--svg-footer-color); }
 .svg-top-right-blob-green svg path { fill: var(--svg-top-right-green-color); }
 
-/* مواضع أشكال SVG (Adjusted significantly based on new understanding of desired layout) */
+/* مواضع أشكال SVG */
 .svg-top-left-blob-light {
     top: -5vh;
     left: -5vw;
@@ -190,8 +189,8 @@ html[lang="en"] body {
 }
 
 .svg-middle-left-blob-green {
-    bottom: -15vh; /* Pushed further down */
-    left: -15vw; /* Pushed further left */
+    bottom: -15vh;
+    left: -15vw;
     width: 45vw;
     height: 50vh;
 }
@@ -200,8 +199,8 @@ html[lang="en"] body {
     position: fixed;
     width: 40vw; 
     height: 43.12vh;
-    right: -10vw; /* Adjusted to sit outside viewport to the right */
-    top: -5vh; /* Adjusted for better top positioning */
+    right: -10vw;
+    top: -5vh;
 }
 
 .svg-form-backdrop-blob {
@@ -216,8 +215,8 @@ html[lang="en"] body {
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -20vh; /* Pushed further down */
-    right: -15vw; /* Pushed further right */
+    bottom: -20vh;
+    right: -15vw;
     width: 55vw;
     height: 65vh;
 }
@@ -230,10 +229,10 @@ html[lang="en"] body {
     z-index: 0;
 }
 
-/* ألوان SVG في الوضع المظلم (تطبيق المتغيرات الجديدة) */
+/* ألوان SVG في الوضع المظلم */
 body.dark-mode .bg-svg-container {
     opacity: 0.9;
-    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3)); /* Darker shadow for dark mode */
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
 }
 body.dark-mode .svg-top-left-blob-light svg path { fill: var(--svg-light-blob-color-dark); }
 body.dark-mode .svg-middle-left-blob-green svg path { fill: var(--svg-green-blob-color-dark); }
@@ -241,7 +240,6 @@ body.dark-mode .svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-col
 body.dark-mode .svg-bottom-right-blob-dark svg path { fill: var(--svg-dark-blue-blob-color-dark); }
 body.dark-mode .svg-footer-bg svg rect { fill: var(--svg-footer-color-dark); }
 body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-green-color-dark); }
-
 
 /* ========================================
    عناصر التحكم الثابتة - Fixed Controls
@@ -288,11 +286,11 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-gr
     text-align: center;
     font-weight: 600;
     font-size: 12px;
-    line-height: 46px; /* Adjusted line-height to match height */
+    line-height: 46px;
     z-index: 2;
     position: relative;
     color: var(--current-text-color);
-    transition: color 0.3s ease;
+    transition: color 0.3s ease;  
 }
 
 .lang-option.active {
@@ -382,7 +380,6 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-gr
     z-index: 2;
     position: relative;
     font-weight: 400;
-    /* Adjusted gradient to use new site title color variables */
     background: linear-gradient(135deg, var(--current-site-title-gradient-start) 0%, var(--current-site-title-gradient-end) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -447,7 +444,7 @@ body.dark-mode .container {
     font-family: 'QatarMedium', sans-serif;
     font-size: 2.5rem;
     font-weight: 400;
-    color: #273B54; /* Specific color from Figma for this title */
+    color: #495867; /* Updated to match button color */
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 0rem;
     animation: fadeIn 1s ease-out 0.6s both;
@@ -489,7 +486,7 @@ html[lang="en"] #nameInput {
     outline: none;
     border-color: var(--current-button-primary-bg);
     background-color: var(--current-input-bg);
-    box-shadow: 0 0 0 6px rgba(74, 85, 104, 0.08);
+    box-shadow: 0 0 0 6px rgba(73, 88, 103, 0.08);
     transform: translateY(-2px);
 }
 
@@ -501,7 +498,7 @@ body.dark-mode #nameInput:focus {
    الزر الرئيسي - Primary Button
 ======================================== */
 #submitBtn {
-    background: var(--current-button-primary-bg); /* Using direct color variable for solid look */
+    background: var(--current-button-primary-bg);
     color: var(--current-button-text);
     padding: 1.2rem 3rem;
     font-size: 2rem;
@@ -524,12 +521,12 @@ html[lang="en"] #submitBtn {
 
 #submitBtn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Increased hover shadow */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 #submitBtn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Increased active shadow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 #submitBtn.loading {
@@ -555,7 +552,7 @@ html[lang="en"] #submitBtn {
    الزر الثانوي - Secondary Button
 ======================================== */
 #generateTipBtn {
-    background: var(--current-button-secondary-bg); /* Using direct color variable for solid look */
+    background: var(--current-button-secondary-bg);
     color: var(--current-button-text);
     padding: 1.2rem 2.5rem;
     font-size: 1.1rem;
@@ -577,12 +574,12 @@ html[lang="en"] #generateTipBtn {
 
 #generateTipBtn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Increased hover shadow */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 #generateTipBtn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Increased active shadow */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 #generateTipBtn.loading {
@@ -660,9 +657,9 @@ html[lang="en"] #statusMessage {
    التذييل - Footer
 ======================================== */
 .footer {
-    font-size: 0.85rem; /* Adjusted for better readability */
+    font-size: 0.85rem;
     text-align: center;
-    padding: 1.5rem 1rem; /* Adjusted padding */
+    padding: 1.5rem 1rem;
     opacity: 0.8;
     background: none;
     backdrop-filter: none;
@@ -679,20 +676,20 @@ html[lang="en"] #statusMessage {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
-    max-width: 600px; /* Adjusted to a fixed max-width for better control */
-    margin: 0 auto; /* Centering the footer content */
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .footer-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    direction: ltr; /* Ensure LTR for emojis/text alignment */
+    direction: ltr;
     text-align: left;
 }
 
 .emoji {
-    font-size: 1rem; /* Adjusted for better visual balance */
+    font-size: 1rem;
     display: inline-block;
     transform: scaleX(1);
 }
@@ -813,40 +810,4 @@ html[lang="en"] #statusMessage {
     }
     
     #site-title {
-        font-size: clamp(28px, 6vw, 48px);
-        margin-top: 60px;
-    }
-    
-    #form-title {
-        font-size: 1.5rem;
-    }
-    
-    #nameInput, #submitBtn, #generateTipBtn {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .container {
-        padding: 2rem 1.5rem;
-        gap: 1.2rem;
-    }
-
-    /* Mobile Responsive adjustments for SVGs */
-    .svg-top-left-blob-light,
-    .svg-middle-left-blob-green,
-    .svg-top-right-blob-green,
-    .svg-bottom-right-blob-dark {
-        width: 100vw;
-        height: 100vh;
-        /* Position them more centrally or reduce extreme offsets for mobile */
-        left: -25vw;
-        top: -15vh;
-        right: -25vw;
-        bottom: -15vh;
-    }
-}
+        font-size: clamp(28px,
