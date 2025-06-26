@@ -1,4 +1,6 @@
-/* Custom Fonts */
+/* ========================================
+   الخطوط المخصصة - Custom Fonts
+======================================== */
 @font-face {
     font-family: 'MacondoSwashCaps-Regular.ttf';
     src: url('fonts/MacondoSwashCaps-Regular.ttf') format('truetype');
@@ -23,58 +25,60 @@
     font-display: swap;
 }
 
+/* ========================================
+   متغيرات الألوان والتصميم - Design Variables
+======================================== */
 :root {
-    /* Light Mode Colors - Updated to match design */
-    --main-bg-light: #F8FAFB; /* Much lighter background */
-    --text-color-light: #FFFFFF; /* Softer dark text */
-    --form-bg-light: #FFFFFF; /* Pure white for form */
-    --input-bg-light: #F7FAFC; /* Very light input background */
-
-    /* Button colors - Updated */
-    --button-primary-bg-light: #4A5568; /* Softer dark blue-grey */
-    --button-secondary-bg-light: #9CAF88; /* Softer green */
-    --button-text-light: #FFFFFF;
-
-    /* Shadows - Softer */
-    --shadow-soft-large: 0px 20px 50px rgba(0, 0, 0, 0.08), 0px 0px 0px 1px rgba(255, 255, 255, 0.8);
-    --shadow-button: 0px 6px 20px rgba(0, 0, 0, 0.08);
-
-    /* Controls */
-    --control-bg-light: rgba(255, 255, 255, 0.95);
-    --control-border-light: rgba(255, 255, 255, 0.3);
-    --slider-bg-light: linear-gradient(135deg, #667eea, #764ba2);
-
-    /* SVG Colors - Much softer */
-    --svg-light-blob-color: #D7DDDD; /* Very light grey-blue */
-    --svg-green-blob-color: #809165; /* Very soft green */
-    --svg-white-blob-color: #FFFFFF; /* Almost white */
-    --svg-dark-blue-blob-color: #2C398B; /* Very light blue-grey */
-    --svg-footer-color: #15253A; /* Softer dark */
-
-    /* Dark Mode Colors */
+    /* ألوان الخلفية - Background Colors */
+    --main-bg-light: #F8FAFB;
     --main-bg-dark: #1A202C;
+    
+    /* ألوان النصوص - Text Colors */
+    --text-color-light: #FFFFFF;
     --text-color-dark: #F7FAFC;
+    
+    /* ألوان النماذج - Form Colors */
+    --form-bg-light: #FFFFFF;
     --form-bg-dark: #2D3748;
+    --input-bg-light: #F7FAFC;
     --input-bg-dark: #4A5568;
-
+    
+    /* ألوان الأزرار - Button Colors */
+    --button-primary-bg-light: #4A5568;
     --button-primary-bg-dark: #63758F;
+    --button-secondary-bg-light: #9CAF88;
     --button-secondary-bg-dark: #9CAF88;
+    --button-text-light: #FFFFFF;
     --button-text-dark: #FFFFFF;
-
+    
+    /* الظلال - Shadows */
+    --shadow-soft-large: 0px 20px 50px rgba(0, 0, 0, 0.08), 0px 0px 0px 1px rgba(255, 255, 255, 0.8);
     --shadow-soft-large-dark: 0px 20px 50px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.02);
+    --shadow-button: 0px 6px 20px rgba(0, 0, 0, 0.08);
     --shadow-button-dark: 0px 6px 20px rgba(0, 0, 0, 0.3);
-
+    
+    /* ألوان عناصر التحكم - Control Colors */
+    --control-bg-light: rgba(255, 255, 255, 0.95);
     --control-bg-dark: rgba(0, 0, 0, 0.6);
+    --control-border-light: rgba(255, 255, 255, 0.3);
     --control-border-dark: rgba(255, 255, 255, 0.1);
+    --slider-bg-light: linear-gradient(135deg, #667eea, #764ba2);
     --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
-
-    --svg-light-blob-color-dark: #D7DDDD;
-    --svg-green-blob-color-dark: #809165;
-    --svg-white-blob-color-dark: #FFFFFF;
-    --svg-dark-blue-blob-color-dark: #2C398B;
-    --svg-footer-color-dark: #15253A;
-
-    /* Active Theme Variables */
+    
+    /* ألوان أشكال SVG - SVG Colors */
+    --svg-light-blob-color: #D7DDDD;
+    --svg-green-blob-color: #809165;
+    --svg-white-blob-color: #FFFFFF;
+    --svg-dark-blue-blob-color: #2C398B;
+    --svg-footer-color: #15253A;
+    
+    /* ألوان الحالة - Status Colors */
+    --success-color: #38A169;
+    --error-color: #E53E3E;
+    --warning-color: #D69E2E;
+    --info-color: #3182CE;
+    
+    /* المتغيرات النشطة - Active Variables */
     --current-main-bg: var(--main-bg-light);
     --current-text-color: var(--text-color-light);
     --current-form-bg: var(--form-bg-light);
@@ -87,14 +91,11 @@
     --current-control-bg: var(--control-bg-light);
     --current-control-border: var(--control-border-light);
     --current-slider-bg: var(--slider-bg-light);
-
-    /* Status colors */
-    --success-color: #38A169;
-    --error-color: #E53E3E;
-    --warning-color: #D69E2E;
-    --info-color: #3182CE;
 }
 
+/* ========================================
+   الوضع المظلم - Dark Mode
+======================================== */
 body.dark-mode {
     --current-main-bg: var(--main-bg-dark);
     --current-text-color: var(--text-color-dark);
@@ -110,6 +111,9 @@ body.dark-mode {
     --current-slider-bg: var(--slider-bg-dark);
 }
 
+/* ========================================
+   إعدادات عامة - General Settings
+======================================== */
 * {
     margin: 0;
     padding: 0;
@@ -131,14 +135,16 @@ html[lang="en"] body {
     font-family: 'Philosopher', serif;
 }
 
-/* Background SVG containers - Updated positioning */
+/* ========================================
+   خلفية SVG - SVG Background
+======================================== */
 .bg-svg-container {
     position: fixed;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.6; /* Reduced opacity for softer look */
+    opacity: 0.6;
     transition: opacity 0.4s ease-in-out;
-    filter: drop-shadow(rgba(0, 0, 0, 0.05) 15px 10px 20px); /* Much softer shadow */
+    filter: drop-shadow(rgba(0, 0, 0, 0.05) 15px 10px 20px);
 }
 
 .bg-svg-container svg {
@@ -147,24 +153,14 @@ html[lang="en"] body {
     display: block;
 }
 
-/* SVG fill colors */
-.svg-top-left-blob-light svg path {
-    fill: var(--svg-light-blob-color);
-}
-.svg-middle-left-blob-green svg path {
-    fill: var(--svg-green-blob-color);
-}
-.svg-form-backdrop-blob svg path {
-    fill: var(--svg-white-blob-color);
-}
-.svg-bottom-right-blob-dark svg path {
-    fill: var(--svg-dark-blue-blob-color);
-}
-.svg-footer-bg svg rect {
-    fill: var(--svg-footer-color);
-}
+/* ألوان أشكال SVG */
+.svg-top-left-blob-light svg path { fill: var(--svg-light-blob-color); }
+.svg-middle-left-blob-green svg path { fill: var(--svg-green-blob-color); }
+.svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-color); }
+.svg-bottom-right-blob-dark svg path { fill: var(--svg-dark-blue-blob-color); }
+.svg-footer-bg svg rect { fill: var(--svg-footer-color); }
 
-/* Updated SVG positioning to match design */
+/* مواضع أشكال SVG */
 .svg-top-left-blob-light {
     top: -1vh;
     left: -8vw;
@@ -173,7 +169,7 @@ html[lang="en"] body {
     opacity: 1;
     background: #D7DDDD;
     background-blend-mode: plus-lighter;
-    box-shadow: 14px 36px 48px rgba(0, 0, 0, 0.15), inset 2.14645px 2.00046px 9.24px rgba(255, 255, 255, 0.126), inset 1.21725px 1.13446px 4.62px rgba(255, 255, 255, 0.126);
+    box-shadow: 14px 36px 48px rgba(0, 0, 0, 0.15), inset 2.14645px 2.00046px 9.24px rgba(255, 255, 255, 0.126);
 }
 
 .svg-middle-left-blob-green {
@@ -194,8 +190,8 @@ html[lang="en"] body {
     background-blend-mode: plus-lighter;
     mix-blend-mode: normal;
     box-shadow: -6px 19px 31.8px rgba(0, 0, 0, 0.15);
- 
 }
+
 .svg-form-backdrop-blob {
     top: 77%;
     left: 86%;
@@ -225,29 +221,15 @@ html[lang="en"] body {
     opacity: 1;
 }
 
-/* Dark mode SVG colors */
-body.dark-mode .svg-top-left-blob-light svg path {
-    fill: var(--svg-light-blob-color-dark);
-}
-body.dark-mode .svg-middle-left-blob-green svg path {
-    fill: var(--svg-green-blob-color-dark);
-}
-body.dark-mode .svg-form-backdrop-blob svg path {
-    fill: var(--svg-white-blob-color-dark);
-}
-body.dark-mode .svg-bottom-right-blob-dark svg path {
-    fill: var(--svg-dark-blue-blob-color-dark);
-}
-body.dark-mode .svg-footer-bg svg rect {
-    fill: var(--svg-footer-color-dark);
-}
-
+/* ألوان SVG في الوضع المظلم */
 body.dark-mode .bg-svg-container {
     opacity: 0.7;
     filter: drop-shadow(15px 10px 20px rgba(0, 0, 0, 0.4));
 }
 
-/* Controls positioning */
+/* ========================================
+   عناصر التحكم الثابتة - Fixed Controls
+======================================== */
 .fixed-top-left-controls {
     position: fixed;
     top: 20px;
@@ -262,7 +244,9 @@ body.dark-mode .bg-svg-container {
     z-index: 100;
 }
 
-/* Language switcher */
+/* ========================================
+   مبدل اللغة - Language Switcher
+======================================== */
 .language-switcher {
     display: flex;
     width: 90px;
@@ -314,11 +298,14 @@ body.dark-mode .bg-svg-container {
 .language-switcher[data-active-lang="ar"] .slider {
     transform: translateX(40px);
 }
+
 .language-switcher[data-active-lang="en"] .slider {
     transform: translateX(0);
 }
 
-/* Dark mode toggle */
+/* ========================================
+   مبدل الوضع المظلم - Dark Mode Toggle
+======================================== */
 #mode-toggle {
     width: 60px;
     height: 36px;
@@ -366,11 +353,13 @@ body.dark-mode .bg-svg-container {
     content: "🌙";
 }
 
-/* Site title - Bigger and more prominent */
+/* ========================================
+   عنوان الموقع - Site Title
+======================================== */
 #site-title {
     text-align: center;
     font-family: 'MacondoSwashCaps-Regular.ttf', cursive;
-    font-size: clamp(3rem, 5rem, 7rem); /* Much bigger */
+    font-size: clamp(3rem, 5rem, 7rem);
     margin-top: 5px;
     margin-bottom: -115px;
     display: block;
@@ -385,7 +374,9 @@ body.dark-mode .bg-svg-container {
     letter-spacing: 2px;
 }
 
-/* Main content */
+/* ========================================
+   المحتوى الرئيسي - Main Content
+======================================== */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -393,7 +384,7 @@ body.dark-mode .bg-svg-container {
     justify-content: center;
     padding: 1rem;
     padding-top: 20px;
-    margin-bottom: -50xp;
+    margin-bottom: -50px;
     width: 100%;
     z-index: 10;
     position: relative;
@@ -421,7 +412,9 @@ body.dark-mode .container {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Logo - Bigger */
+/* ========================================
+   الشعار - Logo
+======================================== */
 .logo {
     width: 120px;
     height: auto;
@@ -430,23 +423,27 @@ body.dark-mode .container {
     animation: pulse 2s infinite;
 }
 
-/* Form Title */
+/* ========================================
+   عنوان النموذج - Form Title
+======================================== */
 #form-title {
     font-family: 'QatarMedium', sans-serif;
     font-size: 2.5rem;
-    font-weight: 400
-    /* Attendance Form */
+    font-weight: 400;
     color: #273B54;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 0rem;
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
+
 html[lang="en"] #form-title {
     font-family: 'Philosopher', serif;
 }
 
-/* Input field - Cleaner look */
+/* ========================================
+   حقل الإدخال - Input Field
+======================================== */
 #nameInput {
     width: 100%;
     padding: 1rem 1.2rem;
@@ -461,9 +458,11 @@ html[lang="en"] #form-title {
     backdrop-filter: blur(10px);
     color: var(--current-text-color);
 }
+
 html[lang="en"] #nameInput {
     font-family: 'Philosopher', serif;
 }
+
 #nameInput::placeholder {
     color: var(--current-text-color);
     opacity: 0.6;
@@ -476,11 +475,14 @@ html[lang="en"] #nameInput {
     box-shadow: 0 0 0 6px rgba(74, 85, 104, 0.08);
     transform: translateY(-2px);
 }
+
 body.dark-mode #nameInput:focus {
     box-shadow: 0 0 0 6px rgba(99, 117, 143, 0.08);
 }
 
-/* Buttons - Cleaner and more prominent */
+/* ========================================
+   الزر الرئيسي - Primary Button
+======================================== */
 #submitBtn {
     background: var(--current-button-primary-bg);
     color: var(--current-button-text);
@@ -498,6 +500,7 @@ body.dark-mode #nameInput:focus {
     min-width: 160px;
     margin-bottom: 0.5rem;
 }
+
 html[lang="en"] #submitBtn {
     font-family: 'Philosopher', serif;
 }
@@ -531,7 +534,9 @@ html[lang="en"] #submitBtn {
     animation: spin 1s linear infinite;
 }
 
-/* Secondary button */
+/* ========================================
+   الزر الثانوي - Secondary Button
+======================================== */
 #generateTipBtn {
     background: var(--current-button-secondary-bg);
     color: var(--current-button-text);
@@ -582,7 +587,9 @@ html[lang="en"] #generateTipBtn {
     animation: spin 1s linear infinite;
 }
 
-/* Status message */
+/* ========================================
+   رسالة الحالة - Status Message
+======================================== */
 #statusMessage {
     margin-top: 1rem;
     padding: 0.75rem 1rem;
@@ -598,6 +605,7 @@ html[lang="en"] #generateTipBtn {
     max-width: 100%;
     word-wrap: break-word;
 }
+
 html[lang="en"] #statusMessage {
     font-family: 'Philosopher', serif;
 }
@@ -631,7 +639,9 @@ html[lang="en"] #statusMessage {
     border: 1px solid rgba(49, 130, 206, 0.2);
 }
 
-/* Footer */
+/* ========================================
+   التذييل - Footer
+======================================== */
 .footer {
     font-size: 1.7rem;
     text-align: center;
@@ -670,7 +680,9 @@ html[lang="en"] #statusMessage {
     transform: scaleX(1);
 }
 
-/* Animations */
+/* ========================================
+   الحركات - Animations
+======================================== */
 @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-40px); }
     to { opacity: 1; transform: translateY(0); }
@@ -696,67 +708,81 @@ html[lang="en"] #statusMessage {
     100% { transform: rotate(360deg); }
 }
 
-/* Responsive design */
+/* ========================================
+   التصميم المتجاوب - Responsive Design
+======================================== */
+
+/* الأجهزة اللوحية */
 @media screen and (max-width: 768px) {
     #site-title {
         margin-top: 70px;
         font-size: clamp(36px, 7vw, 60px);
     }
+    
     .main-content {
         padding-top: 15px;
     }
+    
     .container {
         padding: 2.5rem 2rem;
         max-width: 400px;
     }
 }
 
+/* الهواتف الذكية */
 @media screen and (max-width: 480px) {
     .fixed-top-right-controls {
         top: 15px;
         right: 15px;
     }
+    
     .fixed-top-left-controls {
         top: 15px;
         left: 15px;
     }
-
+    
     .language-switcher, #mode-toggle {
         width: 70px;
         height: 32px;
     }
+    
     .lang-option {
         font-size: 11px;
         line-height: 32px;
     }
+    
     .slider {
         width: 32px;
     }
+    
     .language-switcher[data-active-lang="ar"] .slider {
         transform: translateX(36px);
     }
+    
     #mode-toggle .toggle-icon {
         width: 24px;
         height: 24px;
         font-size: 12px;
     }
+    
     #mode-toggle.active .toggle-icon {
         transform: translateX(20px);
     }
-
+    
     #site-title {
         font-size: clamp(28px, 6vw, 48px);
         margin-top: 60px;
     }
-
+    
     #form-title {
         font-size: 1.5rem;
     }
+    
     #nameInput, #submitBtn, #generateTipBtn {
         padding: 1rem 1.5rem;
         font-size: 1rem;
     }
-
+    
     .footer-content {
         flex-direction: column;
         gap: 1rem;
