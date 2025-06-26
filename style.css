@@ -190,7 +190,7 @@ html[lang="en"] body {
     max-width: 90vw;
     max-height: 90vh;
     z-index: 2;
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .svg-bottom-right-blob-dark {
@@ -198,7 +198,7 @@ html[lang="en"] body {
     right: -7vw;
     width: 25vw;
     height: 36vh;
-    opacity: 1;
+    opacity: 0.5;
 }
 
 .svg-footer-bg {
