@@ -185,6 +185,18 @@ html[lang="en"] body {
     opacity: 1;
 }
 
+.svg-top-right-blob-green {
+    position: absolute;
+    width: 778.38px;
+    height: 465.79px;
+    left: 1313px;
+    top: -103px;
+    background: rgba(128, 145, 101, 0.68);
+    background-blend-mode: plus-lighter;
+    mix-blend-mode: normal;
+    box-shadow: -6px 19px 31.8px rgba(0, 0, 0, 0.15);
+ 
+}
 .svg-form-backdrop-blob {
     top: 77%;
     left: 86%;
