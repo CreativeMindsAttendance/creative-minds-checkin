@@ -171,6 +171,10 @@ html[lang="en"] body {
     width: 50vw;
     height: 70vh;
     opacity: 1;
+    background: #D7DDDD;
+    background-blend-mode: plus-lighter;
+    mix-blend-mode: normal;
+    box-shadow: 14px 36px 48px rgba(0, 0, 0, 0.15), inset 2.14645px 2.00046px 9.24px rgba(255, 255, 255, 0.126), inset 1.21725px 1.13446px 4.62px rgba(255, 255, 255, 0.126);
 }
 
 .svg-middle-left-blob-green {
@@ -361,7 +365,7 @@ body.dark-mode .bg-svg-container {
     display: block;
     z-index: 2;
     position: relative;
-    font-weight: 700;
+    font-weight: 400;
     background: linear-gradient(135deg, #4A5568 0%, #2D3748 50%, #1A202C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -419,8 +423,10 @@ body.dark-mode .container {
 #form-title {
     font-family: 'QatarMedium', sans-serif;
     font-size: 2.5rem;
-    font-weight: 600;
-    color: var(--current-text-color);
+    font-weight: 400
+    /* Attendance Form */
+    color: #273B54;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 0rem;
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
