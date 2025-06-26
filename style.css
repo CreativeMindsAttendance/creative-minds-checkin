@@ -173,7 +173,6 @@ html[lang="en"] body {
     opacity: 1;
     background: #D7DDDD;
     background-blend-mode: plus-lighter;
-    mix-blend-mode: normal;
     box-shadow: 14px 36px 48px rgba(0, 0, 0, 0.15), inset 2.14645px 2.00046px 9.24px rgba(255, 255, 255, 0.126), inset 1.21725px 1.13446px 4.62px rgba(255, 255, 255, 0.126);
 }
 
