@@ -273,7 +273,7 @@ body.dark-mode .bg-svg-container {
     font-weight: 600;
     font-size: 12px;
     line-height: 36px;
-    z-index: 2;
+    z-index: 100;
     position: relative;
     color: var(--current-text-color);
     transition: color 0.3s ease;
