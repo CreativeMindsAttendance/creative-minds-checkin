@@ -811,3 +811,340 @@ html[lang="en"] #statusMessage {
     
     #site-title {
         font-size: clamp(28px,
+
+   /* Desktop - 2 */
+
+   position: relative;
+   width: 402px;
+   height: 874px;
+   
+   background: #DEEBF3;
+   
+   
+   /* Vector 4 */
+   
+   position: absolute;
+   width: 431px;
+   height: 561px;
+   left: 736.58px;
+   top: 495.83px;
+   
+   background: #D7DDDD;
+   background-blend-mode: plus-lighter;
+   mix-blend-mode: normal;
+   box-shadow: -19px 8px 12px rgba(0, 0, 0, 0.15), -1.8584px -1.732px 12px rgba(0, 0, 0, 0.15), inset 2.14645px 2.00046px 9.24px rgba(255, 255, 255, 0.126), inset 1.21725px 1.13446px 4.62px rgba(255, 255, 255, 0.126);
+   transform: rotate(142.46deg);
+   
+   
+   /* Vector 7 */
+   
+   position: absolute;
+   width: 272.5px;
+   height: 128.22px;
+   left: 100.35px;
+   top: 63.1px;
+   
+   background: #FFFFFF;
+   box-shadow: -6px -7px 74.1px rgba(0, 0, 0, 0.25);
+   border-radius: 28px;
+   transform: rotate(128.66deg);
+   
+   
+   /* Vector 3 */
+   
+   position: absolute;
+   width: 344.01px;
+   height: 323.35px;
+   left: 345.31px;
+   top: -31px;
+   
+   background: #15253A;
+   box-shadow: -3px 8px 4px rgba(0, 0, 0, 0.25);
+   transform: rotate(24.93deg);
+   
+   
+   /* Vector 6 */
+   
+   position: absolute;
+   width: 224.61px;
+   height: 233.42px;
+   left: 0.09px;
+   top: 830.75px;
+   
+   background: #809165;
+   box-shadow: 14px 11px 10.2px rgba(0, 0, 0, 0.25);
+   border-radius: 28px;
+   transform: rotate(-149.78deg);
+   
+   
+   /* Rectangle 1 */
+   
+   position: absolute;
+   width: 352px;
+   height: 498px;
+   left: calc(50% - 352px/2);
+   top: calc(50% - 498px/2 - 45px);
+   
+   background: #FFFFFF;
+   /* Drop Shadow */
+   box-shadow: 0px 0px 21px 13px rgba(12, 12, 13, 0.1);
+   border-radius: 39px;
+   
+   
+   /* Vector 2 */
+   
+   position: absolute;
+   width: 778.38px;
+   height: 465.79px;
+   left: 933px;
+   top: -356px;
+   
+   background: rgba(128, 145, 101, 0.37);
+   background-blend-mode: plus-lighter;
+   mix-blend-mode: normal;
+   box-shadow: -6px 19px 31.8px rgba(0, 0, 0, 0.15);
+   
+   
+   /* logo 1 */
+   
+   position: absolute;
+   width: 110px;
+   height: 103px;
+   left: calc(50% - 110px/2);
+   top: calc(50% - 103px/2 - 226.5px);
+   
+   background: url(logo);
+   
+   
+   /* Attendance Form */
+   
+   position: absolute;
+   width: 325px;
+   height: 44px;
+   left: calc(50% - 325px/2 - 0.5px);
+   top: calc(50% - 44px/2 - 139px);
+   
+   font-family: 'Philosopher';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 32px;
+   line-height: 36px;
+   text-align: center;
+   
+   color: #273B54;
+   
+   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   
+   
+   /* Rectangle 2 */
+   
+   position: absolute;
+   width: 292px;
+   height: 48px;
+   left: calc(50% - 292px/2 - 2px);
+   top: calc(50% - 48px/2 - 85px);
+   
+   background: #F5F1ED;
+   border-radius: 12px;
+   
+   
+   /* Rectangle 4 */
+   
+   position: absolute;
+   width: 272px;
+   height: 52px;
+   left: calc(50% - 272px/2 - 2px);
+   top: calc(50% - 52px/2 + 147px);
+   
+   background: #809165;
+   border-radius: 9px;
+   
+   
+   /* Rectangle 5 */
+   
+   position: absolute;
+   width: 402px;
+   height: 183px;
+   left: 0px;
+   top: 691px;
+   
+   background: #15253A;
+   
+   
+   /* Vector 8 */
+   
+   position: absolute;
+   width: 155px;
+   height: 92px;
+   left: -37px;
+   top: -25px;
+   
+   background: #809165;
+   border-radius: 28px;
+   
+   
+   /* Vector 9 */
+   
+   position: absolute;
+   width: 155px;
+   height: 92px;
+   left: 438px;
+   top: -25px;
+   
+   background: #809165;
+   border-radius: 28px;
+   transform: matrix(-1, 0, 0, 1, 0, 0);
+   
+   
+   /* 📍Jazan, Saudi Arabia */
+   
+   position: absolute;
+   width: 239px;
+   height: 32px;
+   left: calc(50% - 239px/2 + 1.5px);
+   top: calc(50% - 32px/2 + 297px);
+   
+   font-family: 'Philosopher';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 20px;
+   line-height: 22px;
+   text-align: center;
+   
+   color: rgba(255, 255, 255, 0.44);
+   
+   
+   
+   /* 📧example@creativeminds.edu.sa */
+   
+   position: absolute;
+   width: 363px;
+   height: 31px;
+   left: calc(50% - 363px/2 - 0.5px);
+   top: calc(50% - 31px/2 + 345.5px);
+   
+   font-family: 'Philosopher';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 20px;
+   line-height: 22px;
+   text-align: center;
+   
+   color: rgba(255, 255, 255, 0.44);
+   
+   
+   
+   /* 🌐www.creativeminds.edu.sa */
+   
+   position: absolute;
+   width: 313px;
+   height: 31px;
+   left: calc(50% - 313px/2 - 0.5px);
+   top: calc(50% - 31px/2 + 318.5px);
+   
+   font-family: 'Philosopher';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 20px;
+   line-height: 22px;
+   text-align: center;
+   
+   color: rgba(255, 255, 255, 0.44);
+   
+   
+   
+   /* Creative Minds */
+   
+   position: absolute;
+   width: 173px;
+   height: 135px;
+   left: 114px;
+   top: 10px;
+   
+   font-family: 'Macondo Swash Caps';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 48px;
+   line-height: 57px;
+   text-align: center;
+   
+   color: #273B54;
+   
+   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   
+   
+   /* Button */
+   
+   box-sizing: border-box;
+   
+   /* Auto layout */
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   padding: 12px;
+   gap: 8px;
+   
+   position: absolute;
+   width: 162px;
+   height: 54px;
+   left: calc(50% - 162px/2);
+   top: calc(50% - 54px/2 - 12px);
+   
+   background: #273B54;
+   border: 1px solid #6750A4;
+   border-radius: 8px;
+   
+   
+   /* Star
+   
+   Keywords: bookmark, favorite, like
+   */
+   
+   display: none;
+   width: 16px;
+   height: 16px;
+   
+   
+   /* Inside auto layout */
+   flex: none;
+   order: 0;
+   flex-grow: 0;
+   
+   
+   /* Button */
+   
+   width: 92px;
+   height: 27px;
+   
+   font-family: 'Philosopher';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 24px;
+   line-height: 27px;
+   /* identical to box height */
+   
+   color: #FFFFFF;
+   
+   
+   /* Inside auto layout */
+   flex: none;
+   order: 1;
+   flex-grow: 0;
+   
+   
+   /* X
+   
+   Keywords: cancel, close, delete, remove, times, clear
+   */
+   
+   display: none;
+   width: 16px;
+   height: 16px;
+   
+   
+   /* Inside auto layout */
+   flex: none;
+   order: 2;
+   flex-grow: 0;
+
