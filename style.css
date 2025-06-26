@@ -143,8 +143,8 @@ html[lang="en"] body {
     z-index: 1; /* Ensures visibility over background, but behind form content */
     opacity: 1; /* Set opacity to 1 (100%) as requested */
     transition: opacity 0.4s ease-in-out;
-    /* Add drop-shadow for SVGs here, adjust values as needed for desired effect */
-    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.1)); /* Consistent shadow */
+    /* Updated drop-shadow based on user's provided computed styles */
+    filter: drop-shadow(rgba(0, 0, 0, 0.4) 15px 10px 20px);
 }
 
 /* Styling for SVGs themselves within their containers */
@@ -155,63 +155,61 @@ html[lang="en"] body {
 }
 
 /* Explicitly set fill colors for SVGs using CSS variables */
-/* Adjusted paths to target the actual paths within the provided SVG code */
 .svg-top-left-blob-light svg path {
     fill: var(--svg-light-blob-color);
-    /* Removed mix-blend-mode to ensure solid color visibility initially, can re-add if needed for effect */
 }
 .svg-middle-left-blob-green svg path {
     fill: var(--svg-green-blob-color);
-    /* Removed mix-blend-mode */
 }
 .svg-form-backdrop-blob svg path {
     fill: var(--svg-white-blob-color);
-    /* Removed mix-blend-mode */
 }
 .svg-bottom-right-blob-dark svg path {
     fill: var(--svg-dark-blue-blob-color);
-    /* Removed mix-blend-mode */
 }
 .svg-footer-bg svg rect {
     fill: var(--svg-footer-color);
 }
 
 
-/* Specific positioning and scaling for each SVG (reverted and re-tuned) */
+/* Specific positioning and scaling for each SVG (re-tuned based on user's computed styles) */
 .svg-top-left-blob-light {
-    top: -20vh; /* Adjusted */
-    left: -20vw; /* Adjusted */
-    width: 60vw; /* Adjusted */
-    height: 60vh; /* Adjusted */
+    /* Converted from px to vw/vh assuming 1920x1080 viewport for responsiveness */
+    top: -0.85vh; /* from -9.17px */
+    left: -8vw; /* from -153.6px */
+    width: 50vw; /* from 960px */
+    height: 59.43vh; /* from 641.891px */
     opacity: 1;
 }
 
 .svg-middle-left-blob-green {
-    bottom: -10vh; /* Adjusted */
-    left: -10vw; /* Adjusted */
-    width: 40vw; /* Adjusted */
-    height: 40vh; /* Adjusted */
+    /* Converted from px to vw/vh assuming 1920x1080 viewport for responsiveness */
+    bottom: -1.7vh; /* from -18.34px */
+    left: -2vw; /* from -38.4px */
+    width: 25vw; /* from 480px */
+    height: 21.23vh; /* from 229.25px */
     opacity: 1;
 }
 
 .svg-form-backdrop-blob {
-    /* Using specific values from a visual match, keeping centering trick */
+    /* Adjusted to keep it centered and maintain specified fixed dimensions with responsiveness */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px; /* Slightly larger fixed width for better coverage */
-    height: 650px; /* Slightly larger fixed height for better coverage */
-    max-width: 90vw;
-    max-height: 90vh;
+    width: 458.5px; /* Keeping user's specified fixed px for this element */
+    height: 458.5px; /* Keeping user's specified fixed px for this element */
+    max-width: 90vw; /* Ensures it scales down on smaller screens */
+    max-height: 90vh; /* Ensures it scales down on smaller screens */
     z-index: 2;
     opacity: 1;
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -15vh; /* Adjusted */
-    right: -15vw; /* Adjusted */
-    width: 45vw; /* Adjusted */
-    height: 45vh; /* Adjusted */
+    /* Reverted to previous settings as it was not in the provided computed styles */
+    bottom: -10vh;
+    right: -10vw;
+    width: 30vw;
+    height: 40vh;
     opacity: 1;
 }
 
