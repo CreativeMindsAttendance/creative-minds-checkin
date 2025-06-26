@@ -183,16 +183,16 @@ html[lang="en"] body {
 }
 
 .svg-middle-left-blob-green {
-    /* Adjusted based on the new screenshot */
-    bottom: -15vh; /* Moved further down */
-    left: -5vw; /* Adjusted left position */
-    width: 30vw; /* Slightly smaller */
-    height: 35vh; /* Adjusted height */
+    /* Adjusted based on the new screenshot to be more visible and positioned */
+    bottom: -5vh; /* Bring it up more */
+    left: -10vw; /* Move further left */
+    width: 40vw; /* Make it larger */
+    height: 45vh; /* Make it taller */
     opacity: 1;
 }
 
 .svg-form-backdrop-blob {
-    /* This one appears correct in the screenshot */
+    /* This one appears mostly correct, ensure shadow is prominent */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -205,11 +205,11 @@ html[lang="en"] body {
 }
 
 .svg-bottom-right-blob-dark {
-    /* Adjusted based on the new screenshot */
-    bottom: -20vh; /* Moved further down */
-    right: -10vw; /* Adjusted right position */
-    width: 40vw; /* Slightly larger */
-    height: 50vh; /* Adjusted height */
+    /* Adjusted based on the new screenshot to be more visible and positioned */
+    bottom: -10vh; /* Bring it up more */
+    right: -15vw; /* Move further right */
+    width: 50vw; /* Make it larger */
+    height: 60vh; /* Make it taller */
     opacity: 1;
 }
 
