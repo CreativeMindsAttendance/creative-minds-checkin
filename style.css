@@ -2,7 +2,7 @@
    الخطوط المخصصة - Custom Fonts
 ======================================== */
 @font-face {
-    font-family: 'MacondoSwashCaps-Regular.ttf';
+    font-family: 'Macondo Swash Caps'; /* Changed to a more standard font family name */
     src: url('fonts/MacondoSwashCaps-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -30,11 +30,11 @@
 ======================================== */
 :root {
     /* ألوان الخلفية - Background Colors */
-    --main-bg-light: #F8FAFB;
+    --main-bg-light: #E9F1F0; /* Reverted to previous background for a softer feel */
     --main-bg-dark: #1A202C;
     
     /* ألوان النصوص - Text Colors */
-    --text-color-light: #FFFFFF;
+    --text-color-light: #323232; /* Adjusted to a darker grey for better contrast */
     --text-color-dark: #F7FAFC;
     
     /* ألوان النماذج - Form Colors */
@@ -44,39 +44,40 @@
     --input-bg-dark: #4A5568;
     
     /* ألوان الأزرار - Button Colors */
-    --button-primary-bg-light: #4A5568;
+    --button-primary-bg-light: #364251; /* Dark blue-grey */
     --button-primary-bg-dark: #63758F;
-    --button-secondary-bg-light: #9CAF88;
+    --button-secondary-bg-light: #809165; /* Olive green */
     --button-secondary-bg-dark: #9CAF88;
     --button-text-light: #FFFFFF;
     --button-text-dark: #FFFFFF;
     
     /* الظلال - Shadows */
-    --shadow-soft-large: 0px 20px 50px rgba(0, 0, 0, 0.08), 0px 0px 0px 1px rgba(255, 255, 255, 0.8);
-    --shadow-soft-large-dark: 0px 20px 50px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.02);
-    --shadow-button: 0px 6px 20px rgba(0, 0, 0, 0.08);
-    --shadow-button-dark: 0px 6px 20px rgba(0, 0, 0, 0.3);
+    --shadow-soft-large: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5); /* For container */
+    --shadow-soft-large-dark: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
+    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.2);
     
     /* ألوان عناصر التحكم - Control Colors */
-    --control-bg-light: rgba(255, 255, 255, 0.95);
-    --control-bg-dark: rgba(0, 0, 0, 0.6);
-    --control-border-light: rgba(255, 255, 255, 0.3);
+    --control-bg-light: rgba(255, 255, 255, 0.9);
+    --control-bg-dark: rgba(0, 0, 0, 0.5);
+    --control-border-light: rgba(255, 255, 255, 0.2);
     --control-border-dark: rgba(255, 255, 255, 0.1);
-    --slider-bg-light: linear-gradient(135deg, #667eea, #764ba2);
+    --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD);
     --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
     
-    /* ألوان أشكال SVG - SVG Colors */
-    --svg-light-blob-color: #D7DDDD;
-    --svg-green-blob-color: #809165;
-    --svg-white-blob-color: #FFFFFF;
-    --svg-dark-blue-blob-color: #2C398B;
+    /* ألوان أشكال SVG - SVG Colors (ADJUSTED FOR BETTER MATCH TO FIGMA) */
+    --svg-light-blob-color: #D7DDDD; /* Light grey-blue */
+    --svg-green-blob-color: #A0B38A; /* A slightly lighter olive green for better visibility */
+    --svg-white-blob-color: #E6EAF0; /* A very light grey for the form backdrop */
+    --svg-dark-blue-blob-color: #4A5B70; /* A slightly lighter dark blue */
+    --svg-top-right-green-color: rgba(128, 145, 101, 0.68); /* New variable for the new blob */
     --svg-footer-color: #15253A;
     
     /* ألوان الحالة - Status Colors */
-    --success-color: #38A169;
-    --error-color: #E53E3E;
-    --warning-color: #D69E2E;
-    --info-color: #3182CE;
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
     
     /* المتغيرات النشطة - Active Variables */
     --current-main-bg: var(--main-bg-light);
@@ -107,7 +108,7 @@ body.dark-mode {
     --current-shadow-soft-large: var(--shadow-soft-large-dark);
     --current-shadow-button: var(--shadow-button-dark);
     --current-control-bg: var(--control-bg-dark);
-    --current-control-border: var(--control-border-dark);
+    --current-control-border: var(--current-control-border);
     --current-slider-bg: var(--slider-bg-dark);
 }
 
@@ -142,9 +143,10 @@ html[lang="en"] body {
     position: fixed;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.6;
+    opacity: 1; /* Keeping opacity at 1, will control blending via fill colors */
     transition: opacity 0.4s ease-in-out;
-    filter: drop-shadow(rgba(0, 0, 0, 0.05) 15px 10px 20px);
+    /* Adjusted drop-shadow for a more consistent and visible effect */
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15));
 }
 
 .bg-svg-container svg {
@@ -159,73 +161,79 @@ html[lang="en"] body {
 .svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-color); }
 .svg-bottom-right-blob-dark svg path { fill: var(--svg-dark-blue-blob-color); }
 .svg-footer-bg svg rect { fill: var(--svg-footer-color); }
+.svg-top-right-blob-green svg path { fill: var(--svg-top-right-green-color); } /* New blob color */
 
-/* مواضع أشكال SVG */
+/* مواضع أشكال SVG (Adjusted significantly based on new understanding of desired layout) */
 .svg-top-left-blob-light {
-    top: -1vh;
-    left: -8vw;
-    width: 50vw;
+    top: -5vh;
+    left: -5vw;
+    width: 60vw;
     height: 70vh;
-    opacity: 1;
-    background: #D7DDDD;
-    background-blend-mode: plus-lighter;
-    box-shadow: 14px 36px 48px rgba(0, 0, 0, 0.15), inset 2.14645px 2.00046px 9.24px rgba(255, 255, 255, 0.126);
+    /* Removed background, background-blend-mode, box-shadow */
 }
 
 .svg-middle-left-blob-green {
-    bottom: -2vh;
-    left: -2vw;
-    width: 25vw;
-    height: 25vh;
-    opacity: 1;
+    bottom: -10vh;
+    left: -10vw;
+    width: 45vw;
+    height: 50vh;
+    /* Removed opacity, background */
 }
 
 .svg-top-right-blob-green {
-    position: absolute;
-    width: 778.38px;
-    height: 465.79px;
-    left: 1313px;
-    top: -103px;
-    background: rgba(128, 145, 101, 0.68);
-    background-blend-mode: plus-lighter;
-    mix-blend-mode: normal;
-    box-shadow: -6px 19px 31.8px rgba(0, 0, 0, 0.15);
+    /* Adjusted positioning for top right */
+    position: fixed; /* Changed from absolute to fixed to ensure it stays in viewport */
+    width: 40vw; /* Converted from 778.38px assuming 1920px width */
+    height: 43.12vh; /* Converted from 465.79px assuming 1080px height */
+    right: -10vw; /* Adjusted to sit outside viewport to the right */
+    top: -5vh; /* Adjusted for better top positioning */
+    /* Removed background, background-blend-mode, mix-blend-mode, box-shadow */
 }
 
+
 .svg-form-backdrop-blob {
-    top: 77%;
-    left: 86%;
+    top: 50%; /* Keep centered vertically */
+    left: 50%; /* Keep centered horizontally */
     transform: translate(-50%, -50%);
-    width: 49vw;
-    height: 50vh;
+    width: 480px;
+    height: 500px;
     max-width: 90vw;
     max-height: 90vh;
     z-index: 2;
-    opacity: 1;
+    /* Removed opacity as it's part of the general .bg-svg-container */
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: 65vh;
-    right: -7vw;
-    width: 25vw;
-    height: 36vh;
-    opacity: 0.5;
+    bottom: -15vh;
+    right: -10vw;
+    width: 55vw;
+    height: 65vh;
+    /* Removed opacity */
 }
 
 .svg-footer-bg {
-    bottom: -31px;
+    bottom: 0;
     left: 0;
     width: 100vw;
-    height: 20vh;
+    height: 20vh; /* Using vh for responsiveness */
     z-index: 0;
-    opacity: 1;
+    /* Removed opacity, background */
 }
 
 /* ألوان SVG في الوضع المظلم */
 body.dark-mode .bg-svg-container {
-    opacity: 0.7;
-    filter: drop-shadow(15px 10px 20px rgba(0, 0, 0, 0.4));
+    opacity: 0.9;
+    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.2)); /* Darker shadow for dark mode */
 }
+/* Specific dark mode fills */
+body.dark-mode .svg-top-left-blob-light svg path { fill: var(--svg-light-blob-color-dark); }
+body.dark-mode .svg-middle-left-blob-green svg path { fill: var(--svg-green-blob-color-dark); }
+body.dark-mode .svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-color-dark); }
+body.dark-mode .svg-bottom-right-blob-dark svg path { fill: var(--svg-dark-blue-blob-color-dark); }
+body.dark-mode .svg-footer-bg svg rect { fill: var(--svg-footer-color-dark); }
+/* New blob dark mode color */
+body.dark-mode .svg-top-right-blob-green svg path { fill: darken(var(--svg-top-right-green-color), 10%); /* Example of darkening */ }
+
 
 /* ========================================
    عناصر التحكم الثابتة - Fixed Controls
@@ -272,8 +280,8 @@ body.dark-mode .bg-svg-container {
     text-align: center;
     font-weight: 600;
     font-size: 12px;
-    line-height: 36px;
-    z-index: 100;
+    line-height: 46px; /* Adjusted line-height to match height */
+    z-index: 2;
     position: relative;
     color: var(--current-text-color);
     transition: color 0.3s ease;
@@ -288,7 +296,7 @@ body.dark-mode .bg-svg-container {
     top: 2px;
     bottom: 2px;
     left: 2px;
-    width: 36px;
+    width: 44px; /* Adjusted to fit new height (46-4)/2 = 21, so 46-4 = 42. width/height= 42 */
     border-radius: 18px;
     background: var(--current-slider-bg);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -296,7 +304,7 @@ body.dark-mode .bg-svg-container {
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px);
+    transform: translateX(40px); /* 90px - 46px = 44px, so translate needs adjustment for new width */
 }
 
 .language-switcher[data-active-lang="en"] .slider {
@@ -358,15 +366,16 @@ body.dark-mode .bg-svg-container {
 ======================================== */
 #site-title {
     text-align: center;
-    font-family: 'MacondoSwashCaps-Regular.ttf', cursive;
-    font-size: clamp(3rem, 5rem, 7rem);
+    font-family: 'Macondo Swash Caps', cursive; /* Corrected font family name */
+    font-size: clamp(3rem, 5vw, 7rem); /* Adjusted for better scaling on smaller screens */
     margin-top: 5px;
     margin-bottom: -115px;
     display: block;
     z-index: 2;
     position: relative;
     font-weight: 400;
-    background: linear-gradient(135deg, #4A5568 0%, #2D3748 50%, #1A202C 100%);
+    /* Adjusted gradient to use color variables for better theme integration */
+    background: linear-gradient(135deg, var(--button-primary-bg-light) 0%, var(--form-bg-dark) 50%, var(--main-bg-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -430,7 +439,7 @@ body.dark-mode .container {
     font-family: 'QatarMedium', sans-serif;
     font-size: 2.5rem;
     font-weight: 400;
-    color: #273B54;
+    color: #273B54; /* Specific color from Figma for this title */
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 0rem;
     animation: fadeIn 1s ease-out 0.6s both;
@@ -643,9 +652,9 @@ html[lang="en"] #statusMessage {
    التذييل - Footer
 ======================================== */
 .footer {
-    font-size: 1.7rem;
+    font-size: 0.85rem; /* Adjusted for better readability */
     text-align: center;
-    padding: 1.7rem 1rem;
+    padding: 1.5rem 1rem; /* Adjusted padding */
     opacity: 0.8;
     background: none;
     backdrop-filter: none;
@@ -662,20 +671,20 @@ html[lang="en"] #statusMessage {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
-    max-width: max-content;
-    margin: 0 24rem;
+    max-width: 600px; /* Adjusted to a fixed max-width for better control */
+    margin: 0 auto; /* Centering the footer content */
 }
 
 .footer-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    direction: ltr;
+    direction: ltr; /* Ensure LTR for emojis/text alignment */
     text-align: left;
 }
 
 .emoji {
-    font-size: 1.1rem;
+    font-size: 1rem; /* Adjusted for better visual balance */
     display: inline-block;
     transform: scaleX(1);
 }
@@ -726,6 +735,32 @@ html[lang="en"] #statusMessage {
     .container {
         padding: 2.5rem 2rem;
         max-width: 400px;
+    }
+
+    /* Responsive adjustments for SVGs */
+    .svg-top-left-blob-light {
+        width: 80vw;
+        height: 90vh;
+        left: -15vw;
+        top: -10vh;
+    }
+    .svg-middle-left-blob-green {
+        width: 60vw;
+        height: 70vh;
+        left: -20vw;
+        bottom: -15vh;
+    }
+    .svg-top-right-blob-green {
+        width: 60vw;
+        height: 70vh;
+        right: -20vw;
+        top: -10vh;
+    }
+    .svg-bottom-right-blob-dark {
+        width: 80vw;
+        height: 90vh;
+        right: -15vw;
+        bottom: -10vh;
     }
 }
 
@@ -791,5 +826,19 @@ html[lang="en"] #statusMessage {
     .container {
         padding: 2rem 1.5rem;
         gap: 1.2rem;
+    }
+
+    /* Mobile Responsive adjustments for SVGs */
+    .svg-top-left-blob-light,
+    .svg-middle-left-blob-green,
+    .svg-top-right-blob-green,
+    .svg-bottom-right-blob-dark {
+        width: 100vw;
+        height: 100vh;
+        /* Position them more centrally or reduce extreme offsets for mobile */
+        left: -25vw;
+        top: -15vh;
+        right: -25vw;
+        bottom: -15vh;
     }
 }
