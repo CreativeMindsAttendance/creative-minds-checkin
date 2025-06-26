@@ -812,7 +812,7 @@ html[lang="en"] #statusMessage {
     #site-title {
         font-size: clamp(28px,
 
-     body.mobile-layout {
+   body.mobile-layout {
      background: #DEEBF3;
      height: 873px;
      position: relative;
@@ -1021,6 +1021,6 @@ html[lang="en"] #statusMessage {
    .footer-location { top: calc(50% + 281px); height: 32px; }
    .footer-email    { top: calc(50% + 330px); height: 31px; }
    .footer-site     { top: calc(50% + 303px); height: 31px; }
-      
+}  
       
       
