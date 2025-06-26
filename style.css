@@ -26,7 +26,7 @@
 :root {
     /* Light Mode Colors - Updated to match design */
     --main-bg-light: #F8FAFB; /* Much lighter background */
-    --text-color-light: #2D3748; /* Softer dark text */
+    --text-color-light: #FFFFFF; /* Softer dark text */
     --form-bg-light: #FFFFFF; /* Pure white for form */
     --input-bg-light: #F7FAFC; /* Very light input background */
 
