@@ -1,83 +1,78 @@
-/* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
+/* Custom Fonts */
 @font-face {
     font-family: 'SwinglyLours';
-    src: url('fonts/SwinglyLours.otf') format('opentype'); /* Updated to only .otf as per user's file */
+    src: url('fonts/SwinglyLours.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
-    font-display: swap; /* Ensures font loads nicely */
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'QatarMedium';
-    src: url('fonts/QatarMedium.ttf') format('truetype'); /* Updated to only .ttf as per user's file */
-    font-weight: 500; /* Assuming Medium weight, adjust if necessary */
-    font-style: normal;
-    font-display: swap; /* Ensures font loads nicely */
-}
-
-@font-face {
-    font-family: 'Philosopher'; /* Adding local Philosopher font as well */
-    src: url('fonts/PhilosopherRegular.ttf') format('truetype');
-    font-weight: 400; /* Assuming Regular weight for Philosopher, adjust if necessary */
+    src: url('fonts/QatarMedium.ttf') format('truetype');
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
-/* Removed Google Fonts link for Philosopher from HTML as it's now local */
 
+@font-face {
+    font-family: 'Philosopher';
+    src: url('fonts/PhilosopherRegular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
 :root {
-    /* Light Mode Colors from Figma Analysis */
-    --main-bg-light: #E9F1F0; /* Overall background */
-    --text-color-light: #323232; /* Darker grey for text */
-    --form-bg-light: #FFFFFF; /* Pure white for form container */
-    --input-bg-light: rgba(255, 255, 255, 0.8); /* input background */
+    /* Light Mode Colors - Updated to match design */
+    --main-bg-light: #F8FAFB; /* Much lighter background */
+    --text-color-light: #2D3748; /* Softer dark text */
+    --form-bg-light: #FFFFFF; /* Pure white for form */
+    --input-bg-light: #F7FAFC; /* Very light input background */
 
-    /* Button colors */
-    --button-primary-bg-light: #364251; /* Dark blue-grey for main button */
-    --button-secondary-bg-light: #809165; /* Olive green for secondary button */
+    /* Button colors - Updated */
+    --button-primary-bg-light: #4A5568; /* Softer dark blue-grey */
+    --button-secondary-bg-light: #9CAF88; /* Softer green */
     --button-text-light: #FFFFFF;
 
-    /* Shadows */
-    --shadow-soft-large: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5); /* For container */
-    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.1); /* General button shadow */
+    /* Shadows - Softer */
+    --shadow-soft-large: 0px 20px 50px rgba(0, 0, 0, 0.08), 0px 0px 0px 1px rgba(255, 255, 255, 0.8);
+    --shadow-button: 0px 6px 20px rgba(0, 0, 0, 0.08);
 
-    /* Language switcher / Mode toggle */
-    --control-bg-light: rgba(255, 255, 255, 0.9);
-    --control-border-light: rgba(255, 255, 255, 0.2);
-    --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD); /* Blue gradient for slider */
+    /* Controls */
+    --control-bg-light: rgba(255, 255, 255, 0.95);
+    --control-border-light: rgba(255, 255, 255, 0.3);
+    --slider-bg-light: linear-gradient(135deg, #667eea, #764ba2);
 
-    /* SVG Colors - These are explicitly set to make the SVGs visible and match Figma where possible */
-    --svg-light-blob-color: #D7DDDD; /* Light grey-blue from Figma */
-    --svg-green-blob-color: #A0B38A; /* A slightly lighter olive green for better visibility */
-    --svg-white-blob-color: #E6EAF0; /* A very light grey for the form backdrop to distinguish it */
-    --svg-dark-blue-blob-color: #4A5B70; /* A slightly lighter dark blue for visibility */
-    --svg-footer-color: #15253A; /* Very dark blue for footer */
+    /* SVG Colors - Much softer */
+    --svg-light-blob-color: #E2E8F0; /* Very light grey-blue */
+    --svg-green-blob-color: #C6D9B7; /* Very soft green */
+    --svg-white-blob-color: #F1F5F9; /* Almost white */
+    --svg-dark-blue-blob-color: #CBD5E0; /* Very light blue-grey */
+    --svg-footer-color: #2D3748; /* Softer dark */
 
+    /* Dark Mode Colors */
+    --main-bg-dark: #1A202C;
+    --text-color-dark: #F7FAFC;
+    --form-bg-dark: #2D3748;
+    --input-bg-dark: #4A5568;
 
-    /* Dark Mode Colors (approximated from light mode) */
-    --main-bg-dark: #1a1a2e;
-    --text-color-dark: #f8fafc;
-    --form-bg-dark: #2A3B50; /* Darker form background */
-    --input-bg-dark: #3A4C62;
-
-    --button-primary-bg-dark: #5A6D81; /* Lighter dark blue-grey for main button */
-    --button-secondary-bg-dark: #A0B38A; /* Lighter olive green for secondary button */
+    --button-primary-bg-dark: #63758F;
+    --button-secondary-bg-dark: #9CAF88;
     --button-text-dark: #FFFFFF;
 
-    --shadow-soft-large-dark: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
-    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    --shadow-soft-large-dark: 0px 20px 50px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.02);
+    --shadow-button-dark: 0px 6px 20px rgba(0, 0, 0, 0.3);
 
-    --control-bg-dark: rgba(0, 0, 0, 0.5);
+    --control-bg-dark: rgba(0, 0, 0, 0.6);
     --control-border-dark: rgba(255, 255, 255, 0.1);
     --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
 
-    /* Dark Mode SVG Colors - Adjusted to be visible and aesthetically pleasing */
-    --svg-light-blob-color-dark: #3A4C62; /* Darker version of light blob */
-    --svg-green-blob-color-dark: #5A6D81; /* Darker version of green blob */
-    --svg-white-blob-color-dark: #202D3D; /* Darker version of white blob */
-    --svg-dark-blue-blob-color-dark: #0A1B2C; /* Darker version of dark blue blob */
-    --svg-footer-color-dark: #050E17; /* Even darker footer */
-
+    --svg-light-blob-color-dark: #4A5568;
+    --svg-green-blob-color-dark: #68D391;
+    --svg-white-blob-color-dark: #2D3748;
+    --svg-dark-blue-blob-color-dark: #1A202C;
+    --svg-footer-color-dark: #0A0E17;
 
     /* Active Theme Variables */
     --current-main-bg: var(--main-bg-light);
@@ -93,11 +88,11 @@
     --current-control-border: var(--control-border-light);
     --current-slider-bg: var(--slider-bg-light);
 
-    /* Status colors (remain constant) */
-    --success-color: #22c55e;
-    --error-color: #ef4444;
-    --warning-color: #f59e0b;
-    --info-color: #3b82f6;
+    /* Status colors */
+    --success-color: #38A169;
+    --error-color: #E53E3E;
+    --warning-color: #D69E2E;
+    --info-color: #3182CE;
 }
 
 body.dark-mode {
@@ -111,7 +106,7 @@ body.dark-mode {
     --current-shadow-soft-large: var(--shadow-soft-large-dark);
     --current-shadow-button: var(--shadow-button-dark);
     --current-control-bg: var(--control-bg-dark);
-    --current-control-border: var(--current-control-border);
+    --current-control-border: var(--control-border-dark);
     --current-slider-bg: var(--slider-bg-dark);
 }
 
@@ -125,7 +120,7 @@ html, body {
     min-height: 100vh;
     background-color: var(--current-main-bg);
     color: var(--current-text-color);
-    overflow-x: hidden; /* Ensure no horizontal scrollbar from SVGs */
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     font-family: 'QatarMedium', sans-serif;
@@ -136,25 +131,23 @@ html[lang="en"] body {
     font-family: 'Philosopher', serif;
 }
 
-/* Base styling for SVG containers */
+/* Background SVG containers - Updated positioning */
 .bg-svg-container {
     position: fixed;
-    pointer-events: none; /* Allows clicks to pass through to elements behind */
-    z-index: 1; /* Ensures visibility over background, but behind form content */
-    opacity: 1; /* Set opacity to 1 (100%) as requested */
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6; /* Reduced opacity for softer look */
     transition: opacity 0.4s ease-in-out;
-    /* Updated drop-shadow based on user's provided computed styles - Adjusted for better visibility */
-    filter: drop-shadow(rgba(0, 0, 0, 0.25) 0px 10px 15px); /* More subtle, consistent shadow */
+    filter: drop-shadow(rgba(0, 0, 0, 0.05) 0px 5px 15px); /* Much softer shadow */
 }
 
-/* Styling for SVGs themselves within their containers */
 .bg-svg-container svg {
     width: 100%;
     height: 100%;
     display: block;
 }
 
-/* Explicitly set fill colors for SVGs using CSS variables */
+/* SVG fill colors */
 .svg-top-left-blob-light svg path {
     fill: var(--svg-light-blob-color);
 }
@@ -171,56 +164,53 @@ html[lang="en"] body {
     fill: var(--svg-footer-color);
 }
 
-
-/* Specific positioning and scaling for each SVG (re-tuned for Figma match) */
+/* Updated SVG positioning to match design */
 .svg-top-left-blob-light {
-    top: -5vh; /* Closer to the top-left */
-    left: -5vw; /* Closer to the top-left */
-    width: 60vw; /* Larger to fill more space */
-    height: 70vh; /* Taller */
-    opacity: 0.8; /* Slightly less opaque to blend more */
+    top: -15vh;
+    left: -15vw;
+    width: 70vw;
+    height: 80vh;
+    opacity: 0.4;
 }
 
 .svg-middle-left-blob-green {
-    bottom: -10vh; /* Moved further down */
-    left: -10vw; /* Moved further left */
-    width: 45vw; /* Made larger */
-    height: 50vh; /* Made taller */
-    opacity: 0.7; /* Slightly less opaque */
+    bottom: -15vh;
+    left: -15vw;
+    width: 50vw;
+    height: 60vh;
+    opacity: 0.5;
 }
 
 .svg-form-backdrop-blob {
-    /* Centered, ensuring it covers the form well with a prominent shadow */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 480px; /* Adjusted fixed width for better coverage */
-    height: 500px; /* Adjusted fixed height for better coverage */
-    max-width: 90vw; /* Ensures it scales down on smaller screens */
-    max-height: 90vh; /* Ensures it scales down on smaller screens */
+    width: 500px;
+    height: 520px;
+    max-width: 95vw;
+    max-height: 95vh;
     z-index: 2;
-    opacity: 1;
+    opacity: 0.8;
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -10vh; /* Adjusted to be more visible at the bottom right */
-    right: -10vw; /* Adjusted to be more visible at the bottom right */
-    width: 55vw; /* Made larger */
-    height: 65vh; /* Made taller */
-    opacity: 0.8; /* Slightly less opaque */
+    bottom: -15vh;
+    right: -15vw;
+    width: 60vw;
+    height: 70vh;
+    opacity: 0.3;
 }
 
 .svg-footer-bg {
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 200px;
+    height: 180px;
     z-index: 0;
-    opacity: 1;
+    opacity: 0.9;
 }
 
-
-/* Dark mode SVG appearance adjustments */
+/* Dark mode SVG colors */
 body.dark-mode .svg-top-left-blob-light svg path {
     fill: var(--svg-light-blob-color-dark);
 }
@@ -237,15 +227,12 @@ body.dark-mode .svg-footer-bg svg rect {
     fill: var(--svg-footer-color-dark);
 }
 
-/* Overall dark mode opacity adjustment for SVGs for a subtle effect */
 body.dark-mode .bg-svg-container {
-    opacity: 0.9;
-    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.2)); /* Darker shadow for dark mode */
+    opacity: 0.7;
+    filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.1));
 }
 
-
-/* --- Positioning for controls (separated to left/right) --- */
-/* Left top controls container: language switcher */
+/* Controls positioning */
 .fixed-top-left-controls {
     position: fixed;
     top: 20px;
@@ -253,7 +240,6 @@ body.dark-mode .bg-svg-container {
     z-index: 100;
 }
 
-/* Right top controls container: dark mode toggle */
 .fixed-top-right-controls {
     position: fixed;
     top: 20px;
@@ -261,7 +247,7 @@ body.dark-mode .bg-svg-container {
     z-index: 100;
 }
 
-/* Language switcher (no change in internal styling, only position handled by parent) */
+/* Language switcher */
 .language-switcher {
     display: flex;
     width: 80px;
@@ -272,14 +258,14 @@ body.dark-mode .bg-svg-container {
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--current-control-border);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
 .language-switcher:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
 }
 
 .lang-option {
@@ -307,7 +293,7 @@ body.dark-mode .bg-svg-container {
     border-radius: 18px;
     background: var(--current-slider-bg);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
@@ -317,7 +303,7 @@ body.dark-mode .bg-svg-container {
     transform: translateX(0);
 }
 
-/* Dark mode toggle (no change in internal styling, only position handled by parent) */
+/* Dark mode toggle */
 #mode-toggle {
     width: 60px;
     height: 36px;
@@ -327,16 +313,15 @@ body.dark-mode .bg-svg-container {
     align-items: center;
     padding: 4px;
     cursor: pointer;
-    margin-left: 0;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
 #mode-toggle:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
 }
 
 #mode-toggle .toggle-icon {
@@ -366,27 +351,26 @@ body.dark-mode .bg-svg-container {
     content: "🌙";
 }
 
-
-/* Site title - Always English, SwinglyLours font, centered */
+/* Site title - Bigger and more prominent */
 #site-title {
     text-align: center;
     font-family: 'SwinglyLours', cursive;
-    font-size: clamp(28px, 6vw, 48px);
-    margin-top: 80px; /* Adjusted margin to provide space from top controls */
-    margin-bottom: 20px;
-    display: block; /* Ensures it takes full width for text-align: center */
+    font-size: clamp(42px, 8vw, 72px); /* Much bigger */
+    margin-top: 80px;
+    margin-bottom: 30px;
+    display: block;
     z-index: 2;
     position: relative;
     font-weight: 700;
-    background: linear-gradient(90deg, #607D8B 0%, #455A64 100%);
+    background: linear-gradient(135deg, #4A5568 0%, #2D3748 50%, #1A202C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: fadeInDown 1s ease-out;
+    letter-spacing: 2px;
 }
 
-
-/* Main content container (pushes footer down) */
+/* Main content */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -402,43 +386,42 @@ body.dark-mode .bg-svg-container {
 
 .container {
     width: 90%;
-    max-width: 420px;
+    max-width: 440px;
     background: var(--current-form-bg);
-    padding: 2.5rem 2rem;
-    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    border-radius: 28px;
     text-align: center;
     box-shadow: var(--current-shadow-soft-large);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     animation: fadeInUp 1s ease-out 0.3s both;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 body.dark-mode .container {
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Logo Image Styling - Corrected to logo.png and returned inside the form, adjusted size */
+/* Logo - Bigger */
 .logo {
-    width: 120px; /* Increased size slightly for better visibility */
+    width: 140px;
     height: auto;
     object-fit: contain;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     animation: pulse 2s infinite;
 }
 
-
-/* Form Title (Attendance Form / نموذج تحضير) */
+/* Form Title */
 #form-title {
     font-family: 'QatarMedium', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 600;
     color: var(--current-text-color);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
@@ -446,16 +429,16 @@ html[lang="en"] #form-title {
     font-family: 'Philosopher', serif;
 }
 
-/* Input field */
+/* Input field - Cleaner look */
 #nameInput {
     width: 100%;
-    padding: 1rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 20px;
     background-color: var(--current-input-bg);
-    border: 2px solid transparent;
+    border: 2px solid rgba(0, 0, 0, 0.05);
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-family: 'QatarMedium', sans-serif;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -466,50 +449,50 @@ html[lang="en"] #nameInput {
 }
 #nameInput::placeholder {
     color: var(--current-text-color);
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 #nameInput:focus {
     outline: none;
     border-color: var(--current-button-primary-bg);
     background-color: var(--current-input-bg);
-    box-shadow: 0 0 0 4px rgba(54, 66, 81, 0.1);
+    box-shadow: 0 0 0 6px rgba(74, 85, 104, 0.08);
     transform: translateY(-2px);
 }
 body.dark-mode #nameInput:focus {
-    box-shadow: 0 0 0 4px rgba(90, 109, 129, 0.1);
+    box-shadow: 0 0 0 6px rgba(99, 117, 143, 0.08);
 }
 
-/* Submit button */
+/* Buttons - Cleaner and more prominent */
 #submitBtn {
     background: var(--current-button-primary-bg);
     color: var(--current-button-text);
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
     font-weight: 600;
     border: none;
-    border-radius: 16px;
+    border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--current-shadow-button);
     font-family: 'QatarMedium', sans-serif;
     position: relative;
     overflow: hidden;
-    min-width: 160px;
-    margin-bottom: 0.5rem;
+    min-width: 180px;
+    margin-bottom: 1rem;
 }
 html[lang="en"] #submitBtn {
     font-family: 'Philosopher', serif;
 }
 
 #submitBtn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 #submitBtn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #submitBtn.loading {
@@ -531,23 +514,22 @@ html[lang="en"] #submitBtn {
     animation: spin 1s linear infinite;
 }
 
-/* New Gemini Feature Button */
+/* Secondary button */
 #generateTipBtn {
     background: var(--current-button-secondary-bg);
     color: var(--current-button-text);
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
     font-weight: 600;
     border: none;
-    border-radius: 16px;
+    border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--current-shadow-button);
     font-family: 'QatarMedium', sans-serif;
     position: relative;
     overflow: hidden;
-    min-width: 160px;
-    margin-top: 0.5rem;
+    min-width: 180px;
 }
 
 html[lang="en"] #generateTipBtn {
@@ -555,13 +537,13 @@ html[lang="en"] #generateTipBtn {
 }
 
 #generateTipBtn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 #generateTipBtn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #generateTipBtn.loading {
@@ -583,19 +565,18 @@ html[lang="en"] #generateTipBtn {
     animation: spin 1s linear infinite;
 }
 
-
 /* Status message */
 #statusMessage {
     margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
     font-family: 'QatarMedium', sans-serif;
-    line-height: 1.4;
+    line-height: 1.5;
     min-height: 20px;
     max-width: 100%;
     word-wrap: break-word;
@@ -604,45 +585,43 @@ html[lang="en"] #statusMessage {
     font-family: 'Philosopher', serif;
 }
 
-
 #statusMessage.show {
     opacity: 1;
     transform: translateY(0);
 }
 
 #statusMessage.success {
-    background-color: rgba(34, 197, 94, 0.1);
+    background-color: rgba(56, 161, 105, 0.1);
     color: var(--success-color);
-    border: 1px solid rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(56, 161, 105, 0.2);
 }
 
 #statusMessage.error {
-    background-color: rgba(239, 68, 68, 0.1);
+    background-color: rgba(229, 62, 62, 0.1);
     color: var(--error-color);
-    border: 1px solid rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(229, 62, 62, 0.2);
 }
 
 #statusMessage.warning {
-    background-color: rgba(245, 158, 11, 0.1);
+    background-color: rgba(214, 158, 46, 0.1);
     color: var(--warning-color);
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    border: 1px solid rgba(214, 158, 46, 0.2);
 }
 
 #statusMessage.info {
-    background-color: rgba(59, 130, 246, 0.1);
+    background-color: rgba(49, 130, 206, 0.1);
     color: var(--info-color);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(49, 130, 206, 0.2);
 }
 
-
-/* Footer styling */
+/* Footer */
 .footer {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     text-align: center;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
     opacity: 0.8;
-    background: none; /* Ensure no background */
-    backdrop-filter: none; /* Ensure no blur */
+    background: none;
+    backdrop-filter: none;
     margin-top: auto;
     color: var(--current-text-color);
     transition: color 0.4s ease;
@@ -655,8 +634,8 @@ html[lang="en"] #statusMessage {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    max-width: 600px;
+    gap: 2rem;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -668,28 +647,20 @@ html[lang="en"] #statusMessage {
     text-align: left;
 }
 
-html[lang="ar"] .footer-content {
-    justify-content: center;
-}
-html[lang="en"] .footer-content {
-    justify-content: center;
-}
-
 .emoji {
-    font-size: 1rem;
+    font-size: 1.1rem;
     display: inline-block;
     transform: scaleX(1);
 }
 
-
 /* Animations */
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
+    from { opacity: 0; transform: translateY(-40px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -711,19 +682,26 @@ html[lang="en"] .footer-content {
 /* Responsive design */
 @media screen and (max-width: 768px) {
     #site-title {
-        margin-top: calc(60px + 10px);
-        font-size: clamp(24px, 5vw, 42px);
+        margin-top: 70px;
+        font-size: clamp(36px, 7vw, 60px);
     }
     .main-content {
-        padding-top: 10px;
+        padding-top: 15px;
+    }
+    .container {
+        padding: 2.5rem 2rem;
+        max-width: 400px;
     }
 }
 
 @media screen and (max-width: 480px) {
     .fixed-top-right-controls {
-        top: 10px;
-        right: 10px;
-        gap: 8px;
+        top: 15px;
+        right: 15px;
+    }
+    .fixed-top-left-controls {
+        top: 15px;
+        left: 15px;
     }
 
     .language-switcher, #mode-toggle {
@@ -750,20 +728,25 @@ html[lang="en"] .footer-content {
     }
 
     #site-title {
-        font-size: clamp(20px, 6vw, 36px);
-        margin-top: calc(60px + 10px);
+        font-size: clamp(28px, 6vw, 48px);
+        margin-top: 60px;
     }
 
     #form-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     #nameInput, #submitBtn, #generateTipBtn {
-        padding: 0.8rem 1rem;
-        font-size: 0.95rem;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
     }
 
     .footer-content {
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 1rem;
+    }
+    
+    .container {
+        padding: 2rem 1.5rem;
+        gap: 1.2rem;
     }
 }
