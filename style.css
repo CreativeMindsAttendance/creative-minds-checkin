@@ -45,11 +45,11 @@
     --slider-bg-light: linear-gradient(135deg, #667eea, #764ba2);
 
     /* SVG Colors - Much softer */
-    --svg-light-blob-color: #E2E8F0; /* Very light grey-blue */
-    --svg-green-blob-color: #C6D9B7; /* Very soft green */
-    --svg-white-blob-color: #F1F5F9; /* Almost white */
-    --svg-dark-blue-blob-color: #CBD5E0; /* Very light blue-grey */
-    --svg-footer-color: #2D3748; /* Softer dark */
+    --svg-light-blob-color: #D7DDDD; /* Very light grey-blue */
+    --svg-green-blob-color: #809165; /* Very soft green */
+    --svg-white-blob-color: #FFFFFF; /* Almost white */
+    --svg-dark-blue-blob-color: #2C398B; /* Very light blue-grey */
+    --svg-footer-color: #15253A; /* Softer dark */
 
     /* Dark Mode Colors */
     --main-bg-dark: #1A202C;
