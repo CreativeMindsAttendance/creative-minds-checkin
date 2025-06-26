@@ -54,8 +54,8 @@
     /* الظلال - Shadows */
     --shadow-soft-large: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5); /* For container */
     --shadow-soft-large-dark: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
-    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.15); /* Increased shadow opacity */
+    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.35); /* Increased dark mode shadow opacity */
     
     /* ألوان عناصر التحكم - Control Colors */
     --control-bg-light: rgba(255, 255, 255, 0.9);
@@ -67,11 +67,25 @@
     
     /* ألوان أشكال SVG - SVG Colors (ADJUSTED FOR BETTER MATCH TO FIGMA) */
     --svg-light-blob-color: #D7DDDD; /* Light grey-blue */
-    --svg-green-blob-color: #A0B38A; /* A slightly lighter olive green for better visibility */
-    --svg-white-blob-color: #E6EAF0; /* A very light grey for the form backdrop */
-    --svg-dark-blue-blob-color: #4A5B70; /* A slightly lighter dark blue */
-    --svg-top-right-green-color: rgba(128, 145, 101, 0.68); /* New variable for the new blob */
+    --svg-green-blob-color: #809165; /* Olive green from user's provided values */
+    --svg-white-blob-color: #FFFFFF; /* Pure white from user's provided values */
+    --svg-dark-blue-blob-color: #2C398B; /* Dark blue from user's provided values */
+    --svg-top-right-green-color: rgba(128, 145, 101, 0.68); /* User's provided transparent green */
     --svg-footer-color: #15253A;
+
+    /* ألوان SVG في الوضع المظلم (تعريف صريح بدلاً من darken()) */
+    --svg-light-blob-color-dark: #3A4C62; /* Darker version */
+    --svg-green-blob-color-dark: #5C6B4C; /* Darker version */
+    --svg-white-blob-color-dark: #202D3D; /* Darker version */
+    --svg-dark-blue-blob-color-dark: #0A1B2C; /* Darker version */
+    --svg-top-right-green-color-dark: rgba(90, 100, 70, 0.68); /* Darker transparent green */
+    --svg-footer-color-dark: #050E17;
+
+    /* تدرج لون عنوان الموقع (لضمان الألوان الصحيحة في كلا الوضعين) */
+    --site-title-gradient-start-light: #7C99AC;
+    --site-title-gradient-end-light: #92A9BD;
+    --site-title-gradient-start-dark: #a1c4fd;
+    --site-title-gradient-end-dark: #c2e9fb;
     
     /* ألوان الحالة - Status Colors */
     --success-color: #22c55e;
@@ -92,6 +106,8 @@
     --current-control-bg: var(--control-bg-light);
     --current-control-border: var(--control-border-light);
     --current-slider-bg: var(--slider-bg-light);
+    --current-site-title-gradient-start: var(--site-title-gradient-start-light);
+    --current-site-title-gradient-end: var(--site-title-gradient-end-light);
 }
 
 /* ========================================
@@ -110,6 +126,8 @@ body.dark-mode {
     --current-control-bg: var(--control-bg-dark);
     --current-control-border: var(--current-control-border);
     --current-slider-bg: var(--slider-bg-dark);
+    --current-site-title-gradient-start: var(--site-title-gradient-start-dark);
+    --current-site-title-gradient-end: var(--site-title-gradient-end-dark);
 }
 
 /* ========================================
@@ -143,10 +161,10 @@ html[lang="en"] body {
     position: fixed;
     pointer-events: none;
     z-index: 1;
-    opacity: 1; /* Keeping opacity at 1, will control blending via fill colors */
+    opacity: 1; /* Keeping opacity at 1 for vibrant colors */
     transition: opacity 0.4s ease-in-out;
     /* Adjusted drop-shadow for a more consistent and visible effect */
-    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.2)); /* Increased shadow visibility */
 }
 
 .bg-svg-container svg {
@@ -161,7 +179,7 @@ html[lang="en"] body {
 .svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-color); }
 .svg-bottom-right-blob-dark svg path { fill: var(--svg-dark-blue-blob-color); }
 .svg-footer-bg svg rect { fill: var(--svg-footer-color); }
-.svg-top-right-blob-green svg path { fill: var(--svg-top-right-green-color); } /* New blob color */
+.svg-top-right-blob-green svg path { fill: var(--svg-top-right-green-color); }
 
 /* مواضع أشكال SVG (Adjusted significantly based on new understanding of desired layout) */
 .svg-top-left-blob-light {
@@ -169,70 +187,60 @@ html[lang="en"] body {
     left: -5vw;
     width: 60vw;
     height: 70vh;
-    /* Removed background, background-blend-mode, box-shadow */
 }
 
 .svg-middle-left-blob-green {
-    bottom: -10vh;
-    left: -10vw;
+    bottom: -15vh; /* Pushed further down */
+    left: -15vw; /* Pushed further left */
     width: 45vw;
     height: 50vh;
-    /* Removed opacity, background */
 }
 
 .svg-top-right-blob-green {
-    /* Adjusted positioning for top right */
-    position: fixed; /* Changed from absolute to fixed to ensure it stays in viewport */
-    width: 40vw; /* Converted from 778.38px assuming 1920px width */
-    height: 43.12vh; /* Converted from 465.79px assuming 1080px height */
+    position: fixed;
+    width: 40vw; 
+    height: 43.12vh;
     right: -10vw; /* Adjusted to sit outside viewport to the right */
     top: -5vh; /* Adjusted for better top positioning */
-    /* Removed background, background-blend-mode, mix-blend-mode, box-shadow */
 }
 
-
 .svg-form-backdrop-blob {
-    top: 50%; /* Keep centered vertically */
-    left: 50%; /* Keep centered horizontally */
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 480px;
     height: 500px;
     max-width: 90vw;
     max-height: 90vh;
     z-index: 2;
-    /* Removed opacity as it's part of the general .bg-svg-container */
 }
 
 .svg-bottom-right-blob-dark {
-    bottom: -15vh;
-    right: -10vw;
+    bottom: -20vh; /* Pushed further down */
+    right: -15vw; /* Pushed further right */
     width: 55vw;
     height: 65vh;
-    /* Removed opacity */
 }
 
 .svg-footer-bg {
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 20vh; /* Using vh for responsiveness */
+    height: 20vh;
     z-index: 0;
-    /* Removed opacity, background */
 }
 
-/* ألوان SVG في الوضع المظلم */
+/* ألوان SVG في الوضع المظلم (تطبيق المتغيرات الجديدة) */
 body.dark-mode .bg-svg-container {
     opacity: 0.9;
-    filter: drop-shadow(0px 8px 10px rgba(0, 0, 0, 0.2)); /* Darker shadow for dark mode */
+    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3)); /* Darker shadow for dark mode */
 }
-/* Specific dark mode fills */
 body.dark-mode .svg-top-left-blob-light svg path { fill: var(--svg-light-blob-color-dark); }
 body.dark-mode .svg-middle-left-blob-green svg path { fill: var(--svg-green-blob-color-dark); }
 body.dark-mode .svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-color-dark); }
 body.dark-mode .svg-bottom-right-blob-dark svg path { fill: var(--svg-dark-blue-blob-color-dark); }
 body.dark-mode .svg-footer-bg svg rect { fill: var(--svg-footer-color-dark); }
-/* New blob dark mode color */
-body.dark-mode .svg-top-right-blob-green svg path { fill: darken(var(--svg-top-right-green-color), 10%); /* Example of darkening */ }
+body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-green-color-dark); }
 
 
 /* ========================================
@@ -296,7 +304,7 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: darken(var(--svg-top-r
     top: 2px;
     bottom: 2px;
     left: 2px;
-    width: 44px; /* Adjusted to fit new height (46-4)/2 = 21, so 46-4 = 42. width/height= 42 */
+    width: 44px;
     border-radius: 18px;
     background: var(--current-slider-bg);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -304,7 +312,7 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: darken(var(--svg-top-r
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px); /* 90px - 46px = 44px, so translate needs adjustment for new width */
+    transform: translateX(40px);
 }
 
 .language-switcher[data-active-lang="en"] .slider {
@@ -366,16 +374,16 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: darken(var(--svg-top-r
 ======================================== */
 #site-title {
     text-align: center;
-    font-family: 'Macondo Swash Caps', cursive; /* Corrected font family name */
-    font-size: clamp(3rem, 5vw, 7rem); /* Adjusted for better scaling on smaller screens */
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: clamp(3rem, 5vw, 7rem);
     margin-top: 5px;
     margin-bottom: -115px;
     display: block;
     z-index: 2;
     position: relative;
     font-weight: 400;
-    /* Adjusted gradient to use color variables for better theme integration */
-    background: linear-gradient(135deg, var(--button-primary-bg-light) 0%, var(--form-bg-dark) 50%, var(--main-bg-dark) 100%);
+    /* Adjusted gradient to use new site title color variables */
+    background: linear-gradient(135deg, var(--current-site-title-gradient-start) 0%, var(--current-site-title-gradient-end) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -493,7 +501,7 @@ body.dark-mode #nameInput:focus {
    الزر الرئيسي - Primary Button
 ======================================== */
 #submitBtn {
-    background: var(--current-button-primary-bg);
+    background: var(--current-button-primary-bg); /* Using direct color variable for solid look */
     color: var(--current-button-text);
     padding: 1.2rem 3rem;
     font-size: 2rem;
@@ -516,12 +524,12 @@ html[lang="en"] #submitBtn {
 
 #submitBtn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Increased hover shadow */
 }
 
 #submitBtn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Increased active shadow */
 }
 
 #submitBtn.loading {
@@ -547,7 +555,7 @@ html[lang="en"] #submitBtn {
    الزر الثانوي - Secondary Button
 ======================================== */
 #generateTipBtn {
-    background: var(--current-button-secondary-bg);
+    background: var(--current-button-secondary-bg); /* Using direct color variable for solid look */
     color: var(--current-button-text);
     padding: 1.2rem 2.5rem;
     font-size: 1.1rem;
@@ -569,12 +577,12 @@ html[lang="en"] #generateTipBtn {
 
 #generateTipBtn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Increased hover shadow */
 }
 
 #generateTipBtn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Increased active shadow */
 }
 
 #generateTipBtn.loading {
