@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative Minds - Attendance Form</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Load Philosopher font from Google Fonts for English content -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap">
 </head>
 <body>
 
-    <!-- Top right controls container: language and dark mode toggles -->
-    <div class="fixed-top-right-controls">
+    <!-- Top left controls container: language switcher -->
+    <div class="fixed-top-left-controls">
         <!-- Language switcher -->
-        <div class="language-switcher" data-active-lang="en">
+        <div id="lang-toggle" class="language-switcher" data-active-lang="en">
             <div class="slider"></div>
             <div class="lang-option active" data-lang="en">EN</div>
             <div class="lang-option" data-lang="ar">AR</div>
         </div>
+    </div>
 
+    <!-- Top right controls container: dark mode toggle -->
+    <div class="fixed-top-right-controls">
         <!-- Dark mode toggle -->
         <div id="mode-toggle">
             <div class="toggle-icon"></div>
@@ -30,17 +35,17 @@
     <div class="main-content">
         <div class="container">
             <!-- Logo Image -->
-            <img src="logo.jpg" alt="Creative Minds Logo" class="logo">
+            <img src="logo.png" alt="Creative Minds Logo" class="logo">
             <!-- Form Title -->
             <h2 id="form-title">Attendance Form</h2>
             <!-- Input field -->
             <input type="text" id="nameInput" placeholder="Enter your full name">
             <!-- Submit button -->
             <button id="submitBtn">Check In</button>
-            <!-- New Gemini Feature Button -->
-            <button id="generateTipBtn">Daily Tip ✨</button>
-            <!-- Status Message -->
+            <!-- Status Message (for notifications like location, errors) -->
             <p id="statusMessage" aria-live="polite"></p>
+            <!-- Adhkar Message Box -->
+            <p id="adhkarMessage" class="adhkar-box"></p>
         </div>
     </div>
 
@@ -48,19 +53,17 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-item">
-                <span class="emoji">📍</span>
-                <span>Jazan, Saudi Arabia</span>
+                <span id="location-text" class="emoji">📍 Jazan, Saudi Arabia</span>
             </div>
             <div class="footer-item">
-                <span class="emoji">📧</span>
-                <span>example@creativeminds.edu.sa</span>
+                <span id="email-text" class="emoji">📧 example@creativeminds.edu.sa</span>
             </div>
             <div class="footer-item">
-                <span class="emoji">🌐</span>
-                <span>www.creativeminds.edu.sa</span>
+                <span id="website-text" class="emoji">🌐 www.creativeminds.edu.sa</span>
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="config.js"></script> <!-- Load config.js first -->
+    <script src="script.js"></script> <!-- Then load script.js -->
 </body>
 </html>
