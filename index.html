@@ -5,140 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative Minds - Attendance Form</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Removed Google Fonts link as Philosopher font is now local -->
 </head>
 <body>
 
-    <!-- Background SVG elements for the complex shapes from Figma -->
-    <!-- SVG 1: Large light blob (top-left) -->
-    <div class="bg-svg-container svg-top-left-blob-light">
-        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
-        </svg>
-    </div>
+    <div class="mobile-layout">
+        <!-- Background SVG Images -->
+        <img class="vector-4 bg-svg-img" src="vector-40.svg" alt="Background Shape 1" />
+        <img class="vector-7 bg-svg-img" src="vector-70.svg" alt="Background Shape 2" />
+        <img class="vector-3 bg-svg-img" src="vector-30.svg" alt="Background Shape 3" />
+        <img class="vector-6 bg-svg-img" src="vector-60.svg" alt="Background Shape 4" />
+        <img class="vector-2 bg-svg-img" src="vector-20.svg" alt="Background Shape 5" />
+        <img class="vector-8 bg-svg-img" src="vector-80.svg" alt="Background Shape 6" />
+        <img class="vector-9 bg-svg-img" src="vector-90.svg" alt="Background Shape 7" />
 
-    <!-- SVG 2: Left middle olive blob -->
-    <div class="bg-svg-container svg-middle-left-blob-green">
-        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
-        </svg>
-    </div>
-
-    <!-- SVG 3: Large white blob with angular gradient (Form backdrop) -->
-    <div class="bg-svg-container svg-form-backdrop-blob">
-        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
-        </svg>
-    </div>
-
-    <!-- SVG 4: Bottom right dark blue blob -->
-    <div class="bg-svg-container svg-bottom-right-blob-dark">
-        <svg viewBox="0 0 777 694" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M700.5 436.336C634.6 546.136 539.5 586.336 444.5 609.336C349.5 632.336 248.833 633.836 181.5 619.336C114.167 604.836 73.5 572.336 30.5 519.836C-12.5 467.336 18.5 391.836 59.5 328.336C100.5 264.836 148.5 210.336 215.5 159.336C282.5 108.336 368.5 60.8365 444.5 30.8365C520.5 0.836458 586.5 -12.6635 647.5 7.83646C708.5 28.3365 766.5 99.8365 776.5 198.836C786.5 297.836 766.5 366.536 700.5 436.336Z"/>
-        </svg>
-    </div>
-
-    <!-- SVG for Footer background -->
-    <div class="bg-svg-container svg-footer-bg">
-        <svg width="1920" height="200" viewBox="0 0 1920 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="1920" height="200" fill="#15253A"/>
-        </svg>
-    </div>
-
-    <!-- Top right controls container: language and dark mode toggles -->
-    <div class="fixed-top-right-controls">
-        <!-- Language switcher -->
-        <div class="language-switcher" data-active-lang="en">
-            <div class="slider"></div>
-            <div class="lang-option active" data-lang="en">EN</div>
-            <div class="lang-option" data-lang="ar">AR</div>
-        </div>
-
-        <!-- Dark mode toggle -->
-        <div id="mode-toggle">
-            <div class="toggle-icon"></div>
-        </div>
-    </div>
-
-
-    <!-- Site title - Always English, SwinglyLours font -->
-    <h1 id="site-title">Creative Minds Logo</h1>
-
-    <!-- Main content container (pushes footer down) -->
-    <div class="main-content">
-        <div class="container">
-            <!-- Logo Image -->
-            <img src="logo.jpg" alt="Creative Minds Logo" class="logo">
-            <!-- Form Title -->
-            <h2 id="form-title">Attendance Form</h2>
-            <!-- Input field -->
-            <input type="text" id="nameInput" placeholder="Enter your full name">
-            <!-- Submit button -->
-            <button id="submitBtn">Check In</button>
-            <!-- New Gemini Feature Button -->
-            <button id="generateTipBtn">Daily Tip ✨</button>
-            <!-- Status Message -->
-            <p id="statusMessage" aria-live="polite"></p>
-        </div>
-    </div>
-
-    <!-- Footer styling -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-item">
-                <span class="emoji">📍</span>
-                <span>Jazan, Saudi Arabia</span>
+        <!-- Top right controls container: language and dark mode toggles -->
+        <div class="fixed-top-right-controls">
+            <!-- Language switcher -->
+            <div class="language-switcher" data-active-lang="en">
+                <div class="slider"></div>
+                <div class="lang-option active" data-lang="en">EN</div>
+                <div class="lang-option" data-lang="ar">AR</div>
             </div>
-            <div class="footer-item">
-                <span class="emoji">📧</span>
-                <span>example@creativeminds.edu.sa</span>
-            </div>
-            <div class="footer-item">
-                <span class="emoji">🌐</span>
-                <span>www.creativeminds.edu.sa</span>
+
+            <!-- Dark mode toggle -->
+            <div id="mode-toggle">
+                <div class="toggle-icon"></div>
             </div>
         </div>
-    </footer>
+
+        <!-- Site title -->
+        <h1 id="site-title">Creative Minds</h1>
+
+        <!-- Main content container -->
+        <div class="main-content">
+            <div class="container">
+                <!-- Logo Image - Changed to logo.jpg as per your new HTML -->
+                <img src="logo.jpg" alt="Creative Minds Logo" class="logo">
+                <!-- Form Title -->
+                <h2 id="form-title">Attendance Form</h2>
+                <!-- Input field -->
+                <input type="text" id="nameInput" placeholder="Enter your full name">
+                <!-- Submit button -->
+                <button id="submitBtn">Check In</button>
+                <!-- New Gemini Feature Button -->
+                <button id="generateTipBtn">Daily Tip ✨</button>
+                <!-- Status Message -->
+                <p id="statusMessage" aria-live="polite"></p>
+            </div>
+        </div>
+
+        <!-- Footer styling -->
+        <footer class="footer">
+            <!-- Footer Background Box -->
+            <div class="footer-box"></div>
+            <div class="footer-content">
+                <div class="footer-item">
+                    <span class="emoji">📍</span>
+                    <span>Jazan, Saudi Arabia</span>
+                </div>
+                <div class="footer-item">
+                    <span class="emoji">📧</span>
+                    <span>example@creativeminds.edu.sa</span>
+                </div>
+                <div class="footer-item">
+                    <span class="emoji">🌐</span>
+                    <span>www.creativeminds.edu.sa</span>
+                </div>
+            </div>
+        </footer>
+    </div> <!-- Close mobile-layout -->
     <script src="script.js"></script>
-    class="mobile-layout">
-    <!-- Vectors -->
-    <img class="vector-4" src="vector-40.svg" />
-    <img class="vector-7" src="vector-70.svg" />
-    <img class="vector-3" src="vector-30.svg" />
-    <img class="vector-6" src="vector-60.svg" />
-    <img class="vector-2" src="vector-20.svg" />
-    <img class="vector-8" src="vector-80.svg" />
-    <img class="vector-9" src="vector-90.svg" />
-
-    <!-- Form Container -->
-    <div class="form-box"></div>
-
-    <!-- Logo -->
-    <img class="logo-1" src="logo-10.png" alt="Logo" />
-
-    <!-- Main Title -->
-    <div class="main-title">Attendance Form</div>
-
-    <!-- Site Name -->
-    <div class="site-name">Creative Minds</div>
-
-    <!-- Name Input Background -->
-    <div class="name-input-bg"></div>
-
-    <!-- Check-in Button -->
-    <div class="check-in-btn">
-      <div>Check in</div>
-    </div>
-
-    <!-- Rectangle SVG for Button Decoration -->
-    <img class="rectangle-4" src="rectangle-40.svg" />
-
-    <!-- Footer Background Box -->
-    <div class="footer-box"></div>
-
-    <!-- Footer Text -->
-    <div class="footer-text footer-location">📍Jazan, Saudi Arabia</div>
-    <div class="footer-text footer-site">🌐www.creativeminds.edu.sa</div>
-    <div class="footer-text footer-email">📧example@creativeminds.edu.sa</div>
 </body>
 </html>
