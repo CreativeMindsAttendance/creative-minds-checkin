@@ -2,8 +2,8 @@
    الخطوط المخصصة - Custom Fonts
 ======================================== */
 @font-face {
-    font-family: 'Macondo Swash Caps';
-    src: url('fonts/MacondoSwashCaps-Regular.ttf') format('truetype');
+    font-family: 'SwinglyLours';
+    src: url('fonts/SwinglyLours.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -30,70 +30,58 @@
 ======================================== */
 :root {
     /* ألوان الخلفية - Background Colors */
-    --main-bg-light: #DEEBF3; /* Figma background */
-    --main-bg-dark: #15253A;
-
+    --main-bg-light: #E9F1F0; /* Soft light background */
+    --main-bg-dark: #1A202C; /* Dark background */
+    
     /* ألوان النصوص - Text Colors */
-    --text-color-light: #273B54;
-    --text-color-dark: #FFFFFF;
-
+    --text-color-light: #323232; /* Dark grey for light mode text */
+    --text-color-dark: #F7FAFC; /* Light text for dark mode */
+    
     /* ألوان النماذج - Form Colors */
-    --form-bg-light: #FFFFFF;
-    --form-bg-dark: #273B54;
-    --input-bg-light: #D7DDDD;
-    --input-bg-dark: #2C398B;
-
+    --form-bg-light: #FFFFFF; /* Pure white form */
+    --form-bg-dark: #2D3748; /* Darker form background */
+    --input-bg-light: #F7FAFC; /* Light input background */
+    --input-bg-dark: #4A5568; /* Dark input background */
+    
     /* ألوان الأزرار - Button Colors */
-    --button-primary-bg-light: #809165;
-    --button-primary-bg-dark: #D7DDDD;
-    --button-secondary-bg-light: #2C398B;
-    --button-secondary-bg-dark: #809165;
+    --button-primary-bg-light: #364251; /* Deep blue-grey */
+    --button-primary-bg-dark: #63758F; /* Lighter blue-grey for dark mode */
+    --button-secondary-bg-light: #809165; /* Vibrant olive green */
+    --button-secondary-bg-dark: #9CAF88; /* Slightly lighter olive green for dark mode */
     --button-text-light: #FFFFFF;
     --button-text-dark: #FFFFFF;
-
-    /* الظلال - Shadows */
-    --shadow-soft-large: 0px 18px 48px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.5);
-    --shadow-soft-large-dark: 0px 18px 48px rgba(0, 0, 0, 0.3), 0px 0px 0px 1px rgba(255, 255, 255, 0.05);
-    --shadow-button: 0px 8px 15px rgba(0, 0, 0, 0.15);
-    --shadow-button-dark: 0px 8px 15px rgba(0, 0, 0, 0.35);
+    
+    /* الظلال - Shadows (More prominent and consistent) */
+    --shadow-soft-large: 0px 10px 30px rgba(0, 0, 0, 0.15), 0px 0px 0px 1px rgba(255, 255, 255, 0.6); /* Form shadow */
+    --shadow-soft-large-dark: 0px 10px 30px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.08); /* Dark form shadow */
+    --shadow-button: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Button shadow */
+    --shadow-button-dark: 0px 5px 15px rgba(0, 0, 0, 0.35); /* Dark button shadow */
 
     /* ألوان عناصر التحكم - Control Colors */
-    --control-bg-light: rgba(255, 255, 255, 0.9);
-    --control-bg-dark: rgba(0, 0, 0, 0.5);
+    --control-bg-light: rgba(255, 255, 255, 0.95);
+    --control-bg-dark: rgba(0, 0, 0, 0.6);
     --control-border-light: rgba(255, 255, 255, 0.2);
     --control-border-dark: rgba(255, 255, 255, 0.1);
-    --slider-bg-light: linear-gradient(135deg, #809165, #2C398B);
-    --slider-bg-dark: linear-gradient(135deg, #D7DDDD, #809165);
+    --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD);
+    --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
+    
+    /* ألوان تدرج زر Gemini */
+    --gemini-btn-gradient-start-light: #FF9A8B; /* Soft orange-pink */
+    --gemini-btn-gradient-end-light: #FF6A88; /* Slightly darker pink */
+    --gemini-btn-gradient-start-dark: #8E2DE2; /* Dark purple */
+    --gemini-btn-gradient-end-dark: #4A00E0; /* Deep purple */
 
-    /* ألوان أشكال SVG */
-    --svg-light-blob-color: #D7DDDD;
-    --svg-green-blob-color: #809165;
-    --svg-white-blob-color: #FFFFFF;
-    --svg-dark-blue-blob-color: #2C398B;
-    --svg-top-right-green-color: rgba(128, 145, 101, 0.7);
-    --svg-footer-color: #15253A;
-
-    /* ألوان SVG في الوضع المظلم */
-    --svg-light-blob-color-dark: #273B54;
-    --svg-green-blob-color-dark: #D7DDDD;
-    --svg-white-blob-color-dark: #15253A;
-    --svg-dark-blue-blob-color-dark: #809165;
-    --svg-top-right-green-color-dark: rgba(215, 221, 221, 0.7);
-    --svg-footer-color-dark: #1A252F;
-
-    /* تدرج لون عنوان الموقع */
-    --site-title-gradient-start-light: #809165;
-    --site-title-gradient-end-light: #2C398B;
-    --site-title-gradient-start-dark: #D7DDDD;
-    --site-title-gradient-end-dark: #809165;
-
+    /* لون خلفية التذييل */
+    --footer-bg-light: #15253A; /* Dark blue for footer in light mode */
+    --footer-bg-dark: #050E17; /* Even darker blue for footer in dark mode */
+    
     /* ألوان الحالة - Status Colors */
     --success-color: #22c55e;
     --error-color: #ef4444;
     --warning-color: #f59e0b;
     --info-color: #3b82f6;
-
-    /* المتغيرات النشطة - Active Variables */
+    
+    /* المتغيرات النشطة - هذه المتغيرات سيتم استخدامها في المكونات */
     --current-main-bg: var(--main-bg-light);
     --current-text-color: var(--text-color-light);
     --current-form-bg: var(--form-bg-light);
@@ -106,8 +94,9 @@
     --current-control-bg: var(--control-bg-light);
     --current-control-border: var(--control-border-light);
     --current-slider-bg: var(--slider-bg-light);
-    --current-site-title-gradient-start: var(--site-title-gradient-start-light);
-    --current-site-title-gradient-end: var(--site-title-gradient-end-light);
+    --current-gemini-btn-gradient-start: var(--gemini-btn-gradient-start-light);
+    --current-gemini-btn-gradient-end: var(--gemini-btn-gradient-end-light);
+    --current-footer-bg: var(--footer-bg-light);
 }
 
 /* ========================================
@@ -126,8 +115,9 @@ body.dark-mode {
     --current-control-bg: var(--control-bg-dark);
     --current-control-border: var(--control-border-dark);
     --current-slider-bg: var(--slider-bg-dark);
-    --current-site-title-gradient-start: var(--site-title-gradient-start-dark);
-    --current-site-title-gradient-end: var(--site-title-gradient-end-dark);
+    --current-gemini-btn-gradient-start: var(--gemini-btn-gradient-start-dark);
+    --current-gemini-btn-gradient-end: var(--gemini-btn-gradient-end-dark);
+    --current-footer-bg: var(--footer-bg-dark);
 }
 
 /* ========================================
@@ -140,122 +130,34 @@ body.dark-mode {
 }
 
 html, body {
-    min-height: 100vh;
-    background-color: var(--current-main-bg);
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    background-color: var(--current-main-bg); /* Base background color */
     color: var(--current-text-color);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     display: flex;
-    flex-direction: column;
-    font-family: 'QatarMedium', sans-serif;
+    flex-direction: column; /* Allows main content to push footer down */
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic using local font */
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* Apply English font when language is English */
 html[lang="en"] body {
     font-family: 'Philosopher', serif;
 }
 
-/* ========================================
-   خلفية SVG - SVG Background
-======================================== */
-.bg-svg-container {
-    position: fixed;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 1;
-    transition: opacity 0.4s ease-in-out;
-    filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.1));
-}
+/* تم إزالة جميع قواعد CSS لأشكال SVG الخلفية المعقدة */
 
-.bg-svg-container svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-/* ألوان أشكال SVG - CORRECTED */
-.svg-top-left-blob-light svg path { fill: var(--svg-light-blob-color); }
-.svg-middle-left-blob-green svg path { fill: var(--svg-green-blob-color); }
-.svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-color); }
-.svg-bottom-right-blob-dark svg path { fill: var(--svg-dark-blue-blob-color); }
-.svg-footer-bg svg rect { fill: var(--svg-footer-color); }
-.svg-top-right-blob-green svg path { fill: var(--svg-top-right-green-color); }
-
-/* مواضع أشكال SVG */
-.svg-top-left-blob-light {
-    top: -5vh;
-    left: -5vw;
-    width: 60vw;
-    height: 70vh;
-}
-
-.svg-middle-left-blob-green {
-    bottom: -15vh;
-    left: -15vw;
-    width: 45vw;
-    height: 50vh;
-}
-
-.svg-top-right-blob-green {
-    position: fixed;
-    width: 40vw; 
-    height: 43.12vh;
-    right: -10vw;
-    top: -5vh;
-}
-
-.svg-form-backdrop-blob {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 480px;
-    height: 500px;
-    max-width: 90vw;
-    max-height: 90vh;
-    z-index: 2;
-}
-
-.svg-bottom-right-blob-dark {
-    bottom: -20vh;
-    right: -15vw;
-    width: 55vw;
-    height: 65vh;
-}
-
-.svg-footer-bg {
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 20vh;
-    z-index: 0;
-}
-
-/* ألوان SVG في الوضع المظلم */
-body.dark-mode .bg-svg-container {
-    opacity: 0.9;
-    filter: drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.3));
-}
-body.dark-mode .svg-top-left-blob-light svg path { fill: var(--svg-light-blob-color-dark); }
-body.dark-mode .svg-middle-left-blob-green svg path { fill: var(--svg-green-blob-color-dark); }
-body.dark-mode .svg-form-backdrop-blob svg path { fill: var(--svg-white-blob-color-dark); }
-body.dark-mode .svg-bottom-right-blob-dark svg path { fill: var(--svg-dark-blue-blob-color-dark); }
-body.dark-mode .svg-footer-bg svg rect { fill: var(--svg-footer-color-dark); }
-body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-green-color-dark); }
 
 /* ========================================
    عناصر التحكم الثابتة - Fixed Controls
 ======================================== */
-.fixed-top-left-controls {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 100;
-}
-
 .fixed-top-right-controls {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 100;
+    display: flex; /* لضمان ظهورهم جنبًا إلى جنب */
+    gap: 15px; /* المسافة بين عناصر التحكم */
 }
 
 /* ========================================
@@ -286,15 +188,15 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-gr
     text-align: center;
     font-weight: 600;
     font-size: 12px;
-    line-height: 46px;
+    line-height: 46px; /* Adjusted line-height to match height */
     z-index: 2;
     position: relative;
     color: var(--current-text-color);
-    transition: color 0.3s ease;  
+    transition: color 0.3s ease;
 }
 
 .lang-option.active {
-    color: white;
+    color: white; /* لون نص اللغة النشطة */
 }
 
 .slider {
@@ -302,19 +204,18 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-gr
     top: 2px;
     bottom: 2px;
     left: 2px;
-    width: 44px;
+    width: 43px; /* Adjusted: (90 - 4px padding) / 2 = 43px */
     border-radius: 18px;
-    background: var(--current-slider-bg);
+    background: linear-gradient(135deg, var(--current-slider-bg));
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px);
+    transform: translateX(43px); /* يحرك المؤشر إلى موضع AR */
 }
-
 .language-switcher[data-active-lang="en"] .slider {
-    transform: translateX(0);
+    transform: translateX(0); /* يحرك المؤشر إلى موضع EN */
 }
 
 /* ========================================
@@ -329,6 +230,7 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-gr
     align-items: center;
     padding: 4px;
     cursor: pointer;
+    margin-left: 16px;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -356,31 +258,33 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-gr
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(24px);
+    transform: translateX(20px); /* يحرك الأيقونة إلى اليمين للوضع المظلم */
 }
 
 #mode-toggle .toggle-icon::before {
-    content: "☀️";
+    content: "☀️"; /* أيقونة الشمس */
 }
 
 #mode-toggle.active .toggle-icon::before {
-    content: "🌙";
+    content: "🌙"; /* أيقونة القمر */
 }
+
 
 /* ========================================
    عنوان الموقع - Site Title
 ======================================== */
-#site-title {
+#site-title { /* استخدام ID لأنه عنصر فريد */
     text-align: center;
-    font-family: 'Macondo Swash Caps', cursive;
+    font-family: 'SwinglyLours', cursive;
     font-size: clamp(3rem, 5vw, 7rem);
-    margin-top: 5px;
-    margin-bottom: -115px;
-    display: block;
+    margin-top: 80px; /* Adjusted margin-top for spacing below top controls */
+    margin-bottom: 20px;
+    display: block; /* Ensure it takes full width for text-align: center */
     z-index: 2;
     position: relative;
-    font-weight: 400;
-    background: linear-gradient(135deg, var(--current-site-title-gradient-start) 0%, var(--current-site-title-gradient-end) 100%);
+    font-weight: 700;
+    /* Using solid background color for title as requested for simplicity */
+    background-color: var(--current-button-primary-bg); /* Use primary button color for solid look */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -388,19 +292,25 @@ body.dark-mode .svg-top-right-blob-green svg path { fill: var(--svg-top-right-gr
     letter-spacing: 2px;
 }
 
+@media screen and (min-width: 768px) {
+    #site-title {
+        font-size: clamp(36px, 7vw, 60px); /* Larger on desktop */
+    }
+}
+
 /* ========================================
    المحتوى الرئيسي - Main Content
 ======================================== */
 .main-content {
-    flex-grow: 1;
+    flex-grow: 1; /* يسمح لها بأخذ المساحة المتاحة ودفع التذييل للأسفل */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    padding-top: 20px;
-    margin-bottom: -50px;
+    padding-top: 40px; /* Adjusted padding-top to bring form up */
+    margin-bottom: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 10; /* Ensure content is above any remaining background elements */
     position: relative;
 }
 
@@ -430,7 +340,7 @@ body.dark-mode .container {
    الشعار - Logo
 ======================================== */
 .logo {
-    width: 120px;
+    width: 120px; /* Adjusted size slightly for better visibility */
     height: auto;
     object-fit: contain;
     margin-bottom: 0.5rem;
@@ -442,15 +352,13 @@ body.dark-mode .container {
 ======================================== */
 #form-title {
     font-family: 'QatarMedium', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: #495867; /* Updated to match button color */
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-bottom: 0rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--current-text-color);
+    margin-bottom: 1rem;
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
-
 html[lang="en"] #form-title {
     font-family: 'Philosopher', serif;
 }
@@ -461,10 +369,10 @@ html[lang="en"] #form-title {
 #nameInput {
     width: 100%;
     padding: 1rem 1.2rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-radius: 16px;
     background-color: var(--current-input-bg);
-    border: 2px solid rgba(0, 0, 0, 0.05);
+    border: 2px solid transparent;
     text-align: center;
     margin-bottom: 1rem;
     font-family: 'QatarMedium', sans-serif;
@@ -472,36 +380,33 @@ html[lang="en"] #form-title {
     backdrop-filter: blur(10px);
     color: var(--current-text-color);
 }
-
 html[lang="en"] #nameInput {
     font-family: 'Philosopher', serif;
 }
-
 #nameInput::placeholder {
     color: var(--current-text-color);
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 #nameInput:focus {
     outline: none;
     border-color: var(--current-button-primary-bg);
     background-color: var(--current-input-bg);
-    box-shadow: 0 0 0 6px rgba(73, 88, 103, 0.08);
+    box-shadow: 0 0 0 4px rgba(54, 66, 81, 0.1);
     transform: translateY(-2px);
 }
-
 body.dark-mode #nameInput:focus {
-    box-shadow: 0 0 0 6px rgba(99, 117, 143, 0.08);
+    box-shadow: 0 0 0 4px rgba(90, 109, 129, 0.1);
 }
 
 /* ========================================
    الزر الرئيسي - Primary Button
 ======================================== */
 #submitBtn {
-    background: var(--current-button-primary-bg);
+    background: var(--current-button-primary-bg); /* Using solid color variable */
     color: var(--current-button-text);
-    padding: 1.2rem 3rem;
-    font-size: 2rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
     font-weight: 600;
     border: none;
     border-radius: 16px;
@@ -514,19 +419,18 @@ body.dark-mode #nameInput:focus {
     min-width: 160px;
     margin-bottom: 0.5rem;
 }
-
 html[lang="en"] #submitBtn {
     font-family: 'Philosopher', serif;
 }
 
 #submitBtn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
 #submitBtn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 #submitBtn.loading {
@@ -548,24 +452,23 @@ html[lang="en"] #submitBtn {
     animation: spin 1s linear infinite;
 }
 
-/* ========================================
-   الزر الثانوي - Secondary Button
-======================================== */
+/* New Gemini Feature Button */
 #generateTipBtn {
-    background: var(--current-button-secondary-bg);
-    color: var(--current-button-text);
-    padding: 1.2rem 2.5rem;
-    font-size: 1.1rem;
+    background: linear-gradient(135deg, var(--current-gemini-btn-gradient-start), var(--current-gemini-btn-gradient-end));
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1rem;
     font-weight: 600;
     border: none;
-    border-radius: 20px;
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--current-shadow-button);
+    box-shadow: var(--current-shadow-button); /* Using general button shadow */
     font-family: 'QatarMedium', sans-serif;
     position: relative;
     overflow: hidden;
-    min-width: 180px;
+    min-width: 160px;
+    margin-top: 0.5rem;
 }
 
 html[lang="en"] #generateTipBtn {
@@ -573,13 +476,13 @@ html[lang="en"] #generateTipBtn {
 }
 
 #generateTipBtn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
 #generateTipBtn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 #generateTipBtn.loading {
@@ -601,9 +504,8 @@ html[lang="en"] #generateTipBtn {
     animation: spin 1s linear infinite;
 }
 
-/* ========================================
-   رسالة الحالة - Status Message
-======================================== */
+
+/* Status message */
 #statusMessage {
     margin-top: 1rem;
     padding: 0.75rem 1rem;
@@ -619,10 +521,10 @@ html[lang="en"] #generateTipBtn {
     max-width: 100%;
     word-wrap: break-word;
 }
-
 html[lang="en"] #statusMessage {
     font-family: 'Philosopher', serif;
 }
+
 
 #statusMessage.show {
     opacity: 1;
@@ -630,44 +532,43 @@ html[lang="en"] #statusMessage {
 }
 
 #statusMessage.success {
-    background-color: rgba(56, 161, 105, 0.1);
+    background-color: rgba(34, 197, 94, 0.1);
     color: var(--success-color);
-    border: 1px solid rgba(56, 161, 105, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
 #statusMessage.error {
-    background-color: rgba(229, 62, 62, 0.1);
+    background-color: rgba(239, 68, 68, 0.1);
     color: var(--error-color);
-    border: 1px solid rgba(229, 62, 62, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 #statusMessage.warning {
-    background-color: rgba(214, 158, 46, 0.1);
+    background-color: rgba(245, 158, 11, 0.1);
     color: var(--warning-color);
-    border: 1px solid rgba(214, 158, 46, 0.2);
+    border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
 #statusMessage.info {
-    background-color: rgba(49, 130, 206, 0.1);
+    background-color: rgba(59, 130, 246, 0.1);
     color: var(--info-color);
-    border: 1px solid rgba(49, 130, 206, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-/* ========================================
-   التذييل - Footer
-======================================== */
+
+/* Footer styling */
 .footer {
     font-size: 0.85rem;
     text-align: center;
     padding: 1.5rem 1rem;
-    opacity: 0.8;
-    background: none;
-    backdrop-filter: none;
-    margin-top: auto;
+    opacity: 1; /* Full opacity for solid background */
+    background-color: var(--current-footer-bg); /* Use solid background color */
+    backdrop-filter: none; /* No blur needed for solid background */
+    margin-top: auto; /* Pushes footer to the bottom */
     color: var(--current-text-color);
-    transition: color 0.4s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
     width: 100%;
-    position: relative;
+    position: relative; /* For z-index context if needed */
     z-index: 11;
 }
 
@@ -684,8 +585,15 @@ html[lang="en"] #statusMessage {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    direction: ltr;
+    direction: ltr; /* Always LTR for footer items to prevent emoji flipping and layout issues */
     text-align: left;
+}
+
+html[lang="ar"] .footer-content {
+    justify-content: center;
+}
+html[lang="en"] .footer-content {
+    justify-content: center;
 }
 
 .emoji {
@@ -694,16 +602,15 @@ html[lang="en"] #statusMessage {
     transform: scaleX(1);
 }
 
-/* ========================================
-   الحركات - Animations
-======================================== */
+
+/* Animations */
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-40px); }
+    from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -722,305 +629,61 @@ html[lang="en"] #statusMessage {
     100% { transform: rotate(360deg); }
 }
 
-/* ========================================
-   التصميم المتجاوب - Responsive Design
-======================================== */
-
-/* الأجهزة اللوحية */
+/* Responsive design */
 @media screen and (max-width: 768px) {
     #site-title {
-        margin-top: 70px;
-        font-size: clamp(36px, 7vw, 60px);
+        margin-top: calc(60px + 10px); /* Adjusted for smaller screens too */
+        font-size: clamp(24px, 5vw, 42px);
     }
-    
     .main-content {
-        padding-top: 15px;
-    }
-    
-    .container {
-        padding: 2.5rem 2rem;
-        max-width: 400px;
-    }
-
-    /* Responsive adjustments for SVGs */
-    .svg-top-left-blob-light {
-        width: 80vw;
-        height: 90vh;
-        left: -15vw;
-        top: -10vh;
-    }
-    .svg-middle-left-blob-green {
-        width: 60vw;
-        height: 70vh;
-        left: -20vw;
-        bottom: -15vh;
-    }
-    .svg-top-right-blob-green {
-        width: 60vw;
-        height: 70vh;
-        right: -20vw;
-        top: -10vh;
-    }
-    .svg-bottom-right-blob-dark {
-        width: 80vw;
-        height: 90vh;
-        right: -15vw;
-        bottom: -10vh;
+        padding-top: 10px; /* Adjust padding-top for main content */
     }
 }
 
-/* الهواتف الذكية */
 @media screen and (max-width: 480px) {
     .fixed-top-right-controls {
         top: 15px;
         right: 15px;
     }
-    
-    .fixed-top-left-controls {
-        top: 15px;
-        left: 15px;
-    }
-    
+
     .language-switcher, #mode-toggle {
         width: 70px;
         height: 32px;
     }
-    
     .lang-option {
         font-size: 11px;
         line-height: 32px;
     }
-    
     .slider {
         width: 32px;
     }
-    
     .language-switcher[data-active-lang="ar"] .slider {
         transform: translateX(36px);
     }
-    
     #mode-toggle .toggle-icon {
         width: 24px;
         height: 24px;
         font-size: 12px;
     }
-    
     #mode-toggle.active .toggle-icon {
         transform: translateX(20px);
     }
-    
-    #site-title {
-        font-size: clamp(28px,
 
-   body.mobile-layout {
-     background: #DEEBF3;
-     height: 873px;
-     position: relative;
-     overflow: hidden;
-   }
-   
-   /* ========== 2. Vectors and Shapes ========== */
-   .vector-4 {
-     width: 431px;
-     height: 561px;
-     position: absolute;
-     left: 736.58px;
-     top: 495.83px;
-     transform: translate(-453.96px, -458.57px);
-     overflow: visible;
-   }
-   
-   .vector-7 {
-     border-radius: 0;
-     width: 272.5px;
-     height: 128.22px;
-     position: absolute;
-     left: 100.35px;
-     top: 63.1px;
-     transform: translate(-100.35px, -63.1px);
-     overflow: visible;
-   }
-   
-   .vector-3 {
-     width: 344.01px;
-     height: 323.35px;
-     position: absolute;
-     left: 345.31px;
-     top: -31px;
-     transform: translate(-67.79px, 65.42px);
-     overflow: visible;
-   }
-   
-   .vector-6 {
-     border-radius: 0;
-     width: 224.61px;
-     height: 233.42px;
-     position: absolute;
-     left: 0.09px;
-     top: 830.75px;
-     transform: translate(-0.09px, -273.92px);
-     overflow: visible;
-   }
-   
-   .vector-2 {
-     width: 778.38px;
-     height: 465.79px;
-     position: absolute;
-     left: 933px;
-     top: -356px;
-     overflow: visible;
-   }
-   
-   .vector-8 {
-     border-radius: 0;
-     width: 155px;
-     height: 92px;
-     position: absolute;
-     left: -37px;
-     top: -25px;
-     overflow: visible;
-   }
-   
-   .vector-9 {
-     border-radius: 0;
-     width: 155px;
-     height: 92px;
-     position: absolute;
-     left: 438px;
-     top: -25px;
-     transform: translate(-155px, 25px);
-     overflow: visible;
-   }
-   
-   /* ========== 3. Form & Elements ========== */
-   .form-box {
-     background: #FFFFFF;
-     border-radius: 39px;
-     border: 39px solid transparent;
-     width: 352px;
-     height: 498px;
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
-     top: calc(50% - 294px);
-     box-shadow: 0 0 21px 13px rgba(12, 12, 13, 0.1);
-   }
-   
-   .rectangle-4 {
-     border-radius: 0;
-     width: 272px;
-     height: 52px;
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
-     top: calc(50% + 121px);
-     overflow: visible;
-   }
-   
-   /* ========== 4. Branding and Labels ========== */
-   .logo-1 {
-     width: 110px;
-     height: 103px;
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
-     top: calc(50% - 278px);
-     object-fit: cover;
-   }
-   
-   .main-title {
-     color: #273B54;
-     text-align: center;
-     font-family: 'Philosopher-Bold', sans-serif;
-     font-size: 32px;
-     font-weight: 700;
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
-     top: calc(50% - 161px);
-     width: 325px;
-     height: 44px;
-   }
-   
-   .site-name {
-     color: #273B54;
-     text-align: center;
-     font-family: 'MacondoSwashCaps-Regular', sans-serif;
-     font-size: 48px;
-     font-weight: 400;
-     position: absolute;
-     left: 114px;
-     top: 10px;
-     width: 173px;
-     height: 135px;
-     -webkit-text-stroke: 1px transparent;
-   }
-   
-   /* ========== 5. Input & Button ========== */
-   .name-input-bg {
-     background: #F5F1ED;
-     border-radius: 12px;
-     width: 292px;
-     height: 48px;
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
-     top: calc(50% - 109px);
-   }
-   
-   .check-in-btn {
-     background: #273B54;
-     border-radius: 8px;
-     border: 1px solid #6750A4;
-     padding: 12px;
-     display: flex;
-     flex-direction: row;
-     gap: 8px;
-     align-items: center;
-     justify-content: center;
-     width: 162px;
-     height: 54px;
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
-     top: calc(50% - 39px);
-     overflow: hidden;
-   }
-   
-   .check-in-btn div {
-     color: #FFFFFF;
-     text-align: left;
-     font-family: 'Philosopher-Bold', sans-serif;
-     font-size: 24px;
-     font-weight: 700;
-     position: relative;
-   }
-   
-   /* ========== 6. Footer Info ========== */
-   .footer-box {
-     background: #15253A;
-     width: 402px;
-     height: 183px;
-     position: absolute;
-     left: 0;
-     top: 691px;
-   }
-   
-   .footer-text {
-     color: rgba(255, 255, 255, 0.8);
-     text-align: center;
-     font-family: 'Philosopher-Bold', sans-serif;
-     font-size: 20px;
-     font-weight: 700;
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
-     width: 362px;
-   }
-   
-   .footer-location { top: calc(50% + 281px); height: 32px; }
-   .footer-email    { top: calc(50% + 330px); height: 31px; }
-   .footer-site     { top: calc(50% + 303px); height: 31px; }
-}  
-      
-      
+    #site-title {
+        font-size: clamp(20px, 6vw, 36px);
+        margin-top: calc(60px + 10px); /* Consistent top margin for small screens */
+    }
+
+    #form-title {
+        font-size: 1.4rem;
+    }
+    #nameInput, #submitBtn, #generateTipBtn {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
