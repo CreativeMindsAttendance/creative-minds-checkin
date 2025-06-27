@@ -148,7 +148,6 @@ html[lang="en"] body {
 }
 
 /* Background gradient patterns (main background colors) */
-/* These elements create the large, soft color washes */
 .bg-gradient-primary {
     position: fixed;
     top: 0;
@@ -172,7 +171,6 @@ html[lang="en"] body {
 }
 
 /* Curvy shapes using dedicated divs for better control, matching image */
-/* These elements create the distinct curved blobs at corners */
 .bg-curvy-shape-left, .bg-curvy-shape-right {
     position: fixed;
     width: 120vw; /* Make them larger than viewport to ensure curves */
@@ -218,11 +216,6 @@ html[lang="en"] body {
 
 body.dark-mode .top-controls {
     background: rgba(0, 0, 0, 0.1);
-}
-
-.top-left, .top-right {
-    display: flex;
-    align-items: center;
 }
 
 /* Language switcher */
@@ -306,14 +299,14 @@ body.dark-mode .top-controls {
 #mode-toggle .toggle-icon {
     width: 28px;
     height: 28px;
-    background-color: white;
+    background-color: white; /* The circle for the icon */
     border-radius: 50%;
     font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
-    position: relative;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; /* Crucial for translateX to work */
     left: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -322,39 +315,41 @@ body.dark-mode .top-controls {
     transform: translateX(24px); /* Moves icon to the right for dark mode */
 }
 
+/* Sun and Moon icons using pseudo-elements */
 #mode-toggle .toggle-icon::before {
-    content: "☀️"; /* Sun icon */
+    content: "☀️"; /* Sun icon for light mode */
+    font-size: 18px;
+    transition: content 0.4s ease;
 }
 
 #mode-toggle.active .toggle-icon::before {
-    content: "🌙"; /* Moon icon */
+    content: "🌙"; /* Moon icon for dark mode */
 }
 
 
 /* Site title - Always English, SwinglyLours font */
-#site-title { /* Using ID as it's a unique element */
+#site-title {
     text-align: center;
-    font-family: 'SwinglyLours', cursive; /* Applied SwinglyLours font */
-    font-size: clamp(28px, 6vw, 48px); /* Slightly larger for impact */
-    /* Adjusted top margin to ensure visibility and proper spacing below top-controls */
+    font-family: 'SwinglyLours', cursive;
+    font-size: clamp(28px, 6vw, 48px);
     margin-top: calc(70px + 2rem); /* height of top-controls + desired margin */
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px; /* Increased gap */
+    gap: 8px;
     z-index: 2;
-    position: center;
+    /* Removed 'position: center;' as it's invalid */
+    margin-left: auto; /* Used with margin-right: auto and width: fit-content for centering */
+    margin-right: auto;
+    width: fit-content; /* Allows margin auto to work for centering */
     font-weight: 700;
-    /* Fixed gradient for the title as it's always English */
-    background: linear-gradient(135deg, #7C99AC, #92A9BD); /* Light mode accent colors */
+    background: linear-gradient(135deg, #7C99AC, #92A9BD);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: fadeInDown 1s ease-out;
 }
-/* Ensure no Arabic font override for this title, it's explicitly set to SwinglyLours above */
-
 
 @media screen and (min-width: 768px) {
     #site-title {
@@ -371,7 +366,6 @@ body.dark-mode .top-controls {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    /* Adjusted padding-top to ensure content is below site title and controls */
     padding-top: 20px; /* Minimal padding-top here, as site-title has a generous margin */
     margin-bottom: 0; /* Handled by flex-grow on main */
     width: 100%;
@@ -407,25 +401,25 @@ body.dark-mode .container {
 
 /* Logo Image Styling */
 .logo {
-    width: 100px; /* Adjusted size for better visibility */
-    height: auto; /* Maintain aspect ratio */
+    width: 100px;
+    height: auto;
     object-fit: contain;
-    margin-bottom: 0.5rem; /* Small margin after logo */
-    animation: pulse 2s infinite; /* Keep pulse for the logo */
+    margin-bottom: 0.5rem;
+    animation: pulse 2s infinite;
 }
 
 /* Form Title (Attendance Form / نموذج تحضير) */
 #form-title {
-    font-family: 'QatarMedium', sans-serif; /* For Arabic using local font */
+    font-family: 'QatarMedium', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--current-text-color);
-    margin-bottom: 1rem; /* Space after title */
+    margin-bottom: 1rem;
     animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
 html[lang="en"] #form-title {
-    font-family: 'Philosopher', serif; /* For English from Google Fonts */
+    font-family: 'Philosopher', serif;
 }
 
 
@@ -438,14 +432,14 @@ html[lang="en"] #form-title {
     background-color: var(--current-input-bg);
     border: 2px solid transparent;
     text-align: center;
-    margin-bottom: 1rem; /* Space after input */
-    font-family: 'QatarMedium', sans-serif; /* Default for Arabic input */
+    margin-bottom: 1rem;
+    font-family: 'QatarMedium', sans-serif;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     color: var(--current-text-color);
 }
 html[lang="en"] #nameInput {
-    font-family: 'Philosopher', serif; /* For English input */
+    font-family: 'Philosopher', serif;
 }
 #nameInput::placeholder {
     color: var(--current-text-color);
@@ -476,14 +470,14 @@ body.dark-mode #nameInput:focus {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 8px 20px var(--current-button-shadow);
-    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
+    font-family: 'QatarMedium', sans-serif;
     position: relative;
     overflow: hidden;
     min-width: 160px;
-    margin-bottom: 0.5rem; /* Space between submit and Gemini button */
+    /* margin-bottom: 0.5rem; Removed as generateTipBtn is not present */
 }
 html[lang="en"] #submitBtn {
-    font-family: 'Philosopher', serif; /* For English */
+    font-family: 'Philosopher', serif;
 }
 
 #submitBtn:hover {
@@ -515,61 +509,8 @@ html[lang="en"] #submitBtn {
     animation: spin 1s linear infinite;
 }
 
-/* New Gemini Feature Button */
-#generateTipBtn {
-    background: linear-gradient(135deg, var(--current-gemini-btn-gradient-start), var(--current-gemini-btn-gradient-end));
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 20px rgba(255, 106, 136, 0.3); /* Custom shadow for Gemini button */
-    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
-    position: relative;
-    overflow: hidden;
-    min-width: 160px;
-    margin-top: 0.5rem; /* Space after submit button */
-}
-
-html[lang="en"] #generateTipBtn {
-    font-family: 'Philosopher', serif; /* For English */
-}
-
-#generateTipBtn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(255, 106, 136, 0.4);
-}
-
-#generateTipBtn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 15px rgba(255, 106, 136, 0.2);
-}
-
-#generateTipBtn.loading {
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-#generateTipBtn.loading::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 2px solid transparent;
-    border-top: 2px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-
-/* Status message */
-#statusMessage {
+/* Status message and Adhkar message styling */
+#statusMessage, #adhkarMessage {
     margin-top: 1rem;
     padding: 0.75rem 1rem;
     border-radius: 12px;
@@ -578,116 +519,126 @@ html[lang="en"] #generateTipBtn {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
-    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
+    font-family: 'QatarMedium', sans-serif;
     line-height: 1.4;
-    min-height: 20px; /* Prevents layout shift */
-    max-width: 100%; /* Ensure it doesn't overflow */
-    word-wrap: break-word; /* Break long words */
+    min-height: 20px;
+    max-width: 100%;
+    word-wrap: break-word;
+    text-align: center; /* Ensure messages are centered */
 }
-html[lang="en"] #statusMessage {
-    font-family: 'Philosopher', serif; /* For English */
+html[lang="en"] #statusMessage, html[lang="en"] #adhkarMessage {
+    font-family: 'Philosopher', serif;
 }
 
 
-#statusMessage.show {
+#statusMessage.show, #adhkarMessage.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-#statusMessage.success {
+#statusMessage.success, #adhkarMessage.success {
     background-color: rgba(34, 197, 94, 0.1);
     color: var(--success-color);
     border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
-#statusMessage.error {
+#statusMessage.error, #adhkarMessage.error {
     background-color: rgba(239, 68, 68, 0.1);
     color: var(--error-color);
     border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-#statusMessage.warning {
+#statusMessage.warning, #adhkarMessage.warning {
     background-color: rgba(245, 158, 11, 0.1);
     color: var(--warning-color);
     border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
-#statusMessage.info { /* For loading, etc. */
+#statusMessage.info, #adhkarMessage.info { /* For loading, etc. */
     background-color: rgba(59, 130, 246, 0.1);
     color: var(--info-color);
     border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-
 /* Footer styling */
 .footer {
-    font-size: 0.85rem;
-    text-align: center;
+    width: 100%;
     padding: 1.5rem 1rem;
-    opacity: 0.8; /* Slightly more opaque for readability */
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    margin-top: auto; /* Pushes footer to the bottom of the flex container (body) */
+    background: var(--current-form-bg); /* Use form background for footer for consistency */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
     color: var(--current-text-color);
+    margin-top: 2rem; /* Provide some space from the main content */
+    z-index: 1; /* Ensure it's above background elements */
+    backdrop-filter: blur(10px);
     transition: background 0.4s ease, color 0.4s ease;
-    width: 100%; /* Ensure it spans full width */
 }
 
 body.dark-mode .footer {
-    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .footer-content {
     display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    max-width: 600px;
-    margin: 0 auto;
+    gap: 1rem 2rem; /* Row and column gap */
+    font-size: 0.9rem;
 }
 
 .footer-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    direction: ltr; /* Always LTR for footer items to prevent emoji flipping and layout issues */
-    text-align: left; /* Ensure text is left-aligned within item */
 }
 
-/* For Arabic language, align the *group* of footer items to the center */
-html[lang="ar"] .footer-content {
-    justify-content: center;
+.footer-item .emoji {
+    margin-right: 8px;
+    font-size: 1.1rem;
 }
-html[lang="en"] .footer-content {
-    justify-content: center;
-}
-
-.emoji {
-    font-size: 1rem;
-    display: inline-block;
-    transform: scaleX(1); /* Ensure emoji is not flipped */
-}
-
 
 /* Animations */
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes spin {
@@ -695,65 +646,18 @@ html[lang="en"] .footer-content {
     100% { transform: rotate(360deg); }
 }
 
-/* Responsive design */
-@media screen and (max-width: 768px) {
-    #site-title {
-        margin-top: calc(50px + 1rem); /* Adjusted for mobile too, considering top-controls height */
-        font-size: clamp(36px, 5vw, 54px);
-    }
-    .main-content {
-        padding-top: 20px; /* Minimal padding-top, allowing site-title to dictate vertical flow */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .top-controls {
-        padding: 0.75rem 1rem;
-    }
-
+/* Responsive adjustments */
+@media (max-width: 600px) {
     .container {
         padding: 2rem 1.5rem;
-        margin: 0 1rem;
     }
 
-    .language-switcher, #mode-toggle {
-        width: 70px;
-        height: 32px;
-    }
-    .lang-option {
-        font-size: 11px;
-        line-height: 32px;
-    }
-    .slider {
-        width: 32px;
-    }
-    .language-switcher[data-active-lang="ar"] .slider {
-        transform: translateX(36px);
-    }
-    #mode-toggle .toggle-icon {
-        width: 24px;
-        height: 24px;
-        font-size: 12px;
-    }
-    #mode-toggle.active .toggle-icon {
-        transform: translateX(20px);
-    }
-
-    #site-title {
-        font-size: clamp(36px, 6vw, 54px);
-        margin-top: calc(50px + 1rem); /* Consistent top margin for small screens */
-    }
-
-    #form-title {
-        font-size: 1.4rem;
-    }
-    #nameInput, #submitBtn, #generateTipBtn {
+    #nameInput, #submitBtn {
         padding: 0.8rem 1rem;
         font-size: 0.95rem;
     }
 
-    .footer-content {
-        flex-direction: column;
-        gap: 0.75rem;
+    #statusMessage, #adhkarMessage {
+        font-size: 0.85rem;
     }
 }
