@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return window.translations.ar.adhkarNotFound || "لا توجد أذكار متاحة.";
     };
 
-    // ** Populate Adhkar on page load **
+    // Populate Adhkar on page load
     adhkarMessage.textContent = getRandomAdhkar();
     adhkarMessage.classList.add('show'); // Make sure it's visible initially
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         emailText.innerHTML = `📧 ${window.translations[lang].email}`;
         websiteText.innerHTML = `🌐 ${window.translations[lang].website}`;
 
-        // Update active language option
+        // Update active language option for visual slider
         langOptions.forEach(option => {
             if (option.dataset.lang === lang) {
                 option.classList.add('active');
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update slider position for language toggle
+        // Set data-active-lang attribute, which CSS uses for slider position
         langToggle.dataset.activeLang = lang;
         
         // Set body direction and HTML lang attribute based on language
@@ -88,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const newLang = currentLang === 'en' ? 'ar' : 'en';
         localStorage.setItem('language', newLang);
         updateContent(newLang);
-        // Do NOT update adhkarMessage here, it changes only on refresh
     });
 
     // Dark Mode Toggle
@@ -96,13 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('dark-mode');
         const isDarkMode = document.body.classList.contains('dark-mode');
         localStorage.setItem('darkMode', isDarkMode);
+        // Set active class for correct icon position (this drives CSS transform)
         modeToggle.classList.toggle('active', isDarkMode);
     };
 
     // Load saved dark mode preference
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark-mode');
-        modeToggle.classList.add('active');
+        modeToggle.classList.add('active'); // Set active class for correct icon position
     }
 
     modeToggle.addEventListener('click', toggleDarkMode);
@@ -127,16 +127,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Check if already checked in today
         if (savedAttendance[todayDate]) {
-            if (savedAttendance[todayDate].name.toLowerCase() === name.toLowerCase()) {
-                statusMessage.textContent = window.translations[currentLang].already.replace('{name}', savedAttendance[todayDate].name);
+            // Get the name from saved attendance
+            const savedNameForToday = savedAttendance[todayDate].name;
+
+            if (savedNameForToday.toLowerCase() === name.toLowerCase()) {
+                // If names match (case-insensitive), it's a re-check-in by the same person
+                // Only show the message, don't include the name if it's the exact user.
+                // Or you can still show the name, based on preference.
+                statusMessage.textContent = window.translations[currentLang].already.replace('{name}', savedNameForToday);
                 statusMessage.classList.add('warning', 'show');
                 return;
             } else {
-                statusMessage.textContent = window.translations[currentLang].nameMismatch.replace('{name}', savedAttendance[todayDate].name);
+                // Name mismatch
+                let message = window.translations[currentLang].nameMismatch;
+                // Check if the saved name is in ALLOWED_OUTSIDE_NAMES (our "TEST" names)
+                if (window.ALLOWED_OUTSIDE_NAMES && window.ALLOWED_OUTSIDE_NAMES.includes(savedNameForToday.toUpperCase())) {
+                    // If it's a "TEST" name, replace the placeholder with an empty string
+                    message = message.replace('{name}', '');
+                    // You might want a different message altogether if it's a test user
+                    if (currentLang === 'ar') {
+                         message = '❌ لقد تم تحضيرك مسبقًا اليوم.'; // More generic message for test users
+                    } else {
+                         message = '❌ You have already checked in today.';
+                    }
+                } else {
+                    // For regular users, replace with the actual name
+                    message = message.replace('{name}', savedNameForToday);
+                }
+                statusMessage.textContent = message;
                 statusMessage.classList.add('error', 'show');
                 return;
             }
         }
+
 
         statusMessage.textContent = window.translations[currentLang].loading;
         statusMessage.classList.add('info', 'show');
@@ -145,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // Check if name is in ALLOWED_OUTSIDE_NAMES (for testing/special cases)
+        // If the current entered name is an ALLOWED_OUTSIDE_NAME, bypass geolocation
         if (window.ALLOWED_OUTSIDE_NAMES && window.ALLOWED_OUTSIDE_NAMES.includes(name.toUpperCase())) {
             savedAttendance[todayDate] = { name: name, timestamp: new Date().toLocaleString() };
             localStorage.setItem('attendance', JSON.stringify(savedAttendance));
