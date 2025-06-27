@@ -344,7 +344,7 @@ body.dark-mode .top-controls {
     align-items: center;
     gap: 8px; /* Increased gap */
     z-index: 2;
-    position: relative;
+    position: center;
     font-weight: 700;
     /* Fixed gradient for the title as it's always English */
     background: linear-gradient(135deg, #7C99AC, #92A9BD); /* Light mode accent colors */
@@ -699,7 +699,7 @@ html[lang="en"] .footer-content {
 @media screen and (max-width: 768px) {
     #site-title {
         margin-top: calc(50px + 1rem); /* Adjusted for mobile too, considering top-controls height */
-        font-size: clamp(24px, 5vw, 42px);
+        font-size: clamp(36px, 5vw, 54px);
     }
     .main-content {
         padding-top: 20px; /* Minimal padding-top, allowing site-title to dictate vertical flow */
@@ -740,7 +740,7 @@ html[lang="en"] .footer-content {
     }
 
     #site-title {
-        font-size: clamp(20px, 6vw, 36px);
+        font-size: clamp(36px, 6vw, 54px);
         margin-top: calc(50px + 1rem); /* Consistent top margin for small screens */
     }
 
