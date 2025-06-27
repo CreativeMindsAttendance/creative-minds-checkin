@@ -1,4 +1,185 @@
-/* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
+/* ... (Existing CSS for fonts, root variables, body, background gradients, etc.) ... */
+
+/* Top controls (language and dark mode toggles) */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* Ensure it's always on top */
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.4s ease;
+}
+
+body.dark-mode .top-controls {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Language switcher */
+.language-switcher {
+    display: flex;
+    width: 80px;
+    height: 36px;
+    background-color: var(--current-language-switcher-bg);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.language-switcher:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.lang-option {
+    flex: 1;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 36px;
+    z-index: 2;
+    position: relative;
+    color: var(--current-text-color);
+    transition: color 0.3s ease;
+}
+
+.lang-option.active {
+    color: white; /* Color of active language text */
+}
+
+.slider {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: 36px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Correct slider positioning based on data-active-lang */
+.language-switcher[data-active-lang="ar"] .slider {
+    transform: translateX(40px); /* Moves slider to AR position (80px width - 36px slider width - 2*2px padding = 40px) */
+}
+.language-switcher[data-active-lang="en"] .slider {
+    transform: translateX(0); /* Moves slider to EN position */
+}
+
+/* Dark mode toggle */
+#mode-toggle {
+    width: 60px;
+    height: 36px;
+    border-radius: 18px;
+    background: var(--current-mode-toggle-bg);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    cursor: pointer;
+    margin-left: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+#mode-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+#mode-toggle .toggle-icon {
+    width: 28px;
+    height: 28px;
+    background-color: white; /* The circle for the icon */
+    border-radius: 50%;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; /* Crucial for translateX to work */
+    left: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#mode-toggle.active .toggle-icon {
+    transform: translateX(24px); /* Moves icon to the right for dark mode (60px width - 4px*2 padding - 28px icon width = 24px) */
+}
+
+/* Sun and Moon icons using pseudo-elements */
+#mode-toggle .toggle-icon::before {
+    content: "☀️"; /* Sun icon for light mode */
+    font-size: 18px;
+    transition: content 0.4s ease;
+}
+
+#mode-toggle.active .toggle-icon::before {
+    content: "🌙"; /* Moon icon for dark mode */
+}
+
+/* ... (Remaining CSS for #site-title, main-content, container, logo, form-title, input, buttons, messages, footer, animations) ... */
+
+/* Make sure the CSS for status and adhkar messages is also there: */
+#statusMessage, #adhkarMessage {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    font-family: 'QatarMedium', sans-serif;
+    line-height: 1.4;
+    min-height: 20px;
+    max-width: 100%;
+    word-wrap: break-word;
+    text-align: center; /* Ensure messages are centered */
+}
+html[lang="en"] #statusMessage, html[lang="en"] #adhkarMessage {
+    font-family: 'Philosopher', serif;
+}
+
+#statusMessage.show, #adhkarMessage.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#statusMessage.success, #adhkarMessage.success {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--success-color);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+#statusMessage.error, #adhkarMessage.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+#statusMessage.warning, #adhkarMessage.warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+#statusMessage.info, #adhkarMessage.info { /* For loading, etc. */
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--info-color);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}/* Custom Fonts (assuming .otf, .woff2 and .woff files are in 'fonts/' directory) */
 @font-face {
     font-family: 'SwinglyLours';
     src: url('fonts/SwinglyLours.otf') format('opentype'),
