@@ -5,12 +5,13 @@ let isDarkMode = localStorage.getItem("darkMode") === "true"; // Dark mode state
 // Configuration for location services and allowed names:
 // These constants are now accessed from the global `window` object,
 // as they are declared in `config.js` and become globally available when `config.js` loads.
+// DO NOT re-declare them here to avoid "already been declared" errors.
 
 // Cached DOM elements for efficient access
 const htmlElement = document.documentElement;
 const bodyElement = document.body;
-const langToggle = document.getElementById("lang-toggle"); // Updated ID for language switcher
-const langOptions = langToggle.querySelectorAll(".lang-option");
+const langToggle = document.getElementById("lang-toggle");
+const langOptions = langToggle ? langToggle.querySelectorAll(".lang-option") : []; // Handle if langToggle is null
 const modeToggle = document.getElementById("mode-toggle");
 const formTitle = document.getElementById("form-title");
 const nameInput = document.getElementById("nameInput");
@@ -21,27 +22,19 @@ const locationText = document.getElementById("location-text");
 const emailText = document.getElementById("email-text");
 const websiteText = document.getElementById("website-text");
 
-// Add console logs to check element existence
-console.log("DOM Elements Check (script.js loaded):");
-console.log("langToggle:", langToggle);
-console.log("modeToggle:", modeToggle);
-console.log("adhkarMessage:", adhkarMessage);
-console.log("submitBtn:", submitBtn);
-console.log("nameInput:", nameInput);
-
 
 /**
  * Loads and applies the current language translations to the UI.
  * Updates HTML lang attribute and specific text directions.
  */
 function loadLang() {
-    console.log("Loading language:", currentLang); // Debug log
-    // Ensure `translations` object is available from config.js
-    if (typeof translations === 'undefined') {
-        console.error("Error: 'translations' object not found. Make sure config.js is loaded correctly.");
+    console.log("loadLang() called. Current language:", currentLang); // Debug log
+    // Ensure `translations` object is available from config.js (access via window)
+    if (typeof window.translations === 'undefined') {
+        console.error("Error: 'translations' object not found in window. Make sure config.js is loaded correctly and defines 'translations' globally.");
         return;
     }
-    const t = translations[currentLang]; // Get translations for the current language
+    const t = window.translations[currentLang]; // Get translations for the current language
 
     // Update HTML lang attribute for accessibility and browser features
     htmlElement.lang = currentLang;
@@ -49,22 +42,20 @@ function loadLang() {
     // Update UI text content based on selected language
     // Note: The site title "Creative Minds" is intentionally NOT translated here,
     // as per user requirement, and remains English.
-    formTitle.textContent = t.title;
-    nameInput.placeholder = t.placeholder;
-    submitBtn.textContent = t.submit;
+    if (formTitle) formTitle.textContent = t.title;
+    if (nameInput) nameInput.placeholder = t.placeholder;
+    if (submitBtn) submitBtn.textContent = t.submit;
     
     // Update footer text content
-    locationText.textContent = t.location;
-    emailText.textContent = t.email;
-    websiteText.textContent = t.website;
+    if (locationText) locationText.textContent = t.location;
+    if (emailText) emailText.textContent = t.email;
+    if (websiteText) websiteText.textContent = t.website;
 
     // Apply specific text direction (RTL/LTR) to relevant input/message elements
     // This avoids flipping the entire page layout while still ensuring text reads correctly.
-    nameInput.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
-    statusMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
-    if (adhkarMessage) { // Ensure adhkarMessage exists before setting direction
-        adhkarMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr"); // Adhkar message box direction
-    }
+    if (nameInput) nameInput.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
+    if (statusMessage) statusMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
+    if (adhkarMessage) adhkarMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr"); // Adhkar message box direction
 
     // Update the language switcher UI (active state and slider position)
     if (langToggle) { // Check if langToggle exists
@@ -72,6 +63,8 @@ function loadLang() {
         langOptions.forEach(option => {
             option.classList.toggle("active", option.dataset.lang === currentLang);
         });
+    } else {
+        console.warn("Warning: langToggle element not found in loadLang().");
     }
 
     hideMessage(); // Clear any previous status messages on language change
@@ -83,10 +76,12 @@ function loadLang() {
  * Saves the dark mode preference to localStorage.
  */
 function applyDarkMode() {
-    console.log("Applying Dark Mode. isDarkMode:", isDarkMode); // Debug log
+    console.log("applyDarkMode() called. isDarkMode:", isDarkMode); // Debug log
     bodyElement.classList.toggle("dark-mode", isDarkMode); // Toggle dark-mode class on body
     if (modeToggle) { // Check if modeToggle exists
         modeToggle.classList.toggle("active", isDarkMode); // Update the visual state of the toggle switch
+    } else {
+        console.warn("Warning: modeToggle element not found in applyDarkMode().");
     }
     localStorage.setItem("darkMode", isDarkMode); // Save preference
 }
@@ -118,8 +113,9 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
  * @param {number} [duration=3000] - Duration in milliseconds before the message hides.
  */
 function showMessage(msg, type = "info", duration = 3000) {
+    console.log("showMessage() called. Message:", msg, "Type:", type); // Debug log
     if (!statusMessage) { // Check if statusMessage exists before trying to use it
-        console.error("Status message element not found!");
+        console.error("Error: Status message element (statusMessage) not found!");
         return;
     }
     statusMessage.innerHTML = msg; // Set message text
@@ -141,6 +137,7 @@ function showMessage(msg, type = "info", duration = 3000) {
  * Immediately hides the status message.
  */
 function hideMessage() {
+    console.log("hideMessage() called."); // Debug log
     if (!statusMessage) return; // Check if statusMessage exists
     statusMessage.classList.remove("show"); // Remove 'show' class to hide
     clearTimeout(statusMessage.hideTimeout); // Clear any pending auto-hide timeout
@@ -184,8 +181,10 @@ function saveAttendance(name) {
  * Validates input, checks for previous check-ins, verifies location, and saves data.
  */
 function submitAttendance() {
+    console.log("submitAttendance() called."); // Debug log
     const name = nameInput.value.trim();
-    const t = translations[currentLang]; // Get current language translations
+    // Access translations via window object
+    const t = window.translations[currentLang]; // Get current language translations
 
     // Disable inputs and buttons during processing to prevent multiple submissions
     if (nameInput) nameInput.disabled = true;
@@ -228,6 +227,8 @@ function submitAttendance() {
     }
 
     // Access location constants from the global scope (defined in config.js)
+    // Using `window` explicitly ensures they are accessed from the global scope
+    // where `config.js` has defined them.
     const DEST_LAT_GLOBAL = window.DEST_LAT;
     const DEST_LON_GLOBAL = window.DEST_LON;
     const ALLOWED_DISTANCE_KM_GLOBAL = window.ALLOWED_DISTANCE_KM;
@@ -314,18 +315,18 @@ function submitAttendance() {
  * Displays a random Adhkar (invocation) from the list in config.js.
  */
 function displayRandomAdhkar() {
-    console.log("Attempting to display Random Adhkar..."); // Debug log
+    console.log("displayRandomAdhkar() called."); // Debug log
     if (!adhkarMessage) { // Check if adhkarMessage element exists
-        console.error("Adhkar message element not found!");
+        console.error("Error: Adhkar message element (adhkarMessage) not found!");
         return;
     }
 
     // Ensure `adhkar` array is available from config.js (using window.adhkar as it's global)
     if (typeof window.adhkar === 'undefined' || window.adhkar.length === 0) {
         // Use the new error translation from translations object, checking for its existence
-        const t = translations[currentLang];
+        const t = window.translations[currentLang]; // Access via window
         adhkarMessage.textContent = t && t.adhkarError ? t.adhkarError : "Adhkar not available.";
-        console.error("Adhkar array is undefined or empty in window.adhkar!"); // Debug log
+        console.error("Error: 'adhkar' array is undefined or empty in window.adhkar!"); // Debug log
         return;
     }
     const randomIndex = Math.floor(Math.random() * window.adhkar.length);
@@ -338,7 +339,30 @@ function displayRandomAdhkar() {
  * Initializes the application: loads preferences, sets up event listeners.
  */
 function init() {
-    console.log("Initializing application..."); // Debug log
+    console.log("init() called. Performing DOM element checks and setting up listeners."); // Debug log
+
+    // Check if critical DOM elements are present right at the start of init
+    const requiredElements = {
+        langToggle: langToggle,
+        modeToggle: modeToggle,
+        formTitle: formTitle,
+        nameInput: nameInput,
+        submitBtn: submitBtn,
+        adhkarMessage: adhkarMessage,
+        statusMessage: statusMessage,
+        locationText: locationText,
+        emailText: emailText,
+        websiteText: websiteText
+    };
+
+    for (const [key, value] of Object.entries(requiredElements)) {
+        if (!value) {
+            console.error(`CRITICAL ERROR: DOM element '${key}' not found.`);
+            // If a critical element is missing, we might stop initialization or disable features
+            // For now, we'll continue but log the error prominently.
+        }
+    }
+
 
     // Load and apply dark mode preference from localStorage
     isDarkMode = localStorage.getItem("darkMode") === "true";
