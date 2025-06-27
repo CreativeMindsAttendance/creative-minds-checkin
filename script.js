@@ -11,7 +11,8 @@ let isDarkMode = localStorage.getItem("darkMode") === "true"; // Dark mode state
 const htmlElement = document.documentElement;
 const bodyElement = document.body;
 const langToggle = document.getElementById("lang-toggle");
-const langOptions = langToggle ? langToggle.querySelectorAll(".lang-option") : []; // Handle if langToggle is null
+// Ensure langOptions is safe even if langToggle is null initially
+const langOptions = langToggle ? langToggle.querySelectorAll(".lang-option") : [];
 const modeToggle = document.getElementById("mode-toggle");
 const formTitle = document.getElementById("form-title");
 const nameInput = document.getElementById("nameInput");
@@ -32,6 +33,9 @@ function loadLang() {
     // Ensure `translations` object is available from config.js (access via window)
     if (typeof window.translations === 'undefined') {
         console.error("Error: 'translations' object not found in window. Make sure config.js is loaded correctly and defines 'translations' globally.");
+        // Attempt to load translations from an empty object to prevent further errors if not found
+        const t = {};
+        if (formTitle) formTitle.textContent = "Error: Translations not loaded.";
         return;
     }
     const t = window.translations[currentLang]; // Get translations for the current language
@@ -42,14 +46,14 @@ function loadLang() {
     // Update UI text content based on selected language
     // Note: The site title "Creative Minds" is intentionally NOT translated here,
     // as per user requirement, and remains English.
-    if (formTitle) formTitle.textContent = t.title;
-    if (nameInput) nameInput.placeholder = t.placeholder;
-    if (submitBtn) submitBtn.textContent = t.submit;
+    if (formTitle) formTitle.textContent = t.title || ''; // Fallback to empty string
+    if (nameInput) nameInput.placeholder = t.placeholder || '';
+    if (submitBtn) submitBtn.textContent = t.submit || '';
     
     // Update footer text content
-    if (locationText) locationText.textContent = t.location;
-    if (emailText) emailText.textContent = t.email;
-    if (websiteText) websiteText.textContent = t.website;
+    if (locationText) locationText.textContent = t.location || '';
+    if (emailText) emailText.textContent = t.email || '';
+    if (websiteText) websiteText.textContent = t.website || '';
 
     // Apply specific text direction (RTL/LTR) to relevant input/message elements
     // This avoids flipping the entire page layout while still ensuring text reads correctly.
@@ -196,7 +200,7 @@ function submitAttendance() {
 
     // Validate if name input is empty
     if (!name) {
-        showMessage(t.required, "error");
+        showMessage(t.required || "Please enter your full name.", "error"); // Fallback message
         // Re-enable elements if validation fails
         if (nameInput) nameInput.disabled = false;
         if (submitBtn) {
@@ -212,10 +216,10 @@ function submitAttendance() {
     if (existingName) {
         // If a different name is used by someone who already checked in
         if (name.toLowerCase() !== existingName.toLowerCase()) {
-            showMessage(t.nameMismatch.replace("{name}", existingName), "error");
+            showMessage((t.nameMismatch || 'You have already checked in today as ({name}).').replace("{name}", existingName), "error");
         } else {
             // Same name, already checked in
-            showMessage(t.already.replace("{name}", existingName), "warning");
+            showMessage((t.already || 'You have already checked in today as ({name}).').replace("{name}", existingName), "warning");
         }
         // Re-enable elements
         if (nameInput) nameInput.disabled = false;
@@ -236,9 +240,9 @@ function submitAttendance() {
 
 
     // Check if the user's name is in the allowed list for outside check-ins
-    if (ALLOWED_OUTSIDE_NAMES_GLOBAL.map(n => n.toLowerCase()).includes(name.toLowerCase())) {
+    if (ALLOWED_OUTSIDE_NAMES_GLOBAL && ALLOWED_OUTSIDE_NAMES_GLOBAL.map(n => n.toLowerCase()).includes(name.toLowerCase())) {
         saveAttendance(name); // Save attendance without GPS check
-        showMessage(t.success, "success");
+        showMessage(t.success || "Your attendance has been recorded successfully!", "success"); // Fallback message
         if (nameInput) nameInput.value = ""; // Clear input
         // Re-enable elements
         if (nameInput) nameInput.disabled = false;
@@ -251,7 +255,7 @@ function submitAttendance() {
 
     // If Geolocation API is not available in the browser
     if (!navigator.geolocation) {
-        showMessage(t.geoError, "error");
+        showMessage(t.geoError || "Location not detected. Please ensure GPS is enabled and permissions are granted.", "error");
         // Re-enable elements
         if (nameInput) nameInput.disabled = false;
         if (submitBtn) {
@@ -261,7 +265,7 @@ function submitAttendance() {
         return;
     }
 
-    showMessage(t.loading, "info"); // Show loading message while checking location
+    showMessage(t.loading || "Checking your location...", "info"); // Show loading message while checking location
 
     navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -272,10 +276,10 @@ function submitAttendance() {
 
             if (distance <= ALLOWED_DISTANCE_KM_GLOBAL) {
                 saveAttendance(name); // Save attendance if within allowed distance
-                showMessage(t.success, "success");
+                showMessage(t.success || "Your attendance has been recorded successfully!", "success");
                 if (nameInput) nameInput.value = ""; // Clear input
             } else {
-                showMessage(t.outOfRange, "error"); // User is too far from the institute
+                showMessage(t.outOfRange || "You are outside the institute range. You must be at the institute to check in.", "error"); // User is too far from the institute
             }
             // Always re-enable elements after a successful or failed location check
             if (nameInput) nameInput.disabled = false;
@@ -286,14 +290,14 @@ function submitAttendance() {
         },
         (error) => {
             console.error("Geolocation error:", error); // Log detailed error to console
-            let errorMessage = t.geoError; // Default error message
+            let errorMessage = t.geoError || "Location not detected. Please ensure GPS is enabled and permissions are granted."; // Default error message
             // Provide more specific error messages based on Geolocation API error codes
             if (error.code === error.PERMISSION_DENIED) {
-                errorMessage = t.permissionDenied || t.geoError;
+                errorMessage = t.permissionDenied || "Location access denied. Please allow location access to check in.";
             } else if (error.code === error.POSITION_UNAVAILABLE) {
-                errorMessage = t.positionUnavailable || t.geoError;
+                errorMessage = t.positionUnavailable || "Location information is unavailable. Please try again.";
             } else if (error.code === error.TIMEOUT) {
-                errorMessage = t.timeout || t.geoError;
+                errorMessage = t.timeout || "Location request timed out. Please check your connection or try again.";
             }
             showMessage(errorMessage, "error"); // Display specific error message
             // Always re-enable elements after an error
@@ -325,7 +329,7 @@ function displayRandomAdhkar() {
     if (typeof window.adhkar === 'undefined' || window.adhkar.length === 0) {
         // Use the new error translation from translations object, checking for its existence
         const t = window.translations[currentLang]; // Access via window
-        adhkarMessage.textContent = t && t.adhkarError ? t.adhkarError : "Adhkar not available.";
+        adhkarMessage.textContent = (t && t.adhkarError) ? t.adhkarError : "Adhkar not available."; // Fallback message
         console.error("Error: 'adhkar' array is undefined or empty in window.adhkar!"); // Debug log
         return;
     }
