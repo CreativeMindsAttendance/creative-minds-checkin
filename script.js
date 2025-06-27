@@ -37,33 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const websiteText = document.getElementById('website-text');
 
 
-    // Function to get a random Adhkar (now ONLY in Arabic as requested)
+    // Function to get a random Adhkar (ONLY in Arabic)
     const getRandomAdhkar = () => {
-        // Always use Arabic Adhkar regardless of current language
-        const adhkarList = window.translations.ar.adhkar || [];
+        const adhkarList = window.translations.ar.adhkar || []; // Always use Arabic Adhkar
         if (adhkarList.length > 0) {
             const randomIndex = Math.floor(Math.random() * adhkarList.length);
             return adhkarList[randomIndex];
         }
-        // Fallback if no Adhkar available (still in Arabic)
         return window.translations.ar.adhkarNotFound || "لا توجد أذكار متاحة.";
     };
 
+    // ** Populate Adhkar on page load **
+    adhkarMessage.textContent = getRandomAdhkar();
+    adhkarMessage.classList.add('show'); // Make sure it's visible initially
+
+
     // Function to update text content based on current language
     const updateContent = (lang) => {
-        // Site title "Creative Minds" is intentionally hardcoded in HTML/CSS to always be English,
-        // so we don't translate it here.
         formTitle.textContent = window.translations[lang].formTitle;
         nameInput.placeholder = window.translations[lang].inputPlaceholder;
         submitBtn.textContent = window.translations[lang].submitButton;
         locationText.innerHTML = `📍 ${window.translations[lang].location}`;
         emailText.innerHTML = `📧 ${window.translations[lang].email}`;
         websiteText.innerHTML = `🌐 ${window.translations[lang].website}`;
-
-        statusMessage.textContent = ''; // Clear any previous status message
-        statusMessage.classList.remove('success', 'error', 'warning', 'info', 'show');
-        adhkarMessage.textContent = ''; // Clear adhkar message on language change
-        adhkarMessage.classList.remove('success', 'error', 'info', 'show');
 
         // Update active language option
         langOptions.forEach(option => {
@@ -75,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update slider position for language toggle
-        langToggle.dataset.activeLang = lang; // This drives the CSS for slider position
+        langToggle.dataset.activeLang = lang;
         
         // Set body direction and HTML lang attribute based on language
         document.body.dir = (lang === 'ar' ? 'rtl' : 'ltr');
@@ -92,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const newLang = currentLang === 'en' ? 'ar' : 'en';
         localStorage.setItem('language', newLang);
         updateContent(newLang);
+        // Do NOT update adhkarMessage here, it changes only on refresh
     });
 
     // Dark Mode Toggle
@@ -99,14 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('dark-mode');
         const isDarkMode = document.body.classList.contains('dark-mode');
         localStorage.setItem('darkMode', isDarkMode);
-        // Set active class for correct icon position
         modeToggle.classList.toggle('active', isDarkMode);
     };
 
     // Load saved dark mode preference
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark-mode');
-        modeToggle.classList.add('active'); // Set active class for correct icon position
+        modeToggle.classList.add('active');
     }
 
     modeToggle.addEventListener('click', toggleDarkMode);
@@ -119,8 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const todayDate = getTodayDate();
         const savedAttendance = JSON.parse(localStorage.getItem('attendance')) || {};
 
+        // Clear only status message, not adhkar message
         statusMessage.classList.remove('success', 'error', 'warning', 'info', 'show');
-        adhkarMessage.classList.remove('success', 'error', 'info', 'show');
+        statusMessage.textContent = ''; // Ensure it's clear
 
         if (!name) {
             statusMessage.textContent = window.translations[currentLang].emptyNameError;
@@ -154,8 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
             statusMessage.textContent = window.translations[currentLang].success;
             statusMessage.classList.remove('info');
             statusMessage.classList.add('success', 'show');
-            adhkarMessage.textContent = getRandomAdhkar();
-            adhkarMessage.classList.add('success', 'show');
             nameInput.value = ''; // Clear input
             submitBtn.disabled = false;
             submitBtn.classList.remove('loading');
@@ -178,8 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         statusMessage.textContent = window.translations[currentLang].success;
                         statusMessage.classList.remove('info');
                         statusMessage.classList.add('success', 'show');
-                        adhkarMessage.textContent = getRandomAdhkar();
-                        adhkarMessage.classList.add('success', 'show');
                         nameInput.value = ''; // Clear input
                     } else {
                         // User is outside range
