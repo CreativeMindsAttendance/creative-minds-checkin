@@ -135,17 +135,15 @@ body.dark-mode .bg-gradient-secondary {
     background: var(--current-button-gradient-start);
 }
 
-/* Top controls (language and dark mode toggles) */
+/* Top controls container */
 .top-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    position: fixed;
+    /* No longer flexbox for horizontal positioning of its children */
+    position: fixed; /* Keep it fixed at the top */
     top: 0;
-    left: 0; /* Keep left fixed */
-    right: 0; /* Keep right fixed */
-    width: 100%; /* Ensures it spans full width */
+    left: 0;
+    width: 100%;
+    height: 60px; /* Give it a fixed height for consistent padding */
+    padding: 0 1.5rem; /* Only vertical padding is removed from here for specific button padding */
     box-sizing: border-box; /* Include padding in width */
     z-index: 100; /* Ensure it's always on top */
     backdrop-filter: blur(10px);
@@ -157,14 +155,17 @@ body.dark-mode .top-controls {
     background: rgba(0, 0, 0, 0.1);
 }
 
-/* Language switcher */
+/* Language switcher - Now absolutely positioned */
 .language-switcher {
     display: flex;
     width: 80px;
     height: 36px;
     background-color: var(--current-language-switcher-bg);
     border-radius: 20px;
-    position: relative;
+    position: absolute; /* Changed to absolute */
+    top: 50%; /* Center vertically */
+    left: 1.5rem; /* Fixed distance from left */
+    transform: translateY(-50%); /* Adjust for vertical centering */
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
@@ -174,13 +175,13 @@ body.dark-mode .top-controls {
 }
 
 .language-switcher:hover {
-    transform: translateY(-2px);
+    transform: translateY(-50%) translateY(-2px); /* Maintain vertical center, add hover effect */
     box-shadow: 0 5px 15px var(--shadow);
 }
 
 .lang-option {
     flex: 1;
-    text-align: center; /* Ensure text is centered regardless of direction */
+    text-align: center;
     font-weight: 600;
     font-size: 12px;
     line-height: 36px;
@@ -191,14 +192,14 @@ body.dark-mode .top-controls {
 }
 
 .lang-option.active {
-    color: white; /* Color of active language text */
+    color: white;
 }
 
 .slider {
     position: absolute;
     top: 2px;
     bottom: 2px;
-    left: 2px; /* Always relative to left of language-switcher */
+    left: 2px;
     width: 36px;
     border-radius: 18px;
     background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
@@ -206,15 +207,14 @@ body.dark-mode .top-controls {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Correct slider positioning based on data-active-lang */
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px); /* Moves slider to AR position */
+    transform: translateX(40px);
 }
 .language-switcher[data-active-lang="en"] .slider {
-    transform: translateX(0); /* Moves slider to EN position */
+    transform: translateX(0);
 }
 
-/* Dark mode toggle */
+/* Dark mode toggle - Now absolutely positioned */
 #mode-toggle {
     width: 60px;
     height: 36px;
@@ -224,51 +224,52 @@ body.dark-mode .top-controls {
     align-items: center;
     padding: 4px;
     cursor: pointer;
-    margin-left: 16px;
-    transition: all 0.3s ease;
-    position: relative;
+    position: absolute; /* Changed to absolute */
+    top: 50%; /* Center vertically */
+    right: 1.5rem; /* Fixed distance from right */
+    transform: translateY(-50%); /* Adjust for vertical centering */
     overflow: hidden;
     box-shadow: 0 2px 8px var(--shadow);
+    transition: all 0.3s ease; /* Ensure this transition is here */
 }
 
 #mode-toggle:hover {
-    transform: translateY(-2px);
+    transform: translateY(-50%) translateY(-2px); /* Maintain vertical center, add hover effect */
     box-shadow: 0 5px 15px var(--shadow);
 }
 
 #mode-toggle .toggle-icon {
     width: 28px;
     height: 28px;
-    background-color: white; /* The circle for the icon */
+    background-color: white;
     border-radius: 50%;
     font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: absolute; /* Changed from relative to absolute */
-    left: 4px; /* Initial position relative to padding */
+    position: absolute;
+    left: 4px; /* Relative to its parent's padding */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(24px); /* Moves icon to the right for dark mode */
+    transform: translateX(24px);
 }
 
-/* Sun and Moon icons using pseudo-elements */
 #mode-toggle .toggle-icon::before {
-    content: "☀️"; /* Sun icon for light mode */
+    content: "☀️";
     font-size: 18px;
     transition: content 0.4s ease;
 }
 
 #mode-toggle.active .toggle-icon::before {
-    content: "🌙"; /* Moon icon for dark mode */
+    content: "🌙";
 }
 
 /* Site title */
 #site-title {
-    font-family: 'Philosopher', sans-serif; /* Always Philosopher, as it's a fixed logo text */
+    font-family: 'Philosopher', sans-serif;
     font-size: clamp(2.5rem, 6vw, 4rem);
     color: var(--current-text-color);
     text-align: center;
@@ -276,12 +277,12 @@ body.dark-mode .top-controls {
     margin-bottom: 2rem;
     transition: color 0.4s ease;
     text-shadow: 0 2px 4px var(--shadow);
-    z-index: 1; /* Above background, below form */
+    z-index: 1;
 }
 
 /* Main content container */
 .main-content {
-    flex-grow: 1; /* Takes up available space */
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -300,17 +301,17 @@ body.dark-mode .top-controls {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* This centers the children horizontally */
+    align-items: center;
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
-    margin-top: -50px; /* Pull the card up to be closer to Creative Minds title */
-    position: relative; /* Needed for z-index if you add more layers */
+    margin-top: -50px;
+    position: relative;
 }
 
 .logo {
     width: 120px;
     height: 120px;
     margin-bottom: 1.5rem;
-    object-fit: contain; /* Ensures the image fits without distortion */
+    object-fit: contain;
 }
 
 #form-title {
@@ -322,7 +323,7 @@ body.dark-mode .top-controls {
 }
 
 input[type="text"] {
-    width: calc(100% - 2rem); /* Full width minus padding */
+    width: calc(100% - 2rem);
     padding: 0.8rem 1rem;
     margin-bottom: 1.5rem;
     border: 1px solid var(--current-input-border);
@@ -332,7 +333,7 @@ input[type="text"] {
     font-size: 1rem;
     transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-    text-align: center; /* Center the input text */
+    text-align: center;
 }
 
 input[type="text"]:focus {
@@ -353,7 +354,7 @@ button {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    position: relative; /* For loading spinner */
+    position: relative;
     overflow: hidden;
 }
 
@@ -370,10 +371,9 @@ button:active:not(:disabled) {
 button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background: linear-gradient(90deg, #ccc, #bbb); /* Lighter gradient for disabled */
+    background: linear-gradient(90deg, #ccc, #bbb);
 }
 
-/* Loading spinner for button */
 button.loading::after {
     content: '';
     position: absolute;
@@ -390,7 +390,7 @@ button.loading::after {
 }
 
 button.loading span {
-    visibility: hidden; /* Hide text during loading */
+    visibility: hidden;
 }
 
 @keyframes spin {
@@ -411,10 +411,9 @@ button.loading span {
     min-height: 20px;
     max-width: 100%;
     word-wrap: break-word;
-    text-align: center; /* Ensure messages are centered */
+    text-align: center;
 }
 
-/* Apply specific font based on HTML lang attribute */
 html[lang="ar"] #statusMessage, html[lang="ar"] #adhkarMessage, html[lang="ar"] input[type="text"]::placeholder, html[lang="ar"] button {
     font-family: 'QatarMedium', sans-serif;
 }
@@ -445,7 +444,7 @@ html[lang="en"] #statusMessage, html[lang="en"] #adhkarMessage, html[lang="en"] 
     border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
-#statusMessage.info, #adhkarMessage.info { /* For loading, etc. */
+#statusMessage.info, #adhkarMessage.info {
     background-color: rgba(59, 130, 246, 0.1);
     color: var(--info-color);
     border: 1px solid rgba(59, 130, 246, 0.2);
@@ -457,7 +456,7 @@ html[lang="en"] #statusMessage, html[lang="en"] #adhkarMessage, html[lang="en"] 
     background: linear-gradient(to top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(5px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: auto; /* Pushes footer to the bottom */
+    margin-top: auto;
     transition: background 0.4s ease;
     z-index: 1;
 }
@@ -469,9 +468,9 @@ body.dark-mode .footer {
 
 .footer-content {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap if space is limited */
-    justify-content: center; /* Center items horizontally */
-    gap: 20px; /* Space between items */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     color: var(--current-text-color);
     font-size: 0.9rem;
     transition: color 0.4s ease;
@@ -481,27 +480,35 @@ body.dark-mode .footer {
     display: flex;
     align-items: center;
     gap: 5px;
-    text-align: center; /* Ensure text within each item is centered */
+    text-align: center;
 }
 
 .footer-item .emoji {
-    font-size: 1.2em; /* Adjust emoji size */
+    font-size: 1.2em;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .top-controls {
-        padding: 0.8rem 1rem;
+        height: 50px; /* Adjust height for smaller screens */
+    }
+
+    .language-switcher {
+        left: 1rem; /* Adjust padding for smaller screens */
+    }
+
+    #mode-toggle {
+        right: 1rem; /* Adjust padding for smaller screens */
     }
 
     #site-title {
         font-size: clamp(2rem, 8vw, 3rem);
-        margin-top: 80px;
+        margin-top: 70px; /* Adjust to clear smaller header */
     }
 
     .container {
         padding: 1.5rem;
-        margin-top: -30px; /* Less pull-up on smaller screens */
+        margin-top: -30px;
     }
 
     .logo {
@@ -524,8 +531,8 @@ body.dark-mode .footer {
     }
 
     .footer-content {
-        flex-direction: column; /* Stack footer items vertically */
-        align-items: center; /* Center them when stacked */
+        flex-direction: column;
+        align-items: center;
         gap: 10px;
     }
 }
