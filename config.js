@@ -1,13 +1,13 @@
 // Translations data for English and Arabic
 window.translations = {
     en: {
-        siteTitle: "Creative Minds", // Not actually used for site-title element, but good to have
+        siteTitle: "Creative Minds",
         formTitle: "Attendance Form",
         inputPlaceholder: "Enter your full name",
         submitButton: "Check In",
         success: "✅ Your attendance has been recorded successfully!",
-        already: "⚠️ You have already checked in today as ({name}).",
-        nameMismatch: '❌ You have already checked in today as <span dir="ltr">({name})</span>. You cannot use a different name.',
+        already: "⚠️ You have already checked in today as {name}.", // No LTR span here, JS will handle
+        nameMismatch: '❌ You have already checked in today as {name}. You cannot use a different name.', // No LTR span, JS will handle
         outOfRange: "❌ You are outside the institute range. You must be at the institute to check in.",
         geoError: "⚠️ Location not detected. Please ensure GPS is enabled and permissions are granted.",
         permissionDenied: "❌ Location access denied. Please allow location access to check in.",
@@ -20,16 +20,15 @@ window.translations = {
         location: "Jazan, Saudi Arabia",
         email: "example@creativeminds.edu.sa",
         website: "www.creativeminds.edu.sa",
-        // English Adhkar removed as requested; 'ar' adhkar will always be used by getRandomAdhkar
     },
     ar: {
-        siteTitle: "Creative Minds", // Not actually used for site-title element, but good to have
+        siteTitle: "Creative Minds",
         formTitle: "نموذج تحضير",
         inputPlaceholder: "اكتب اسمك الثلاثي",
         submitButton: "تسجيل الحضور",
         success: "✅ تم تسجيل حضورك بنجاح!",
-        already: "⚠️ لقد تم تحضيرك مسبقًا اليوم باسم ({name}).",
-        nameMismatch: '❌ لقد تم تحضيرك مسبقًا اليوم باسم <span dir="ltr">({name})</span>، لا يمكنك اختيار اسم مختلف.',
+        already: "⚠️ لقد تم تحضيرك مسبقًا اليوم باسم {name}.", // No LTR span, JS will handle
+        nameMismatch: '❌ لقد تم تحضيرك مسبقًا اليوم باسم {name}، لا يمكنك اختيار اسم مختلف.', // No LTR span, JS will handle
         outOfRange: "❌ أنت خارج نطاق المعهد، يجب أن تكون في المعهد ليتم تسجيل حضورك.",
         geoError: "⚠️ لم نتمكن من تحديد موقعك، تأكد من تفعيل GPS ومنح الأذونات.",
         permissionDenied: "❌ تم رفض الوصول للموقع. يرجى السماح بالوصول للموقع لتسجيل الحضور.",
@@ -42,7 +41,7 @@ window.translations = {
         location: "جازان، المملكة العربية السعودية",
         email: "example@creativeminds.edu.sa",
         website: "www.creativeminds.edu.sa",
-        adhkar: [ // Adhkar now only available in Arabic translations object
+        adhkar: [
             "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ",
             "لا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ",
             "لا إِلَهَ إِلا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
@@ -59,4 +58,4 @@ window.translations = {
 window.DEST_LAT = 16.889264;
 window.DEST_LON = 42.548691;
 window.ALLOWED_DISTANCE_KM = 0.2; // 200 meters
-window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2"];
+window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2", "JOHN DOE"]; // Example test names
