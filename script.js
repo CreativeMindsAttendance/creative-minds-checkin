@@ -2,17 +2,12 @@
 let currentLang = localStorage.getItem("lang") || "ar"; // Current language, defaults to Arabic
 let isDarkMode = localStorage.getItem("darkMode") === "true"; // Dark mode state, defaults to false
 
-// Configuration for location services and allowed names:
-// These constants are now accessed from the global `window` object,
-// as they are declared in `config.js` and become globally available when `config.js` loads.
-// DO NOT re-declare them here to avoid "already been declared" errors.
-
 // Cached DOM elements for efficient access
 const htmlElement = document.documentElement;
 const bodyElement = document.body;
+// Using nullish coalescing operator for safer DOM element caching
 const langToggle = document.getElementById("lang-toggle");
-// Ensure langOptions is safe even if langToggle is null initially
-const langOptions = langToggle ? langToggle.querySelectorAll(".lang-option") : [];
+const langOptions = langToggle?.querySelectorAll(".lang-option") || []; // Safe access
 const modeToggle = document.getElementById("mode-toggle");
 const formTitle = document.getElementById("form-title");
 const nameInput = document.getElementById("nameInput");
@@ -23,30 +18,44 @@ const locationText = document.getElementById("location-text");
 const emailText = document.getElementById("email-text");
 const websiteText = document.getElementById("website-text");
 
+// Initial console logs to check element existence on script load
+console.log("--- SCRIPT.JS LOADED ---");
+console.log("DOM Elements Check (initial load):");
+console.log("langToggle:", langToggle);
+console.log("modeToggle:", modeToggle);
+console.log("adhkarMessage:", adhkarMessage);
+console.log("submitBtn:", submitBtn);
+console.log("nameInput:", nameInput);
+console.log("statusMessage:", statusMessage);
+
 
 /**
  * Loads and applies the current language translations to the UI.
  * Updates HTML lang attribute and specific text directions.
  */
 function loadLang() {
-    console.log("loadLang() called. Current language:", currentLang); // Debug log
+    console.log("loadLang() called. Current language:", currentLang);
     // Ensure `translations` object is available from config.js (access via window)
-    if (typeof window.translations === 'undefined') {
-        console.error("Error: 'translations' object not found in window. Make sure config.js is loaded correctly and defines 'translations' globally.");
-        // Attempt to load translations from an empty object to prevent further errors if not found
-        const t = {};
-        if (formTitle) formTitle.textContent = "Error: Translations not loaded.";
+    if (typeof window.translations === 'undefined' || !window.translations[currentLang]) {
+        console.error("Error: 'translations' object or current language translations not found in window. Make sure config.js is loaded correctly and defines 'translations' globally.");
+        // Set fallback text for critical elements if translations are missing
+        if (formTitle) formTitle.textContent = "Attendance Form";
+        if (nameInput) nameInput.placeholder = "Enter your full name";
+        if (submitBtn) submitBtn.textContent = "Check In";
+        if (locationText) locationText.textContent = "Location Error";
+        if (emailText) emailText.textContent = "Email Error";
+        if (websiteText) websiteText.textContent = "Website Error";
+        if (adhkarMessage) adhkarMessage.textContent = "Translations or Adhkar data not available.";
         return;
     }
+
     const t = window.translations[currentLang]; // Get translations for the current language
 
     // Update HTML lang attribute for accessibility and browser features
     htmlElement.lang = currentLang;
 
     // Update UI text content based on selected language
-    // Note: The site title "Creative Minds" is intentionally NOT translated here,
-    // as per user requirement, and remains English.
-    if (formTitle) formTitle.textContent = t.title || ''; // Fallback to empty string
+    if (formTitle) formTitle.textContent = t.title || '';
     if (nameInput) nameInput.placeholder = t.placeholder || '';
     if (submitBtn) submitBtn.textContent = t.submit || '';
     
@@ -56,19 +65,16 @@ function loadLang() {
     if (websiteText) websiteText.textContent = t.website || '';
 
     // Apply specific text direction (RTL/LTR) to relevant input/message elements
-    // This avoids flipping the entire page layout while still ensuring text reads correctly.
     if (nameInput) nameInput.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
     if (statusMessage) statusMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
-    if (adhkarMessage) adhkarMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr"); // Adhkar message box direction
+    if (adhkarMessage) adhkarMessage.style.direction = (currentLang === "ar" ? "rtl" : "ltr");
 
     // Update the language switcher UI (active state and slider position)
-    if (langToggle) { // Check if langToggle exists
-        langToggle.dataset.activeLang = currentLang; // CSS uses this data attribute for slider positioning
+    if (langToggle) {
+        langToggle.dataset.activeLang = currentLang;
         langOptions.forEach(option => {
             option.classList.toggle("active", option.dataset.lang === currentLang);
         });
-    } else {
-        console.warn("Warning: langToggle element not found in loadLang().");
     }
 
     hideMessage(); // Clear any previous status messages on language change
@@ -80,14 +86,12 @@ function loadLang() {
  * Saves the dark mode preference to localStorage.
  */
 function applyDarkMode() {
-    console.log("applyDarkMode() called. isDarkMode:", isDarkMode); // Debug log
-    bodyElement.classList.toggle("dark-mode", isDarkMode); // Toggle dark-mode class on body
-    if (modeToggle) { // Check if modeToggle exists
-        modeToggle.classList.toggle("active", isDarkMode); // Update the visual state of the toggle switch
-    } else {
-        console.warn("Warning: modeToggle element not found in applyDarkMode().");
+    console.log("applyDarkMode() called. isDarkMode:", isDarkMode);
+    bodyElement.classList.toggle("dark-mode", isDarkMode);
+    if (modeToggle) {
+        modeToggle.classList.toggle("active", isDarkMode);
     }
-    localStorage.setItem("darkMode", isDarkMode); // Save preference
+    localStorage.setItem("darkMode", isDarkMode);
 }
 
 /**
@@ -100,14 +104,14 @@ function applyDarkMode() {
  */
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     const R = 6371; // Radius of Earth in kilometers
-    const dLat = (lat2 - lat1) * Math.PI / 180; // Delta Latitude in radians
-    const dLon = (lon2 - lon1) * Math.PI / 180; // Delta Longitude in radians
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
     const a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
         Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in kilometers
+    return R * c;
 }
 
 /**
@@ -117,21 +121,19 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
  * @param {number} [duration=3000] - Duration in milliseconds before the message hides.
  */
 function showMessage(msg, type = "info", duration = 3000) {
-    console.log("showMessage() called. Message:", msg, "Type:", type); // Debug log
-    if (!statusMessage) { // Check if statusMessage exists before trying to use it
-        console.error("Error: Status message element (statusMessage) not found!");
+    console.log("showMessage() called. Message:", msg, "Type:", type);
+    if (!statusMessage) {
+        console.error("Error: Status message element (statusMessage) not found! Cannot display message.");
         return;
     }
-    statusMessage.innerHTML = msg; // Set message text
-    statusMessage.className = `status-message show ${type}`; // Apply classes for styling and visibility
-    clearTimeout(statusMessage.hideTimeout); // Clear any previous auto-hide timeout
+    statusMessage.innerHTML = msg;
+    statusMessage.className = `status-message show ${type}`;
+    clearTimeout(statusMessage.hideTimeout);
 
-    // Adjust duration for error messages to give user more time to read
     if (type === "error") {
         duration = 5000;
     }
 
-    // Set a new auto-hide timeout
     statusMessage.hideTimeout = setTimeout(() => {
         statusMessage.classList.remove("show");
     }, duration);
@@ -141,10 +143,10 @@ function showMessage(msg, type = "info", duration = 3000) {
  * Immediately hides the status message.
  */
 function hideMessage() {
-    console.log("hideMessage() called."); // Debug log
-    if (!statusMessage) return; // Check if statusMessage exists
-    statusMessage.classList.remove("show"); // Remove 'show' class to hide
-    clearTimeout(statusMessage.hideTimeout); // Clear any pending auto-hide timeout
+    console.log("hideMessage() called.");
+    if (!statusMessage) return;
+    statusMessage.classList.remove("show");
+    clearTimeout(statusMessage.hideTimeout);
 }
 
 /**
@@ -157,11 +159,11 @@ function hasCheckedInToday() {
 
     try {
         const { name, date } = JSON.parse(record);
-        const today = new Date().toISOString().split("T")[0]; // Get current date in "YYYY-MM-DD" format
-        return date === today ? name : false; // Return name if date matches, else false
+        const today = new Date().toISOString().split("T")[0];
+        return date === today ? name : false;
     } catch (e) {
         console.error("Error parsing attendance record from localStorage:", e);
-        localStorage.removeItem("attendanceRecord"); // Clear corrupted record to prevent future issues
+        localStorage.removeItem("attendanceRecord");
         return false;
     }
 }
@@ -171,13 +173,13 @@ function hasCheckedInToday() {
  * @param {string} name - The name of the person checking in.
  */
 function saveAttendance(name) {
-    const today = new Date().toISOString().split("T")[0]; // Get current date
+    const today = new Date().toISOString().split("T")[0];
     const record = {
-        name: name.trim(), // Store trimmed name
+        name: name.trim(),
         date: today,
-        timestamp: new Date().toISOString() // Store full timestamp for more detail
+        timestamp: new Date().toISOString()
     };
-    localStorage.setItem("attendanceRecord", JSON.stringify(record)); // Save as JSON string
+    localStorage.setItem("attendanceRecord", JSON.stringify(record));
 }
 
 /**
@@ -185,43 +187,38 @@ function saveAttendance(name) {
  * Validates input, checks for previous check-ins, verifies location, and saves data.
  */
 function submitAttendance() {
-    console.log("submitAttendance() called."); // Debug log
+    console.log("submitAttendance() called.");
     const name = nameInput.value.trim();
     // Access translations via window object
-    const t = window.translations[currentLang]; // Get current language translations
+    const t = window.translations?.[currentLang]; // Safe access to translations
 
     // Disable inputs and buttons during processing to prevent multiple submissions
     if (nameInput) nameInput.disabled = true;
     if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.classList.add("loading"); // Show loading spinner on submit button
+        submitBtn.classList.add("loading");
     }
-
 
     // Validate if name input is empty
     if (!name) {
-        showMessage(t.required || "Please enter your full name.", "error"); // Fallback message
-        // Re-enable elements if validation fails
+        showMessage(t?.required || "Please enter your full name.", "error");
         if (nameInput) nameInput.disabled = false;
         if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.classList.remove("loading");
         }
-        if (nameInput) nameInput.focus(); // Focus back on input for user to correct
+        if (nameInput) nameInput.focus();
         return;
     }
 
     // Check if the user has already checked in today
     const existingName = hasCheckedInToday();
     if (existingName) {
-        // If a different name is used by someone who already checked in
         if (name.toLowerCase() !== existingName.toLowerCase()) {
-            showMessage((t.nameMismatch || 'You have already checked in today as ({name}).').replace("{name}", existingName), "error");
+            showMessage((t?.nameMismatch || 'You have already checked in today as ({name}).').replace("{name}", existingName), "error");
         } else {
-            // Same name, already checked in
-            showMessage((t.already || 'You have already checked in today as ({name}).').replace("{name}", existingName), "warning");
+            showMessage((t?.already || 'You have already checked in today as ({name}).').replace("{name}", existingName), "warning");
         }
-        // Re-enable elements
         if (nameInput) nameInput.disabled = false;
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -231,8 +228,6 @@ function submitAttendance() {
     }
 
     // Access location constants from the global scope (defined in config.js)
-    // Using `window` explicitly ensures they are accessed from the global scope
-    // where `config.js` has defined them.
     const DEST_LAT_GLOBAL = window.DEST_LAT;
     const DEST_LON_GLOBAL = window.DEST_LON;
     const ALLOWED_DISTANCE_KM_GLOBAL = window.ALLOWED_DISTANCE_KM;
@@ -241,10 +236,9 @@ function submitAttendance() {
 
     // Check if the user's name is in the allowed list for outside check-ins
     if (ALLOWED_OUTSIDE_NAMES_GLOBAL && ALLOWED_OUTSIDE_NAMES_GLOBAL.map(n => n.toLowerCase()).includes(name.toLowerCase())) {
-        saveAttendance(name); // Save attendance without GPS check
-        showMessage(t.success || "Your attendance has been recorded successfully!", "success"); // Fallback message
-        if (nameInput) nameInput.value = ""; // Clear input
-        // Re-enable elements
+        saveAttendance(name);
+        showMessage(t?.success || "Your attendance has been recorded successfully!", "success");
+        if (nameInput) nameInput.value = "";
         if (nameInput) nameInput.disabled = false;
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -255,8 +249,7 @@ function submitAttendance() {
 
     // If Geolocation API is not available in the browser
     if (!navigator.geolocation) {
-        showMessage(t.geoError || "Location not detected. Please ensure GPS is enabled and permissions are granted.", "error");
-        // Re-enable elements
+        showMessage(t?.geoError || "Location not detected. Please ensure GPS is enabled and permissions are granted.", "error");
         if (nameInput) nameInput.disabled = false;
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -265,23 +258,21 @@ function submitAttendance() {
         return;
     }
 
-    showMessage(t.loading || "Checking your location...", "info"); // Show loading message while checking location
+    showMessage(t?.loading || "Checking your location...", "info");
 
     navigator.geolocation.getCurrentPosition(
         (position) => {
             const userLat = position.coords.latitude;
             const userLon = position.coords.longitude;
-            // Use the global constants for distance calculation
             const distance = getDistanceFromLatLonInKm(userLat, userLon, DEST_LAT_GLOBAL, DEST_LON_GLOBAL);
 
             if (distance <= ALLOWED_DISTANCE_KM_GLOBAL) {
-                saveAttendance(name); // Save attendance if within allowed distance
-                showMessage(t.success || "Your attendance has been recorded successfully!", "success");
-                if (nameInput) nameInput.value = ""; // Clear input
+                saveAttendance(name);
+                showMessage(t?.success || "Your attendance has been recorded successfully!", "success");
+                if (nameInput) nameInput.value = "";
             } else {
-                showMessage(t.outOfRange || "You are outside the institute range. You must be at the institute to check in.", "error"); // User is too far from the institute
+                showMessage(t?.outOfRange || "You are outside the institute range. You must be at the institute to check in.", "error");
             }
-            // Always re-enable elements after a successful or failed location check
             if (nameInput) nameInput.disabled = false;
             if (submitBtn) {
                 submitBtn.disabled = false;
@@ -289,18 +280,16 @@ function submitAttendance() {
             }
         },
         (error) => {
-            console.error("Geolocation error:", error); // Log detailed error to console
-            let errorMessage = t.geoError || "Location not detected. Please ensure GPS is enabled and permissions are granted."; // Default error message
-            // Provide more specific error messages based on Geolocation API error codes
+            console.error("Geolocation error:", error);
+            let errorMessage = t?.geoError || "Location not detected. Please ensure GPS is enabled and permissions are granted.";
             if (error.code === error.PERMISSION_DENIED) {
-                errorMessage = t.permissionDenied || "Location access denied. Please allow location access to check in.";
+                errorMessage = t?.permissionDenied || "Location access denied. Please allow location access to check in.";
             } else if (error.code === error.POSITION_UNAVAILABLE) {
-                errorMessage = t.positionUnavailable || "Location information is unavailable. Please try again.";
+                errorMessage = t?.positionUnavailable || "Location information is unavailable. Please try again.";
             } else if (error.code === error.TIMEOUT) {
-                errorMessage = t.timeout || "Location request timed out. Please check your connection or try again.";
+                errorMessage = t?.timeout || "Location request timed out. Please check your connection or try again.";
             }
-            showMessage(errorMessage, "error"); // Display specific error message
-            // Always re-enable elements after an error
+            showMessage(errorMessage, "error");
             if (nameInput) nameInput.disabled = false;
             if (submitBtn) {
                 submitBtn.disabled = false;
@@ -308,9 +297,9 @@ function submitAttendance() {
             }
         },
         {
-            enableHighAccuracy: true, // Request the most accurate position
-            timeout: 10000, // Maximum time (10 seconds) to wait for a position
-            maximumAge: 0 // Do not use a cached position; request a fresh one
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
         }
     );
 }
@@ -319,23 +308,22 @@ function submitAttendance() {
  * Displays a random Adhkar (invocation) from the list in config.js.
  */
 function displayRandomAdhkar() {
-    console.log("displayRandomAdhkar() called."); // Debug log
-    if (!adhkarMessage) { // Check if adhkarMessage element exists
-        console.error("Error: Adhkar message element (adhkarMessage) not found!");
+    console.log("displayRandomAdhkar() called.");
+    if (!adhkarMessage) {
+        console.error("Error: Adhkar message element (adhkarMessage) not found! Cannot display adhkar.");
         return;
     }
 
     // Ensure `adhkar` array is available from config.js (using window.adhkar as it's global)
     if (typeof window.adhkar === 'undefined' || window.adhkar.length === 0) {
-        // Use the new error translation from translations object, checking for its existence
-        const t = window.translations[currentLang]; // Access via window
-        adhkarMessage.textContent = (t && t.adhkarError) ? t.adhkarError : "Adhkar not available."; // Fallback message
-        console.error("Error: 'adhkar' array is undefined or empty in window.adhkar!"); // Debug log
+        const t = window.translations?.[currentLang];
+        adhkarMessage.textContent = (t && t.adhkarError) ? t.adhkarError : "Adhkar data not available.";
+        console.error("Error: 'adhkar' array is undefined or empty in window.adhkar!");
         return;
     }
     const randomIndex = Math.floor(Math.random() * window.adhkar.length);
     adhkarMessage.textContent = window.adhkar[randomIndex];
-    console.log("Adhkar displayed:", window.adhkar[randomIndex]); // Debug log
+    console.log("Adhkar displayed:", window.adhkar[randomIndex]);
 }
 
 
@@ -343,7 +331,7 @@ function displayRandomAdhkar() {
  * Initializes the application: loads preferences, sets up event listeners.
  */
 function init() {
-    console.log("init() called. Performing DOM element checks and setting up listeners."); // Debug log
+    console.log("init() called. Performing DOM element checks and setting up listeners.");
 
     // Check if critical DOM elements are present right at the start of init
     const requiredElements = {
@@ -361,49 +349,48 @@ function init() {
 
     for (const [key, value] of Object.entries(requiredElements)) {
         if (!value) {
-            console.error(`CRITICAL ERROR: DOM element '${key}' not found.`);
-            // If a critical element is missing, we might stop initialization or disable features
-            // For now, we'll continue but log the error prominently.
+            console.error(`CRITICAL ERROR: DOM element '${key}' not found. Check HTML IDs.`);
+            // If a critical element is missing, further operations relying on it will fail.
+            // Consider disabling features or showing a prominent error to the user.
         }
     }
-
 
     // Load and apply dark mode preference from localStorage
     isDarkMode = localStorage.getItem("darkMode") === "true";
     applyDarkMode();
 
     // Load and apply language preferences from localStorage
-    loadLang(); // This will also call displayRandomAdhkar()
+    // This will also trigger displayRandomAdhkar()
+    loadLang(); 
 
     // Event listener for language toggle button
-    if (langToggle) { // Add a check to ensure element exists
+    if (langToggle) {
         langToggle.addEventListener("click", () => {
-            console.log("Language toggle clicked!"); // Debug log
-            // Toggle language between Arabic and English
+            console.log("Language toggle click listener fired!");
             currentLang = (currentLang === "ar" ? "en" : "ar");
-            localStorage.setItem("lang", currentLang); // Save new language preference
-            loadLang(); // Reload UI with new language
+            localStorage.setItem("lang", currentLang);
+            loadLang();
         });
     } else {
-        console.error("Error: #lang-toggle element not found during init. Cannot attach event listener.");
+        console.error("Language toggle element not found. Event listener not attached.");
     }
 
     // Event listener for dark mode toggle button
-    if (modeToggle) { // Add a check to ensure element exists
+    if (modeToggle) {
         modeToggle.addEventListener("click", () => {
-            console.log("Dark mode toggle clicked!"); // Debug log
-            isDarkMode = !isDarkMode; // Toggle the boolean state (true/false)
-            applyDarkMode(); // Apply new dark mode state
+            console.log("Dark mode toggle click listener fired!");
+            isDarkMode = !isDarkMode;
+            applyDarkMode();
         });
     } else {
-        console.error("Error: #mode-toggle element not found during init. Cannot attach event listener.");
+        console.error("Dark mode toggle element not found. Event listener not attached.");
     }
 
     // Event listener for the "Submit Attendance" button
     if (submitBtn) {
         submitBtn.addEventListener("click", submitAttendance);
     } else {
-        console.error("Error: #submitBtn element not found during init. Cannot attach event listener.");
+        console.error("Submit button element not found. Event listener not attached.");
     }
 
     // Allow "Enter" key press in the name input field to submit attendance
@@ -413,15 +400,13 @@ function init() {
                 submitAttendance();
             }
         });
-
-        // Clear status message when user starts typing in the name input
         nameInput.addEventListener("input", hideMessage);
-
-        // Set initial focus on the name input field for better user experience
         nameInput.focus();
     } else {
-        console.error("Error: #nameInput element not found during init.");
+        console.error("Name input element not found.");
     }
+    
+    console.log("init() completed.");
 }
 
 // Start the application once the DOM (Document Object Model) is fully loaded
