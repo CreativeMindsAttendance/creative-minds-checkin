@@ -1,10 +1,10 @@
 // Translations data for English and Arabic
 window.translations = {
     en: {
-        // Site title "Creative Minds" is hardcoded in HTML/CSS to always be English.
-        title: "Attendance Form",
-        placeholder: "Enter your full name",
-        submit: "Check In",
+        siteTitle: "Creative Minds", // Not actually used for site-title element, but good to have
+        formTitle: "Attendance Form",
+        inputPlaceholder: "Enter your full name",
+        submitButton: "Check In",
         success: "✅ Your attendance has been recorded successfully!",
         already: "⚠️ You have already checked in today as ({name}).",
         nameMismatch: '❌ You have already checked in today as <span dir="ltr">({name})</span>. You cannot use a different name.',
@@ -13,18 +13,20 @@ window.translations = {
         permissionDenied: "❌ Location access denied. Please allow location access to check in.",
         positionUnavailable: "❌ Location information is unavailable. Please try again.",
         timeout: "❌ Location request timed out. Please check your connection or try again.",
-        required: "⚠️ Please enter your full name.",
-        loading: "⏳ Checking your location...",
-        adhkarError: "Could not load Adhkar. Please try again later.",
+        emptyNameError: "⚠️ Please enter your full name.",
+        adhkarLoading: "⏳ Loading a remembrance...",
+        adhkarError: "Could not load remembrance. Please try again later.",
+        adhkarNotFound: "No remembrances available.",
         location: "Jazan, Saudi Arabia",
         email: "example@creativeminds.edu.sa",
-        website: "www.creativeminds.edu.sa"
+        website: "www.creativeminds.edu.sa",
+        // English Adhkar removed as requested; 'ar' adhkar will always be used by getRandomAdhkar
     },
     ar: {
-        // Site title "Creative Minds" is hardcoded in HTML/CSS to always be English.
-        title: "نموذج تحضير",
-        placeholder: "اكتب اسمك الثلاثي",
-        submit: "تسجيل الحضور",
+        siteTitle: "Creative Minds", // Not actually used for site-title element, but good to have
+        formTitle: "نموذج تحضير",
+        inputPlaceholder: "اكتب اسمك الثلاثي",
+        submitButton: "تسجيل الحضور",
         success: "✅ تم تسجيل حضورك بنجاح!",
         already: "⚠️ لقد تم تحضيرك مسبقًا اليوم باسم ({name}).",
         nameMismatch: '❌ لقد تم تحضيرك مسبقًا اليوم باسم <span dir="ltr">({name})</span>، لا يمكنك اختيار اسم مختلف.',
@@ -33,12 +35,23 @@ window.translations = {
         permissionDenied: "❌ تم رفض الوصول للموقع. يرجى السماح بالوصول للموقع لتسجيل الحضور.",
         positionUnavailable: "❌ معلومات الموقع غير متوفرة. يرجى المحاولة مرة أخرى.",
         timeout: "❌ انتهت مهلة طلب الموقع. يرجى التحقق من اتصالك أو المحاولة مرة أخرى.",
-        required: "⚠️ الرجاء إدخال الاسم الثلاثي.",
-        loading: "⏳ جاري التحقق من موقعك...",
+        emptyNameError: "⚠️ الرجاء إدخال الاسم الثلاثي.",
+        adhkarLoading: "⏳ جاري تحميل الذكر...",
         adhkarError: "لم نتمكن من تحميل الأذكار. يرجى المحاولة لاحقاً.",
+        adhkarNotFound: "لا توجد أذكار متاحة.",
         location: "جازان، المملكة العربية السعودية",
         email: "example@creativeminds.edu.sa",
-        website: "www.creativeminds.edu.sa"
+        website: "www.creativeminds.edu.sa",
+        adhkar: [ // Adhkar now only available in Arabic translations object
+            "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ",
+            "لا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ",
+            "لا إِلَهَ إِلا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
+            "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+            "حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ",
+            "اللهم إنك عفو تحب العفو فاعف عني",
+            "رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ",
+            "أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه"
+        ]
     }
 };
 
@@ -47,15 +60,3 @@ window.DEST_LAT = 16.889264;
 window.DEST_LON = 42.548691;
 window.ALLOWED_DISTANCE_KM = 0.2; // 200 meters
 window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2"];
-
-// Array of Islamic Adhkar (Remembrances)
-window.adhkar = [
-    "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ",
-    "لا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ",
-    "لا إِلَهَ إِلا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
-    "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
-    "حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ",
-    "اللهم إنك عفو تحب العفو فاعف عني",
-    "رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ",
-    "أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه"
-];
