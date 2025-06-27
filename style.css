@@ -1,4 +1,139 @@
-/* ... (Existing CSS for fonts, root variables, body, background gradients, etc.) ... */
+/* Custom Fonts */
+@font-face {
+    font-family: 'QatarMedium';
+    src: url('fonts/Qatar_Medium.woff2') format('woff2'),
+         url('fonts/Qatar_Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap; /* Ensures text is visible during font loading */
+}
+
+/* Base styles and variables */
+:root {
+    --primary-bg-color: #e0e7ee; /* Light mode background */
+    --secondary-bg-color: #f8faff;
+    --card-bg-color: #ffffff;
+    --text-color: #333;
+    --input-bg: #f0f4f8;
+    --input-border: #ccd6e0;
+    --button-gradient-start: #7f7fd5;
+    --button-gradient-end: #86a8e7;
+    --button-text-color: white;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --language-switcher-bg: #f0f4f8;
+    --mode-toggle-bg: #ccc;
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
+
+    /* Current active values (default to light mode) */
+    --current-primary-bg-color: var(--primary-bg-color);
+    --current-secondary-bg-color: var(--secondary-bg-color);
+    --current-card-bg-color: var(--card-bg-color);
+    --current-text-color: var(--text-color);
+    --current-input-bg: var(--input-bg);
+    --current-input-border: var(--input-border);
+    --current-button-gradient-start: var(--button-gradient-start);
+    --current-button-gradient-end: var(--button-gradient-end);
+    --current-language-switcher-bg: var(--language-switcher-bg);
+    --current-mode-toggle-bg: var(--mode-toggle-bg);
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --dark-primary-bg-color: #1a1a2e;
+    --dark-secondary-bg-color: #16213e;
+    --dark-card-bg-color: #0f3460;
+    --dark-text-color: #e0e0e0;
+    --dark-input-bg: #0c1a2f;
+    --dark-input-border: #2c5282;
+    --dark-button-gradient-start: #4a00e0;
+    --dark-button-gradient-end: #8e2de2;
+    --dark-language-switcher-bg: #0c1a2f;
+    --dark-mode-toggle-bg: #4f5d75;
+
+    --current-primary-bg-color: var(--dark-primary-bg-color);
+    --current-secondary-bg-color: var(--dark-secondary-bg-color);
+    --current-card-bg-color: var(--dark-card-bg-color);
+    --current-text-color: var(--dark-text-color);
+    --current-input-bg: var(--dark-input-bg);
+    --current-input-border: var(--dark-input-border);
+    --current-button-gradient-start: var(--dark-button-gradient-start);
+    --current-button-gradient-end: var(--dark-button-gradient-end);
+    --current-language-switcher-bg: var(--dark-language-switcher-bg);
+    --current-mode-toggle-bg: var(--dark-mode-toggle-bg);
+}
+
+/* Base font for English and general text */
+body {
+    font-family: 'Philosopher', sans-serif; /* Default English font */
+    background-color: var(--current-primary-bg-color);
+    color: var(--current-text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    position: relative; /* For background elements */
+}
+
+/* Apply Arabic font when HTML lang is 'ar' */
+html[lang="ar"] body {
+    font-family: 'QatarMedium', sans-serif; /* Arabic font */
+}
+
+/* Ensure the `dir` attribute on html is set by JS for consistency */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Background elements */
+.bg-gradient-primary, .bg-gradient-secondary {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.8;
+    transition: background 0.4s ease, opacity 0.4s ease;
+}
+.bg-gradient-primary {
+    background: linear-gradient(180deg, var(--current-primary-bg-color), var(--current-secondary-bg-color));
+}
+.bg-gradient-secondary {
+    background: linear-gradient(135deg, var(--current-secondary-bg-color) 0%, var(--current-primary-bg-color) 100%);
+    opacity: 0.5;
+}
+body.dark-mode .bg-gradient-secondary {
+    opacity: 0.7;
+}
+
+.bg-curvy-shape-left, .bg-curvy-shape-right {
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    opacity: 0.1;
+    z-index: -1;
+    filter: blur(50px);
+    transition: background 0.4s ease, opacity 0.4s ease;
+}
+
+.bg-curvy-shape-left {
+    top: -50px;
+    left: -50px;
+    background: var(--current-button-gradient-end);
+}
+
+.bg-curvy-shape-right {
+    bottom: -50px;
+    right: -50px;
+    background: var(--current-button-gradient-start);
+}
 
 /* Top controls (language and dark mode toggles) */
 .top-controls {
@@ -19,12 +154,6 @@
 body.dark-mode .top-controls {
     background: rgba(0, 0, 0, 0.1);
 }
-
-/* Ensure language switcher options are always centered to avoid shift */
-.language-switcher .lang-option {
-    text-align: center; /* Explicitly center text */
-}
-
 
 /* Language switcher */
 .language-switcher {
@@ -49,7 +178,7 @@ body.dark-mode .top-controls {
 
 .lang-option {
     flex: 1;
-    text-align: center;
+    text-align: center; /* Ensure text is centered regardless of direction */
     font-weight: 600;
     font-size: 12px;
     line-height: 36px;
@@ -77,7 +206,7 @@ body.dark-mode .top-controls {
 
 /* Correct slider positioning based on data-active-lang */
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px); /* Moves slider to AR position (80px width - 36px slider width - 2*2px padding = 40px) */
+    transform: translateX(40px); /* Moves slider to AR position */
 }
 .language-switcher[data-active-lang="en"] .slider {
     transform: translateX(0); /* Moves slider to EN position */
@@ -115,13 +244,13 @@ body.dark-mode .top-controls {
     align-items: center;
     justify-content: center;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative; /* Crucial for translateX to work */
+    position: relative;
     left: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(24px); /* Moves icon to the right for dark mode (60px width - 4px*2 padding - 28px icon width = 24px) */
+    transform: translateX(24px); /* Moves icon to the right for dark mode */
 }
 
 /* Sun and Moon icons using pseudo-elements */
@@ -135,28 +264,138 @@ body.dark-mode .top-controls {
     content: "🌙"; /* Moon icon for dark mode */
 }
 
-/* Ensure the main container's content is always centered */
-.main-content .container {
+/* Site title */
+#site-title {
+    font-family: 'Philosopher', sans-serif; /* Always Philosopher, as it's a fixed logo text */
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--current-text-color);
+    text-align: center;
+    margin-top: 100px; /* Adjust as needed to clear fixed header */
+    margin-bottom: 2rem;
+    transition: color 0.4s ease;
+    text-shadow: 0 2px 4px var(--shadow);
+    z-index: 1; /* Above background, below form */
+}
+
+/* Main content container */
+.main-content {
+    flex-grow: 1; /* Takes up available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.container {
+    background-color: var(--current-card-bg-color);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px var(--shadow);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center; /* This centers the children horizontally */
-    text-align: center; /* Ensures text inside is centered too */
-    /* ... other styles */
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    margin-top: -50px; /* Pull the card up to be closer to Creative Minds title */
+    position: relative; /* Needed for z-index if you add more layers */
 }
 
-/* Footer specific styling for centering */
-.footer-content {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap if space is limited */
-    justify-content: center; /* Center items horizontally */
-    gap: 20px; /* Space between items */
-}
-.footer-item {
-    text-align: center; /* Ensure text within each item is centered */
+.logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+    object-fit: contain; /* Ensures the image fits without distortion */
 }
 
+#form-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--current-text-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    transition: color 0.4s ease;
+}
 
-/* Make sure the CSS for status and adhkar messages is also there: */
+input[type="text"] {
+    width: calc(100% - 2rem); /* Full width minus padding */
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--current-input-border);
+    border-radius: 10px;
+    background-color: var(--current-input-bg);
+    color: var(--current-text-color);
+    font-size: 1rem;
+    transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    text-align: center; /* Center the input text */
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--button-gradient-end);
+    box-shadow: 0 0 0 3px rgba(134, 168, 231, 0.3);
+}
+
+button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(90deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative; /* For loading spinner */
+    overflow: hidden;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: linear-gradient(90deg, #ccc, #bbb); /* Lighter gradient for disabled */
+}
+
+/* Loading spinner for button */
+button.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+button.loading span {
+    visibility: hidden; /* Hide text during loading */
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Status and Adhkar messages */
 #statusMessage, #adhkarMessage {
     margin-top: 1rem;
     padding: 0.75rem 1rem;
@@ -166,24 +405,22 @@ body.dark-mode .top-controls {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
-    font-family: 'QatarMedium', sans-serif;
     line-height: 1.4;
     min-height: 20px;
     max-width: 100%;
     word-wrap: break-word;
     text-align: center; /* Ensure messages are centered */
 }
-html[lang="en"] #statusMessage, html[lang="en"] #adhkarMessage {
+
+/* Apply specific font based on HTML lang attribute */
+html[lang="ar"] #statusMessage, html[lang="ar"] #adhkarMessage, html[lang="ar"] input[type="text"]::placeholder, html[lang="ar"] button {
+    font-family: 'QatarMedium', sans-serif;
+}
+html[lang="en"] #statusMessage, html[lang="en"] #adhkarMessage, html[lang="en"] input[type="text"]::placeholder, html[lang="en"] button {
     font-family: 'Philosopher', serif;
 }
 
-/* Make adhkarMessage always visible on load, even without 'success' class */
-#adhkarMessage.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#statusMessage.show {
+#statusMessage.show, #adhkarMessage.show {
     opacity: 1;
     transform: translateY(0);
 }
@@ -210,4 +447,94 @@ html[lang="en"] #statusMessage, html[lang="en"] #adhkarMessage {
     background-color: rgba(59, 130, 246, 0.1);
     color: var(--info-color);
     border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Footer styling */
+.footer {
+    padding: 1.5rem 1rem;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto; /* Pushes footer to the bottom */
+    transition: background 0.4s ease;
+    z-index: 1;
+}
+
+body.dark-mode .footer {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap if space is limited */
+    justify-content: center; /* Center items horizontally */
+    gap: 20px; /* Space between items */
+    color: var(--current-text-color);
+    font-size: 0.9rem;
+    transition: color 0.4s ease;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-align: center; /* Ensure text within each item is centered */
+}
+
+.footer-item .emoji {
+    font-size: 1.2em; /* Adjust emoji size */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .top-controls {
+        padding: 0.8rem 1rem;
+    }
+
+    #site-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-top: 80px;
+    }
+
+    .container {
+        padding: 1.5rem;
+        margin-top: -30px; /* Less pull-up on smaller screens */
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    #form-title {
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
+    }
+
+    input[type="text"], button {
+        padding: 0.7rem 0.9rem;
+        font-size: 1rem;
+    }
+
+    #statusMessage, #adhkarMessage {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack footer items vertically */
+        align-items: center; /* Center them when stacked */
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
 }
