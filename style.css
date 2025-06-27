@@ -137,15 +137,16 @@ body.dark-mode .bg-gradient-secondary {
 
 /* Top controls container */
 .top-controls {
-    /* No longer flexbox for horizontal positioning of its children */
-    position: fixed; /* Keep it fixed at the top */
+    display: flex; /* Re-enable flexbox */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Vertically center items */
+    padding: 1rem 1.5rem; /* Padding for the entire bar */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Give it a fixed height for consistent padding */
-    padding: 0 1.5rem; /* Only vertical padding is removed from here for specific button padding */
-    box-sizing: border-box; /* Include padding in width */
-    z-index: 100; /* Ensure it's always on top */
+    box-sizing: border-box;
+    z-index: 100;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.1);
     transition: background 0.4s ease;
@@ -155,17 +156,15 @@ body.dark-mode .top-controls {
     background: rgba(0, 0, 0, 0.1);
 }
 
-/* Language switcher - Now absolutely positioned */
+/* Language switcher - Back to default flow within flexbox */
 .language-switcher {
     display: flex;
     width: 80px;
     height: 36px;
     background-color: var(--current-language-switcher-bg);
     border-radius: 20px;
-    position: absolute; /* Changed to absolute */
-    top: 50%; /* Center vertically */
-    left: 1.5rem; /* Fixed distance from left */
-    transform: translateY(-50%); /* Adjust for vertical centering */
+    /* Removed absolute positioning */
+    position: relative; /* Keep relative for slider positioning */
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
@@ -175,7 +174,7 @@ body.dark-mode .top-controls {
 }
 
 .language-switcher:hover {
-    transform: translateY(-50%) translateY(-2px); /* Maintain vertical center, add hover effect */
+    transform: translateY(-2px);
     box-shadow: 0 5px 15px var(--shadow);
 }
 
@@ -207,6 +206,7 @@ body.dark-mode .top-controls {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Correct slider positioning based on data-active-lang */
 .language-switcher[data-active-lang="ar"] .slider {
     transform: translateX(40px);
 }
@@ -214,7 +214,23 @@ body.dark-mode .top-controls {
     transform: translateX(0);
 }
 
-/* Dark mode toggle - Now absolutely positioned */
+/* Site title - Now inside top-controls */
+#site-title {
+    font-family: 'Philosopher', sans-serif;
+    font-size: clamp(1.2rem, 4vw, 1.8rem); /* Smaller font for header */
+    color: var(--current-text-color);
+    text-align: center;
+    flex-grow: 1; /* Allows it to take available space */
+    transition: color 0.4s ease;
+    text-shadow: 0 1px 2px var(--shadow);
+    z-index: 1;
+    margin: 0 1rem; /* Add some horizontal margin */
+    /* Ensure it remains in LTR direction for "Creative Minds" */
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+/* Dark mode toggle - Back to default flow within flexbox */
 #mode-toggle {
     width: 60px;
     height: 36px;
@@ -224,17 +240,15 @@ body.dark-mode .top-controls {
     align-items: center;
     padding: 4px;
     cursor: pointer;
-    position: absolute; /* Changed to absolute */
-    top: 50%; /* Center vertically */
-    right: 1.5rem; /* Fixed distance from right */
-    transform: translateY(-50%); /* Adjust for vertical centering */
+    /* Removed absolute positioning */
+    position: relative; /* Keep relative for icon positioning */
     overflow: hidden;
     box-shadow: 0 2px 8px var(--shadow);
-    transition: all 0.3s ease; /* Ensure this transition is here */
+    transition: all 0.3s ease;
 }
 
 #mode-toggle:hover {
-    transform: translateY(-50%) translateY(-2px); /* Maintain vertical center, add hover effect */
+    transform: translateY(-2px);
     box-shadow: 0 5px 15px var(--shadow);
 }
 
@@ -249,7 +263,7 @@ body.dark-mode .top-controls {
     justify-content: center;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: absolute;
-    left: 4px; /* Relative to its parent's padding */
+    left: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -267,19 +281,6 @@ body.dark-mode .top-controls {
     content: "🌙";
 }
 
-/* Site title */
-#site-title {
-    font-family: 'Philosopher', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    color: var(--current-text-color);
-    text-align: center;
-    margin-top: 100px; /* Adjust as needed to clear fixed header */
-    margin-bottom: 2rem;
-    transition: color 0.4s ease;
-    text-shadow: 0 2px 4px var(--shadow);
-    z-index: 1;
-}
-
 /* Main content container */
 .main-content {
     flex-grow: 1;
@@ -289,6 +290,8 @@ body.dark-mode .top-controls {
     padding: 20px;
     box-sizing: border-box;
     z-index: 1;
+    /* Add padding-top to account for the fixed header */
+    padding-top: calc(60px + 20px); /* Header height + some extra space */
 }
 
 .container {
@@ -303,7 +306,7 @@ body.dark-mode .top-controls {
     flex-direction: column;
     align-items: center;
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
-    margin-top: -50px;
+    /* Removed margin-top, padding-top on main-content handles clearance */
     position: relative;
 }
 
@@ -490,25 +493,20 @@ body.dark-mode .footer {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .top-controls {
-        height: 50px; /* Adjust height for smaller screens */
-    }
-
-    .language-switcher {
-        left: 1rem; /* Adjust padding for smaller screens */
-    }
-
-    #mode-toggle {
-        right: 1rem; /* Adjust padding for smaller screens */
+        padding: 0.8rem 1rem; /* Adjust padding for smaller screens */
     }
 
     #site-title {
-        font-size: clamp(2rem, 8vw, 3rem);
-        margin-top: 70px; /* Adjust to clear smaller header */
+        font-size: clamp(1rem, 3.5vw, 1.5rem); /* Smaller font for smaller screens */
+    }
+
+    .main-content {
+        padding-top: calc(50px + 20px); /* Adjust clearance for smaller header */
     }
 
     .container {
         padding: 1.5rem;
-        margin-top: -30px;
+        /* margin-top will be removed as main-content padding-top handles clearance */
     }
 
     .logo {
@@ -517,7 +515,7 @@ body.dark-mode .footer {
     }
 
     #form-title {
-        font-size: clamp(1.5rem, 5vw, 2rem);
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
     }
 
     input[type="text"], button {
