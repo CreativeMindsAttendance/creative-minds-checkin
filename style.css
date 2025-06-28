@@ -54,6 +54,88 @@
   --current-button-shadow: rgba(0, 0, 0, 0.15);
 }
 
+.top-controls {
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+}
+.top-left,
+.top-right {
+  display: flex;
+  align-items: center;
+   
+}
+#mode-toggle {
+  width: 42px;
+  height: 42px;
+  background-color: var(--current-box-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px var(--current-button-shadow);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-icon::before {
+  content: '🌙';
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+body.dark-mode .toggle-icon::before {
+  content: '☀️';
+}
+
+.language-switcher {
+  position: relative;
+  width: 80px;
+  height: 36px;
+  background-color: var(--current-box-bg);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px var(--current-button-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Philosopher', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.language-switcher .lang-option {
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.language-switcher .lang-option.active {
+  color: var(--accent-blue);
+}
+
+.language-switcher .slider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 36px;
+  height: 28px;
+  border-radius: 16px;
+  background-color: var(--accent-blue);
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.language-switcher[data-active-lang="en"] .slider {
+  transform: translateX(40px);
+}
+
 .site-title {
   position: fixed;
   top: 20px;
