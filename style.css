@@ -1,185 +1,237 @@
-/* Custom Fonts */
+/* ========================================
+   الخطوط المخصصة - Custom Fonts
+======================================== */
 @font-face {
-    font-family: 'QatarMedium';
-    src: url('fonts/Qatar_Medium.woff2') format('woff2'),
-         url('fonts/Qatar_Medium.woff') format('woff');
-    font-weight: 500;
+    font-family: 'SwinglyLours';
+    src: url('fonts/SwinglyLours.otf') format('opentype');
+    font-weight: normal;
     font-style: normal;
-    font-display: swap; /* Ensures text is visible during font loading */
+    font-display: swap; /* Ensures font loads nicely */
 }
 
-/* Base styles and variables */
+@font-face {
+    font-family: 'QatarMedium';
+    src: url('fonts/QatarMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap; /* Ensures font loads nicely */
+}
+
+/* Philosopher font is loaded via Google Fonts link in HTML */
+
+/* ========================================
+   متغيرات الألوان والتصميم - Design Variables
+======================================== */
 :root {
-    --primary-bg-color: #e0e7ee; /* Light mode background */
-    --secondary-bg-color: #f8faff;
-    --card-bg-color: #ffffff;
-    --text-color: #333;
-    --input-bg: #f0f4f8;
-    --input-border: #ccd6e0;
-    --button-gradient-start: #7f7fd5;
-    --button-gradient-end: #86a8e7;
-    --button-text-color: white;
-    --shadow: rgba(0, 0, 0, 0.08);
-    --language-switcher-bg: #f0f4f8;
-    --mode-toggle-bg: #ccc;
+    /* ألوان الخلفية - Background Colors */
+    --main-bg-light: #E9F1F0; /* Soft light background */
+    --main-bg-dark: #1A202C; /* Dark background */
+    
+    /* ألوان النصوص - Text Colors */
+    --text-color-light: #323232; /* Dark grey for light mode text */
+    --text-color-dark: #F7FAFC; /* Light text for dark mode */
+    
+    /* ألوان النماذج - Form Colors */
+    --form-bg-light: #FFFFFF; /* Pure white form */
+    --form-bg-dark: #2D3748; /* Darker form background */
+    --input-bg-light: #F7FAFC; /* Light input background */
+    --input-bg-dark: #4A5568; /* Dark input background */
+    
+    /* ألوان الأزرار - Button Colors */
+    --button-primary-bg-light: #364251; /* Deep blue-grey */
+    --button-primary-bg-dark: #63758F; /* Lighter blue-grey for dark mode */
+    --button-text-light: #FFFFFF;
+    --button-text-dark: #FFFFFF;
+    
+    /* الظلال - Shadows (More prominent and consistent) */
+    --shadow-soft-large: 0px 10px 30px rgba(0, 0, 0, 0.15), 0px 0px 0px 1px rgba(255, 255, 255, 0.6); /* Form shadow */
+    --shadow-soft-large-dark: 0px 10px 30px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.08); /* Dark form shadow */
+    --shadow-button: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Button shadow */
+    --shadow-button-dark: 0px 5px 15px rgba(0, 0, 0, 0.35); /* Dark button shadow */
+
+    /* ألوان عناصر التحكم - Control Colors */
+    --control-bg-light: rgba(255, 255, 255, 0.95);
+    --control-border-light: rgba(255, 255, 255, 0.2);
+    --slider-bg-light: linear-gradient(135deg, #7C99AC, #92A9BD);
+    --slider-bg-dark: linear-gradient(135deg, #667eea, #764ba2);
+    
+    /* لون خلفية التذييل */
+    --footer-bg-light: #15253A; /* Dark blue for footer in light mode */
+    --footer-bg-dark: #050E17; /* Even darker blue for footer in dark mode */
+    
+    /* ألوان الحالة - Status Colors */
     --success-color: #22c55e;
     --error-color: #ef4444;
     --warning-color: #f59e0b;
     --info-color: #3b82f6;
-
-    /* Current active values (default to light mode) */
-    --current-primary-bg-color: var(--primary-bg-color);
-    --current-secondary-bg-color: var(--secondary-bg-color);
-    --current-card-bg-color: var(--card-bg-color);
-    --current-text-color: var(--text-color);
-    --current-input-bg: var(--input-bg);
-    --current-input-border: var(--input-border);
-    --current-button-gradient-start: var(--button-gradient-start);
-    --current-button-gradient-end: var(--button-gradient-end);
-    --current-language-switcher-bg: var(--language-switcher-bg);
-    --current-mode-toggle-bg: var(--mode-toggle-bg);
+    
+    /* المتغيرات النشطة - هذه المتغيرات سيتم استخدامها في المكونات */
+    --current-main-bg: var(--main-bg-light);
+    --current-text-color: var(--text-color-light);
+    --current-form-bg: var(--form-bg-light);
+    --current-input-bg: var(--input-bg-light);
+    --current-button-primary-bg: var(--button-primary-bg-light);
+    --current-button-text: var(--button-text-light);
+    --current-shadow-soft-large: var(--shadow-soft-large);
+    --current-shadow-button: var(--shadow-button);
+    --current-control-bg: var(--control-bg-light);
+    --current-control-border: var(--control-border-light);
+    --current-slider-bg: var(--slider-bg-light);
+    --current-footer-bg: var(--footer-bg-light);
 }
 
-/* Dark Mode Variables */
+/* ========================================
+   الوضع المظلم - Dark Mode
+======================================== */
 body.dark-mode {
-    --dark-primary-bg-color: #1a1a2e;
-    --dark-secondary-bg-color: #16213e;
-    --dark-card-bg-color: #0f3460;
-    --dark-text-color: #e0e0e0;
-    --dark-input-bg: #0c1a2f;
-    --dark-input-border: #2c5282;
-    --dark-button-gradient-start: #4a00e0;
-    --dark-button-gradient-end: #8e2de2;
-    --dark-language-switcher-bg: #0c1a2f;
-    --dark-mode-toggle-bg: #4f5d75;
-
-    --current-primary-bg-color: var(--dark-primary-bg-color);
-    --current-secondary-bg-color: var(--dark-secondary-bg-color);
-    --current-card-bg-color: var(--dark-card-bg-color);
-    --current-text-color: var(--dark-text-color);
-    --current-input-bg: var(--dark-input-bg);
-    --current-input-border: var(--dark-input-border);
-    --current-button-gradient-start: var(--dark-button-gradient-start);
-    --current-button-gradient-end: var(--dark-button-gradient-end);
-    --current-language-switcher-bg: var(--dark-language-switcher-bg);
-    --current-mode-toggle-bg: var(--dark-mode-toggle-bg);
+    --current-main-bg: var(--main-bg-dark);
+    --current-text-color: var(--text-color-dark);
+    --current-form-bg: var(--form-bg-dark);
+    --current-input-bg: var(--input-bg-dark);
+    --current-button-primary-bg: var(--button-primary-bg-dark);
+    --current-button-text: var(--button-text-dark);
+    --current-shadow-soft-large: var(--shadow-soft-large-dark);
+    --current-shadow-button: var(--shadow-button-dark);
+    --current-control-bg: var(--control-bg-dark);
+    --current-control-border: var(--control-border-dark);
+    --current-slider-bg: var(--slider-bg-dark);
+    --current-footer-bg: var(--footer-bg-dark);
 }
 
-/* Base font for English and general text */
-body {
-    font-family: 'Philosopher', sans-serif; /* Default English font */
-    background-color: var(--current-primary-bg-color);
-    color: var(--current-text-color);
+/* ========================================
+   إعدادات عامة - General Settings
+======================================== */
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    background-color: var(--current-main-bg); /* Base background color */
+    color: var(--current-text-color);
     overflow-x: hidden; /* Prevent horizontal scroll */
-    position: relative; /* For background elements */
+    display: flex;
+    flex-direction: column; /* Allows main content to push footer down */
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic using local font */
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Apply Arabic font when HTML lang is 'ar' */
-html[lang="ar"] body {
-    font-family: 'QatarMedium', sans-serif; /* Arabic font */
+/* Apply English font when language is English */
+html[lang="en"] body {
+    font-family: 'Philosopher', serif;
 }
 
-/* Ensure the `dir` attribute on html is set by JS for consistency */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Background elements */
-.bg-gradient-primary, .bg-gradient-secondary {
+/* Background gradient patterns (main background colors) */
+.bg-gradient-primary,
+.bg-gradient-secondary {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
-    opacity: 0.8;
-    transition: background 0.4s ease, opacity 0.4s ease;
-}
-.bg-gradient-primary {
-    background: linear-gradient(180deg, var(--current-primary-bg-color), var(--current-secondary-bg-color));
-}
-.bg-gradient-secondary {
-    background: linear-gradient(135deg, var(--current-secondary-bg-color) 0%, var(--current-primary-bg-color) 100%);
-    opacity: 0.5;
-}
-body.dark-mode .bg-gradient-secondary {
-    opacity: 0.7;
+    z-index: -3; /* Lowest layer */
+    transition: background 0.4s ease;
 }
 
-.bg-curvy-shape-left, .bg-curvy-shape-right {
+.bg-gradient-primary {
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle at 10% 10%, #E0F2F7, transparent 60%); /* Fixed light color for now */
+}
+
+.bg-gradient-secondary {
+    bottom: 0;
+    right: 0;
+    background: radial-gradient(circle at 90% 90%, #F0E6E8, transparent 60%); /* Fixed light color for now */
+}
+
+/* Curvy shapes using dedicated divs for better control, matching image */
+.bg-curvy-shape-left,
+.bg-curvy-shape-right {
     position: fixed;
-    width: 250px;
-    height: 250px;
+    width: 120vw;
+    height: 120vh;
     border-radius: 50%;
-    opacity: 0.1;
-    z-index: -1;
-    filter: blur(50px);
-    transition: background 0.4s ease, opacity 0.4s ease;
+    z-index: -2;
+    opacity: 0.6;
+    transition: background 0.4s ease, transform 0.4s ease;
 }
 
 .bg-curvy-shape-left {
-    top: -50px;
-    left: -50px;
-    background: var(--current-button-gradient-end);
+    background: #C0D8E4; /* Fixed light color for now */
+    top: -60vh;
+    left: -60vw;
+    clip-path: ellipse(60% 40% at 20% 10%);
+    transform: rotate(-15deg);
 }
 
 .bg-curvy-shape-right {
-    bottom: -50px;
-    right: -50px;
-    background: var(--current-button-gradient-start);
+    background: #E8D4D6; /* Fixed light color for now */
+    bottom: -60vh;
+    right: -60vw;
+    clip-path: ellipse(60% 40% at 80% 90%);
+    transform: rotate(15deg);
 }
 
-/* Top controls container - REVISED FOR ABSOLUTE POSITIONING OF CHILDREN */
+/* Dark mode adjustments for background colors (these would ideally be variables) */
+body.dark-mode .bg-gradient-primary {
+    background: radial-gradient(circle at 10% 10%, #1a1a2e, transparent 60%);
+}
+body.dark-mode .bg-gradient-secondary {
+    background: radial-gradient(circle at 90% 90%, #2C3E50, transparent 60%);
+}
+body.dark-mode .bg-curvy-shape-left {
+    background: #3C5069;
+}
+body.dark-mode .bg-curvy-shape-right {
+    background: #5A4E63;
+}
+
+
+/* ========================================
+   عناصر التحكم الثابتة - Fixed Controls
+======================================== */
 .top-controls {
-    position: fixed; /* Stays fixed at the top */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    height: 60px; /* Fixed height for consistent spacing */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Fixed height for the header bar */
-    box-sizing: border-box;
-    z-index: 100;
+    z-index: 100; /* Ensure it's always on top */
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05); /* Slightly transparent background */
     transition: background 0.4s ease;
-    /* Important: Set position to relative so children can be absolute to it */
-    position: relative;
-    /* Add padding internally for spacing, not for children to inherit */
-    padding: 0 1.5rem; /* Horizontal padding, no vertical padding needed for fixed height */
 }
 
 body.dark-mode .top-controls {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.05);
 }
 
-/* Language switcher - ABSOLUTELY POSITIONED */
+/* ========================================
+   مبدل اللغة - Language Switcher
+======================================== */
 .language-switcher {
     display: flex;
-    width: 80px;
-    height: 36px;
-    background-color: var(--current-language-switcher-bg);
+    width: 90px;
+    height: 46px;
+    background-color: var(--current-control-bg);
     border-radius: 20px;
-    position: absolute; /* Crucial: Absolute position */
-    top: 50%; /* Vertically center */
-    left: 1.5rem; /* Fixed distance from left edge */
-    transform: translateY(-50%); /* Adjust for vertical centering */
+    position: relative;
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--current-control-border);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px var(--shadow);
-    /* Removed margin-left/right as position:absolute overrides it */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
 .language-switcher:hover {
-    transform: translateY(-50%) translateY(-2px); /* Maintain vertical center, add hover effect */
-    box-shadow: 0 5px 15px var(--shadow);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
 }
 
 .lang-option {
@@ -187,7 +239,7 @@ body.dark-mode .top-controls {
     text-align: center;
     font-weight: 600;
     font-size: 12px;
-    line-height: 36px;
+    line-height: 46px; /* Adjusted line-height to match height */
     z-index: 2;
     position: relative;
     color: var(--current-text-color);
@@ -195,7 +247,7 @@ body.dark-mode .top-controls {
 }
 
 .lang-option.active {
-    color: white; /* Color of active language text */
+    color: white; /* لون نص اللغة النشطة */
 }
 
 .slider {
@@ -203,67 +255,42 @@ body.dark-mode .top-controls {
     top: 2px;
     bottom: 2px;
     left: 2px;
-    width: 36px;
+    width: 43px; /* Adjusted: (90 - 4px padding) / 2 = 43px */
     border-radius: 18px;
-    background: linear-gradient(135deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
+    background: var(--current-slider-bg);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px); /* Moves slider to AR position */
+    transform: translateX(43px); /* يحرك المؤشر إلى موضع AR */
 }
 .language-switcher[data-active-lang="en"] .slider {
-    transform: translateX(0); /* Moves slider to EN position */
+    transform: translateX(0); /* يحرك المؤشر إلى موضع EN */
 }
 
-/* Site title - ABSOLUTELY CENTERED */
-#site-title {
-    font-family: 'Philosopher', sans-serif;
-    font-size: clamp(1.5rem, 5vw, 2rem); /* Keep improved mobile font size */
-    color: var(--current-text-color);
-    text-align: center; /* Still center text within its own space */
-    position: absolute; /* Crucial: Absolute position */
-    top: 50%; /* Vertically center */
-    left: 50%; /* Start from the horizontal middle */
-    transform: translate(-50%, -50%); /* Adjust for both horizontal and vertical centering */
-    width: auto; /* Allow content to dictate width */
-    max-width: calc(100% - (1.5rem * 2 + 80px + 60px + 20px)); /* Calculate max-width to avoid overlap with buttons */
-    /* Calculation: 100% - (left_padding + right_padding + lang_button_width + mode_button_width + some_gap) */
-    white-space: nowrap; /* Keep text on one line */
-    overflow: hidden; /* Hide overflow if text is too long */
-    text-overflow: ellipsis; /* Add ellipsis if text overflows */
-    transition: color 0.4s ease;
-    text-shadow: 0 1px 2px var(--shadow);
-    z-index: 1;
-    margin: 0; /* Remove any lingering margins */
-    direction: ltr; /* Always LTR for site title */
-    unicode-bidi: isolate;
-}
-
-/* Dark mode toggle - ABSOLUTELY POSITIONED */
+/* ========================================
+   مبدل الوضع المظلم - Dark Mode Toggle
+======================================== */
 #mode-toggle {
     width: 60px;
     height: 36px;
     border-radius: 18px;
-    background: var(--current-mode-toggle-bg);
+    background: var(--current-slider-bg);
     display: flex;
     align-items: center;
     padding: 4px;
     cursor: pointer;
-    position: absolute; /* Crucial: Absolute position */
-    top: 50%; /* Vertically center */
-    right: 1.5rem; /* Fixed distance from right edge */
-    transform: translateY(-50%); /* Adjust for vertical centering */
-    overflow: hidden;
-    box-shadow: 0 2px 8px var(--shadow);
+    margin-left: 16px; /* Adjusted margin */
     transition: all 0.3s ease;
-    /* Removed margin-left as position:absolute overrides it */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
 #mode-toggle:hover {
-    transform: translateY(-50%) translateY(-2px); /* Maintain vertical center, add hover effect */
-    box-shadow: 0 5px 15px var(--shadow);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
 }
 
 #mode-toggle .toggle-icon {
@@ -275,146 +302,240 @@ body.dark-mode .top-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: absolute; /* Relative to the toggle, not top-controls */
-    left: 4px; /* Position inside its own parent */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+    position: relative;
+    left: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(24px); /* Moves icon to the right for dark mode */
+    transform: translateX(20px); /* يحرك الأيقونة إلى اليمين للوضع المظلم */
 }
 
 #mode-toggle .toggle-icon::before {
-    content: "☀️"; /* Sun icon */
-    font-size: 18px;
-    transition: content 0.4s ease;
+    content: "☀️"; /* أيقونة الشمس */
 }
 
 #mode-toggle.active .toggle-icon::before {
-    content: "🌙"; /* Moon icon */
+    content: "🌙"; /* أيقونة القمر */
 }
 
-/* Main content container - Adjust padding for fixed header */
+
+/* ========================================
+   عنوان الموقع - Site Title
+======================================== */
+#site-title { /* استخدام ID لأنه عنصر فريد */
+    text-align: center;
+    font-family: 'SwinglyLours', cursive;
+    font-size: clamp(3rem, 5vw, 7rem);
+    margin-top: calc(60px + 20px); /* Adjusted margin-top for spacing below top controls */
+    margin-bottom: 20px;
+    display: block; /* Ensure it takes full width for text-align: center */
+    z-index: 2;
+    position: relative;
+    font-weight: 700;
+    background: linear-gradient(135deg, #7C99AC, #92A9BD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInDown 1s ease-out;
+    letter-spacing: 2px;
+}
+
+@media screen and (min-width: 768px) {
+    #site-title {
+        font-size: clamp(36px, 7vw, 60px); /* Larger on desktop */
+    }
+}
+
+/* ========================================
+   المحتوى الرئيسي - Main Content
+======================================== */
 .main-content {
-    flex-grow: 1;
+    flex-grow: 1; /* يسمح لها بأخذ المساحة المتاحة ودفع التذييل للأسفل */
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-    z-index: 1;
-    /* This padding should match the height of the fixed header plus any desired gap */
-    padding-top: calc(60px + 20px); /* Header height (60px) + 20px extra space */
+    justify-content: center;
+    padding: 1rem;
+    padding-top: 40px; /* Adjusted padding-top to bring form up */
+    margin-bottom: 0;
+    width: 100%;
+    z-index: 10; /* Ensure content is above any remaining background elements */
+    position: relative;
 }
 
 .container {
-    background-color: var(--current-card-bg-color);
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px var(--shadow);
+    width: 90%;
+    max-width: 420px;
+    background: var(--current-form-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
     text-align: center;
-    max-width: 400px;
-    width: 100%;
+    box-shadow: var(--current-shadow-soft-large);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInUp 1s ease-out 0.3s both;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: background-color 0.4s ease, box-shadow 0.4s ease;
-    position: relative;
+    gap: 1rem;
 }
 
+body.dark-mode .container {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   الشعار - Logo
+======================================== */
 .logo {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 1.5rem;
+    width: 120px; /* Adjusted size slightly for better visibility */
+    height: auto;
     object-fit: contain;
+    margin-bottom: 0.5rem;
+    animation: pulse 2s infinite;
 }
 
+/* ========================================
+   عنوان النموذج - Form Title
+======================================== */
 #form-title {
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-family: 'QatarMedium', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--current-text-color);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease-out 0.6s both;
     transition: color 0.4s ease;
 }
-
-input[type="text"] {
-    width: calc(100% - 2rem);
-    padding: 0.8rem 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid var(--current-input-border);
-    border-radius: 10px;
-    background-color: var(--current-input-bg);
-    color: var(--current-text-color);
-    font-size: 1rem;
-    transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-    text-align: center;
+html[lang="en"] #form-title {
+    font-family: 'Philosopher', serif;
 }
 
-input[type="text"]:focus {
-    outline: none;
-    border-color: var(--button-gradient-end);
-    box-shadow: 0 0 0 3px rgba(134, 168, 231, 0.3);
-}
-
-button {
+/* ========================================
+   حقل الإدخال - Input Field
+======================================== */
+#nameInput {
     width: 100%;
-    padding: 1rem;
-    background: linear-gradient(90deg, var(--current-button-gradient-start), var(--current-button-gradient-end));
-    color: var(--button-text-color);
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 16px;
+    background-color: var(--current-input-bg);
+    border: 2px solid transparent;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'QatarMedium', sans-serif;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    color: var(--current-text-color);
+}
+html[lang="en"] #nameInput {
+    font-family: 'Philosopher', serif;
+}
+#nameInput::placeholder {
+    color: var(--current-text-color);
+    opacity: 0.7;
+}
+
+#nameInput:focus {
+    outline: none;
+    border-color: var(--current-button-primary-bg);
+    background-color: var(--current-input-bg);
+    box-shadow: 0 0 0 4px rgba(54, 66, 81, 0.1);
+    transform: translateY(-2px);
+}
+body.dark-mode #nameInput:focus {
+    box-shadow: 0 0 0 4px rgba(90, 109, 129, 0.1);
+}
+
+/* ========================================
+   الزر الرئيسي - Primary Button
+======================================== */
+#submitBtn {
+    background: var(--current-button-primary-bg); /* Using solid color variable */
+    color: var(--current-button-text);
+    padding: 1.2rem 2.5rem; /* Increased padding for larger button */
+    font-size: 1.2rem; /* Increased font size for larger button */
+    font-weight: 600;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--current-shadow-button);
+    font-family: 'QatarMedium', sans-serif;
     position: relative;
     overflow: hidden;
+    min-width: 180px; /* Increased min-width */
+    margin-bottom: 1rem; /* Added margin-bottom for space */
+}
+html[lang="en"] #submitBtn {
+    font-family: 'Philosopher', serif;
 }
 
-button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+#submitBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
-button:active:not(:disabled) {
-    transform: translateY(0);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+#submitBtn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    background: linear-gradient(90deg, #ccc, #bbb);
+#submitBtn.loading {
+    pointer-events: none;
+    opacity: 0.8;
 }
 
-button.loading::after {
-    content: '';
+#submitBtn.loading::after {
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     width: 20px;
     height: 20px;
-    margin-top: -10px;
-    margin-left: -10px;
-    border: 2px solid #fff;
-    border-top-color: transparent;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+    animation: spin 1s linear infinite;
 }
 
-button.loading span {
-    visibility: hidden;
+/* Adhkar Message Box Styling */
+.adhkar-message {
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: rgba(146, 169, 189, 0.1); /* Light blue background */
+    border: 1px solid rgba(146, 169, 189, 0.2);
+    border-radius: 16px;
+    font-size: 1rem;
+    color: var(--current-text-color);
+    text-align: center;
+    line-height: 1.5;
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
+    min-height: 60px; /* Ensure some height even if content is short */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1; /* Always visible */
+    transition: background-color 0.4s ease, color 0.4s ease;
+    word-wrap: break-word; /* Ensure long words break */
+    max-width: 100%;
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+body.dark-mode .adhkar-message {
+    background-color: rgba(55, 65, 81, 0.2); /* Dark grey background */
+    border: 1px solid rgba(55, 65, 81, 0.3);
 }
 
-/* Status and Adhkar messages */
-#statusMessage, #adhkarMessage {
+html[lang="en"] .adhkar-message {
+    font-family: 'Philosopher', serif; /* For English */
+}
+
+
+/* Status message */
+#statusMessage {
     margin-top: 1rem;
     padding: 0.75rem 1rem;
     border-radius: 12px;
@@ -423,145 +544,192 @@ button.loading span {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
+    font-family: 'QatarMedium', sans-serif; /* Default for Arabic */
     line-height: 1.4;
-    min-height: 20px;
-    max-width: 100%;
-    word-wrap: break-word;
-    text-align: center;
+    min-height: 20px; /* Prevents layout shift */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    word-wrap: break-word; /* Break long words */
+}
+html[lang="en"] #statusMessage {
+    font-family: 'Philosopher', serif; /* For English */
 }
 
-html[lang="ar"] #statusMessage, html[lang="ar"] #adhkarMessage, html[lang="ar"] input[type="text"]::placeholder, html[lang="ar"] button {
-    font-family: 'QatarMedium', sans-serif;
-}
-html[lang="en"] #statusMessage, html[lang="en"] #adhkarMessage, html[lang="en"] input[type="text"]::placeholder, html[lang="en"] button {
-    font-family: 'Philosopher', serif;
-}
 
-#statusMessage.show, #adhkarMessage.show {
+#statusMessage.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-#statusMessage.success, #adhkarMessage.success {
+#statusMessage.success {
     background-color: rgba(34, 197, 94, 0.1);
     color: var(--success-color);
     border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
-#statusMessage.error, #adhkarMessage.error {
+#statusMessage.error {
     background-color: rgba(239, 68, 68, 0.1);
     color: var(--error-color);
     border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-#statusMessage.warning, #adhkarMessage.warning {
+#statusMessage.warning {
     background-color: rgba(245, 158, 11, 0.1);
     color: var(--warning-color);
     border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
-#statusMessage.info, #adhkarMessage.info {
+#statusMessage.info { /* For loading, etc. */
     background-color: rgba(59, 130, 246, 0.1);
     color: var(--info-color);
     border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-/* Footer styling */
-.footer {
-    padding: 1.5rem 1rem;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    backdrop-filter: blur(5px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: auto;
-    transition: background 0.4s ease;
-    z-index: 1;
-}
 
-body.dark-mode .footer {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+/* ========================================
+   Footer - التذييل
+======================================== */
+.footer {
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    opacity: 1; /* Full opacity for solid background */
+    background-color: var(--current-footer-bg); /* Use solid background color */
+    backdrop-filter: none; /* No blur needed for solid background */
+    margin-top: auto; /* Pushes footer to the bottom */
+    color: var(--current-text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    width: 100%;
+    position: relative; /* For z-index context if needed */
+    z-index: 11;
 }
 
 .footer-content {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    color: var(--current-text-color);
-    font-size: 0.9rem;
-    transition: color 0.4s ease;
-    text-align: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .footer-item {
     display: flex;
     align-items: center;
-    gap: 5px;
-    text-align: center;
+    gap: 0.5rem;
+    direction: ltr; /* Always LTR for footer items to prevent emoji flipping and layout issues */
+    text-align: left;
 }
 
-.footer-item .emoji {
-    font-size: 1.2em;
+html[lang="ar"] .footer-content {
+    justify-content: center;
+}
+html[lang="en"] .footer-content {
+    justify-content: center;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    /* Top controls height and padding */
-    .top-controls {
-        height: 50px; /* Slightly smaller height on mobile */
-        padding: 0 1rem; /* Adjust horizontal padding for mobile */
-    }
+.emoji {
+    font-size: 1rem;
+    display: inline-block;
+    transform: scaleX(1);
+}
 
-    /* Site title font size on smaller screens */
+
+/* ========================================
+   Animations - التحريكات
+======================================== */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   Responsive design - التصميم المتجاوب
+======================================== */
+@media screen and (max-width: 768px) {
     #site-title {
-        font-size: clamp(1.4rem, 4.5vw, 1.8rem); /* Adjust font for mobile */
-        /* Recalculate max-width for mobile */
-        max-width: calc(100% - (1rem * 2 + 80px + 60px + 20px));
-        /* Calculation: 100% - (left_padding + right_padding + lang_button_width + mode_button_width + some_gap) */
+        margin-top: calc(60px + 10px); /* Adjusted for smaller screens too */
+        font-size: clamp(24px, 5vw, 42px);
     }
-
-    /* Main content padding adjustment for smaller header */
     .main-content {
-        padding-top: calc(50px + 20px); /* Header height (50px) + 20px extra space */
+        padding-top: 10px; /* Adjust padding-top for main content */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .top-controls {
+        padding: 0.75rem 1rem;
     }
 
     .container {
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
     }
 
-    .logo {
-        width: 100px;
-        height: 100px;
+    .language-switcher {
+        width: 70px;
+        height: 32px;
+    }
+    .lang-option {
+        font-size: 11px;
+        line-height: 32px;
+    }
+    .slider {
+        width: 32px;
+    }
+    .language-switcher[data-active-lang="ar"] .slider {
+        transform: translateX(36px);
+    }
+    #mode-toggle {
+        width: 60px; /* Keep width consistent with 768px breakpoint */
+        height: 32px; /* Adjusted height for smaller screens */
+    }
+    #mode-toggle .toggle-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+    #mode-toggle.active .toggle-icon {
+        transform: translateX(20px);
+    }
+
+    #site-title {
+        font-size: clamp(20px, 6vw, 36px);
+        margin-top: calc(60px + 10px); /* Consistent top margin for small screens */
     }
 
     #form-title {
-        font-size: clamp(1.2rem, 5vw, 1.8rem);
+        font-size: 1.4rem;
     }
-
-    input[type="text"], button {
-        padding: 0.7rem 0.9rem;
-        font-size: 1rem;
+    #nameInput, #submitBtn {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
     }
-
-    #statusMessage, #adhkarMessage {
-        font-size: 0.85rem;
-        padding: 0.6rem 0.8rem;
+    #submitBtn {
+        min-width: 140px;
     }
 
     .footer-content {
         flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 1rem;
-    }
-
-    .logo {
-        width: 80px;
-        height: 80px;
+        gap: 0.75rem;
     }
 }
