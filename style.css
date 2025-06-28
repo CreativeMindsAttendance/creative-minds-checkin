@@ -428,7 +428,8 @@ footer {
   .top-controls {
     flex-direction: column;
     gap: 1.2rem;
-    padding: 0.5rem 0.7rem 0.7rem 0.7rem;
+    padding-bottom: 0;
+    padding: 0.5rem auto;
     align-items: stretch;
     position: relative;
     z-index: 20;
