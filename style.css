@@ -258,6 +258,32 @@ button,
   min-width: 200px;
 }
 
+#submitBtn.loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+#submitBtn.loading::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid white;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
 button:hover,
 #submitBtn:hover {
   filter: brightness(1.1);
