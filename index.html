@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creative Minds</title>
+
+  <!-- Favicon -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png" />
@@ -11,48 +13,39 @@
   <link rel="manifest" href="favicon_io/site.webmanifest" />
 </head>
 <body>
-  <!-- Top Controls: Language + Theme -->
   <div class="top-controls">
-    <div class="lang-switch">
-      <button id="enBtn" class="lang-btn active">EN</button>
-      <button id="arBtn" class="lang-btn">AR</button>
+    <div class="language-switcher" id="lang-toggle" data-active-lang="en">
+      <span class="lang-option active" data-lang="en">EN</span>
+      <span class="lang-option" data-lang="ar">AR</span>
+      <div class="slider"></div>
     </div>
-    <div class="theme-switch">
-      <input type="checkbox" id="themeToggle" />
-      <label for="themeToggle" class="toggle-slider">
-        <span class="slider-icon sun">☀️</span>
-        <span class="slider-icon moon">🌙</span>
-      </label>
+    <div class="mode-toggle-wrapper" id="mode-toggle">
+      <span class="slider-icon">🌙</span>
     </div>
   </div>
-
-  <!-- Main Container -->
   <main>
-    <div class="card">
+    <div class="container card">
       <img src="favicon_io/android-chrome-192x192.png" alt="Creative Minds Logo" class="logo" />
-      <h1 class="form-title" id="formTitle">Attendance Form</h1>
-      <input type="text" id="nameInput" placeholder="Enter your full name" />
+      <h1 class="form-title" id="form-title">Attendance Form</h1>
+      <label for="nameInput">Enter your full name:</label>
+      <input type="text" id="nameInput" />
       <button id="submitBtn">
-        <span id="submitText">Check In</span>
+        <span>Check In</span>
         <div class="loader" id="loader" hidden></div>
       </button>
-      <p class="feedback" id="feedback"></p>
+      <div id="statusMessage" class="status-message"></div>
       <div class="adhkar-box">
-        <p id="adhkarText" class="adhkar-text">⏳ Loading a remembrance...</p>
+        <p id="dailyDhikr" class="adhkar-text">⏳ Loading a remembrance...</p>
       </div>
     </div>
   </main>
-
-  <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <span class="location">📍 Jazan, Saudi Arabia</span>
-      <span class="email">📧 example@creativeminds.edu.sa</span>
-      <span class="website">🌐 www.creativeminds.edu.sa</span>
+      <span class="footer-item"><span class="emoji">📍</span> <span id="location-text">Jazan, Saudi Arabia</span></span>
+      <span class="footer-item"><span class="emoji">✉️</span> <span id="email-text">example@creativeminds.edu.sa</span></span>
+      <span class="footer-item"><span class="emoji">🌐</span> <span id="website-text">www.creativeminds.edu.sa</span></span>
     </div>
   </footer>
-
-  <!-- Scripts -->
   <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
