@@ -135,52 +135,50 @@ body.dark-mode .bg-gradient-secondary {
     background: var(--current-button-gradient-start);
 }
 
-/* Top controls container */
+/* Top controls container - REVISED FOR ABSOLUTE POSITIONING OF CHILDREN */
 .top-controls {
-    display: flex; /* Enable flexbox for main container */
-    justify-content: space-between; /* Space out left, center, right groups */
-    align-items: center; /* Vertically center all items */
-    padding: 1rem 1.5rem; /* Padding for the entire bar */
-    position: fixed;
+    position: fixed; /* Stays fixed at the top */
     top: 0;
     left: 0;
     width: 100%;
+    height: 60px; /* Fixed height for the header bar */
     box-sizing: border-box;
     z-index: 100;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.1);
     transition: background 0.4s ease;
+    /* Important: Set position to relative so children can be absolute to it */
+    position: relative;
+    /* Add padding internally for spacing, not for children to inherit */
+    padding: 0 1.5rem; /* Horizontal padding, no vertical padding needed for fixed height */
 }
 
 body.dark-mode .top-controls {
     background: rgba(0, 0, 0, 0.1);
 }
 
-/* Your provided top-left and top-right classes */
-.top-left, .top-right {
-    display: flex;
-    align-items: center;
-}
-
-/* Language switcher */
+/* Language switcher - ABSOLUTELY POSITIONED */
 .language-switcher {
     display: flex;
     width: 80px;
     height: 36px;
     background-color: var(--current-language-switcher-bg);
     border-radius: 20px;
-    position: relative; /* Keep relative for slider positioning */
+    position: absolute; /* Crucial: Absolute position */
+    top: 50%; /* Vertically center */
+    left: 1.5rem; /* Fixed distance from left edge */
+    transform: translateY(-50%); /* Adjust for vertical centering */
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px var(--shadow);
-    /* No absolute positioning here as it's within .top-left flex container */
+    /* Removed margin-left/right as position:absolute overrides it */
 }
 
 .language-switcher:hover {
-    transform: translateY(-2px);
+    transform: translateY(-50%) translateY(-2px); /* Maintain vertical center, add hover effect */
     box-shadow: 0 5px 15px var(--shadow);
 }
 
@@ -219,26 +217,32 @@ body.dark-mode .top-controls {
     transform: translateX(0); /* Moves slider to EN position */
 }
 
-/* Site title - Centered using flexbox auto margins */
+/* Site title - ABSOLUTELY CENTERED */
 #site-title {
     font-family: 'Philosopher', sans-serif;
     font-size: clamp(1.5rem, 5vw, 2rem); /* Keep improved mobile font size */
     color: var(--current-text-color);
-    text-align: center;
-    flex-grow: 1; /* Allow it to take available space */
-    margin: 0 auto; /* This centers it horizontally between left and right groups */
-    transition: color 0.4s ease;
-    text-shadow: 0 1px 2px var(--shadow);
-    z-index: 1;
-    direction: ltr; /* Always LTR for site title to prevent reordering */
-    unicode-bidi: isolate;
+    text-align: center; /* Still center text within its own space */
+    position: absolute; /* Crucial: Absolute position */
+    top: 50%; /* Vertically center */
+    left: 50%; /* Start from the horizontal middle */
+    transform: translate(-50%, -50%); /* Adjust for both horizontal and vertical centering */
+    width: auto; /* Allow content to dictate width */
+    max-width: calc(100% - (1.5rem * 2 + 80px + 60px + 20px)); /* Calculate max-width to avoid overlap with buttons */
+    /* Calculation: 100% - (left_padding + right_padding + lang_button_width + mode_button_width + some_gap) */
     white-space: nowrap; /* Keep text on one line */
     overflow: hidden; /* Hide overflow if text is too long */
     text-overflow: ellipsis; /* Add ellipsis if text overflows */
+    transition: color 0.4s ease;
+    text-shadow: 0 1px 2px var(--shadow);
+    z-index: 1;
+    margin: 0; /* Remove any lingering margins */
+    direction: ltr; /* Always LTR for site title */
+    unicode-bidi: isolate;
 }
 
-/* Dark mode toggle */
-#mode-toggle { /* Changed from .mode-toggle to #mode-toggle */
+/* Dark mode toggle - ABSOLUTELY POSITIONED */
+#mode-toggle {
     width: 60px;
     height: 36px;
     border-radius: 18px;
@@ -247,16 +251,18 @@ body.dark-mode .top-controls {
     align-items: center;
     padding: 4px;
     cursor: pointer;
-    margin-left: 16px; /* Your desired margin */
-    transition: all 0.3s ease;
-    position: relative; /* Keep relative for icon positioning */
+    position: absolute; /* Crucial: Absolute position */
+    top: 50%; /* Vertically center */
+    right: 1.5rem; /* Fixed distance from right edge */
+    transform: translateY(-50%); /* Adjust for vertical centering */
     overflow: hidden;
     box-shadow: 0 2px 8px var(--shadow);
-    /* No absolute positioning here as it's within .top-right flex container */
+    transition: all 0.3s ease;
+    /* Removed margin-left as position:absolute overrides it */
 }
 
 #mode-toggle:hover {
-    transform: translateY(-2px);
+    transform: translateY(-50%) translateY(-2px); /* Maintain vertical center, add hover effect */
     box-shadow: 0 5px 15px var(--shadow);
 }
 
@@ -269,9 +275,9 @@ body.dark-mode .top-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
-    position: relative;
-    left: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute; /* Relative to the toggle, not top-controls */
+    left: 4px; /* Position inside its own parent */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -281,6 +287,8 @@ body.dark-mode .top-controls {
 
 #mode-toggle .toggle-icon::before {
     content: "☀️"; /* Sun icon */
+    font-size: 18px;
+    transition: content 0.4s ease;
 }
 
 #mode-toggle.active .toggle-icon::before {
@@ -297,7 +305,7 @@ body.dark-mode .top-controls {
     box-sizing: border-box;
     z-index: 1;
     /* This padding should match the height of the fixed header plus any desired gap */
-    padding-top: calc(60px + 20px); /* Header height + 20px extra space */
+    padding-top: calc(60px + 20px); /* Header height (60px) + 20px extra space */
 }
 
 .container {
@@ -498,17 +506,23 @@ body.dark-mode .footer {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    /* Top controls height and padding */
     .top-controls {
-        padding: 0.8rem 1rem; /* Adjust padding for smaller screens */
+        height: 50px; /* Slightly smaller height on mobile */
+        padding: 0 1rem; /* Adjust horizontal padding for mobile */
     }
 
     /* Site title font size on smaller screens */
     #site-title {
         font-size: clamp(1.4rem, 4.5vw, 1.8rem); /* Adjust font for mobile */
+        /* Recalculate max-width for mobile */
+        max-width: calc(100% - (1rem * 2 + 80px + 60px + 20px));
+        /* Calculation: 100% - (left_padding + right_padding + lang_button_width + mode_button_width + some_gap) */
     }
 
+    /* Main content padding adjustment for smaller header */
     .main-content {
-        padding-top: calc(50px + 20px); /* Adjust clearance for smaller header */
+        padding-top: calc(50px + 20px); /* Header height (50px) + 20px extra space */
     }
 
     .container {
