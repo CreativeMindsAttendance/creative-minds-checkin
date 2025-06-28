@@ -31,8 +31,7 @@ function loadLang() {
   langOptions.forEach(opt => opt.classList.toggle("active", opt.dataset.lang === currentLang));
   window.adhkarList = translations.ar.adhkar || []; // Always use Arabic adhkar
   hideMessage();
-  document.getElementById("guide-button").textContent = t.guideButton;
-  document.getElementById("guideBtn").textContent = (currentLang === "ar" ? "📘 " : "📘 ") + t.guideBtn;
+  document.getElementById("guideBtn").textContent = "📘 " + t.guideBtn;
 }
 
 function applyDarkMode() {
