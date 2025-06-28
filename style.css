@@ -119,16 +119,18 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   background: #fff;
   border-radius: 48px; /* really curved angles */
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  padding: 2.7rem 2.5rem 2.7rem 2.5rem; /* more inner margin */
-  max-width: 390px; /* smaller width on desktop */
+  padding: 1.5rem; /* more inner margin */
+  max-width: 420px; /* smaller width on desktop */
   min-width: 320px;
+  min-height: auto;  /* لا تجبره يصير طويل */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* ظل أنعم وأوضح */
   width: 100%;
   margin: 2.5rem auto; /* add bottom margin to prevent clipping with footer */
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem; /* higher gap between elements */
+  gap: 1.5rem; /* higher gap between elements */
   transition: background 0.4s;
 }
 body.dark-mode .container.card {
