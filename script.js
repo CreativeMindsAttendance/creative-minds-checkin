@@ -123,7 +123,8 @@ function submitAttendance() {
         name,
         time: new Date().toLocaleTimeString(),
         date: new Date().toLocaleDateString(),
-        location: "allowed name"
+        location: "on-site",
+        timestamp: new Date().toISOString()
       })
     });
     return showSuccess(t.success);
