@@ -505,15 +505,15 @@ footer {
 @media (max-width: 500px) {
   .language-switcher {
     top: 0rem; /* raise on mobile */
-    left: 1rem;
+    right: 1rem;
     bottom: 2rem
-    transform: scale(0.7);
+    transform: scale(0.2);
   }
   .mode-toggle-wrapper {
     top: 0rem; /* raise on mobile */
-    right: 1rem;
+    left: 1rem;
     bottom: 2rem
-    transform: scale(0.7);
+    transform: scale(0.2);
   }
   .container.card {
     max-width: 92vw;
@@ -531,7 +531,7 @@ footer {
   .site-title {
     font-size: 3.5rem;
     margin-top: 0.7rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 1rem;
   }
   .form-title {
     font-size: 1.5rem;
