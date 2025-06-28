@@ -459,16 +459,29 @@ footer {
     margin-top: 1rem; /* ✅ خلي بينهم وبين الشعار مسافة */
   }
 
-  .top-controls {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
+.top-controls {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  pointer-events: none; /* يمنع أي تداخل مع الضغط */
+}
+
+.top-right,
+.top-left {
+  position: absolute;
+  top: 0;
+  pointer-events: all; /* يعيد التفاعل للزر نفسه */
+}
+
+.top-right {
+  right: 20px;
+}
+
+.top-left {
+  left: 20px;
+}
 
   .language-switcher {
     background-color: #D3DEDC;
