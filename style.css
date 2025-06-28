@@ -54,21 +54,43 @@
   --current-button-shadow: rgba(0, 0, 0, 0.15);
 }
 
-body.dark-mode {
-  --current-bg: var(--main-bg-dark);
-  --current-text-color: var(--text-dark);
-  --current-box-bg: #1f1f1f;
-  --current-button-bg: var(--accent-blue);
-  --current-button-text: #ffffff;
+.site-title {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.2rem;
+  font-weight: 700;
+  font-family: 'Philosopher', sans-serif;
+  letter-spacing: 1px;
+  color: var(--current-text-color);
+  z-index: 1000;
+  user-select: none;
+  animation: fadeIn 1s ease-out;
+  pointer-events: none;
+}
+
+#site-title-creative {
+  color: var(--accent-blue);
+  margin-right: 0.2rem;
+}
+
+#site-title-minds {
+  color: var(--accent-green);
 }
 
 body {
-  background-color: var(--current-bg);
+  background: linear-gradient(145deg, #E5F0F7 0%, #FFFFFF 100%);
   color: var(--current-text-color);
   font-family: 'Philosopher', sans-serif;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background: linear-gradient(145deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: var(--current-text-color);
 }
 
 .container {
@@ -77,7 +99,7 @@ body {
   box-shadow: 0 10px 30px var(--shadow);
   padding: 2.5rem 2rem;
   max-width: 420px;
-  margin: 100px auto;
+  margin: 140px auto 100px auto;
   text-align: center;
   display: flex;
   flex-direction: column;
