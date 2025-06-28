@@ -20,7 +20,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Tajawal', sans-serif;
+  font-family: 'Tajawal', 'Philosopher', 'QatarMedium', sans-serif;
   background-color: var(--main-bg-light);
   color: var(--text-color-light);
   transition: background 0.3s ease, color 0.3s ease;
@@ -34,9 +34,12 @@ body.dark-mode {
 /* Top Controls */
 .top-controls {
   display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
+  justify-content: center;
   align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .language-switcher {
@@ -46,7 +49,6 @@ body.dark-mode {
   display: flex;
   align-items: center;
   gap: 8px;
-  position: relative;
   box-shadow: 0 0 4px rgba(0,0,0,0.1);
   cursor: pointer;
 }
@@ -61,16 +63,6 @@ body.dark-mode {
 .language-switcher .lang-option.active {
   background: var(--accent2-light);
   color: #fff;
-}
-
-.language-switcher .slider {
-  position: absolute;
-  height: 100%;
-  width: 50%;
-  top: 0;
-  border-radius: 999px;
-  transition: transform 0.3s ease;
-  z-index: 0;
 }
 
 .mode-toggle-wrapper {
@@ -96,6 +88,12 @@ body.dark-mode {
   border-radius: 16px;
   box-shadow: 0 0 12px rgba(0,0,0,0.05);
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+body.dark-mode .container {
+  background-color: var(--soft-pink-dark);
 }
 
 .logo {
@@ -108,6 +106,11 @@ body.dark-mode {
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 1.4rem;
+  color: var(--accent1-light);
+}
+
+body.dark-mode .form-title {
+  color: var(--accent1-dark);
 }
 
 #nameInput {
@@ -118,6 +121,14 @@ body.dark-mode {
   font-size: 1rem;
   margin-bottom: 1.2rem;
   box-sizing: border-box;
+  background: #fff;
+  color: var(--text-color-light);
+  transition: border 0.3s, background 0.3s, color 0.3s;
+}
+body.dark-mode #nameInput {
+  background: var(--soft-pink-dark);
+  color: var(--text-color-dark);
+  border: 1px solid var(--accent1-dark);
 }
 
 #submitBtn {
@@ -136,9 +147,15 @@ body.dark-mode {
   align-items: center;
   gap: 8px;
 }
+body.dark-mode #submitBtn {
+  background-color: var(--accent1-dark);
+}
 
 #submitBtn:hover {
   background-color: var(--accent2-light);
+}
+body.dark-mode #submitBtn:hover {
+  background-color: var(--accent2-dark);
 }
 
 .status-message {
@@ -175,11 +192,18 @@ body.dark-mode {
   margin-top: 2rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+body.dark-mode .adhkar-box {
+  background-color: var(--soft-pink-dark);
+}
 
 .adhkar-text {
   font-size: 1rem;
   font-weight: 500;
   direction: rtl;
+  color: var(--text-color-light);
+}
+body.dark-mode .adhkar-text {
+  color: var(--text-color-dark);
 }
 
 /* Footer */
@@ -189,6 +213,9 @@ footer {
   padding: 1rem 0;
   text-align: center;
   font-size: 0.9rem;
+}
+body.dark-mode footer {
+  background-color: var(--accent1-dark);
 }
 
 .footer-content {
@@ -203,24 +230,94 @@ footer {
   margin-right: 4px;
 }
 
-/* Brand Header inside Top Controls */
-.brand-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Custom Fonts */
+@font-face {
+    font-family: 'MacondoSwashCaps-Regular.ttf';
+    src: url('fonts/MacondoSwashCaps-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
-.small-logo {
-  width: 48px;
-  height: auto;
+@font-face {
+    font-family: 'QatarMedium';
+    src: url('fonts/QatarMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
 
-.brand-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--text-color-light);
+@font-face {
+    font-family: 'Philosopher';
+    src: url('fonts/PhilosopherRegular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
-body.dark-mode .brand-title {
-  color: var(--text-color-dark);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  .top-controls {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.2rem 0.7rem 0.7rem 0.7rem;
+    align-items: stretch;
+  }
+  .container.card {
+    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+  }
+  footer {
+    font-size: 0.98rem;
+    padding: 0.7rem 0.5rem;
+  }
+  .footer-content {
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
