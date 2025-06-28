@@ -327,26 +327,26 @@ body.dark-mode .adhkar-box {
 
 .guide-button-wrapper {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 16px;  /* قللنا المسافة من الكونتينر */
 }
 
 .guide-button {
-  background: linear-gradient(to right, #6B8BA4, #4F6D88); /* أزرق أغمق شوي */
+  background: linear-gradient(to right, #5B7894, #3E5C73); /* أزرق فخم وأغمق شوي */
   color: white;
-  padding: 14px 36px;  /* أكبر من السابق */
-  font-size: 18px;
+  padding: 18px 48px;  /* أكبر من قبل */
+  font-size: 19px;
   font-weight: 600;
   border: none;
-  border-radius: 18px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease;
 }
 
 .guide-button:hover {
-  background: linear-gradient(to right, #4F6D88, #6B8BA4);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(to right, #3E5C73, #5B7894);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
 
 footer {
