@@ -486,14 +486,11 @@ footer {
     top: 0rem; /* raise on mobile */
     left: 1rem;
     bottom: 2rem;
-    padding-left: 1rem;
-
   }
   .mode-toggle-wrapper {
     top: 0rem; /* raise on mobile */
     right: 1rem;
     bottom: 2rem;
-    padding-right: 1rem;
   }
   footer {
     font-size: 0.98rem;
@@ -508,14 +505,12 @@ footer {
     top: 0rem; /* raise on mobile */
     left: 1rem;
     bottom: 2rem;
-    padding-left: 1rem;
 
   }
   .mode-toggle-wrapper {
     top: 0rem; /* raise on mobile */
     right: 1rem;
     bottom: 2rem;
-    padding-right: 1rem;
   }
   .container.card {
     max-width: 92vw;
