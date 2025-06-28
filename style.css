@@ -19,8 +19,13 @@ body {
   padding: 0;
   background: linear-gradient(135deg, var(--light1) 0%, var(--light2) 40%, var(--light3) 80%, var(--light4) 100%);
   background-color: var(--light2);
-  min-height: 100vh;
   transition: background 0.4s;
+  overflow-x: hidden; /* ✅ امنع التمرير الجانبي */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
 }
 body.dark-mode {
   background: linear-gradient(135deg, var(--dark1) 0%, var(--dark2) 40%, var(--dark3) 80%, var(--dark4) 100%);
@@ -117,9 +122,8 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   padding: 2.7rem 2.5rem 2.7rem 2.5rem; /* more inner margin */
   max-width: 390px; /* smaller width on desktop */
   min-width: 320px;
-  min-height: 400px; /* higher but not too tall */
   width: 100%;
-  margin: 40px auto 40px auto; /* add bottom margin to prevent clipping with footer */
+  margin: 2.5rem auto; /* add bottom margin to prevent clipping with footer */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -334,7 +338,6 @@ footer {
   min-height: 180px; /* much taller */
   box-sizing: border-box;
   position: static;
-  margin-top: 3rem;
 }
 .footer-content {
   display: flex;
@@ -534,7 +537,7 @@ footer {
 }
 
 html, body {
-  height: 100%;
+  height: auto;
 }
 body {
   min-height: 100vh;
