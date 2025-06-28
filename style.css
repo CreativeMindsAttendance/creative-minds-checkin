@@ -503,7 +503,7 @@ footer {
     max-width: 92vw;
     min-height: 220px;
     padding: 0.7rem 0.3rem 0.7rem 0.3rem;
-    margin-top: 40px;
+    margin-top: 80px;
     margin-bottom: 40px;
     gap: 1.2rem;
     border-radius: 28px;
@@ -513,7 +513,7 @@ footer {
     height: 80px;
   }
   .site-title {
-    font-size: 2.3rem;
+    font-size: 3.5rem;
     margin-top: 0.7rem;
     margin-bottom: 0.3rem;
   }
@@ -535,7 +535,7 @@ footer {
     max-width: 120px;
     padding: 0.7rem 0;
     font-size: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   footer {
     min-height: 90px;
