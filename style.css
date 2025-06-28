@@ -120,8 +120,8 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   padding: 1.8rem; /* more inner margin */
   max-width: 480px; /* smaller width on desktop */
-  min-width: 320px;
-  min-height: 500px;  /* لا تجبره يصير طويل */
+  min-width: 450px;
+  min-height: 400px;  /* لا تجبره يصير طويل */
   max-height: 750px;
   height: auto;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* ظل أنعم وأوضح */
@@ -146,10 +146,10 @@ body.dark-mode .container.card {
 
 .site-title {
   font-family: 'MacondoSwashCaps-Regular', cursive;
-  font-size: 3.7rem;
+  font-size: 5rem;
   color: var(--dark1);
   margin-top: 2.2rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.8rem;
   letter-spacing: 1.5px;
   text-align: center;
   font-weight: 700;
