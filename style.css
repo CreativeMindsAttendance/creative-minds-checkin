@@ -117,14 +117,14 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   padding: 2.7rem 2.5rem 2.7rem 2.5rem; /* more inner margin */
   max-width: 390px; /* smaller width on desktop */
   min-width: 320px;
-  min-height: 520px; /* higher but not too tall */
+  min-height: 400px; /* higher but not too tall */
   width: 100%;
   margin: 40px auto 40px auto; /* add bottom margin to prevent clipping with footer */
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.7rem; /* higher gap between elements */
+  gap: 2rem; /* higher gap between elements */
   transition: background 0.4s;
 }
 body.dark-mode .container.card {
@@ -324,7 +324,7 @@ footer {
   background: #1D2B44;
   color: #fff;
   padding: 2.5rem 0 2.5rem 0; /* much larger background vertically */
-  font-size: 1.15rem;
+  font-size: 1.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -334,7 +334,7 @@ footer {
   min-height: 180px; /* much taller */
   box-sizing: border-box;
   position: static;
-  margin-top: 0;
+  margin-top: 3rem;
 }
 .footer-content {
   display: flex;
