@@ -1,64 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Creative Minds - Attendance Form</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png" />
-    <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png" />
-    <link rel="manifest" href="favicon_io/site.webmanifest" />
-  </head>
-  <body>
-    <!-- Top Controls: Language + Mode -->
-    <div class="top-controls">
-      <!-- Language Toggle -->
-      <div class="language-switcher" id="lang-toggle" data-active-lang="en">
-        <span class="lang-option active" data-lang="en">EN</span>
-        <span class="lang-option" data-lang="ar">AR</span>
-        <div class="slider"></div>
-      </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Minds</title>
 
-      <!-- Mode Toggle -->
-      <div class="mode-toggle-wrapper" id="mode-toggle">
-        <span class="slider-icon">🌙</span>
-      </div>
+  <!-- Favicon -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon_io/site.webmanifest" />
+</head>
+<body>
+  <div class="top-controls">
+    <!-- Language Toggle with proper IDs and data-lang -->
+    <div class="language-switcher" id="lang-toggle" data-active-lang="en">
+      <span class="lang-option active" data-lang="en">EN</span>
+      <span class="lang-option" data-lang="ar">AR</span>
+      <div class="slider"></div>
     </div>
 
-    <!-- Main Form Section -->
-    <main>
-      <div class="container card">
-        <img src="favicon_io/android-chrome-192x192.png" alt="Creative Minds Logo" class="logo" />
-        <h1 class="form-title" id="form-title">Attendance Form</h1>
-        <label for="nameInput">Enter your full name:</label>
-        <input type="text" id="nameInput" />
+    <!-- Theme Toggle as clickable div -->
+    <div class="mode-toggle-wrapper" id="mode-toggle">
+      <span class="slider-icon">🌙</span>
+    </div>
+  </div>
+  <main>
+    <div class="container card">
+      <!-- Logo -->
+      <img src="favicon_io/android-chrome-192x192.png" alt="Creative Minds Logo" class="logo" />
 
-        <button id="submitBtn">
-          <span>Check In</span>
-          <div class="loader" id="loader" hidden></div>
-        </button>
+      <!-- Title with ID -->
+      <h1 class="form-title" id="form-title">Attendance Form</h1>
 
-        <div id="statusMessage" class="status-message"></div>
+      <!-- Name input -->
+      <input type="text" id="nameInput" />
 
-        <!-- Daily Adhkar Box -->
-        <div class="adhkar-box">
-          <p id="dailyDhikr" class="adhkar-text">⏳ Loading a remembrance...</p>
-        </div>
+      <!-- Submit button -->
+      <button id="submitBtn">
+        <span>Check In</span>
+        <div class="loader" id="loader" hidden></div>
+      </button>
+
+      <!-- Feedback/status message -->
+      <div id="statusMessage" class="status-message"></div>
+
+      <!-- Adhkar section with correct ID and class -->
+      <div class="adhkar-box">
+        <p id="dailyDhikr" class="adhkar-text">⏳ Loading a remembrance...</p>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <span class="footer-item"><span class="emoji">📍</span> <span id="location-text">Jazan, Saudi Arabia</span></span>
-        <span class="footer-item"><span class="emoji">✉️</span> <span id="email-text">example@creativeminds.edu.sa</span></span>
-        <span class="footer-item"><span class="emoji">🌐</span> <span id="website-text">www.creativeminds.edu.sa</span></span>
-      </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="config.js"></script>
-    <script src="script.js"></script>
-  </body>
+  <footer>
+    <div class="footer-content">
+      <span class="footer-item"><span class="emoji">📍</span> <span id="location-text">Jazan, Saudi Arabia</span></span>
+      <span class="footer-item"><span class="emoji">✉️</span> <span id="email-text">example@creativeminds.edu.sa</span></span>
+      <span class="footer-item"><span class="emoji">🌐</span> <span id="website-text">www.creativeminds.edu.sa</span></span>
+    </div>
+  </footer>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
