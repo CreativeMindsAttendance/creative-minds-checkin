@@ -137,10 +137,10 @@ body.dark-mode .bg-gradient-secondary {
 
 /* Top controls container */
 .top-controls {
-    display: flex;
-    justify-content: space-between; /* This will be overridden by order property */
-    align-items: center;
-    padding: 1rem 1.5rem;
+    display: flex; /* Enable flexbox for main container */
+    justify-content: space-between; /* Space out left, center, right groups */
+    align-items: center; /* Vertically center all items */
+    padding: 1rem 1.5rem; /* Padding for the entire bar */
     position: fixed;
     top: 0;
     left: 0;
@@ -156,6 +156,12 @@ body.dark-mode .top-controls {
     background: rgba(0, 0, 0, 0.1);
 }
 
+/* Your provided top-left and top-right classes */
+.top-left, .top-right {
+    display: flex;
+    align-items: center;
+}
+
 /* Language switcher */
 .language-switcher {
     display: flex;
@@ -163,14 +169,14 @@ body.dark-mode .top-controls {
     height: 36px;
     background-color: var(--current-language-switcher-bg);
     border-radius: 20px;
-    position: relative;
+    position: relative; /* Keep relative for slider positioning */
     overflow: hidden;
     cursor: pointer;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px var(--shadow);
-    order: 1; /* Force language switcher to be the first item visually */
+    /* No absolute positioning here as it's within .top-left flex container */
 }
 
 .language-switcher:hover {
@@ -191,7 +197,7 @@ body.dark-mode .top-controls {
 }
 
 .lang-option.active {
-    color: white;
+    color: white; /* Color of active language text */
 }
 
 .slider {
@@ -207,30 +213,32 @@ body.dark-mode .top-controls {
 }
 
 .language-switcher[data-active-lang="ar"] .slider {
-    transform: translateX(40px);
+    transform: translateX(40px); /* Moves slider to AR position */
 }
 .language-switcher[data-active-lang="en"] .slider {
-    transform: translateX(0);
+    transform: translateX(0); /* Moves slider to EN position */
 }
 
-/* Site title - Now inside top-controls */
+/* Site title - Centered using flexbox auto margins */
 #site-title {
     font-family: 'Philosopher', sans-serif;
-    font-size: clamp(1.5rem, 5vw, 2rem); /* Increased minimum font size for mobile */
+    font-size: clamp(1.5rem, 5vw, 2rem); /* Keep improved mobile font size */
     color: var(--current-text-color);
     text-align: center;
-    flex-grow: 1;
+    flex-grow: 1; /* Allow it to take available space */
+    margin: 0 auto; /* This centers it horizontally between left and right groups */
     transition: color 0.4s ease;
     text-shadow: 0 1px 2px var(--shadow);
     z-index: 1;
-    margin: 0 1rem;
-    direction: ltr; /* Always LTR for site title */
+    direction: ltr; /* Always LTR for site title to prevent reordering */
     unicode-bidi: isolate;
-    order: 2; /* Force site title to be the second item visually */
+    white-space: nowrap; /* Keep text on one line */
+    overflow: hidden; /* Hide overflow if text is too long */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
 }
 
 /* Dark mode toggle */
-#mode-toggle {
+#mode-toggle { /* Changed from .mode-toggle to #mode-toggle */
     width: 60px;
     height: 36px;
     border-radius: 18px;
@@ -239,11 +247,12 @@ body.dark-mode .top-controls {
     align-items: center;
     padding: 4px;
     cursor: pointer;
-    position: relative;
+    margin-left: 16px; /* Your desired margin */
+    transition: all 0.3s ease;
+    position: relative; /* Keep relative for icon positioning */
     overflow: hidden;
     box-shadow: 0 2px 8px var(--shadow);
-    transition: all 0.3s ease;
-    order: 3; /* Force dark mode toggle to be the third item visually */
+    /* No absolute positioning here as it's within .top-right flex container */
 }
 
 #mode-toggle:hover {
@@ -260,27 +269,25 @@ body.dark-mode .top-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: absolute;
-    left: 4px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+    position: relative;
+    left: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #mode-toggle.active .toggle-icon {
-    transform: translateX(24px);
+    transform: translateX(24px); /* Moves icon to the right for dark mode */
 }
 
 #mode-toggle .toggle-icon::before {
-    content: "☀️";
-    font-size: 18px;
-    transition: content 0.4s ease;
+    content: "☀️"; /* Sun icon */
 }
 
 #mode-toggle.active .toggle-icon::before {
-    content: "🌙";
+    content: "🌙"; /* Moon icon */
 }
 
-/* Main content container */
+/* Main content container - Adjust padding for fixed header */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -289,7 +296,8 @@ body.dark-mode .top-controls {
     padding: 20px;
     box-sizing: border-box;
     z-index: 1;
-    padding-top: calc(60px + 20px); /* Header height + some extra space */
+    /* This padding should match the height of the fixed header plus any desired gap */
+    padding-top: calc(60px + 20px); /* Header height + 20px extra space */
 }
 
 .container {
@@ -474,6 +482,7 @@ body.dark-mode .footer {
     color: var(--current-text-color);
     font-size: 0.9rem;
     transition: color 0.4s ease;
+    text-align: center;
 }
 
 .footer-item {
@@ -490,16 +499,16 @@ body.dark-mode .footer {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .top-controls {
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 1rem; /* Adjust padding for smaller screens */
     }
 
     /* Site title font size on smaller screens */
     #site-title {
-        font-size: clamp(1.4rem, 4.5vw, 1.8rem); /* Slightly larger minimum font size */
+        font-size: clamp(1.4rem, 4.5vw, 1.8rem); /* Adjust font for mobile */
     }
 
     .main-content {
-        padding-top: calc(50px + 20px);
+        padding-top: calc(50px + 20px); /* Adjust clearance for smaller header */
     }
 
     .container {
