@@ -45,6 +45,7 @@ body.dark-mode {
 
 .language-switcher {
   position: absolute;
+  transform: scale(1.4);
   left: 2.5rem;
   top: 2rem;
   background: #fff;
@@ -78,7 +79,8 @@ body.dark-mode .language-switcher {
 /* Theme toggle slider in right upper corner */
 .mode-toggle-wrapper {
   position: absolute;
-  right: 2.5rem;
+  transform: scale(1.4);
+  right: 6rem;
   top: 2rem;
   width: 60px;
   height: 34px;
