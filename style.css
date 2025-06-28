@@ -325,23 +325,28 @@ body.dark-mode .adhkar-box {
   font-family: 'QatarMedium', 'Philosopher', sans-serif !important;
 }
 
+.guide-button-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .guide-button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 20px auto 0;
-  background-color: #FFE08C;
-  color: #1D2B44;
+  background: linear-gradient(to right, #92A9BD, #7C99AC);
+  color: white;
+  padding: 10px 25px;
   font-size: 16px;
   font-weight: 500;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-decoration: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: inline-block;
   transition: all 0.3s ease;
 }
 
 .guide-button:hover {
-  background-color: #FFD15B;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  background: linear-gradient(to right, #7C99AC, #92A9BD);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 footer {
