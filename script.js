@@ -20,7 +20,7 @@ let dhikrInterval;
 function loadLang() {
   const t = translations[currentLang];
   html.lang = currentLang;
-  nameInput.placeholder = t.placeholder;
+  nameInput.placeholder = t.inputPlaceholder;
   submitBtn.textContent = t.submit;
   formTitle.textContent = t.title;
   locationText.textContent = t.location;
