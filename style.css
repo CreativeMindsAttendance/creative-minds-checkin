@@ -263,20 +263,81 @@ button:hover,
   filter: brightness(1.1);
 }
 
+.status-message {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'Philosopher', sans-serif;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  line-height: 1.5;
+}
+
+.status-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.status-message.success {
+  background-color: #d4f4e5;
+  color: #256942;
+  box-shadow: 0 4px 10px rgba(0, 128, 0, 0.1);
+}
+
+.status-message.error {
+  background-color: #fce5e5;
+  color: #b20000;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.1);
+}
+
+.status-message.warning {
+  background-color: #fff5e5;
+  color: #b27300;
+  box-shadow: 0 4px 10px rgba(255, 165, 0, 0.1);
+}
+
 footer {
   background-color: var(--accent-blue);
   color: white;
-  padding: 1rem 0.8rem;
-  text-align: center;
-  font-size: 0.9rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  justify-content: center;
+  align-items: center;
 }
 
-footer span {
-  display: inline-block;
-  margin: 0 0.5rem;
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  max-width: 100%;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  font-family: 'Philosopher', sans-serif;
+}
+
+.footer-item .emoji {
+  font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
 }
 
 .bg-deco {
