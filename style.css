@@ -112,19 +112,19 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
 
 .container.card {
   background: #fff;
-  border-radius: 24px;
+  border-radius: 48px; /* really curved angles */
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  padding: 2.5rem 2rem 2.5rem 2rem; /* more inner margin */
-  max-width: 500px;
+  padding: 2.7rem 2.5rem 2.7rem 2.5rem; /* more inner margin */
+  max-width: 490px;
   min-width: 320px;
-  min-height: 350px;
+  min-height: 680px;
   width: 100%;
-  margin: 30px auto 100px auto;
+  margin: 40px auto 60px auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.7rem;
   transition: background 0.4s;
 }
 body.dark-mode .container.card {
@@ -328,13 +328,12 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  bottom: 0;
   width: 100vw;
   left: 0;
   z-index: 20;
   min-height: 90px;
   box-sizing: border-box;
+  position: static; /* not fixed, at bottom of site */
 }
 .footer-content {
   display: flex;
@@ -427,13 +426,14 @@ footer {
     align-items: stretch;
   }
   .container.card {
-    max-width: 95vw;
+    max-width: 80vw; /* narrower on mobile */
     min-width: unset;
-    min-height: 320px;
-    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
-    margin-top: 50px;
+    min-height: 420px;
+    padding: 1.2rem 0.7rem 1.2rem 0.7rem; /* inner margin for contents */
+    margin-top: 70px; /* lower on mobile */
     margin-bottom: 60px;
     gap: 1.1rem;
+    border-radius: 38px;
   }
   .site-title {
     font-size: 2.7rem;
@@ -448,6 +448,17 @@ footer {
     width: 80px;
     height: 80px;
   }
+  #nameInput {
+    width: 80%; /* narrower name slot */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .adhkar-box {
+    width: 80%; /* narrower adhkar slot */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.7rem 0.7rem;
+  }
   #submitBtn {
     width: 80%;
     min-width: 90px;
@@ -459,17 +470,19 @@ footer {
     font-size: 0.98rem;
     padding: 0.7rem 0.5rem;
     min-height: 70px;
+    position: static;
   }
 }
 
 @media (max-width: 500px) {
   .container.card {
-    max-width: 99vw;
+    max-width: 95vw;
     min-height: 220px;
     padding: 0.7rem 0.3rem 0.7rem 0.3rem;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 40px;
     gap: 0.7rem;
+    border-radius: 28px;
   }
   .site-title {
     font-size: 2.1rem;
@@ -484,6 +497,13 @@ footer {
     width: 60px;
     height: 60px;
   }
+  #nameInput {
+    width: 90%;
+  }
+  .adhkar-box {
+    width: 90%;
+    padding: 0.5rem 0.3rem;
+  }
   #submitBtn {
     width: 95%;
     min-width: 70px;
@@ -494,6 +514,7 @@ footer {
   footer {
     min-height: 60px;
     padding-bottom: env(safe-area-inset-bottom, 0);
+    position: static;
   }
 }
 
@@ -503,10 +524,11 @@ html, body {
 body {
   min-height: 100vh;
   position: relative;
-  padding-bottom: 90px;
+  padding-bottom: 0;
 }
 @media (max-width: 700px) {
   body {
     padding-bottom: 0; /* remove extra space for footer on mobile */
   }
 }
+
