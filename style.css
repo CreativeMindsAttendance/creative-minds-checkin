@@ -1,19 +1,30 @@
 /* ===================================
-   Creative Minds - Apple-Style Attendance Form (Refined)
+   Creative Minds - Apple-Style Attendance Form (Refined, Color Update)
    =================================== */
+
+:root {
+  --light1: rgb(166, 174, 191);
+  --light2: rgb(197, 211, 232);
+  --light3: rgb(208, 232, 197);
+  --light4: rgb(255, 248, 222);
+  --dark1: rgb(26, 55, 77);
+  --dark2: rgb(64, 104, 130);
+  --dark3: rgb(105, 152, 171);
+  --dark4: rgb(177, 208, 224);
+}
 
 body {
   font-family: 'Philosopher', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #e6f0fa 0%, #a7d8fa 100%);
-  background-color: #e6f0fa;
+  background: linear-gradient(135deg, var(--light1) 0%, var(--light2) 40%, var(--light3) 80%, var(--light4) 100%);
+  background-color: var(--light2);
   min-height: 100vh;
   transition: background 0.4s;
 }
 body.dark-mode {
-  background: linear-gradient(135deg, #122526 0%, #2a4d4e 100%);
-  background-color: #122526;
+  background: linear-gradient(135deg, var(--dark1) 0%, var(--dark2) 40%, var(--dark3) 80%, var(--dark4) 100%);
+  background-color: var(--dark1);
 }
 
 .top-controls {
@@ -44,7 +55,7 @@ body.dark-mode {
   max-width: 90px;
 }
 body.dark-mode .language-switcher {
-  background: #1a2a3a;
+  background: var(--dark2);
   color: #fff;
 }
 .language-switcher .lang-option {
@@ -67,7 +78,7 @@ body.dark-mode .language-switcher {
   top: 2rem;
   width: 60px;
   height: 34px;
-  background: #BBDDFD;
+  background: var(--light4);
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   cursor: pointer;
@@ -79,13 +90,13 @@ body.dark-mode .language-switcher {
   z-index: 2;
 }
 body.dark-mode .mode-toggle-wrapper {
-  background: #1D2B44;
+  background: var(--dark3);
 }
 .mode-toggle-wrapper .slider-icon {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: #BBDDFD;
+  background: var(--light2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +106,7 @@ body.dark-mode .mode-toggle-wrapper {
 }
 body.dark-mode .mode-toggle-wrapper .slider-icon {
   transform: translateX(26px);
-  background: #1D2B44;
+  background: var(--dark1);
   color: #fff;
 }
 
@@ -115,7 +126,7 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   transition: background 0.4s;
 }
 body.dark-mode .container.card {
-  background: #1D2B44;
+  background: var(--dark2);
 }
 
 .logo {
@@ -129,7 +140,7 @@ body.dark-mode .container.card {
 .site-title {
   font-family: 'MacondoSwashCaps-Regular.ttf', cursive;
   font-size: 2.2rem;
-  color: rgba(39, 59, 84, 1);
+  color: var(--dark1);
   margin-bottom: 0.2rem;
   letter-spacing: 1px;
   text-align: center;
@@ -144,7 +155,7 @@ body.dark-mode .site-title {
   font-family: 'Philosopher', sans-serif;
   font-weight: 700;
   margin-bottom: 1.2rem;
-  color: rgba(39, 59, 84, 1);
+  color: var(--dark1);
   text-align: center;
 }
 body.dark-mode .form-title {
@@ -178,7 +189,7 @@ body.dark-mode #nameInput {
   max-width: 220px;
   padding: 0.6rem 0;
   border-radius: 16px;
-  background: linear-gradient(90deg, #7C99AC, #92A9BD);
+  background: linear-gradient(90deg, var(--light3), var(--light2));
   color: #fff;
   font-size: 1.08rem;
   font-family: 'Philosopher', sans-serif;
@@ -211,7 +222,13 @@ body.dark-mode #nameInput {
 }
 #submitBtn:hover {
   filter: brightness(1.08) saturate(1.2);
-  background: linear-gradient(90deg, #92A9BD, #7C99AC);
+  background: linear-gradient(90deg, var(--light2), var(--light3));
+}
+body.dark-mode #submitBtn {
+  background: linear-gradient(90deg, var(--dark3), var(--dark2));
+}
+body.dark-mode #submitBtn:hover {
+  background: linear-gradient(90deg, var(--dark2), var(--dark3));
 }
 
 .status-message {
@@ -236,33 +253,48 @@ body.dark-mode #nameInput {
   pointer-events: auto;
 }
 .status-message.success {
-  background: #e6fbe8;
+  background: var(--light3);
   color: #1a7f3c;
   border: 1.5px solid #b6e7c9;
+}
+body.dark-mode .status-message.success {
+  background: var(--dark3);
+  color: #b6e7c9;
+  border: 1.5px solid var(--dark4);
 }
 .status-message.error {
   background: #fdeaea;
   color: #b20000;
   border: 1.5px solid #f5bcbc;
 }
+body.dark-mode .status-message.error {
+  background: #3a2323;
+  color: #ffb3b3;
+  border: 1.5px solid #b20000;
+}
 .status-message.warning {
-  background: #fffbe5;
+  background: var(--light4);
   color: #b27300;
   border: 1.5px solid #ffe7a1;
 }
+body.dark-mode .status-message.warning {
+  background: var(--dark4);
+  color: #ffe7a1;
+  border: 1.5px solid var(--dark3);
+}
 
 .adhkar-box {
+  background: var(--light4);
   margin-top: 1.5rem;
   width: 100%;
   display: flex;
   justify-content: center;
-  background: #f7fafd;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 1.1rem 1.2rem;
 }
 body.dark-mode .adhkar-box {
-  background: #23334a;
+  background: var(--dark4);
 }
 .adhkar-text {
   font-size: 1.1rem;
