@@ -164,17 +164,30 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
 .language-switcher[data-active-lang="en"] .slider {
   transform: translateX(40px);
 }
-
-/* خلفية فخمة شبيهة بـ Apple */
-body {
-  background: linear-gradient(135deg, #e9eff5, #f8f9fa);
+/* تحسين الزر */
+#submitBtn::after {
+  content: 'تسجيل';
+  font-family: 'Philosopher', sans-serif;
+  color: var(--current-button-text);
+  display: inline-block;
+  position: relative;
+  font-size: 1.1rem;
 }
 
-body.dark-mode {
-  background: linear-gradient(135deg, #101010, #1a1a1a);
+#submitBtn.loading::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid white;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
 }
 
-/* تعديل الاذكار ليظهر دائمًا */
 .daily-dhikr-message {
   display: block !important;
   direction: rtl;
@@ -194,54 +207,6 @@ body.dark-mode .daily-dhikr-message {
   background: linear-gradient(to right, #1a1a1a, #2a2a2a);
   color: #f1f1f1;
   box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
-}
-
-/* زر التسجيل - يحتوي نص */
-#submitBtn::after {
-  content: 'تسجيل';
-  font-family: 'Philosopher', sans-serif;
-  color: var(--current-button-text);
-  display: inline-block;
-  position: relative;
-  top: 0;
-  left: 0;
-  font-size: 1.1rem;
-}
-/* rest remains unchanged */
-
-button,
-#submitBtn {
-  background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
-  color: var(--current-button-text);
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px var(--current-button-shadow);
-  min-width: 200px;
-}
-
-#submitBtn.loading {
-  position: relative;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-#submitBtn.loading::after {
-  content: "تسجيل";
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid white;
-  border-top-color: transparent;
-  animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
