@@ -331,18 +331,23 @@ body.dark-mode .adhkar-text {
 .guide-button {
   display: inline-block;
   margin-top: 1.5rem;
-  padding: 1rem 2rem;
-  background: linear-gradient(90deg, #6a9eff, #4b7bec);
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 16px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #FFEFA0;
+  color: #333;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
-  transition: background 0.3s ease;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
+
 .guide-button:hover {
-  background: linear-gradient(90deg, #4b7bec, #6a9eff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 footer {
