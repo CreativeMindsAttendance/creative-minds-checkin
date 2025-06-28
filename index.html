@@ -1,69 +1,64 @@
+<!-- سيتم تعديل جميع الملاحظات بناءً على الصور والملاحظات -->
+<!-- نسخة HTML جاهزة لتطبيق الملاحظات التالية:
+1. زر الوضع الليلي على شكل سلايدر (🌙 / ☀️) بدون تكرار أيقونة.
+2. زر اللغة بألوان واضحة ومتحركة.
+3. الزر الرئيسي يظهر النص داخل الزر بشكل صحيح.
+4. الأذكار تظهر دائمًا وباللغة العربية فقط.
+5. الوضع الليلي يغير لون الخلفية وcontainer وكل النصوص بوضوح.
+6. خلفية Gradient جذابة ومختلفة لكل وضع -->
+
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Creative Minds - نموذج التحضير</title>
-    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Minds - نموذج التحضير</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Site title -->
-    <div id="site-title" class="site-title">
-        <span id="site-title-creative">Creative</span>
-        <span id="site-title-minds">Minds</span>
+  <div class="top-controls">
+    <div class="top-left">
+      <div class="language-switcher" id="languageToggle" data-active-lang="ar">
+        <span class="lang-option" id="langEN">EN</span>
+        <span class="lang-option" id="langAR">AR</span>
+        <div class="slider"></div>
+      </div>
     </div>
-
-    <!-- Top controls -->
-    <div class="top-controls">
-        <div class="top-left">
-            <div id="lang-toggle" class="language-switcher" data-active-lang="ar">
-                <div class="lang-option" data-lang="en">EN</div>
-                <div class="lang-option active" data-lang="ar">AR</div>
-                <div class="slider"></div>
-            </div>
+    <div class="top-right">
+      <div id="mode-toggle">
+        <div class="mode-slider">
+          <span class="moon">🌙</span>
+          <span class="sun">☀️</span>
+          <div class="slider-circle"></div>
         </div>
-        <div class="top-right">
-            <div id="mode-toggle">
-                <span class="toggle-icon">🌙</span>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Main content -->
-    <main class="main-content">
-        <div class="container">
-            <img src="logo.png" class="logo" alt="Creative Minds Logo" />
-            <h2 id="form-title" class="form-title">نموذج تحضير</h2>
-            <input type="text" id="nameInput" class="name-input" placeholder="اكتب اسمك الثلاثي" />
-            <button id="submitBtn">تسجيل الحضور</button>
-            <div id="statusMessage" class="status-message"></div>
-            <div id="dailyDhikr" class="daily-dhikr-message"></div>
-        </div>
-    </main>
+  <div class="site-title">
+    <span id="site-title-creative">Creative</span>
+    <span id="site-title-minds">Minds</span>
+  </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-item">
-                <span class="emoji">📍</span>
-                <span id="location-text">Jazan, Saudi Arabia</span>
-            </div>
-            <div class="footer-item">
-                <span class="emoji">📧</span>
-                <span id="email-text">example@creativeminds.edu.sa</span>
-            </div>
-            <div class="footer-item">
-                <span class="emoji">🌐</span>
-                <span id="website-text">www.creativeminds.edu.sa</span>
-            </div>
-        </div>
-    </footer>
+  <div class="container">
+    <img src="logo.png" alt="Logo" class="logo" />
+    <div id="form-title">نموذج تحضير</div>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك الثلاثي" />
+    <button id="submitBtn">تسجيل الحضور</button>
+    <div id="statusMessage" class="status-message"></div>
+    <div id="dailyDhikr" class="daily-dhikr-message"></div>
+  </div>
 
-    <script src="config.js"></script>
-    <script src="script.js"></script>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-item"><span class="emoji">📍</span> Jazan, Saudi Arabia</div>
+      <div class="footer-item"><span class="emoji">📧</span> example@creativeminds.edu.sa</div>
+      <div class="footer-item"><span class="emoji">🌐</span> www.creativeminds.edu.sa</div>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
