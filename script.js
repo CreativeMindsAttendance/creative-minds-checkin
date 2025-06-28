@@ -31,7 +31,11 @@ function loadLang() {
   langOptions.forEach(opt => opt.classList.toggle("active", opt.dataset.lang === currentLang));
   window.adhkarList = translations.ar.adhkar || []; // Always use Arabic adhkar
   hideMessage();
-  document.getElementById("guideBtn").textContent = "📘 " + t.guideBtn;
+  const guideBtn = document.getElementById("guideBtn");
+  guideBtn.innerHTML =
+  currentLang === "ar"
+    ? "📘 دليل المعلم"
+    : "📘 Teacher Guide";
 }
 
 function applyDarkMode() {
