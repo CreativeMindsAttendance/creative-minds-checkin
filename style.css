@@ -133,30 +133,34 @@ body.dark-mode .container.card {
   width: 90px;
   height: 90px;
   margin-bottom: 0.5rem;
-  border-radius: 50%;
+  border-radius: 0;
   background: none;
+  animation: pulse 2.5s infinite;
 }
 
 .site-title {
   font-family: 'MacondoSwashCaps-Regular.ttf', cursive;
-  font-size: 2.2rem;
+  font-size: 3.2rem;
   color: var(--dark1);
-  margin-bottom: 0.2rem;
-  letter-spacing: 1px;
+  margin-top: 2.2rem;
+  margin-bottom: 0.7rem;
+  letter-spacing: 1.5px;
   text-align: center;
   font-weight: 700;
+  line-height: 1.1;
 }
 body.dark-mode .site-title {
   color: #fff;
 }
 
 .form-title {
-  font-size: 1.4rem;
+  font-size: 2.1rem;
   font-family: 'Philosopher', sans-serif;
   font-weight: 700;
   margin-bottom: 1.2rem;
   color: var(--dark1);
   text-align: center;
+  line-height: 1.2;
 }
 body.dark-mode .form-title {
   color: #fff;
@@ -405,7 +409,7 @@ footer {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.07);
   }
 }
 
@@ -417,11 +421,26 @@ footer {
     align-items: stretch;
   }
   .container.card {
+    max-width: 95vw;
     padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+  }
+  .site-title {
+    font-size: 2.1rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .form-title {
+    font-size: 1.3rem;
   }
   footer {
     font-size: 0.98rem;
     padding: 0.7rem 0.5rem;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    z-index: 20;
   }
   .footer-content {
     gap: 0.7rem;
@@ -429,6 +448,18 @@ footer {
 }
 
 @media (max-width: 500px) {
+  .container.card {
+    max-width: 99vw;
+    padding: 0.7rem 0.3rem 0.7rem 0.3rem;
+  }
+  .site-title {
+    font-size: 1.3rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.3rem;
+  }
+  .form-title {
+    font-size: 1.1rem;
+  }
   .footer-content {
     flex-direction: column;
     gap: 0.6rem;
