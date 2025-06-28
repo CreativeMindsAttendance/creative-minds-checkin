@@ -114,15 +114,17 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   background: #fff;
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  padding: 2.2rem 1.5rem 2rem 1.5rem;
-  max-width: 400px;
+  padding: 2.5rem 2rem 2.5rem 2rem; /* more inner margin */
+  max-width: 500px;
+  min-width: 320px;
+  min-height: 350px;
   width: 100%;
-  margin: 30px auto 100px auto; /* move container higher on desktop */
+  margin: 30px auto 100px auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.5rem;
   transition: background 0.4s;
 }
 body.dark-mode .container.card {
@@ -130,20 +132,17 @@ body.dark-mode .container.card {
 }
 
 .logo {
-  width: 90px;
-  height: 90px;
-  margin-bottom: 0.5rem;
-  border-radius: 0;
-  background: none;
-  animation: pulse 2.5s infinite;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 0.7rem;
 }
 
 .site-title {
   font-family: 'MacondoSwashCaps-Regular', cursive;
-  font-size: 3.2rem;
+  font-size: 3.7rem;
   color: var(--dark1);
   margin-top: 2.2rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1.1rem;
   letter-spacing: 1.5px;
   text-align: center;
   font-weight: 700;
@@ -154,10 +153,10 @@ body.dark-mode .site-title {
 }
 
 .form-title {
-  font-size: 2.1rem;
+  font-size: 2.7rem;
   font-family: 'Philosopher', sans-serif;
   font-weight: 700;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
   color: var(--dark1);
   text-align: center;
   line-height: 1.2;
@@ -188,14 +187,14 @@ body.dark-mode #nameInput {
 }
 
 #submitBtn {
-  width: 70%;
-  min-width: 120px;
-  max-width: 220px;
-  padding: 0.6rem 0;
-  border-radius: 16px;
+  width: 60%;
+  min-width: 110px;
+  max-width: 180px;
+  padding: 1rem 0;
+  border-radius: 18px;
   background: linear-gradient(90deg, var(--light3), var(--light2));
   color: #fff;
-  font-size: 1.08rem;
+  font-size: 1.25rem;
   font-family: 'Philosopher', sans-serif;
   font-weight: 600;
   border: none;
@@ -209,6 +208,11 @@ body.dark-mode #nameInput {
   justify-content: center;
   gap: 0.7rem;
   position: relative;
+  letter-spacing: 0.5px;
+}
+#submitBtn span {
+  font-size: 1.3em;
+  font-weight: 700;
   letter-spacing: 0.5px;
 }
 #submitBtn .loader {
@@ -324,11 +328,13 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed; /* fixed on desktop */
+  position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   left: 0;
   z-index: 20;
+  min-height: 90px;
+  box-sizing: border-box;
 }
 .footer-content {
   display: flex;
@@ -421,70 +427,72 @@ footer {
     align-items: stretch;
   }
   .container.card {
-    max-width: 82vw; /* smaller container on mobile */
-    padding: 1rem 0.5rem 1rem 0.5rem; /* less padding */
-    margin-top: 50px; /* slightly lower */
+    max-width: 95vw;
+    min-width: unset;
+    min-height: 320px;
+    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+    margin-top: 50px;
     margin-bottom: 60px;
+    gap: 1.1rem;
   }
   .site-title {
-    font-size: 2.5rem; /* slightly smaller for balance */
+    font-size: 2.7rem;
     margin-top: 1.2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
   }
   .form-title {
-    font-size: 1.1rem;
-  }
-  #nameInput, #submitBtn, .adhkar-box, .status-message {
-    font-size: 0.95rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.1rem;
   }
   .logo {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
   }
-  .adhkar-box {
-    padding: 0.7rem 0.7rem;
+  #submitBtn {
+    width: 80%;
+    min-width: 90px;
+    max-width: 150px;
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
   }
   footer {
     font-size: 0.98rem;
     padding: 0.7rem 0.5rem;
-    left: 0;
-    right: 0;
-    width: 100vw;
-    position: static;
-  }
-  .footer-content {
-    gap: 0.7rem;
+    min-height: 70px;
   }
 }
 
 @media (max-width: 500px) {
   .container.card {
-    max-width: 97vw; /* even smaller on very small screens */
-    padding: 0.5rem 0.1rem 0.5rem 0.1rem;
+    max-width: 99vw;
+    min-height: 220px;
+    padding: 0.7rem 0.3rem 0.7rem 0.3rem;
     margin-top: 30px;
     margin-bottom: 40px;
+    gap: 0.7rem;
   }
   .site-title {
-    font-size: 2rem;
+    font-size: 2.1rem;
     margin-top: 0.7rem;
     margin-bottom: 0.3rem;
   }
   .form-title {
-    font-size: 1rem;
-  }
-  #nameInput, #submitBtn, .adhkar-box, .status-message {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
   }
   .logo {
-    width: 55px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
   }
-  .footer-content {
-    flex-direction: column;
-    gap: 0.6rem;
+  #submitBtn {
+    width: 95%;
+    min-width: 70px;
+    max-width: 120px;
+    padding: 0.7rem 0;
+    font-size: 1rem;
   }
   footer {
-    width: 100vw;
+    min-height: 60px;
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 }
@@ -495,7 +503,7 @@ html, body {
 body {
   min-height: 100vh;
   position: relative;
-  padding-bottom: 80px; /* space for fixed footer on desktop */
+  padding-bottom: 90px;
 }
 @media (max-width: 700px) {
   body {
