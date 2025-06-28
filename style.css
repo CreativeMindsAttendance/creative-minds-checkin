@@ -24,8 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  padding-bottom: 2rem;
+  align-items: center;
 }
 body.dark-mode {
   background: linear-gradient(135deg, var(--dark1) 0%, var(--dark2) 40%, var(--dark3) 80%, var(--dark4) 100%);
@@ -336,7 +335,7 @@ footer {
   background: #1D2B44;
   color: #fff;
   padding: 10xp 20xp; /* much larger background vertically */
-  font-size: 0.85rem;
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -442,10 +441,10 @@ footer {
   }
   .container.card {
     max-width: 70vw; /* much narrower on mobile */
-    min-width: unset;
-    min-height: 420px;
+    min-width: 330px;
+    min-height: 380px;
     padding: 1.7rem 0.7rem 1.7rem 0.7rem;
-    margin-top: 90px;
+    margin-top: 50px;
     margin-bottom: 80px; /* more space from footer */
     gap: 1.7rem;
     border-radius: 38px;
