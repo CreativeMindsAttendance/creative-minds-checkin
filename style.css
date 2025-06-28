@@ -475,11 +475,11 @@ footer {
     margin-bottom: 2.2rem;
   }
   .language-switcher {
-    top: -0.7rem; /* raise on mobile */
+    top: -0.2rem; /* raise on mobile */
     left: 0.7rem;
   }
   .mode-toggle-wrapper {
-    top: -0.7rem; /* raise on mobile */
+    top: -0.2rem; /* raise on mobile */
     right: 0.7rem;
   }
   footer {
@@ -538,11 +538,16 @@ footer {
 
 html, body {
   height: auto;
+  background: linear-gradient(135deg, var(--light1), var(--light2), var(--light3), var(--light4));
+}
+body.dark-mode {
+  background: linear-gradient(135deg, var(--dark1), var(--dark2), var(--dark3), var(--dark4));
 }
 body {
   min-height: 100vh;
   position: relative;
   padding-bottom: 0;
+  overscroll-behavior: none;
 }
 @media (max-width: 700px) {
   body {
