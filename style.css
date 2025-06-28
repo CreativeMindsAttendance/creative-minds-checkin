@@ -305,19 +305,22 @@ body.dark-mode .status-message.warning {
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 1.1rem 1.2rem;
+  min-height: 60px;
+  max-height: 80px;
+  overflow-y: auto;
+
 }
 body.dark-mode .adhkar-box {
   background: var(--dark4);
 }
 .adhkar-text {
+  direction: rtl;
   font-size: 1.1rem;
   font-family: 'Philosopher', serif;
   color: #2f2f2f;
   line-height: 1.7;
-  white-space: normal;
-  word-wrap: break-word;
   text-align: center;
-  max-width: 100%;
+  padding: 0 1rem;
 }
 
 /* Arabic font for all Arabic text */
@@ -449,83 +452,115 @@ footer {
 }
 
 @media (max-width: 700px) {
-  .site-title {
-    font-size: 2.9rem;
-    margin-top: 1.7rem;
-    margin-bottom: 1.3rem;
-  }
   .top-controls {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0.7rem 2rem 0.7rem 2rem;
-    gap: 1.2rem;
-    position: relative;
-    z-index: 20;
-  }
-  .language-switcher {
-    position: static;
-    transform: scale(1);
-    margin-right: 0.7rem;
-    margin-left: 0;
-    min-width: 80px;
-    max-width: 110px;
-    font-size: 1.05rem;
-    background: #fff;
-    box-shadow: 0 0 4px rgba(0,0,0,0.08);
-    border-radius: 999px;
-    padding: 2px 18px 2px 12px; /* more right padding to contain both EN and AR */
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
   }
+
+  .language-switcher {
+    background-color: #D3DEDC;
+    display: flex;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 4px 8px;
+    gap: 6px;
+    font-size: 1rem;
+  }
+
+  .language-switcher .lang-option {
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: transparent;
+    color: #444;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .language-switcher .lang-option.active {
+    background-color: #7C99AC;
+    color: white;
+    font-weight: 600;
+  }
+
   .mode-toggle-wrapper {
-    position: static;
-    transform: scale(1);
-    margin-left: 0.7rem;
-    margin-right: 0;
     background: var(--light4);
     border-radius: 20px;
     width: 60px;
     height: 34px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
     padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
+
   .container.card {
-    max-width: 410px;
-    min-width: 340px;
-    width: 100%;
-    min-height: 520px;
-    max-height: 520px;
-    height: 520px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 2.2rem 1.5rem 1.2rem 1.5rem; /* more inner margin from sides and top */
-    gap: 1.1rem;
-    overflow: hidden;
+    background-color: white;
+    border-radius: 2rem;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 1.2rem; /* ✅ تم زيادة الـ inner margin */
+    width: 90%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
   }
+
   .logo {
     width: 80px;
     height: 80px;
   }
+
   .form-title {
     font-size: 1.7rem;
     margin-bottom: 0.7rem;
   }
+
   #nameInput, .adhkar-box, #submitBtn, .status-message {
     font-size: 0.98rem;
   }
+
   .adhkar-box {
     margin-bottom: 1.2rem;
     min-height: 60px;
     max-height: 80px;
     overflow-y: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .guide-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;   /* ✅ تم تقليله */
+    margin-bottom: 1.5rem;
+  }
+
+  .guide-button {
+    background-color: #5B7894;
+    color: white;
+    padding: 1rem 2rem;  /* ✅ تم تكبيره */
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+  }
+
+  .guide-button:hover {
+    background-color: #3E5C73;
   }
 }
+
 @media (max-width: 500px) {
   .site-title {
     font-size: 2.3rem;
@@ -533,27 +568,11 @@ footer {
     margin-bottom: 1rem;
   }
   .container.card {
-    max-width: 99vw;
-    min-width: 250px;
-    width: 100%;
-    min-height: 420px;
-    max-height: 420px;
-    height: 420px;
-    padding: 1.2rem 0.7rem 0.7rem 0.7rem; /* more inner margin from sides and top */
-    gap: 0.7rem;
+   padding: 1.2rem 0.7rem 0.7rem 0.7rem;
+   height: 420px;
+   gap: 1.5rem;
+   width: 90%;
+   box-sizing: border-box;
   }
-}
 
-html, body {
-  height: auto;
-  background: linear-gradient(135deg, var(--light1), var(--light2), var(--light3), var(--light4));
-}
-body.dark-mode {
-  background: linear-gradient(135deg, var(--dark1), var(--dark2), var(--dark3), var(--dark4));
-}
-body {
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 0;
-  overscroll-behavior: none;
-}
+
