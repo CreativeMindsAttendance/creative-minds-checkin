@@ -430,9 +430,9 @@ footer {
 @media (max-width: 700px) {
   .top-controls {
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1rem;
     padding-bottom: 0;
-    padding: 0.5rem 0; /* fix invalid padding */
+    padding: 1rem 0; /* fix invalid padding */
     align-items: stretch;
     position: relative;
     z-index: 20;
@@ -499,12 +499,21 @@ footer {
 }
 
 @media (max-width: 500px) {
+  .top-controls {
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 0;
+    padding: 1rem 0; /* fix invalid padding */
+    align-items: stretch;
+    position: relative;
+    z-index: 20;
+  }
   .container.card {
     max-width: 99vw;
-    min-width: 0; /* remove min-width to avoid horizontal scroll */
+    min-width: 50VW; /* remove min-width to avoid horizontal scroll */
     min-height: 220px;
     padding: 0.7rem 0.3rem 0.7rem 0.3rem;
-    margin-top: 80px;
+    margin-top:60px;
     margin-bottom: 40px;
     gap: 1.2rem;
     border-radius: 28px;
@@ -557,9 +566,4 @@ body {
   position: relative;
   padding-bottom: 0;
   overscroll-behavior: none;
-}
-@media (max-width: 700px) {
-  body {
-    padding-bottom: 0; /* remove extra space for footer on mobile */
-  }
 }
