@@ -115,9 +115,9 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   border-radius: 48px; /* really curved angles */
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   padding: 2.7rem 2.5rem 2.7rem 2.5rem; /* more inner margin */
-  max-width: 490px;
+  max-width: 390px; /* smaller width on desktop */
   min-width: 320px;
-  min-height: 680px;
+  min-height: 520px; /* higher but not too tall */
   width: 100%;
   margin: 40px auto 0 auto;
   text-align: center;
