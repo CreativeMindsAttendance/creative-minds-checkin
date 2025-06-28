@@ -21,15 +21,15 @@ function loadLang() {
   const t = translations[currentLang];
   html.lang = currentLang;
   nameInput.placeholder = t.inputPlaceholder;
-  submitBtn.textContent = t.submit;
-  formTitle.textContent = t.title;
+  submitBtn.innerHTML = t.submitButton;
+  formTitle.textContent = t.formTitle;
   locationText.textContent = t.location;
   emailText.textContent = t.email;
   websiteText.textContent = t.website;
   nameInput.style.direction = statusMessage.style.direction = currentLang === "ar" ? "rtl" : "ltr";
   langToggle.dataset.activeLang = currentLang;
   langOptions.forEach(opt => opt.classList.toggle("active", opt.dataset.lang === currentLang));
-  window.adhkar = t.adhkar || [];
+  window.adhkarList = translations.ar.adhkar || []; // Always use Arabic adhkar
   hideMessage();
 }
 
@@ -90,7 +90,7 @@ function submitAttendance() {
   submitBtn.disabled = true;
   submitBtn.classList.add("loading");
 
-  if (!name) return showError(t.required);
+  if (!name) return showError(t.emptyNameError);
 
   const checkedName = hasCheckedInToday();
   if (checkedName) {
@@ -108,7 +108,7 @@ function submitAttendance() {
 
   if (!navigator.geolocation) return showError(t.geoError);
 
-  showMessage(t.loading, "info");
+  showMessage(t.adhkarLoading, "info");
 
   navigator.geolocation.getCurrentPosition(pos => {
     const dist = getDistanceKm(pos.coords.latitude, pos.coords.longitude, window.DEST_LAT, window.DEST_LON);
@@ -146,12 +146,13 @@ function showError(msg) {
 }
 
 function displayRandomDhikr() {
-  if (!Array.isArray(adhkar) || adhkar.length === 0) {
-    dailyDhikr.textContent = translations[currentLang].adhkarError;
+  if (!Array.isArray(window.adhkarList) || window.adhkarList.length === 0) {
+    dailyDhikr.textContent = translations.ar.adhkarError;
     return;
   }
-  dailyDhikr.textContent = adhkar[Math.floor(Math.random() * adhkar.length)];
-  dailyDhikr.style.direction = currentLang === "ar" ? "rtl" : "ltr";
+  const randomIndex = Math.floor(Math.random() * window.adhkarList.length);
+  dailyDhikr.textContent = window.adhkarList[randomIndex];
+  dailyDhikr.style.direction = "rtl";
 }
 
 function init() {
@@ -164,7 +165,6 @@ function init() {
     currentLang = currentLang === "ar" ? "en" : "ar";
     localStorage.setItem("lang", currentLang);
     loadLang();
-    displayRandomDhikr();
   });
 
   modeToggle.addEventListener("click", () => {
