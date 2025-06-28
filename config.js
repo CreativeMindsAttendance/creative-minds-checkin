@@ -64,5 +64,5 @@ window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2", "JOHN DOE"]; // Example test n
 
 // config.js
 const CONFIG = {
-  SHEET_WEBHOOK: "https://script.google.com/macros/library/d/1U2tmkYwsDtpTqugPUYEAlayeHzeO6dzUjeQfZBi_rfhWHW-a-iyEsSyO/1"
+  SHEET_WEBHOOK: "https://script.google.com/macros/s/AKfycbxvRE1VR0hcx6z2OjIjlJ95W8Q0UuFmfk7mVmURl9d01wq0jH3R6-ECsIghHpuSaX2Z/exec"
 };
