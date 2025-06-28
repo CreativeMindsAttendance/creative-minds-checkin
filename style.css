@@ -476,7 +476,7 @@ footer {
     border-radius: 20px;
     box-sizing: border-box;
     min-height: 360px;
-    max-height: 500px;
+    max-height: none;
     height: auto;
     padding-bottom: 2.2rem;
   }
