@@ -32,6 +32,7 @@ function loadLang() {
   window.adhkarList = translations.ar.adhkar || []; // Always use Arabic adhkar
   hideMessage();
   document.getElementById("guide-button").textContent = t.guideButton;
+  document.getElementById("guideBtn").textContent = (currentLang === "ar" ? "📘 " : "📘 ") + t.guideBtn;
 }
 
 function applyDarkMode() {
