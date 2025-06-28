@@ -331,7 +331,7 @@ body.dark-mode .adhkar-text {
 footer {
   background: #1D2B44;
   color: #fff;
-  padding: 10xp 300xp; /* much larger background vertically */
+  padding: 30px 0 45px 0; /* Remove invalid padding and use valid values */
   font-size: 1.4rem;
   display: flex;
   justify-content: center;
@@ -339,8 +339,6 @@ footer {
   width: 100vw;
   left: 0;
   z-index: 20;
-  padding-top: 30px;
-  padding-bottom: 45px;
   margin-top: 50px;
   min-height: 80px;
   box-sizing: border-box;
@@ -434,18 +432,18 @@ footer {
     flex-direction: column;
     gap: 1.2rem;
     padding-bottom: 0;
-    padding: 0.5rem auto;
+    padding: 0.5rem 0; /* fix invalid padding */
     align-items: stretch;
     position: relative;
     z-index: 20;
   }
   .container.card {
-    max-width: 70vw; /* much narrower on mobile */
-    min-width: 330px;
+    max-width: 95vw; /* allow container to shrink on small screens */
+    min-width: 0; /* remove min-width to avoid horizontal scroll */
     min-height: 380px;
     padding: 1.7rem 0.7rem 1.7rem 0.7rem;
     margin-top: 100px;
-    margin-bottom: 80px; /* more space from footer */
+    margin-bottom: 80px;
     gap: 1.7rem;
     border-radius: 38px;
   }
@@ -501,19 +499,9 @@ footer {
 }
 
 @media (max-width: 500px) {
-  .language-switcher {
-    top: 0rem; /* raise on mobile */
-    left: 1rem;
-    bottom: 2rem;
-
-  }
-  .mode-toggle-wrapper {
-    top: 0rem; /* raise on mobile */
-    right: 1rem;
-    bottom: 2rem;
-  }
   .container.card {
-    max-width: 92vw;
+    max-width: 99vw;
+    min-width: 0; /* remove min-width to avoid horizontal scroll */
     min-height: 220px;
     padding: 0.7rem 0.3rem 0.7rem 0.3rem;
     margin-top: 80px;
