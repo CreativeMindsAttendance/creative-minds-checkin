@@ -1,19 +1,19 @@
 /* ===================================
-   Creative Minds - Apple-Style Attendance Form
+   Creative Minds - Apple-Style Attendance Form (Refined)
    =================================== */
 
 body {
   font-family: 'Philosopher', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #e6f0fa 0%, #dbeaf7 100%);
-  background-color: rgba(222, 235, 243, 1);
+  background: linear-gradient(135deg, #e6f0fa 0%, #a7d8fa 100%);
+  background-color: #e6f0fa;
   min-height: 100vh;
   transition: background 0.4s;
 }
 body.dark-mode {
-  background: linear-gradient(135deg, #122526 0%, #1a2a3a 100%);
-  background-color: rgba(18, 37, 38, 1);
+  background: linear-gradient(135deg, #122526 0%, #2a4d4e 100%);
+  background-color: #122526;
 }
 
 .top-controls {
@@ -34,22 +34,25 @@ body.dark-mode {
   top: 2rem;
   background: #fff;
   border-radius: 999px;
-  padding: 4px 8px;
+  padding: 2px 4px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  gap: 2px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.08);
   cursor: pointer;
+  min-width: 70px;
+  max-width: 90px;
 }
 body.dark-mode .language-switcher {
   background: #1a2a3a;
   color: #fff;
 }
 .language-switcher .lang-option {
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 999px;
   font-weight: 500;
   font-family: 'Philosopher', sans-serif;
+  font-size: 1rem;
   transition: background 0.3s, color 0.3s;
 }
 .language-switcher .lang-option.active {
@@ -100,7 +103,7 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   background: #fff;
   border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  padding: 2.5rem 2rem 2rem 2rem;
+  padding: 2.2rem 1.5rem 2rem 1.5rem;
   max-width: 400px;
   width: 100%;
   margin: 120px auto 100px auto;
@@ -108,7 +111,7 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   transition: background 0.4s;
 }
 body.dark-mode .container.card {
@@ -120,7 +123,7 @@ body.dark-mode .container.card {
   height: 90px;
   margin-bottom: 0.5rem;
   border-radius: 50%;
-  background: #fff;
+  background: none;
 }
 
 .site-title {
@@ -150,20 +153,19 @@ body.dark-mode .form-title {
 
 #nameInput {
   width: 100%;
-  padding: 1rem 1.1rem;
-  border-radius: 16px;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
   background: #f7fafd;
   border: none;
   outline: none;
-  font-size: 1.13rem;
+  font-size: 1.08rem;
   font-family: 'Philosopher', sans-serif;
   color: #222;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
   transition: box-shadow 0.25s, background 0.25s, color 0.25s;
-  box-shadow: 0 2px 8px rgba(30, 40, 90, 0.06),
-    inset 0 2px 8px rgba(180, 200, 255, 0.13),
-    inset 0 1.5px 4px rgba(120, 120, 120, 0.07);
+  box-shadow: 0 1.5px 6px rgba(30, 40, 90, 0.06),
+    inset 0 1.5px 6px rgba(180, 200, 255, 0.10);
 }
 body.dark-mode #nameInput {
   background: #23334a;
@@ -171,25 +173,28 @@ body.dark-mode #nameInput {
 }
 
 #submitBtn {
-  width: 100%;
-  padding: 0.9rem 0;
-  border-radius: 18px;
+  width: 70%;
+  min-width: 120px;
+  max-width: 220px;
+  padding: 0.6rem 0;
+  border-radius: 16px;
   background: linear-gradient(90deg, #7C99AC, #92A9BD);
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   font-family: 'Philosopher', sans-serif;
   font-weight: 600;
   border: none;
   cursor: pointer;
   margin-top: 0.7rem;
   margin-bottom: 0.2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 1.5px 6px rgba(0,0,0,0.10);
   transition: filter 0.2s, background 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.7rem;
   position: relative;
+  letter-spacing: 0.5px;
 }
 #submitBtn .loader {
   width: 18px;
@@ -203,6 +208,47 @@ body.dark-mode #nameInput {
 #submitBtn[disabled] {
   opacity: 0.7;
   cursor: not-allowed;
+}
+#submitBtn:hover {
+  filter: brightness(1.08) saturate(1.2);
+  background: linear-gradient(90deg, #92A9BD, #7C99AC);
+}
+
+.status-message {
+  width: 90%;
+  margin: 0.7rem auto 0 auto;
+  padding: 0.9rem 1.1rem;
+  border-radius: 14px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  font-family: 'Philosopher', sans-serif;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s, transform 0.4s, background 0.3s, color 0.3s;
+  pointer-events: none;
+  line-height: 1.5;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+.status-message.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.status-message.success {
+  background: #e6fbe8;
+  color: #1a7f3c;
+  border: 1.5px solid #b6e7c9;
+}
+.status-message.error {
+  background: #fdeaea;
+  color: #b20000;
+  border: 1.5px solid #f5bcbc;
+}
+.status-message.warning {
+  background: #fffbe5;
+  color: #b27300;
+  border: 1.5px solid #ffe7a1;
 }
 
 .adhkar-box {
