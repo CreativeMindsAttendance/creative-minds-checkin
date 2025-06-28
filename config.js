@@ -1,5 +1,5 @@
 // Translations data for English and Arabic
-window.translations = {
+const translations = {
     en: {
         siteTitle: "Creative Minds",
         formTitle: "Attendance Form",
