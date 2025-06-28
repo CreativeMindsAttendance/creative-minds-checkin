@@ -3,6 +3,176 @@
    Clean, Modern, Responsive + RTL Support
    =================================== */
 
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(215, 221, 221, 1); /* light grey */
+}
+
+.top-controls {
+  background-color: rgba(39, 59, 84, 1); /* dark blue */
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.lang-switch {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.lang-btn {
+  background-color: rgba(39, 59, 84, 1); /* dark blue */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.lang-btn.active {
+  background-color: rgba(222, 235, 243, 1); /* light/sky blue */
+}
+
+.theme-switch {
+  display: inline-block;
+}
+
+.toggle-slider {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-slider input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  text-align: center;
+  line-height: 34px;
+  transition: 0.4s;
+}
+
+.slider-icon.sun {
+  left: 0;
+}
+
+.slider-icon.moon {
+  left: 100%;
+}
+
+.toggle-slider input:checked + .slider-icon.sun {
+  left: 100%;
+}
+
+.toggle-slider input:checked + .slider-icon.moon {
+  left: 0;
+}
+
+.card {
+  width: 300px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: rgba(222, 235, 243, 1); /* light/sky blue */
+  border: 1px solid rgba(222, 235, 243, 1); /* light/sky blue */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  border-radius: 50%;
+  background-color: rgba(222, 235, 243, 1); /* light/sky blue */
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(39, 59, 84, 1); /* dark blue */
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: rgba(39, 59, 84, 1); /* dark blue */
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(222, 235, 243, 1); /* light/sky blue */
+  font-size: 18px;
+}
+
+button {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  background-color: rgba(39, 59, 84, 1); /* dark blue */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: rgba(222, 235, 243, 1); /* light/sky blue */
+}
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(39, 59, 84, 1); /* dark blue */
+  border-top-color: #fff;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.adhkar-box {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(222, 235, 243, 1); /* light/sky blue */
+  border: 1px solid rgba(222, 235, 243, 1); /* light/sky blue */
+}
+
+.adhkar-box-text {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* ===================================
+   Creative Minds - Attendance Form Styles
+   Clean, Modern, Responsive + RTL Support
+   =================================== */
+
 :root {
   --main-bg-light: #D3DEDC;
   --accent1-light: #92A9BD;
