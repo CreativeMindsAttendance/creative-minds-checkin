@@ -1,77 +1,69 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creative Minds - نموذج التحضير</title>
-
-  <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-  <link rel="manifest" href="favicon_io/site.webmanifest">
-
-  <!-- Fonts and Styles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Minds - نموذج التحضير</title>
+    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Site title -->
-  <div id="site-title" class="site-title">
-    <span id="site-title-creative">Creative</span>
-    <span id="site-title-minds">Minds</span>
-  </div>
-
-  <!-- Top controls -->
-  <div class="top-controls">
-    <div class="top-left">
-      <div id="lang-toggle" class="language-switcher" data-active-lang="ar">
-        <div class="lang-option" data-lang="en">EN</div>
-        <div class="lang-option active" data-lang="ar">AR</div>
-        <div class="slider"></div>
-      </div>
+    <!-- Site title -->
+    <div id="site-title" class="site-title">
+        <span id="site-title-creative">Creative</span>
+        <span id="site-title-minds">Minds</span>
     </div>
-    <div class="top-right">
-      <div id="mode-toggle">
-        <span class="toggle-icon">🌙</span>
-      </div>
-    </div>
-  </div>
 
-  <!-- Main content -->
-  <main class="main-content">
-    <div class="container">
-      <img src="logo.png" class="logo" alt="Creative Minds Logo" />
-      <h2 id="form-title" class="form-title">نموذج تحضير</h2>
-      <input type="text" id="nameInput" class="name-input" placeholder="اكتب اسمك الثلاثي" />
-      <button id="submitBtn">تسجيل الحضور</button>
-      <div id="statusMessage" class="status-message"></div>
-      <div id="dailyDhikr" class="daily-dhikr-message">جاري تحميل الذكر اليومي...</div>
+    <!-- Top controls -->
+    <div class="top-controls">
+        <div class="top-left">
+            <div id="lang-toggle" class="language-switcher" data-active-lang="ar">
+                <div class="lang-option" data-lang="en">EN</div>
+                <div class="lang-option active" data-lang="ar">AR</div>
+                <div class="slider"></div>
+            </div>
+        </div>
+        <div class="top-right">
+            <div id="mode-toggle">
+                <span class="toggle-icon">🌙</span>
+            </div>
+        </div>
     </div>
-  </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-item">
-        <span class="emoji">📍</span>
-        <span id="location-text">Jazan, Saudi Arabia</span>
-      </div>
-      <div class="footer-item">
-        <span class="emoji">📧</span>
-        <span id="email-text">example@creativeminds.edu.sa</span>
-      </div>
-      <div class="footer-item">
-        <span class="emoji">🌐</span>
-        <span id="website-text">www.creativeminds.edu.sa</span>
-      </div>
-    </div>
-  </footer>
+    <!-- Main content -->
+    <main class="main-content">
+        <div class="container">
+            <img src="logo.png" class="logo" alt="Creative Minds Logo" />
+            <h2 id="form-title" class="form-title">نموذج تحضير</h2>
+            <input type="text" id="nameInput" class="name-input" placeholder="اكتب اسمك الثلاثي" />
+            <button id="submitBtn">تسجيل الحضور</button>
+            <div id="statusMessage" class="status-message"></div>
+            <div id="dailyDhikr" class="daily-dhikr-message"></div>
+        </div>
+    </main>
 
-  <script src="config.js"></script>
-  <script src="script.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-item">
+                <span class="emoji">📍</span>
+                <span id="location-text">Jazan, Saudi Arabia</span>
+            </div>
+            <div class="footer-item">
+                <span class="emoji">📧</span>
+                <span id="email-text">example@creativeminds.edu.sa</span>
+            </div>
+            <div class="footer-item">
+                <span class="emoji">🌐</span>
+                <span id="website-text">www.creativeminds.edu.sa</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
