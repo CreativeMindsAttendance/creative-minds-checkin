@@ -421,23 +421,28 @@ footer {
     align-items: stretch;
   }
   .container.card {
-    max-width: 90vw;
-    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
-    margin-top: 30px;
-    margin-bottom: 80px;
+    max-width: 82vw; /* smaller container on mobile */
+    padding: 1rem 0.5rem 1rem 0.5rem; /* less padding */
+    margin-top: 50px; /* slightly lower */
+    margin-bottom: 60px;
   }
   .site-title {
-    font-size: 3.2rem; /* much bigger on mobile */
+    font-size: 2.5rem; /* slightly smaller for balance */
     margin-top: 1.2rem;
     margin-bottom: 0.5rem;
   }
-  .language-switcher {
-    top: 0.5rem; /* higher on mobile */
-    left: 0.7rem;
+  .form-title {
+    font-size: 1.1rem;
   }
-  .mode-toggle-wrapper {
-    top: 0.5rem; /* higher on mobile */
-    right: 0.7rem;
+  #nameInput, #submitBtn, .adhkar-box, .status-message {
+    font-size: 0.95rem;
+  }
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
+  .adhkar-box {
+    padding: 0.7rem 0.7rem;
   }
   footer {
     font-size: 0.98rem;
@@ -445,7 +450,7 @@ footer {
     left: 0;
     right: 0;
     width: 100vw;
-    position: static; /* not fixed on mobile */
+    position: static;
   }
   .footer-content {
     gap: 0.7rem;
@@ -454,15 +459,25 @@ footer {
 
 @media (max-width: 500px) {
   .container.card {
-    max-width: 92vw;
-    padding: 0.7rem 0.3rem 0.7rem 0.3rem;
-    margin-top: 18px;
-    margin-bottom: 70px;
+    max-width: 97vw; /* even smaller on very small screens */
+    padding: 0.5rem 0.1rem 0.5rem 0.1rem;
+    margin-top: 30px;
+    margin-bottom: 40px;
   }
   .site-title {
-    font-size: 2.5rem; /* still bigger than before */
+    font-size: 2rem;
     margin-top: 0.7rem;
     margin-bottom: 0.3rem;
+  }
+  .form-title {
+    font-size: 1rem;
+  }
+  #nameInput, #submitBtn, .adhkar-box, .status-message {
+    font-size: 0.9rem;
+  }
+  .logo {
+    width: 55px;
+    height: 55px;
   }
   .footer-content {
     flex-direction: column;
