@@ -36,6 +36,15 @@ function loadLang() {
 function applyDarkMode() {
   body.classList.toggle("dark-mode", isDarkMode);
   modeToggle.classList.toggle("active", isDarkMode);
+  // Change icon and slider background
+  const icon = modeToggle.querySelector(".slider-icon");
+  if (isDarkMode) {
+    icon.textContent = "🌙";
+    modeToggle.style.background = "#1D2B44";
+  } else {
+    icon.textContent = "☀️";
+    modeToggle.style.background = "#BBDDFD";
+  }
   localStorage.setItem("darkMode", isDarkMode);
 }
 
