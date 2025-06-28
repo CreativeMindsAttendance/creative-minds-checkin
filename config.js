@@ -21,6 +21,7 @@ const translations = {
         email: "example@creativeminds.edu.sa",
         website: "www.creativeminds.edu.sa",
         adhkar: [],
+        guideButton: "Teacher Guide",
     },
     ar: {
         siteTitle: "Creative Minds",
@@ -42,6 +43,7 @@ const translations = {
         location: "جازان، المملكة العربية السعودية",
         email: "example@creativeminds.edu.sa",
         website: "www.creativeminds.edu.sa",
+        guideButton: "دليل المعلم",
         adhkar: [
             "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ",
             "لا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ",
