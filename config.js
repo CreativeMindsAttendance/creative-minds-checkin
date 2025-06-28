@@ -20,6 +20,7 @@ const translations = {
         location: "Jazan, Saudi Arabia",
         email: "example@creativeminds.edu.sa",
         website: "www.creativeminds.edu.sa",
+        adhkar: [],
     },
     ar: {
         siteTitle: "Creative Minds",
