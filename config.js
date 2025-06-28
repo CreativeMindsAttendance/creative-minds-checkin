@@ -60,3 +60,9 @@ window.DEST_LAT = 16.889264;
 window.DEST_LON = 42.548691;
 window.ALLOWED_DISTANCE_KM = 0.2; // 200 meters
 window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2", "JOHN DOE"]; // Example test names
+
+
+// config.js
+const CONFIG = {
+  SHEET_WEBHOOK: "https://script.google.com/macros/s/AKfycbxvRE1VR0hcx6z2OjIjlJ95W8Q0UuFmfk7mVmURl9d01wq0jH3R6-ECsIghHpuSaX2Z/exec"
+};
