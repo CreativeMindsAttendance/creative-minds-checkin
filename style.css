@@ -202,3 +202,25 @@ footer {
 .footer-item .emoji {
   margin-right: 4px;
 }
+
+/* Brand Header inside Top Controls */
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.small-logo {
+  width: 48px;
+  height: auto;
+}
+
+.brand-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color-light);
+}
+
+body.dark-mode .brand-title {
+  color: var(--text-color-dark);
+}
