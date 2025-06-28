@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creative Minds</title>
-
-  <!-- Favicon and Styles -->
+  <!-- Favicon -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png" />
@@ -13,55 +12,31 @@
   <link rel="manifest" href="favicon_io/site.webmanifest" />
 </head>
 <body>
-  <!-- Top Controls -->
   <div class="top-controls">
-
-    <div class="brand-header">
-      <img src="favicon_io/android-chrome-192x192.png" alt="Creative Minds Logo" class="logo small-logo" />
-      <span class="brand-title" id="brandTitle">نموذج تحضير</span>
-    </div>
-    <!-- Language Switch -->
     <div class="language-switcher" id="lang-toggle" data-active-lang="en">
       <span class="lang-option active" data-lang="en">EN</span>
       <span class="lang-option" data-lang="ar">AR</span>
       <div class="slider"></div>
     </div>
-
-    <!-- Mode Switch -->
     <div class="mode-toggle-wrapper" id="mode-toggle">
-      <span class="slider-icon" id="mode-icon">🌙</span>
+      <span class="slider-icon">🌙</span>
     </div>
   </div>
-
-  <!-- Main Form -->
   <main>
     <div class="container card">
-      <!-- Logo -->
       <img src="favicon_io/android-chrome-192x192.png" alt="Creative Minds Logo" class="logo" />
-
-      <!-- Title -->
       <h1 class="form-title" id="form-title">Attendance Form</h1>
-
-      <!-- Apple-like Styled Input -->
-      <input type="text" id="nameInput" class="fancy-input" placeholder="Write your name here..." />
-
-      <!-- Submit Button -->
+      <input type="text" id="nameInput" />
       <button id="submitBtn">
         <span>Check In</span>
         <div class="loader" id="loader" hidden></div>
       </button>
-
-      <!-- Status Message -->
       <div id="statusMessage" class="status-message"></div>
-
-      <!-- Adhkar Box -->
       <div class="adhkar-box">
         <p id="dailyDhikr" class="adhkar-text">⏳ Loading a remembrance...</p>
       </div>
     </div>
   </main>
-
-  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <span class="footer-item"><span class="emoji">📍</span> <span id="location-text">Jazan, Saudi Arabia</span></span>
@@ -69,8 +44,6 @@
       <span class="footer-item"><span class="emoji">🌐</span> <span id="website-text">www.creativeminds.edu.sa</span></span>
     </div>
   </footer>
-
-  <!-- Scripts -->
   <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
