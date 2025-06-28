@@ -119,13 +119,14 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   background: #fff;
   border-radius: 48px; /* really curved angles */
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  padding: 1.5rem; /* more inner margin */
-  max-width: 420px; /* smaller width on desktop */
+  padding: 1.8rem; /* more inner margin */
+  max-width: 480px; /* smaller width on desktop */
   min-width: 320px;
   min-height: auto;  /* لا تجبره يصير طويل */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* ظل أنعم وأوضح */
   width: 100%;
-  margin: 2.5rem auto; /* add bottom margin to prevent clipping with footer */
+  margin: 2.5rem auto; 
+  margin-top: 40px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -329,15 +330,15 @@ body.dark-mode .adhkar-text {
 footer {
   background: #1D2B44;
   color: #fff;
-  padding: 2.5rem 0 2.5rem 0; /* much larger background vertically */
-  font-size: 1.4rem;
+  padding: 10xp 20xp; /* much larger background vertically */
+  font-size: 0.85rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   left: 0;
   z-index: 20;
-  min-height: 180px; /* much taller */
+  height: auto;
   box-sizing: border-box;
   position: static;
 }
