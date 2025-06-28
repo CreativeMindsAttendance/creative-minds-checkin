@@ -112,6 +112,20 @@ function submitAttendance() {
   const allowedNames = window.ALLOWED_OUTSIDE_NAMES.map(n => n.toLowerCase());
   if (allowedNames.includes(name.toLowerCase())) {
     saveAttendance(name);
+    // ⬇️ إرسال إلى Google Sheets
+    fetch(CONFIG.SHEET_WEBHOOK, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        time: new Date().toLocaleTimeString(),
+        date: new Date().toLocaleDateString(),
+        location: "allowed name"
+      })
+    });
     return showSuccess(t.success);
   }
 
@@ -123,6 +137,20 @@ function submitAttendance() {
     const dist = getDistanceKm(pos.coords.latitude, pos.coords.longitude, window.DEST_LAT, window.DEST_LON);
     if (dist <= window.ALLOWED_DISTANCE_KM) {
       saveAttendance(name);
+      // ⬇️ إرسال إلى Google Sheets
+      fetch(CONFIG.SHEET_WEBHOOK, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name,
+          time: new Date().toLocaleTimeString(),
+          date: new Date().toLocaleDateString(),
+          location: "on-site"
+        })
+      });
       showSuccess(t.success);
     } else {
       showError(t.outOfRange);
