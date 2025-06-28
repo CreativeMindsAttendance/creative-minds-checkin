@@ -486,7 +486,6 @@ footer {
     top: 0rem; /* raise on mobile */
     left: 1rem;
     bottom: 2rem;
-    transform: scale(0.7);
     padding-left: 1rem;
 
   }
@@ -494,7 +493,6 @@ footer {
     top: 0rem; /* raise on mobile */
     right: 1rem;
     bottom: 2rem;
-    transform: scale(0.7);
     padding-right: 1rem;
   }
   footer {
@@ -510,7 +508,6 @@ footer {
     top: 0rem; /* raise on mobile */
     left: 1rem;
     bottom: 2rem;
-    transform: scale(0.7);
     padding-left: 1rem;
 
   }
@@ -518,7 +515,6 @@ footer {
     top: 0rem; /* raise on mobile */
     right: 1rem;
     bottom: 2rem;
-    transform: scale(0.7);
     padding-right: 1rem;
   }
   .container.card {
