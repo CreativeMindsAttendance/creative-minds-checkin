@@ -117,7 +117,7 @@ body.dark-mode .mode-toggle-wrapper .slider-icon {
   padding: 2.2rem 1.5rem 2rem 1.5rem;
   max-width: 400px;
   width: 100%;
-  margin: 120px auto 100px auto;
+  margin: 60px auto 100px auto; /* moved higher by reducing top margin */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -324,8 +324,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  bottom: 0;
   width: 100%;
   left: 0;
   z-index: 20;
@@ -421,11 +419,13 @@ footer {
     align-items: stretch;
   }
   .container.card {
-    max-width: 95vw;
+    max-width: 90vw; /* less wide on mobile */
     padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+    margin-top: 30px; /* move higher on mobile */
+    margin-bottom: 80px;
   }
   .site-title {
-    font-size: 2.1rem;
+    font-size: 2.7rem; /* bigger on mobile */
     margin-top: 1.2rem;
     margin-bottom: 0.5rem;
   }
@@ -435,12 +435,7 @@ footer {
   footer {
     font-size: 0.98rem;
     padding: 0.7rem 0.5rem;
-    left: 0;
-    right: 0;
     width: 100vw;
-    position: fixed;
-    bottom: 0;
-    z-index: 20;
   }
   .footer-content {
     gap: 0.7rem;
@@ -449,11 +444,13 @@ footer {
 
 @media (max-width: 500px) {
   .container.card {
-    max-width: 99vw;
+    max-width: 92vw; /* even less wide on small screens */
     padding: 0.7rem 0.3rem 0.7rem 0.3rem;
+    margin-top: 18px;
+    margin-bottom: 70px;
   }
   .site-title {
-    font-size: 1.3rem;
+    font-size: 2.1rem; /* bigger than before on very small screens */
     margin-top: 0.7rem;
     margin-bottom: 0.3rem;
   }
@@ -464,4 +461,16 @@ footer {
     flex-direction: column;
     gap: 0.6rem;
   }
+  footer {
+    width: 100vw;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  position: relative;
 }
