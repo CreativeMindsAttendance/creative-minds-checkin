@@ -177,17 +177,27 @@ body.dark-mode {
 
 .container {
   background-color: var(--current-box-bg);
-  border-radius: 28px;
+  border-radius: 24px;
   box-shadow: 0 10px 30px var(--shadow);
-  padding: 2.5rem 2rem;
-  max-width: 420px;
+  padding: 2.2rem 1.5rem;
+  max-width: 400px;
   margin: 140px auto 100px auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   animation: fadeInUp 0.6s ease-out;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1.8rem 1.2rem;
+    max-width: 90%;
+    border-radius: 20px;
+    margin: 120px auto 80px auto;
+  }
 }
 
 .logo {
@@ -209,7 +219,7 @@ input[type="text"],
 #nameInput {
   width: 100%;
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 14px;
   border: none;
   background-color: var(--current-input-bg);
   font-size: 1rem;
@@ -218,6 +228,7 @@ input[type="text"],
   font-family: 'QatarMedium', sans-serif;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  direction: rtl;
 }
 
 #nameInput::placeholder {
