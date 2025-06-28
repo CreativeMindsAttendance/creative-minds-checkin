@@ -139,7 +139,7 @@ body.dark-mode .container.card {
 }
 
 .site-title {
-  font-family: 'MacondoSwashCaps-Regular.ttf', cursive;
+  font-family: 'MacondoSwashCaps-Regular', cursive;
   font-size: 3.2rem;
   color: var(--dark1);
   margin-top: 2.2rem;
@@ -352,7 +352,7 @@ footer {
 }
 
 @font-face {
-    font-family: 'MacondoSwashCaps-Regular.ttf';
+    font-family: 'MacondoSwashCaps-Regular';
     src: url('fonts/MacondoSwashCaps-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
