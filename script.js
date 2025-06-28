@@ -29,6 +29,7 @@ function loadLang() {
   nameInput.style.direction = statusMessage.style.direction = currentLang === "ar" ? "rtl" : "ltr";
   langToggle.dataset.activeLang = currentLang;
   langOptions.forEach(opt => opt.classList.toggle("active", opt.dataset.lang === currentLang));
+  window.adhkar = t.adhkar || [];
   hideMessage();
 }
 
