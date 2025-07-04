@@ -41,8 +41,8 @@ const translations = {
         adhkarError: "لم نتمكن من تحميل الأذكار. يرجى المحاولة لاحقاً.",
         adhkarNotFound: "لا توجد أذكار متاحة.",
         location: "جازان، المملكة العربية السعودية",
-        email: "example@creativeminds.edu.sa",
-        website: "www.creativeminds.edu.sa",
+        email: "+966 56 226 4473",
+        website: "creativeminds993",
         guideButton: "دليل المعلم",
         adhkar: [
             "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ",
