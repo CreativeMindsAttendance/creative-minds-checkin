@@ -23,8 +23,8 @@
 ### إحداثيات المعهد:
 
 ```js
-const DEST_LAT = 16.889264;
-const DEST_LON = 42.548691;
+const allowedLatitude = 16.8891404;
+const allowedLongitude = 42.5560163;
 const allowedDistance = 0.2; // km
 ```
 
