@@ -58,8 +58,6 @@ const translations = {
 };
 
 // Location settings for geographical checks
-window.DEST_LAT = 16.8891404;
-window.DEST_LON = 42.5560163;
 window.ALLOWED_DISTANCE_KM = 0.2; // 200 meters
 window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2", "JOHN DOE"]; // Example test names
 
