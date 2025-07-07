@@ -141,19 +141,19 @@ function submitAttendance() {
   navigator.geolocation.getCurrentPosition(pos => {
    const currentLat = pos.coords.latitude;
    const currentLon = pos.coords.longitude;
-
+  
+   const allowedLocations = [
+     { lat: 16.9268840, lon: 42.6116719 },
+     { lat: 16.8896, lon: 42.5706 }
+   ];
+  
+  // ✅ بعد تعريف allowedLocations، اطبع الآن
   console.log("📍 جهازك يعتقد أنك في:", currentLat, currentLon);
-
+  
   allowedLocations.forEach(loc => {
     const dist = getDistanceKm(currentLat, currentLon, loc.lat, loc.lon);
     console.log(`↔️ المسافة إلى (${loc.lat}, ${loc.lon}) =`, dist.toFixed(5), "km");
   });
-
-
-   const allowedLocations = [
-    { lat: 16.9268840, lon: 42.6116719 }, // هذا هو موقعك الحقيقي الحالي// الموقع المؤقت (اللي أضفته الآن)
-    { lat: 16.8896, lon: 42.5706 }        // الموقع الأصلي (المعهد)
-  ];
 
   const isWithinRange = allowedLocations.some(loc => {
     const dist = getDistanceKm(currentLat, currentLon, loc.lat, loc.lon);
