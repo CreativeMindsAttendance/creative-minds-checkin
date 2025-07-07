@@ -14,7 +14,7 @@ const translations = {
         positionUnavailable: "❌ Location information is unavailable. Please try again.",
         timeout: "❌ Location request timed out. Please check your connection or try again.",
         emptyNameError: "⚠️ Please enter your full name.",
-        adhkarLoading: "⏳ Loading a remembrance...",
+        adhkarLoading: "⏳ Checking your location...",
         adhkarError: "Could not load remembrance. Please try again later.",
         adhkarNotFound: "No remembrances available.",
         location: "Jazan, Saudi Arabia",
