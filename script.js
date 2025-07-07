@@ -139,8 +139,21 @@ function submitAttendance() {
   showMessage(t.adhkarLoading, "info");
 
   navigator.geolocation.getCurrentPosition(pos => {
-    const dist = getDistanceKm(pos.coords.latitude, pos.coords.longitude, window.DEST_LAT, window.DEST_LON);
-    if (dist <= window.ALLOWED_DISTANCE_KM) {
+   const currentLat = pos.coords.latitude;
+   const currentLon = pos.coords.longitude;
+
+   const allowedLocations = [
+    { lat: 16.8891404, lon: 42.5560163 }, // الموقع المؤقت (اللي أضفته الآن)
+    { lat: 16.8896, lon: 42.5706 }        // الموقع الأصلي (المعهد)
+  ];
+
+  const isWithinRange = allowedLocations.some(loc => {
+    const dist = getDistanceKm(currentLat, currentLon, loc.lat, loc.lon);
+    return dist <= window.ALLOWED_DISTANCE_KM;
+  });
+
+  if (isWithinRange) {
+
       saveAttendance(name);
       // ⬇️ إرسال إلى Google Sheets
       fetch(CONFIG.SHEET_WEBHOOK, {
