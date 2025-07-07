@@ -59,7 +59,7 @@ const translations = {
 
 // Location settings for geographical checks
 window.ALLOWED_DISTANCE_KM = 1.0; // 1000 meters
-window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2", "Ran Mouri", "Rajaa Haider Nasser"]; // Example test names
+window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2", "Ran Mouri", "Rajaa Haider Nasser", "سليمان النجدي"]; // Example test names
 
 
 // config.js
