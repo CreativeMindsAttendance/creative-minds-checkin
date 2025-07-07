@@ -58,7 +58,7 @@ const translations = {
 };
 
 // Location settings for geographical checks
-window.ALLOWED_DISTANCE_KM = 0.2; // 200 meters
+window.ALLOWED_DISTANCE_KM = 0.5; // 500 meters
 window.ALLOWED_OUTSIDE_NAMES = ["TEST1", "TEST2", "JOHN DOE"]; // Example test names
 
 
